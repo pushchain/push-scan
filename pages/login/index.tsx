@@ -7,7 +7,7 @@ export default function Login() {
   return (
     <>
       <Head>
-        <title>Springsentia Login</title>
+        <title>Admin Login</title>
       </Head>
 
       <Navbar />

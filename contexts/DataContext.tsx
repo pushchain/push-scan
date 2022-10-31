@@ -1,17 +1,19 @@
 import { useState, useContext, createContext, useEffect } from "react";
 
 const DataContext = createContext<any>({});
+const KEY = "userLogin";
 
 const DataProvider = ({ children }: { children: any }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(Boolean(sessionStorage.getItem(KEY)));
 
-  useEffect(() => {
-    const loginHistory = sessionStorage.getItem("userLogin");
-    setIsLoggedIn(Boolean(loginHistory));
-  }, []);
+
+  const logUserIntoSession = () => {
+    sessionStorage.setItem(KEY, ""+true);
+    setIsLoggedIn(true)
+  }
 
   return (
-    <DataContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
+    <DataContext.Provider value={{ isLoggedIn, setIsLoggedIn: logUserIntoSession }}>
       {children}
     </DataContext.Provider>
   );

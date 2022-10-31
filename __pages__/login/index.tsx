@@ -1,5 +1,4 @@
 import React from "react";
-import { useRouter } from "next/router";
 import {
   Box,
   Paper,
@@ -15,49 +14,18 @@ import {
 } from "@mui/material";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import { toast } from "react-toastify";
-
-import { useData } from "contexts/DataContext";
-import { ROUTES, CREDENTIALS } from "utils/constants";
+import useLogin from "hooks/loginHook";
 
 export default function LoginView() {
-  const router = useRouter();
-  const { setIsLoggedIn } = useData();
-  const [values, setValues] = React.useState({
-    username: "",
-    password: "",
-    showPassword: false,
-  });
 
-  const handleChange = (prop: any) => (event: any) => {
-    setValues({ ...values, [prop]: event.target.value });
-  };
+  const {
+    Login,
+    handleChange,
+    handleClickShowPassword,
+    handleMouseDownPassword,
+    values,
+  } = useLogin();
 
-  const handleClickShowPassword = () => {
-    setValues({
-      ...values,
-      showPassword: !values.showPassword,
-    });
-  };
-
-  const handleMouseDownPassword = (event: any) => {
-    event.preventDefault();
-  };
-
-  const Login = (e: any) => {
-    e.preventDefault();
-    const { username, password } = e.target.elements;
-    if (
-      username.value === CREDENTIALS.USERNAME &&
-      password.value === CREDENTIALS.PASSWORD
-    ) {
-      setIsLoggedIn(true);
-      router.push(ROUTES.ADMIN);
-    } else {
-      toast.error("Please enter the correct Username and Password");
-      setValues({ username: "", password: "", showPassword: false });
-    }
-  };
   return (
     <>
       <Box
