@@ -1,18 +1,27 @@
-import { Box } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import Logo from "components/logo";
 import { useTheme } from "contexts/ThemeContext";
+import { useData } from "contexts/DataContext";
+import { useRouter } from "next/router";
+import { ROUTES, STORAGEKEY } from "utils/constants";
 import React from "react";
 import { DarkModeSwitch } from "react-toggle-dark-mode";
 import { RootStyle, ToolbarStyle } from "./navbar.styled";
 
 export default function Navbar() {
   const { isDarkMode, darkModeToggle } = useTheme();
+  const { isLoggedIn, setIsLoggedIn } = useData();
+  const router = useRouter();
 
+  const logout = () => {
+    setIsLoggedIn(false);
+    sessionStorage.setItem(STORAGEKEY, "" + false);
+    router.push(ROUTES.LOGIN);
+  };
 
   return (
     <RootStyle>
       <ToolbarStyle>
-
         <Logo
           src={
             isDarkMode
@@ -21,16 +30,21 @@ export default function Navbar() {
           }
           sx={{ width: 140, height: 120 }}
         />
-
-        <DarkModeSwitch
-          style={{ margin: "0 1rem" }}
-          checked={isDarkMode}
-          onChange={darkModeToggle}
-          size={28}
-          sunColor="#494D5F"
-          moonColor="#787E99"
-        />
-
+        <Box sx={{ display: "flex", alignItems: "center" }}>
+          {isLoggedIn ? (
+            <Button variant="outlined" onClick={() => logout()}>
+              Logout
+            </Button>
+          ) : null}
+          <DarkModeSwitch
+            style={{ margin: "0 1rem" }}
+            checked={isDarkMode}
+            onChange={darkModeToggle}
+            size={28}
+            sunColor="#494D5F"
+            moonColor="#787E99"
+          />
+        </Box>
       </ToolbarStyle>
     </RootStyle>
   );
