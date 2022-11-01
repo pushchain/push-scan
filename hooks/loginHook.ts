@@ -2,7 +2,7 @@ import { useData } from "contexts/DataContext";
 import { useRouter } from "next/router";
 import React from "react";
 import { toast } from "react-toastify";
-import { CREDENTIALS, ROUTES } from "utils/constants";
+import { CREDENTIALS, ROUTES, STORAGEKEY } from "utils/constants";
 
 export default function useLogin() {
   const router = useRouter();
@@ -35,7 +35,8 @@ export default function useLogin() {
       username.value === CREDENTIALS.USERNAME &&
       password.value === CREDENTIALS.PASSWORD
     ) {
-      setIsLoggedIn();
+      setIsLoggedIn(true);
+      sessionStorage.setItem(STORAGEKEY, "" + true);
       router.push(ROUTES.ADMIN);
     } else {
       toast.error("Please enter the correct Username and Password");

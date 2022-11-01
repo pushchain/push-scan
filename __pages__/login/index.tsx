@@ -17,7 +17,6 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import useLogin from "hooks/loginHook";
 
 export default function LoginView() {
-
   const {
     Login,
     handleChange,
@@ -33,7 +32,7 @@ export default function LoginView() {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          height: "70vh",
+          height: "90vh",
         }}
       >
         <Paper>
@@ -82,9 +81,9 @@ export default function LoginView() {
                           edge="end"
                         >
                           {values.showPassword ? (
-                            <VisibilityOff />
-                          ) : (
                             <Visibility />
+                          ) : (
+                            <VisibilityOff />
                           )}
                         </IconButton>
                       </InputAdornment>
