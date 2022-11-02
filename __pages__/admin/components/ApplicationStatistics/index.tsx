@@ -1,9 +1,7 @@
-import { Grid, Card, CardHeader, Box, Modal } from "@mui/material";
+import { Grid, Card, CardHeader, Box } from "@mui/material";
 import ReactECharts from "echarts-for-react";
 import useModal from "hooks/useModal";
 import { useEffect, useState } from "react";
-import { StyledEditIcon } from "../../admin.styled";
-import FormDialog from "./editModal";
 
 const getDataPoints = (data: any) => {
   return {
@@ -73,7 +71,7 @@ const ApplicationStatistics = () => {
       lg={6}
     >
       <Card sx={{ height: "100%" }}>
-        <CardHeader title={`Application Usage Statistics`} />
+        <CardHeader title={`Application Download Data`} />
         <Box
           sx={{
             p: 3,
@@ -90,8 +88,6 @@ const ApplicationStatistics = () => {
           />
         </Box>
       </Card>
-      <StyledEditIcon onClick={handleOpen} />
-      <FormDialog open={open} handleClose={handleClose} />
     </Grid>
   );
 };
