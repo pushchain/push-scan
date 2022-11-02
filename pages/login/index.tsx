@@ -9,7 +9,6 @@ export default function Login() {
       <Head>
         <title>Admin Login</title>
       </Head>
-
       <Navbar />
       <LoginView />
     </>

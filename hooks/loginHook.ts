@@ -2,7 +2,8 @@ import { useData } from "contexts/DataContext";
 import { useRouter } from "next/router";
 import React from "react";
 import { toast } from "react-toastify";
-import { CREDENTIALS, ROUTES, STORAGEKEY } from "utils/constants";
+import { ROUTES, CREDENTIALKEYS } from "utils/constants";
+import { login } from "utils/api";
 
 export default function useLogin() {
   const router = useRouter();
@@ -28,15 +29,14 @@ export default function useLogin() {
     event.preventDefault();
   };
 
-  const Login = (e: any) => {
+  const Login = async (e: any) => {
     e.preventDefault();
     const { username, password } = e.target.elements;
-    if (
-      username.value === CREDENTIALS.USERNAME &&
-      password.value === CREDENTIALS.PASSWORD
-    ) {
+    const res = await login({ user: username.value, pass: password.value });
+    if (res?.token) {
       setIsLoggedIn(true);
-      sessionStorage.setItem(STORAGEKEY, "" + true);
+      sessionStorage.setItem(CREDENTIALKEYS.LOGINCHECK, "" + true);
+      sessionStorage.setItem(CREDENTIALKEYS.TOKEN, res?.token);
       router.push(ROUTES.ADMIN);
     } else {
       toast.error("Please enter the correct Username and Password");

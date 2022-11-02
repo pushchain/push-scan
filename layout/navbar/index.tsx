@@ -1,9 +1,9 @@
 import { Box, Button } from "@mui/material";
-import Logo from "components/logo";
+import Logo from "components/Logo";
 import { useTheme } from "contexts/ThemeContext";
 import { useData } from "contexts/DataContext";
 import { useRouter } from "next/router";
-import { ROUTES, STORAGEKEY } from "utils/constants";
+import { ROUTES, CREDENTIALKEYS } from "utils/constants";
 import React from "react";
 import { DarkModeSwitch } from "react-toggle-dark-mode";
 import { RootStyle, ToolbarStyle } from "./navbar.styled";
@@ -15,7 +15,8 @@ export default function Navbar() {
 
   const logout = () => {
     setIsLoggedIn(false);
-    sessionStorage.setItem(STORAGEKEY, "" + false);
+    sessionStorage.setItem(CREDENTIALKEYS.LOGINCHECK, "" + false);
+    sessionStorage.setItem(CREDENTIALKEYS.TOKEN, "");
     router.push(ROUTES.LOGIN);
   };
 

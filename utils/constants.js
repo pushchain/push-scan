@@ -5,9 +5,7 @@ export const ROUTES = {
   ADMIN: "/admin",
 };
 
-export const CREDENTIALS = {
-  USERNAME: "admin",
-  PASSWORD: "pushpassword",
+export const CREDENTIALKEYS = {
+  LOGINCHECK: "userLogin",
+  TOKEN: "token",
 };
-
-export const STORAGEKEY = "userLogin";
