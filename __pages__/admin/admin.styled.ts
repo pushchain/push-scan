@@ -5,6 +5,10 @@ import { Container } from "@mui/system";
 
 export const AdminContainer = styled(Container)`
   margin-top: 150px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 export const StyledEditIcon = styled(EditIcon)`
@@ -29,6 +33,7 @@ export const StyledEditIcon = styled(EditIcon)`
 `;
 
 export const StyledDialog = styled(Dialog)`
+  overflow: auto;
   & > div {
     & > div {
       box-shadow: none;
