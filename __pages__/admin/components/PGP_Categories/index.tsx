@@ -14,7 +14,7 @@ const getDataPoints = (data: any) => {
     },
     series: [
       {
-        name: "Access From",
+        name: "Category",
         type: "pie",
         radius: "50%",
         data: [...data],
@@ -31,9 +31,14 @@ const getDataPoints = (data: any) => {
 };
 
 const INITIAL_STATE = [
-  { value: 0, name: "Extensions" },
-  { value: 0, name: "Dapp" },
-  { value: 0, name: "Mobile" },
+  { value: 0, name: "Defi" },
+  { value: 0, name: "NFT" },
+  { value: 0, name: "DAO" },
+  { value: 0, name: "Tooling" },
+  { value: 0, name: "Marketing" },
+  { value: 0, name: "Educational" },
+  { value: 0, name: "Gaming" },
+  { value: 0, name: "Others" },
 ];
 
 const style = {
@@ -48,17 +53,29 @@ const style = {
   p: 4,
 };
 
-const ApplicationStatistics = () => {
+const PGP_Categories = () => {
   const [state, setState] = useState(INITIAL_STATE);
-  const { open, handleOpen, handleClose } = useModal();
-
   useEffect(() => {
     // const dataPoints = getDataPoints()
-    const dataPoints = { extensions: 10, dapp: 25, mobile: 40 };
+    const dataPoints = {
+      defi: 18,
+      nft: 12,
+      dao: 10,
+      tooling: 10,
+      marketing: 15,
+      educational: 10,
+      gaming: 10,
+      other: 15,
+    };
     setState([
-      { value: dataPoints.extensions, name: "Extensions" },
-      { value: dataPoints.dapp, name: "Dapp" },
-      { value: dataPoints.mobile, name: "Mobile" },
+      { value: dataPoints.defi, name: "Defi" },
+      { value: dataPoints.nft, name: "NFT" },
+      { value: dataPoints.dao, name: "DAO" },
+      { value: dataPoints.tooling, name: "Tooling" },
+      { value: dataPoints.marketing, name: "Marketing" },
+      { value: dataPoints.educational, name: "Educational" },
+      { value: dataPoints.gaming, name: "Gaming" },
+      { value: dataPoints.other, name: "Others" },
     ]);
   }, []);
 
@@ -71,7 +88,7 @@ const ApplicationStatistics = () => {
       lg={6}
     >
       <Card sx={{ height: "100%" }}>
-        <CardHeader title={`Application Download Data`} />
+        <CardHeader title={`PGP Categories`} />
         <Box
           sx={{
             p: 3,
@@ -92,4 +109,4 @@ const ApplicationStatistics = () => {
   );
 };
 
-export default ApplicationStatistics;
+export default PGP_Categories;

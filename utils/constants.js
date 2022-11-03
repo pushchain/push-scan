@@ -3,6 +3,7 @@ export const ROUTES = {
   LOGIN: "/login",
   ERROR: "*",
   ADMIN: "/admin",
+  DASHBOARD: "/dashboard",
 };
 
 export const CREDENTIALKEYS = {

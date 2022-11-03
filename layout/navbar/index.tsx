@@ -3,6 +3,7 @@ import Logo from "components/Logo";
 import { useTheme } from "contexts/ThemeContext";
 import { useData } from "contexts/DataContext";
 import { useRouter } from "next/router";
+import Link from "next/link";
 import { ROUTES, CREDENTIALKEYS } from "utils/constants";
 import React from "react";
 import { DarkModeSwitch } from "react-toggle-dark-mode";
@@ -32,6 +33,8 @@ export default function Navbar() {
           sx={{ width: 140, height: 120 }}
         />
         <Box sx={{ display: "flex", alignItems: "center" }}>
+          <Button onClick={() => router.push(ROUTES.DASHBOARD)}>Home</Button>
+          <Link href={ROUTES.DASHBOARD}>Dashboard</Link>
           {isLoggedIn ? (
             <Button variant="outlined" onClick={() => logout()}>
               Logout
