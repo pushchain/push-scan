@@ -20,13 +20,10 @@ export default function FormDialog({
 
   return (
     <StyledDialog open={open} onClose={handleClose}>
-      <DialogTitle>Modify data</DialogTitle>
+      <DialogTitle variant="h3">Modify Governance Data</DialogTitle>
       <form onSubmit={handleSubmit}>
         <DialogContent>
-          <Typography variant="h4">Modify Data</Typography>
-          <Typography variant="h6" mt={5}>
-            Push Grant Proposals
-          </Typography>
+          <Typography variant="h6">Push Grant Proposals</Typography>
           <TextField
             autoFocus
             margin="dense"
