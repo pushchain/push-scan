@@ -1,5 +1,10 @@
+import { DashBoardContainer } from "./dashboard.styled";
 const DashBoardView = () => {
-  return <h1>Dashboard</h1>;
+  return (
+    <DashBoardContainer>
+      <h1>Dash</h1>
+    </DashBoardContainer>
+  );
 };
 
 export default DashBoardView;

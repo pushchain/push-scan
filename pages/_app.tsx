@@ -1,5 +1,6 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
+import Head from "next/head";
 import ThemeProvider from "theme";
 import { ThemeProvider as GlobalThemeProvider } from "contexts/ThemeContext";
 import { DataProvider } from "contexts/DataContext";
@@ -13,6 +14,9 @@ export default function App({ Component, pageProps }: AppProps) {
     <GlobalThemeProvider>
       <ThemeProvider>
         <DataProvider>
+          <Head>
+            <link rel="shortcut icon" href="/static/push.png" />
+          </Head>
           <Component {...pageProps} />
         </DataProvider>
       </ThemeProvider>
