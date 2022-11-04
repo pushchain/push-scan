@@ -1,5 +1,5 @@
 import { Box, Button } from "@mui/material";
-import Logo from "components/Logo";
+import Logo from "components/logo";
 import { useTheme } from "contexts/ThemeContext";
 import { useData } from "contexts/DataContext";
 import { useRouter } from "next/router";
