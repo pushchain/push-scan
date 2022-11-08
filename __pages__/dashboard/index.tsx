@@ -4,6 +4,8 @@ import { DashBoardContainer } from "./dashboard.styled";
 import Topchannels from "./components/TopChannels";
 import NewChannels from "./components/NewChannels";
 import Channels from "./components/Channels";
+import Notifications from "./components/Notifications";
+import Subscribers from "./components/Subscribers";
 
 const DashBoardView = () => {
   return (
@@ -18,6 +20,8 @@ const DashBoardView = () => {
       </Grid>
       <Grid container spacing={3} justifyContent="center" mt={5}>
         <Channels />
+        <Notifications />
+        <Subscribers />
       </Grid>
     </DashBoardContainer>
   );

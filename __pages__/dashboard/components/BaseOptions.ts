@@ -3,18 +3,18 @@ import { useTheme } from "@mui/material/styles";
 export default function BaseOptionChart() {
   const theme = useTheme();
 
-  const LABEL_TOTAL = {
-    show: true,
-    label: "Total",
-    color: theme.palette.text.secondary,
-    ...theme.typography.subtitle2,
-  };
+  // const LABEL_TOTAL = {
+  //   show: true,
+  //   label: "Total",
+  //   color: theme.palette.text.secondary,
+  //   ...theme.typography.subtitle2,
+  // };
 
-  const LABEL_VALUE = {
-    offsetY: 8,
-    color: theme.palette.text.primary,
-    ...theme.typography.h3,
-  };
+  // const LABEL_VALUE = {
+  //   offsetY: 8,
+  //   color: theme.palette.text.primary,
+  //   ...theme.typography.h3,
+  // };
 
   return {
     // Colors
@@ -29,8 +29,26 @@ export default function BaseOptionChart() {
 
     // Chart
     chart: {
-      toolbar: { show: false },
-      zoom: { enabled: true },
+      toolbar: {
+        show: true,
+        tools: {
+          download: false,
+          pan: false,
+          zoomin: false,
+          zoomout: false,
+        },
+      },
+      zoom: {
+        enabled: true,
+        type: "x",
+        autoScaleYaxis: false,
+        zoomedArea: {
+          fill: {
+            color: "#90CAF9",
+            opacity: 0.4,
+          },
+        },
+      },
 
       // animations: { enabled: false },
       foreColor: theme.palette.text.disabled,
@@ -83,8 +101,11 @@ export default function BaseOptionChart() {
 
     // Xaxis
     xaxis: {
-      axisBorder: { show: false },
-      axisTicks: { show: false },
+      axisBorder: { show: true },
+      axisTicks: { show: true },
+      tooltip: {
+        enabled: false,
+      },
     },
 
     // Markers

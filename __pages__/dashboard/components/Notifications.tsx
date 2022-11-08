@@ -1,5 +1,6 @@
-export default function Notifications(){
-    return <h1>Notifications</h1>
+import LineChart from "./LineChart";
+
+export default function Notifications() {
+  return <LineChart title="Notifications" />;
 }
 
-// `https://api.analytics.epns.io/apis/analytics/get_push_btc_price`

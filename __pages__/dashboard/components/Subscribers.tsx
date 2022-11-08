@@ -1,3 +1,5 @@
-export default function Subscribers(){
-    return <h1>Subscribers</h1>
+import LineChart from "./LineChart";
+
+export default function Subscribers() {
+  return <LineChart title="Subscribers" />;
 }
