@@ -22,6 +22,9 @@ const DashBoardView = () => {
         <Channels />
         <Notifications />
         <Subscribers />
+        <Channels />
+        <Notifications />
+        <Subscribers />
       </Grid>
     </DashBoardContainer>
   );

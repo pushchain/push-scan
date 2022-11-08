@@ -1,5 +1,6 @@
-import LineChart from "./LineChart";
+// import LineChart from "./LineChart";
+import Chart from "./Chart";
 
 export default function Subscribers() {
-  return <LineChart title="Subscribers" />;
+  return <Chart title="Subscribers" />;
 }

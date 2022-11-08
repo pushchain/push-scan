@@ -1,7 +1,9 @@
 import { useTheme } from "@mui/material/styles";
+import { useTheme as Theme } from "contexts/ThemeContext";
 
-export default function BaseOptionChart() {
+export default function BaseOptions() {
   const theme = useTheme();
+  const { isDarkMode } = Theme();
 
   // const LABEL_TOTAL = {
   //   show: true,
@@ -116,8 +118,10 @@ export default function BaseOptionChart() {
 
     // Tooltip
     tooltip: {
+      theme: isDarkMode ? "dark" : "light",
       x: {
-        show: false,
+        show: true,
+        format: "dd MMM yyyy",
       },
     },
 

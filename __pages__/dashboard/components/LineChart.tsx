@@ -176,6 +176,10 @@ export default function LineChart({ title }: { title: string }) {
       <Card sx={{ height: "100%", borderRadius: "0px" }}>
         <CardHeader title={title} />
         <CardContent>
+          <button>1M</button>
+          <button>6M</button>
+          <button>1Y</button>
+          <button>ALL</button>
           <ReactApexChart
             type="line"
             series={chartData}
