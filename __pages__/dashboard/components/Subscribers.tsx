@@ -2,5 +2,5 @@
 import Chart from "./Chart";
 
 export default function Subscribers() {
-  return <Chart title="Subscribers" />;
+  return <Chart title="Subscribers" value={12345} />;
 }

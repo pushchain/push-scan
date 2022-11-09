@@ -32,7 +32,7 @@ export default function BaseOptions() {
     // Chart
     chart: {
       toolbar: {
-        show: true,
+        show: false,
         tools: {
           download: false,
           pan: false,

@@ -4,48 +4,88 @@ import {
   CardHeader,
   Box,
   Grid,
-  Container,
-  Typography,
   Avatar,
+  Table,
+  TableBody,
+  TableHead,
+  TableRow,
+  TableCell,
 } from "@mui/material";
+import { tableCellClasses } from "@mui/material/TableCell";
+
 export default function NewChannels() {
   const data = [
-    { image: "/static/push.svg", name: "Channel1", value: 100 },
-    { image: "/static/push.svg", name: "Channel2", value: 200 },
-    { image: "/static/push.svg", name: "Channel3", value: 300 },
+    { image: "/static/Clothing.png", name: "Channel1", value: 100, trend: 10 },
+    { image: "/static/Clothing.png", name: "Channel2", value: 200, trend: 7 },
+    { image: "/static/Clothing.png", name: "Channel3", value: 300, trend: 3 },
+    { image: "/static/Clothing.png", name: "Channel2", value: 200, trend: 7 },
+    { image: "/static/Clothing.png", name: "Channel3", value: 300, trend: 3 },
   ];
+
   return (
-    <Grid item xs={12} md={6} lg={6}>
-      <Card sx={{ height: "100%" }}>
-        <CardHeader title="Recently Added" />
-        <CardContent>
-          {data?.map((channel, index) => {
-            return (
-              <Box
+    <Grid item xs={12} md={4} lg={4}>
+      <Card
+        sx={{
+          height: "100%",
+          backgroundColor: "transparent",
+          border: " 1px solid #BAC4D6",
+        }}
+      >
+        <CardHeader
+          title="Trending"
+          sx={{ fontWeight: 500, fontSize: "18px", marginLeft: 2 }}
+        />
+        <CardContent style={{ paddingTop: "0px" }}>
+          <Table
+            sx={{
+              width: "100%",
+              [`& .${tableCellClasses.root}`]: {
+                borderBottom: "none",
+                fontSize: "14px",
+                fontWeight: 600,
+                paddingTop: "9px",
+                paddingBottom: "9px",
+              },
+            }}
+            aria-label="simple table"
+          >
+            <TableHead>
+              <TableRow
                 sx={{
-                  p: 3,
-                  display: "flex",
-                  justifyContent: "space-between",
-                  height: "100%",
-                  width: "100%",
+                  "& th": {
+                    color: "#657795",
+                    fontSize: "12px",
+                    fontWeight: 500,
+                  },
                 }}
-                dir="ltr"
-                key={index}
               >
-                <Box sx={{ display: "flex", alignItems: "center" }}>
-                  <Typography variant="h5" mr={1}>
-                    {index + 1}.
-                  </Typography>
-                  <Avatar
-                    src={channel.image}
-                    sx={{ width: "26px", height: "26px" }}
-                  />
-                  <Typography variant="h5">{channel.name}</Typography>
-                </Box>
-                <Typography variant="h5">{channel.value}</Typography>
-              </Box>
-            );
-          })}
+                <TableCell>Name</TableCell>
+                <TableCell align="right">Subscribers</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {data.map((channel, index) => (
+                <TableRow
+                  key={index}
+                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                >
+                  <TableCell
+                    align="center"
+                    component="th"
+                    scope="row"
+                    style={{ display: "flex", alignItems: "center" }}
+                  >
+                    <Avatar
+                      src={channel.image}
+                      sx={{ width: 26, height: 26, marginRight: 1 }}
+                    />
+                    {channel.name}
+                  </TableCell>
+                  <TableCell align="right">{channel.value}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
         </CardContent>
       </Card>
     </Grid>

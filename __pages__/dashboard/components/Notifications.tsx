@@ -2,6 +2,5 @@
 import Chart from "./Chart";
 
 export default function Notifications() {
-  return <Chart title="Notifications" />;
+  return <Chart title="Notifications Sent" value={123456} />;
 }
-

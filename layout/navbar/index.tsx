@@ -23,14 +23,7 @@ export default function Navbar() {
   return (
     <RootStyle>
       <ToolbarStyle>
-        <Logo
-          src={
-            isDarkMode
-              ? "/static/standard-push-logo-white.svg"
-              : "/static/standard-push-logo-dark.svg"
-          }
-          sx={{ width: 140, height: 120 }}
-        />
+        <Logo src="./static/push.svg" sx={{ width: 140, height: 120 }} />
         <Box sx={{ display: "flex", alignItems: "center" }}>
           <Button
             variant="outlined"

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Card, CardContent, CardHeader, Grid } from "@mui/material";
+import { Card, CardContent, CardHeader, Grid, Typography } from "@mui/material";
 import dynamic from "next/dynamic";
 import styled from "@emotion/styled";
 import BaseOptions from "./BaseOptions";
@@ -8,7 +8,13 @@ const ReactApexChart = dynamic(() => import("react-apexcharts"), {
   ssr: false,
 });
 
-export default function Chart({ title }: { title: string }) {
+export default function Chart({
+  title,
+  value,
+}: {
+  title: string;
+  value: number;
+}) {
   const [min, setMin] = useState(Date.now() - 30 * 86400000);
   const [max, setMax] = useState(Date.now());
   const [active, setActive] = useState<number>(4);
@@ -16,7 +22,7 @@ export default function Chart({ title }: { title: string }) {
   const options = _.merge(BaseOptions(), {
     series: [
       {
-        name:"Push Data",
+        name: "Push Data",
         data: [
           [Date.now() - 30 * 86400000, 9000],
           [Date.now() - 29 * 86400000, 5000],
@@ -105,9 +111,23 @@ export default function Chart({ title }: { title: string }) {
   };
 
   return (
-    <Grid item xs={12} md={4} lg={4}>
-      <Card sx={{ height: "100%", borderRadius: "0px" }}>
+    <Grid item xs={12} md={6} lg={6}>
+      <Card
+        sx={{
+          height: "100%",
+          backgroundColor: "transparent",
+          border: " 1px solid #BAC4D6",
+        }}
+      >
         <CardHeader title={title} />
+        <Typography
+          variant="subtitle1"
+          ml={3}
+          style={{ fontWeight: 400, fontSize: "28px" }}
+        >
+          {value}
+        </Typography>
+
         <CardContent>
           <Button
             style={{ backgroundColor: `${active === 1 ? "blue" : "white"}` }}
@@ -137,7 +157,7 @@ export default function Chart({ title }: { title: string }) {
             type="line"
             series={options.series}
             options={options}
-            height={200}
+            height={250}
           />
         </CardContent>
       </Card>
