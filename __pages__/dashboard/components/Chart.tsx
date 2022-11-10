@@ -58,6 +58,7 @@ export default function Chart({
         ],
       },
     ],
+    colors: ["#DF4FA3"],
     chart: {
       id: "area-datetime",
       type: "line",
@@ -67,11 +68,6 @@ export default function Chart({
       },
       offsetX: -10,
     },
-    // markers: {
-    //   size: 2,
-    //   style: "solid",
-    //   colors:"white"
-    // },
     yaxis: {
       axisTicks: {
         show: true,

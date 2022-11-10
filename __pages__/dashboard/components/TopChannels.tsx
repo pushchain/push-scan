@@ -32,7 +32,7 @@ export default function Topchannels() {
       >
         <CardHeader
           title="Trending"
-          sx={{ fontWeight: 500, fontSize: "18px", marginLeft: 2 }}
+          sx={{ fontWeight: 500, fontSize: "18px", marginLeft: 4.5 }}
         />
         <CardContent style={{ paddingTop: "0px" }}>
           <Table

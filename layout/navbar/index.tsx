@@ -4,6 +4,12 @@ import { useTheme } from "contexts/ThemeContext";
 import { useData } from "contexts/DataContext";
 import { useRouter } from "next/router";
 import { ROUTES, CREDENTIALKEYS } from "utils/constants";
+import {
+  getSubscribers,
+  getNotifications,
+  getLeaderBoard,
+  getChannels,
+} from "utils/api";
 import React from "react";
 import { DarkModeSwitch } from "react-toggle-dark-mode";
 import { RootStyle, ToolbarStyle } from "./navbar.styled";
@@ -28,7 +34,13 @@ export default function Navbar() {
           <Button
             variant="outlined"
             style={{ marginRight: "5px" }}
-            onClick={() => router.push(ROUTES.DASHBOARD)}
+            onClick={() => {
+              router.push(ROUTES.DASHBOARD);
+              // getChannels();
+              // getSubscribers();
+              // getNotifications();
+              // getLeaderBoard();
+            }}
           >
             Dashboard
           </Button>

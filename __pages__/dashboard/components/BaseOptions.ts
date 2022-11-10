@@ -91,8 +91,7 @@ export default function BaseOptions() {
     // Stroke
     stroke: {
       width: 3,
-      curve: "smooth",
-      // lineCap: 'round'
+      curve: "straight",
     },
 
     // Grid
@@ -146,7 +145,7 @@ export default function BaseOptions() {
       // Bar
       bar: {
         columnWidth: "28%",
-        borderRadius: 4,
+        borderRadius: 10,
       },
       // Pie + Donut
       pie: {

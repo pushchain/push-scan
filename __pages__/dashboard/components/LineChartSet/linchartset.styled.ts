@@ -1,0 +1,91 @@
+import styled from "@emotion/styled";
+
+export const Select = styled.div`
+  position: relative;
+  height: 48px;
+  width: 235px;
+  background-color: ${(props) => props?.background || "#cf1c84"};
+  border: 1px solid ${(props) => props?.border || "#657795"};
+  border-radius: 33px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 15px 0 10px;
+  color: ${(props) => props?.color || "#fff"};
+  font-size: 18px;
+  margin-right: 10px;
+  &:hover {
+    cursor: pointer;
+  }
+  @media (max-width: 480px) {
+    margin-bottom: 5px;
+    width: ${(props) => props.width || "235px"};
+  }
+`;
+
+export const OptionList = styled.div(
+  ({ theme, background }) => `
+  position: absolute;
+  top: 50px;
+  left: 0px;
+  border-radius: 20px;
+  background-color: ${
+    background ? background : theme.palette.background.default
+  };
+  border: 1px solid grey;
+  width: inherit;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  z-index: 5;
+  padding: 10px;
+  `
+);
+
+export const Option = styled.div`
+  width: inherit;
+  background-color: transparent;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 5px 0px;
+  // &:hover {
+  //   padding: 5px 0px;
+  //   border-radius: 20px;
+  //   background-color: black;
+  // }
+`;
+
+export const TimeFilterContainer = styled.div(
+  ({ theme }) => `
+  display:flex;
+  width:203px;
+  height:42px;
+  background-color:${theme.palette.background.paper};
+  border-radius:16px;
+  padding:5px;
+  align-items:center;
+  justify-content:space-between;
+  @media (max-width: 480px) {
+    width: 100%;
+  }
+  `
+);
+
+export const TimeFilter = styled.div`
+  border: none;
+  background-color: ${(props) => props.background || "#cf1c84"};
+  color: ${(props) => props.color || "#657795"};
+  font-weight: 550;
+  font-size: 15px;
+  border-radius: 12px;
+  min-width: 34px;
+  height: 32px;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+`;

@@ -1,5 +1,6 @@
-import { Grid, Card, CardHeader, Box } from "@mui/material";
+import { Grid, Card, CardHeader, Box, Typography } from "@mui/material";
 import ReactECharts from "echarts-for-react";
+import { useTheme } from "@mui/material/styles";
 
 const style = {
   position: "absolute" as "absolute",
@@ -13,7 +14,9 @@ const style = {
   p: 4,
 };
 
-const PushStatistics = ({ data, title, label }: any) => {
+const PushStatistics = ({ data, title, label, value }: any) => {
+  const theme = useTheme();
+
   // Constructing data for chart
   const getTotal = (data: any) => {
     let total = 0;
@@ -34,17 +37,28 @@ const PushStatistics = ({ data, title, label }: any) => {
         trigger: "item",
       },
       legend: {
-        orient: "horizontal",
+        orient: "vertical",
         left: "left",
-        // textStyle: {
-        //   color: "white",
-        // },
+        padding: [5, 30, 5, 5],
+        textStyle: {
+          color: theme.palette.text.primary,
+        },
       },
+      color: [
+        "#F9BFE0",
+        "#F982AC",
+        "#DF4FA3",
+        "#AB7FEA",
+        "#C66BD3",
+        "#D874D7",
+        "#E479CC",
+        "#F16CB3",
+      ],
       series: [
         {
           name: label,
           type: "pie",
-          radius: "50%",
+          radius: ["40%", "70%"],
           data: [...values],
           emphasis: {
             itemStyle: {
@@ -53,6 +67,9 @@ const PushStatistics = ({ data, title, label }: any) => {
               shadowColor: "rgba(0, 0, 0, 0.5)",
             },
           },
+          // label: {
+          //   formatter: "{b}: ({d}%)",
+          // },
         },
       ],
     };
@@ -60,14 +77,32 @@ const PushStatistics = ({ data, title, label }: any) => {
 
   return (
     <Grid
-      sx={{ height: "500px", position: "relative" }}
+      sx={{ height: "400px", position: "relative" }}
       item
       xs={12}
-      md={4}
-      lg={4}
+      md={6}
+      lg={6}
     >
-      <Card sx={{ height: "100%" }}>
-        <CardHeader title={title} />
+      <Card
+        sx={{
+          height: "100%",
+          backgroundColor: "transparent",
+          border: " 1px solid #BAC4D6",
+        }}
+      >
+        <CardHeader
+          title={title}
+          style={{ marginBottom: value ? "0px" : "40px" }}
+        />
+        {value && (
+          <Typography
+            variant="subtitle1"
+            ml={3}
+            style={{ fontWeight: 400, fontSize: "28px" }}
+          >
+            ${value}
+          </Typography>
+        )}
         <Box
           sx={{
             p: 3,
@@ -79,7 +114,10 @@ const PushStatistics = ({ data, title, label }: any) => {
           dir="ltr"
         >
           <ReactECharts
-            style={{ height: "80%", width: "100%" }}
+            style={{
+              height: "75%",
+              width: "100%",
+            }}
             option={getDataPoints({ data, label })}
           />
         </Box>
