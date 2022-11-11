@@ -1,7 +1,8 @@
 import React from "react";
 import Head from "next/head";
 import LoginView from "__pages__/login";
-import Navbar from "layout/navbar";
+import Navbar from "components/Navbar";
+import Footer from "components/Footer";
 
 export default function Login() {
   return (
@@ -11,6 +12,7 @@ export default function Login() {
       </Head>
       <Navbar />
       <LoginView />
+      <Footer />
     </>
   );
 }

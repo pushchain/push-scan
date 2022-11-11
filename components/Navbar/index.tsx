@@ -1,6 +1,7 @@
-import { Box, Button } from "@mui/material";
+import { Box, Button, useMediaQuery } from "@mui/material";
 import Logo from "components/Logo";
-import { useTheme } from "contexts/ThemeContext";
+import { useTheme } from "@mui/material/styles";
+import { useTheme as Theme } from "contexts/ThemeContext";
 import { useData } from "contexts/DataContext";
 import { useRouter } from "next/router";
 import { ROUTES, CREDENTIALKEYS } from "utils/constants";
@@ -13,11 +14,14 @@ import {
 import React from "react";
 import { DarkModeSwitch } from "react-toggle-dark-mode";
 import { RootStyle, ToolbarStyle } from "./navbar.styled";
+import { Text } from "__pages__/dashboard/dashboard.styled";
 
 export default function Navbar() {
-  const { isDarkMode, darkModeToggle } = useTheme();
+  const { isDarkMode, darkModeToggle } = Theme();
   const { isLoggedIn, setIsLoggedIn } = useData();
   const router = useRouter();
+  const theme = useTheme();
+  const xSmall = useMediaQuery(theme.breakpoints.up("xs")) ? "none" : "";
 
   const logout = () => {
     setIsLoggedIn(false);
@@ -29,7 +33,26 @@ export default function Navbar() {
   return (
     <RootStyle>
       <ToolbarStyle>
-        <Logo src="./static/push.svg" sx={{ width: 140, height: 120 }} />
+        <Box sx={{ display: "flex", alignItems: "center" }}>
+          <Logo src="./static/push.svg" sx={{ width: 90, height: 120 }} />
+          <Box>
+            <Text size="32px" weight="500">
+              Push SnapShots
+            </Text>
+            <Box
+              sx={{
+                "@media(max-width:480px)": {
+                  display: "none",
+                },
+              }}
+            >
+              <Text size="15px" color="#657795">
+                Explore trends, activity and track growth on the Push Network
+              </Text>
+            </Box>
+          </Box>
+        </Box>
+
         <Box sx={{ display: "flex", alignItems: "center" }}>
           <Button
             variant="outlined"
@@ -56,14 +79,26 @@ export default function Navbar() {
               Logout
             </Button>
           ) : null}
-          <DarkModeSwitch
-            style={{ margin: "0 1rem" }}
-            checked={isDarkMode}
-            onChange={darkModeToggle}
-            size={28}
-            sunColor="#494D5F"
-            moonColor="#787E99"
-          />
+          <Box
+            sx={{
+              border: "1px solid #BAC4D6",
+              backgroundColor: isDarkMode ? "#282A2E" : "transparent",
+              borderRadius: "50%",
+              height: "50px",
+              width: "50px",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <DarkModeSwitch
+              checked={isDarkMode}
+              onChange={darkModeToggle}
+              size={28}
+              sunColor="#494D5F"
+              moonColor="#787E99"
+            />
+          </Box>
         </Box>
       </ToolbarStyle>
     </RootStyle>

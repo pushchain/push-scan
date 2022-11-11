@@ -1,12 +1,15 @@
 import { Card, CardContent, CardHeader, Grid, Typography } from "@mui/material";
 import dynamic from "next/dynamic";
 import BaseOptions from "./BaseOptions";
+import { useTheme } from "@mui/material/styles";
 import _ from "lodash";
 const ReactApexChart = dynamic(() => import("react-apexcharts"), {
   ssr: false,
 });
 
 export default function HorizontalChart({ title }: { title: string }) {
+  const theme = useTheme();
+
   const options = _.merge(BaseOptions(), {
     series: [
       {
@@ -89,8 +92,8 @@ export default function HorizontalChart({ title }: { title: string }) {
       <Card
         sx={{
           height: "100%",
-          backgroundColor: "transparent",
-          border: " 1px solid #BAC4D6",
+          backgroundColor: theme.palette.background.card,
+          border: `1px solid ${theme.palette.outline}`,
         }}
       >
         <CardHeader title={title} />

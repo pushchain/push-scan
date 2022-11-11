@@ -1,5 +1,5 @@
 import { styled } from "@mui/material";
-import { AppBar, Toolbar, ListItemIcon, ListItemButton } from "@mui/material";
+import { AppBar, Toolbar } from "@mui/material";
 
 const DRAWER_WIDTH = 100;
 const APPBAR_MOBILE = 64;
@@ -18,6 +18,6 @@ export const ToolbarStyle = styled(Toolbar)(({ theme }) => ({
   justifyContent: "space-between",
   [theme.breakpoints.up("lg")]: {
     minHeight: APPBAR_DESKTOP,
-    padding: theme.spacing(0, 5),
+    padding: theme.spacing(0, 6),
   },
 }));

@@ -9,7 +9,7 @@ import GovernanceSet from "./components/GovernanceSet/GovernanceSet";
 
 const DashBoardView = () => {
   return (
-    <DashBoardContainer>
+    <DashBoardContainer maxWidth="xl">
       <Grid container spacing={4} justifyContent="center">
         <Topchannels />
         <NewChannels />

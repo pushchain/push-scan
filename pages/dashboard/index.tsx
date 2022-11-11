@@ -1,9 +1,10 @@
 import React from "react";
 import Head from "next/head";
-import Navbar from "layout/navbar";
+import Navbar from "components/Navbar";
 import Validate from "components/RequireAuth";
 import DashBoardView from "__pages__/dashboard";
 import { Grid } from "@mui/material";
+import Footer from "components/Footer";
 
 export default function Dashboard() {
   return (
@@ -14,6 +15,7 @@ export default function Dashboard() {
       <Grid>
         <Navbar />
         <DashBoardView />
+        <Footer />
       </Grid>
     </Validate>
   );

@@ -1,4 +1,11 @@
-import { Grid, Card, CardHeader, Box, Typography } from "@mui/material";
+import {
+  Grid,
+  Card,
+  CardHeader,
+  Box,
+  Typography,
+  useMediaQuery,
+} from "@mui/material";
 import ReactECharts from "echarts-for-react";
 import { useTheme } from "@mui/material/styles";
 
@@ -16,6 +23,7 @@ const style = {
 
 const PushStatistics = ({ data, title, label, value }: any) => {
   const theme = useTheme();
+  const isSmall = useMediaQuery("(max-width:480px)");
 
   // Constructing data for chart
   const getTotal = (data: any) => {
@@ -37,9 +45,9 @@ const PushStatistics = ({ data, title, label, value }: any) => {
         trigger: "item",
       },
       legend: {
+        show: isSmall ? false : true,
         orient: "vertical",
         left: "left",
-        padding: [5, 30, 5, 5],
         textStyle: {
           color: theme.palette.text.primary,
         },
@@ -59,6 +67,7 @@ const PushStatistics = ({ data, title, label, value }: any) => {
           name: label,
           type: "pie",
           radius: ["40%", "70%"],
+          center: isSmall ? ["50%", "50%"] : ["65%", "40%"],
           data: [...values],
           emphasis: {
             itemStyle: {
@@ -80,14 +89,16 @@ const PushStatistics = ({ data, title, label, value }: any) => {
       sx={{ height: "400px", position: "relative" }}
       item
       xs={12}
+      sm={12}
       md={6}
       lg={6}
     >
       <Card
         sx={{
           height: "100%",
-          backgroundColor: "transparent",
-          border: " 1px solid #BAC4D6",
+          width: "100%",
+          backgroundColor: theme.palette.background.card,
+          border: `1px solid ${theme.palette.outline}`,
         }}
       >
         <CardHeader

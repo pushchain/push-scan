@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Card, CardContent, CardHeader, Grid, Typography } from "@mui/material";
 import dynamic from "next/dynamic";
 import styled from "@emotion/styled";
+import { useTheme } from "@mui/material/styles";
 import BaseOptions from "./BaseOptions";
 import _ from "lodash";
 const ReactApexChart = dynamic(() => import("react-apexcharts"), {
@@ -18,6 +19,7 @@ export default function Chart({
   const [min, setMin] = useState(Date.now() - 30 * 86400000);
   const [max, setMax] = useState(Date.now());
   const [active, setActive] = useState<number>(4);
+  const theme = useTheme();
 
   const options = _.merge(BaseOptions(), {
     series: [
@@ -61,12 +63,21 @@ export default function Chart({
     colors: ["#DF4FA3"],
     chart: {
       id: "area-datetime",
-      type: "line",
+      type: "area",
       height: 350,
       zoom: {
         autoScaleYaxis: true,
       },
       offsetX: -10,
+      // dropShadow: {
+      //   enabled: true,
+      //   enabledOnSeries: "Push Data",
+      //   top: 0,
+      //   left: 0,
+      //   blur: 3,
+      //   color: ["#CF1C84", "#CF1C84", "#CF1C84"],
+      //   opacity: 0.01,
+      // },
     },
     yaxis: {
       axisTicks: {
@@ -82,6 +93,15 @@ export default function Chart({
       min: min,
       max: max,
       // tickAmount: 5,
+    },
+    fill: {
+      type: "gradient",
+      gradient: {
+        shadeIntensity: 0,
+        opacityFrom: 0.5,
+        opacityTo: 0.1,
+        stops: [0, 100],
+      },
     },
   });
 
@@ -111,8 +131,8 @@ export default function Chart({
       <Card
         sx={{
           height: "100%",
-          backgroundColor: "transparent",
-          border: " 1px solid #BAC4D6",
+          backgroundColor: theme.palette.background.card,
+          border: `1px solid ${theme.palette.outline}`,
         }}
       >
         <CardHeader title={title} />
@@ -150,7 +170,7 @@ export default function Chart({
             ALL
           </Button>
           <ReactApexChart
-            type="line"
+            type="area"
             series={options.series}
             options={options}
             height={250}

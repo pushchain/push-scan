@@ -3,6 +3,7 @@ import { Container } from "@mui/system";
 import { Typography } from "@mui/material";
 
 export const DashBoardContainer = styled(Container)`
+  width: 95vw;
   margin-top: 120px;
   height: auto;
   display: flex;

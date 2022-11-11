@@ -11,28 +11,45 @@ import {
   TableRow,
   TableCell,
 } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 import { tableCellClasses } from "@mui/material/TableCell";
 
 export default function Topchannels() {
   const data = [
-    { image: "/static/Clothing.png", name: "Channel1", value: 100, trend: 10 },
-    { image: "/static/Clothing.png", name: "Channel2", value: 200, trend: 7 },
-    { image: "/static/Clothing.png", name: "Channel3", value: 300, trend: 3 },
-    { image: "/static/Clothing.png", name: "Channel2", value: 200, trend: 7 },
-    { image: "/static/Clothing.png", name: "Channel3", value: 300, trend: 3 },
+    {
+      image: "/static/Clothing.png",
+      name: "Lens Protocol",
+      value: 100,
+      trend: 10,
+    },
+    {
+      image: "/static/Clothing.png",
+      name: "Coinshots",
+      value: 200,
+      trend: 7.4,
+    },
+    { image: "/static/Clothing.png", name: "Aave", value: 300, trend: 3.2 },
+    {
+      image: "/static/Clothing.png",
+      name: "Meet with Wallet",
+      value: 200,
+      trend: 7.5,
+    },
+    { image: "/static/Clothing.png", name: "Uniswap", value: 300, trend: 3.2 },
   ];
+  const theme = useTheme();
   return (
     <Grid item xs={12} md={4} lg={4}>
       <Card
         sx={{
           height: "100%",
-          backgroundColor: "transparent",
-          border: " 1px solid #BAC4D6",
+          backgroundColor: theme.palette.background.card,
+          border: `1px solid ${theme.palette.outline}`,
         }}
       >
         <CardHeader
           title="Trending"
-          sx={{ fontWeight: 500, fontSize: "18px", marginLeft: 4.5 }}
+          sx={{ fontWeight: 500, fontSize: "18px", marginLeft: 2 }}
         />
         <CardContent style={{ paddingTop: "0px" }}>
           <Table
@@ -40,27 +57,21 @@ export default function Topchannels() {
               width: "100%",
               [`& .${tableCellClasses.root}`]: {
                 borderBottom: "none",
-                fontSize: "14px",
+                // fontSize: "14px",
                 fontWeight: 600,
                 paddingTop: "9px",
                 paddingBottom: "9px",
               },
             }}
-            aria-label="simple table"
           >
             <TableHead>
               <TableRow
                 sx={{
                   "& th": {
-                    color: "#657795",
-                    fontSize: "12px",
+                    color: theme.palette.text.secondary,
+                    fontSize: "14px",
                     fontWeight: 500,
                   },
-                }}
-                style={{
-                  display: "flex",
-                  justifyContent: "space-around",
-                  paddingRight: 0,
                 }}
               >
                 <TableCell>Name</TableCell>
@@ -69,51 +80,67 @@ export default function Topchannels() {
               </TableRow>
             </TableHead>
             <TableBody>
-              {data.map((channel, index) => (
+              {data.map((channel) => (
                 <TableRow
-                  key={index}
+                  key={channel.name}
                   sx={{
                     "&:last-child td, &:last-child th": {
-                      border: 0,
+                      border: "none",
                     },
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-around",
                   }}
                 >
                   <TableCell
-                    align="center"
                     component="th"
                     scope="row"
-                    style={{ display: "flex", alignItems: "center" }}
+                    sx={{
+                      display: "flex",
+                      color: theme.palette.text.secondary,
+                    }}
                   >
                     <Avatar
                       src={channel.image}
                       sx={{ width: 26, height: 26, marginRight: 1 }}
                     />
-                    {channel.name}
-                  </TableCell>
-                  <TableCell align="right">{channel.value}</TableCell>
-                  <TableCell
-                    align="center"
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "flex-end",
-                      color: "#30CC8B",
-                    }}
-                  >
                     <Box
-                      component="img"
+                      component="span"
                       sx={{
-                        height: "6.67px",
-                        width: "10px",
-                        marginRight: 0.5,
+                        display: "block",
+                        width: "99px",
+                        whiteSpace: "nowrap",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
                       }}
-                      alt="Trend."
-                      src={"./static/increase.png"}
-                    />
-                    {channel.trend}%
+                    >
+                      {" "}
+                      {channel.name}
+                    </Box>
+                  </TableCell>
+                  <TableCell
+                    align="right"
+                    sx={{ color: theme.palette.text.secondary }}
+                  >
+                    {channel.value}
+                  </TableCell>
+                  <TableCell align="right">
+                    <Box
+                      sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        color: "#30CC8B",
+                      }}
+                    >
+                      <Box
+                        component="img"
+                        sx={{
+                          height: "6.67px",
+                          width: "10px",
+                          marginRight: 0.5,
+                        }}
+                        alt="Trend."
+                        src={"./static/increase.png"}
+                      />
+                      {channel.trend}%
+                    </Box>
                   </TableCell>
                 </TableRow>
               ))}

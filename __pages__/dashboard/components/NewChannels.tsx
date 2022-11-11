@@ -11,28 +11,40 @@ import {
   TableRow,
   TableCell,
 } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 import { tableCellClasses } from "@mui/material/TableCell";
 
 export default function NewChannels() {
   const data = [
-    { image: "/static/Clothing.png", name: "Channel1", value: 100, trend: 10 },
-    { image: "/static/Clothing.png", name: "Channel2", value: 200, trend: 7 },
-    { image: "/static/Clothing.png", name: "Channel3", value: 300, trend: 3 },
-    { image: "/static/Clothing.png", name: "Channel2", value: 200, trend: 7 },
-    { image: "/static/Clothing.png", name: "Channel3", value: 300, trend: 3 },
+    {
+      image: "/static/Clothing.png",
+      name: "Lens Protocol",
+      value: 100,
+      trend: 10,
+    },
+    { image: "/static/Clothing.png", name: "CoinShots", value: 200, trend: 7 },
+    { image: "/static/Clothing.png", name: "Aave", value: 300, trend: 3 },
+    {
+      image: "/static/Clothing.png",
+      name: "Meet with Wallet",
+      value: 200,
+      trend: 7,
+    },
+    { image: "/static/Clothing.png", name: "Uniswap", value: 300, trend: 3 },
   ];
+  const theme = useTheme();
 
   return (
     <Grid item xs={12} md={4} lg={4}>
       <Card
         sx={{
           height: "100%",
-          backgroundColor: "transparent",
-          border: " 1px solid #BAC4D6",
+          backgroundColor: theme.palette.background.card,
+          border: `1px solid ${theme.palette.outline}`,
         }}
       >
         <CardHeader
-          title="Trending"
+          title="Top Channels by Susbriber Count"
           sx={{ fontWeight: 500, fontSize: "18px", marginLeft: 2 }}
         />
         <CardContent style={{ paddingTop: "0px" }}>
@@ -53,7 +65,7 @@ export default function NewChannels() {
               <TableRow
                 sx={{
                   "& th": {
-                    color: "#657795",
+                    color: theme.palette.text.disabled,
                     fontSize: "12px",
                     fontWeight: 500,
                   },
@@ -67,21 +79,47 @@ export default function NewChannels() {
               {data.map((channel, index) => (
                 <TableRow
                   key={index}
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                  sx={{
+                    "&:last-child td, &:last-child th": {
+                      border: 0,
+                    },
+                  }}
                 >
                   <TableCell
                     align="center"
                     component="th"
                     scope="row"
-                    style={{ display: "flex", alignItems: "center" }}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      color: theme.palette.text.secondary,
+                    }}
                   >
                     <Avatar
                       src={channel.image}
                       sx={{ width: 26, height: 26, marginRight: 1 }}
                     />
-                    {channel.name}
+                    <Box
+                      component="span"
+                      sx={{
+                        display: "block",
+                        textAlign: "left",
+                        width: "173px",
+                        whiteSpace: "nowrap",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                      }}
+                    >
+                      {" "}
+                      {channel.name}
+                    </Box>
                   </TableCell>
-                  <TableCell align="right">{channel.value}</TableCell>
+                  <TableCell
+                    align="right"
+                    sx={{ color: theme.palette.text.secondary }}
+                  >
+                    {channel.value}
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>
