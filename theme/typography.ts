@@ -1,6 +1,6 @@
-// ----------------------------------------------------------------------
+import Strawford from "../fonts/Strawford-Regular.otf";
 
-function pxToRem(value:number) {
+function pxToRem(value: number) {
   return `${value / 16}rem`;
 }
 
@@ -18,7 +18,8 @@ function responsiveFontSizes({ sm, md, lg }: { sm: any; md: any; lg: any }) {
   };
 }
 
-const FONT_PRIMARY = "Public Sans, sans-serif";
+// const FONT_PRIMARY = "Segoe UI";
+const FONT_PRIMARY = "Strawford,sans-serif";
 
 const typography = {
   fontFamily: FONT_PRIMARY,

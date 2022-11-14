@@ -3,7 +3,7 @@ import React from "react";
 import { AdminContainer, StyledEditIcon } from "./admin.styled";
 import useModal from "hooks/useModal";
 import FormDialog from "./editModal";
-import PushStatistics from "./components/PushStatistics";
+import PushStatistics from "./components/GovernanceGraph";
 
 export default function AdminView() {
   const { open, handleOpen, handleClose } = useModal();

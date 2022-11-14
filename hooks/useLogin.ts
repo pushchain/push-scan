@@ -38,6 +38,7 @@ export default function useLogin() {
       sessionStorage.setItem(CREDENTIALKEYS.LOGINCHECK, "" + true);
       sessionStorage.setItem(CREDENTIALKEYS.TOKEN, res?.token);
       router.push(ROUTES.ADMIN);
+      // router.push(ROUTES.DASHBOARD);
     } else {
       toast.error("Please enter the correct Username and Password");
       setValues({ username: "", password: "", showPassword: false });

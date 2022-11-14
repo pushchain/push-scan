@@ -98,6 +98,8 @@ const CHART_COLORS = {
   red: ["#FF6C40", "#FF8F6D", "#FFBD98", "#FFF2D4"],
 };
 
+const OUTLINES = ["#BAC4D6", "#4A4F67"];
+
 export const lightPalette = {
   common: { black: "#000", white: "#fff" },
   primary: { ...PRIMARY },
@@ -110,8 +112,14 @@ export const lightPalette = {
   gradients: GRADIENTS,
   chart: CHART_COLORS,
   divider: GREY[500_24],
+  outline: OUTLINES[0],
   text: { primary: GREY[800], secondary: GREY[600], disabled: GREY[500] },
-  background: { paper: "#EFEFEF", default: GREY[100], neutral: GREY[200] },
+  background: {
+    paper: "#EFEFEF",
+    default: "#FFFFFF",
+    neutral: GREY[200],
+    card: "transparent",
+  },
   action: {
     active: GREY[600],
     hover: GREY[500_8],
@@ -136,8 +144,14 @@ export const darkPalette = {
   gradients: GRADIENTS,
   chart: CHART_COLORS,
   divider: GREY[500_24],
-  text: { primary: GREY[400], secondary: GREY[600], disabled: GREY[500] },
-  background: { paper: "#3E4C59", default: "#1F2933", neutral: GREY[200] },
+  outline: OUTLINES[1],
+  text: { primary: GREY[200], secondary: GREY[400], disabled: GREY[500] },
+  background: {
+    paper: "#3E4C59",
+    default: "#2F3137",
+    neutral: GREY[200],
+    card: "#404650",
+  },
   action: {
     active: GREY[600],
     hover: GREY[500_8],
