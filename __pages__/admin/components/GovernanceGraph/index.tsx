@@ -33,7 +33,7 @@ const GovernanceGraph = ({ data, title, label, value }: any) => {
       tooltip: {
         theme: "dark",
         trigger: "item",
-        valueFormatter: (value) => value + "%",
+        valueFormatter: (value: number) => value + "%",
         backgroundColor: theme.palette.background.default,
         textStyle: {
           color: theme.palette.text.primary,
