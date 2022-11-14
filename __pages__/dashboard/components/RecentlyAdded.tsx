@@ -1,6 +1,6 @@
 import LeaderBoard from "./LeaderBoard/LeaderBoard";
 
-export default function TopChannels() {
+export default function RecentlyAdded() {
   const data = [
     {
       image: "/static/Clothing.png",
@@ -17,5 +17,5 @@ export default function TopChannels() {
     { image: "/static/Clothing.png", name: "Uniswap", value: 300 },
   ];
 
-  return <LeaderBoard title="Top channels by subscriber count" data={data} />;
+  return <LeaderBoard title="Recently Added " data={data} />;
 }

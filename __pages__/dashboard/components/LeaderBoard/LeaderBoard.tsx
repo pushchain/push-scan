@@ -14,26 +14,16 @@ import {
 import { useTheme } from "@mui/material/styles";
 import { tableCellClasses } from "@mui/material/TableCell";
 
-export default function NewChannels() {
-  const data = [
-    {
-      image: "/static/Clothing.png",
-      name: "Lens Protocol",
-      value: 100,
-      trend: 10,
-    },
-    { image: "/static/Clothing.png", name: "CoinShots", value: 200, trend: 7 },
-    { image: "/static/Clothing.png", name: "Aave", value: 300, trend: 3 },
-    {
-      image: "/static/Clothing.png",
-      name: "Meet with Wallet",
-      value: 200,
-      trend: 7,
-    },
-    { image: "/static/Clothing.png", name: "Uniswap", value: 300, trend: 3 },
-  ];
+export default function LeaderBoard({
+  title,
+  data,
+  isTrending,
+}: {
+  title: string;
+  data: any;
+  isTrending?: boolean;
+}) {
   const theme = useTheme();
-
   return (
     <Grid item xs={12} md={4} lg={4}>
       <Card
@@ -44,7 +34,7 @@ export default function NewChannels() {
         }}
       >
         <CardHeader
-          title="Top Channels by Susbriber Count"
+          title={title}
           sx={{ fontWeight: 500, fontSize: "18px", marginLeft: 2 }}
         />
         <CardContent style={{ paddingTop: "0px" }}>
@@ -53,45 +43,42 @@ export default function NewChannels() {
               width: "100%",
               [`& .${tableCellClasses.root}`]: {
                 borderBottom: "none",
-                fontSize: "14px",
+                // fontSize: "14px",
                 fontWeight: 600,
                 paddingTop: "9px",
                 paddingBottom: "9px",
               },
             }}
-            aria-label="simple table"
           >
             <TableHead>
               <TableRow
                 sx={{
                   "& th": {
-                    color: theme.palette.text.disabled,
+                    color: theme.palette.text.secondary,
                     fontSize: "12px",
-                    fontWeight: 500,
                   },
                 }}
               >
                 <TableCell>Name</TableCell>
                 <TableCell align="right">Subscribers</TableCell>
+                {isTrending && <TableCell align="right">7D%</TableCell>}
               </TableRow>
             </TableHead>
             <TableBody>
-              {data.map((channel, index) => (
+              {data.map((channel) => (
                 <TableRow
-                  key={index}
+                  key={channel.name}
                   sx={{
                     "&:last-child td, &:last-child th": {
-                      border: 0,
+                      border: "none",
                     },
                   }}
                 >
                   <TableCell
-                    align="center"
                     component="th"
                     scope="row"
-                    style={{
+                    sx={{
                       display: "flex",
-                      alignItems: "center",
                       color: theme.palette.text.secondary,
                     }}
                   >
@@ -103,8 +90,7 @@ export default function NewChannels() {
                       component="span"
                       sx={{
                         display: "block",
-                        textAlign: "left",
-                        width: "173px",
+                        maxWidth: "99px",
                         whiteSpace: "nowrap",
                         overflow: "hidden",
                         textOverflow: "ellipsis",
@@ -118,8 +104,31 @@ export default function NewChannels() {
                     align="right"
                     sx={{ color: theme.palette.text.secondary }}
                   >
-                    {channel.value}
+                    {channel.value.toLocaleString()}
                   </TableCell>
+                  {isTrending && (
+                    <TableCell align="right">
+                      <Box
+                        sx={{
+                          display: "flex",
+                          alignItems: "center",
+                          color: "#30CC8B",
+                        }}
+                      >
+                        <Box
+                          component="img"
+                          sx={{
+                            height: "6.67px",
+                            width: "10px",
+                            marginRight: 0.5,
+                          }}
+                          alt="Trend."
+                          src={"./static/increase.png"}
+                        />
+                        {channel.trend}%
+                      </Box>
+                    </TableCell>
+                  )}
                 </TableRow>
               ))}
             </TableBody>

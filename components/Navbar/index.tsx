@@ -21,7 +21,7 @@ export default function Navbar() {
   const { isLoggedIn, setIsLoggedIn } = useData();
   const router = useRouter();
   const theme = useTheme();
-  const xSmall = useMediaQuery(theme.breakpoints.up("xs")) ? "none" : "";
+  const isSmall = useMediaQuery("(max-width:480px)");
 
   const logout = () => {
     setIsLoggedIn(false);
@@ -39,17 +39,11 @@ export default function Navbar() {
             <Text size="32px" weight="500">
               Push SnapShots
             </Text>
-            <Box
-              sx={{
-                "@media(max-width:480px)": {
-                  display: "none",
-                },
-              }}
-            >
+            {!isSmall && (
               <Text size="15px" color="#657795">
                 Explore trends, activity and track growth on the Push Network
               </Text>
-            </Box>
+            )}
           </Box>
         </Box>
 

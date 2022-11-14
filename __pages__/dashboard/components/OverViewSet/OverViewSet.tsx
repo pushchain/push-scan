@@ -2,7 +2,7 @@ import { Grid, Box, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { OverviewItem } from "./overview.styled";
 import { Text } from "../../dashboard.styled";
-import HorizontalChart from "../HorizontalChart";
+import HorizontalChart from "../Charts/HorizontalChart";
 
 export default function OverViewSet() {
   const overViewData = [
@@ -46,7 +46,7 @@ export default function OverViewSet() {
               }}
             >
               <Text size="18px">{data.title}</Text>
-              <Text size="36px">{data.value}</Text>
+              <Text size="36px">{data.value.toLocaleString()}</Text>
             </Box>
             <Box
               component="img"
@@ -57,8 +57,11 @@ export default function OverViewSet() {
         ))}
       </Grid>
       <Grid container spacing={3} justifyContent="center" mt={0}>
-        <HorizontalChart title="Notifications By Channel" />
-        <HorizontalChart title="Subscribers By Channel" />
+        <HorizontalChart
+          title="Notifications By Channel"
+          label="Notifications"
+        />
+        <HorizontalChart title="Subscribers By Channel" label="Subscribers" />
       </Grid>
     </Box>
   );

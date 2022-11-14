@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, Grid, Typography } from "@mui/material";
 import dynamic from "next/dynamic";
 import styled from "@emotion/styled";
 import { useTheme } from "@mui/material/styles";
-import BaseOptions from "./BaseOptions";
+import BaseOptions from "../BaseOptions";
 import _ from "lodash";
 const ReactApexChart = dynamic(() => import("react-apexcharts"), {
   ssr: false,
@@ -12,19 +12,25 @@ const ReactApexChart = dynamic(() => import("react-apexcharts"), {
 export default function Chart({
   title,
   value,
+  label,
+  max,
+  min,
 }: {
   title: string;
   value: number;
+  label: string;
+  max: any;
+  min: any;
 }) {
-  const [min, setMin] = useState(Date.now() - 30 * 86400000);
-  const [max, setMax] = useState(Date.now());
+  // const [min, setMin] = useState(Date.now() - 30 * 86400000);
+  // const [max, setMax] = useState(Date.now());
   const [active, setActive] = useState<number>(4);
   const theme = useTheme();
 
   const options = _.merge(BaseOptions(), {
     series: [
       {
-        name: "Push Data",
+        name: label,
         data: [
           [Date.now() - 30 * 86400000, 9000],
           [Date.now() - 29 * 86400000, 5000],
@@ -105,27 +111,6 @@ export default function Chart({
     },
   });
 
-  const handle1 = () => {
-    setActive(1);
-    setMin(Date.now() - 10 * 86400000);
-  };
-
-  const handle6 = () => {
-    setActive(2);
-    setMin(Date.now() - 20 * 86400000);
-  };
-
-  const handle12 = () => {
-    setActive(3);
-    setMin(Date.now() - 30 * 86400000);
-  };
-
-  const handleAll = () => {
-    setActive(4);
-    setMin(Date.now() - 30 * 86400000);
-    setMax(Date.now());
-  };
-
   return (
     <Grid item xs={12} md={6} lg={6}>
       <Card
@@ -141,11 +126,11 @@ export default function Chart({
           ml={3}
           style={{ fontWeight: 400, fontSize: "28px" }}
         >
-          {value}
+          {value.toLocaleString()}
         </Typography>
 
         <CardContent>
-          <Button
+          {/* <Button
             style={{ backgroundColor: `${active === 1 ? "blue" : "white"}` }}
             onClick={handle1}
           >
@@ -168,7 +153,7 @@ export default function Chart({
             onClick={handleAll}
           >
             ALL
-          </Button>
+          </Button> */}
           <ReactApexChart
             type="area"
             series={options.series}

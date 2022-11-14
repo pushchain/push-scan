@@ -122,6 +122,7 @@ export default function BaseOptions() {
         show: true,
         format: "dd MMM yyyy",
       },
+      borderRadius: 10,
     },
 
     // Legend

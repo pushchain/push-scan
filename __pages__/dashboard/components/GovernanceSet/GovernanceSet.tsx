@@ -1,5 +1,5 @@
 import { Grid, Box } from "@mui/material";
-import PushStatistics from "__pages__/admin/components/PushStatistics";
+import GovernanceGraph from "__pages__/admin/components/GovernanceGraph";
 import { Text } from "__pages__/dashboard/dashboard.styled";
 
 export default function GovernanceSet() {
@@ -48,28 +48,28 @@ export default function GovernanceSet() {
     >
       <Text size="18px">Push Governance</Text>
       <Grid container spacing={3} justifyContent="center" mt={0}>
-        <PushStatistics
+        <GovernanceGraph
           data={data?.Governance?.PGP_Amount}
           title="Push Grants ($PUSH)"
           label="PGP_Amount"
           value={123456}
         />
-        <PushStatistics
+        <GovernanceGraph
           data={data?.Governance?.PGIP}
           title="Push Grant Improvement Proposal"
           label="PGIP"
         />
-        <PushStatistics
+        <GovernanceGraph
           data={data?.Governance?.PGP_Proposals}
           title="Push Grants Proposals"
           label="PGP Proposals"
         />
-        <PushStatistics
+        <GovernanceGraph
           data={data?.Governance?.PGP_Categories}
           title="Push Grants Proposal Categories"
           label="PGP Category"
         />
-        {/* <PushStatistics
+        {/* <GovernanceGraph
         data={data?.Downloads}
         title="Application Usage Data"
         label="Used In"

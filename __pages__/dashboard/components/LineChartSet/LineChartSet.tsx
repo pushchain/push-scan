@@ -22,6 +22,9 @@ export default function LineChartSet() {
   });
   const [showChain, setShowChain] = React.useState(false);
   const [selectedFilter, setSelectedFilter] = React.useState(5);
+  const [min, setMin] = React.useState(Date.now() - 30 * 86400000);
+  const [max, setMax] = React.useState(Date.now());
+
   const TimeFilterOptions = [
     { time: "1D" },
     { time: "7D" },
@@ -49,6 +52,42 @@ export default function LineChartSet() {
   const handleChainChange = (chain: { image: string; chain: string }) => {
     setShowChain(!showChain);
     setSelectedChain(chain);
+  };
+
+  const handle1 = () => {
+    setMin(Date.now() - 1 * 86400000);
+  };
+
+  const handle7 = () => {
+    setMin(Date.now() - 7 * 86400000);
+  };
+
+  const handle30 = () => {
+    setMin(Date.now() - 30 * 86400000);
+  };
+
+  const handleAll = () => {
+    setMin(Date.now() - 30 * 86400000);
+    setMax(Date.now());
+  };
+
+  const handleTimeFilter = (time) => {
+    switch (time) {
+      case "1D":
+        handle1();
+        break;
+      case "7D":
+        handle7();
+        break;
+      case "1M":
+        handle30();
+        break;
+      case "ALL":
+        handleAll();
+        break;
+      default:
+        console.log("No option");
+    }
   };
 
   return (
@@ -210,7 +249,10 @@ export default function LineChartSet() {
           {TimeFilterOptions?.map((time, index) => (
             <TimeFilter
               key={time.time}
-              onClick={() => setSelectedFilter(index + 1)}
+              onClick={() => {
+                setSelectedFilter(index + 1);
+                handleTimeFilter(time.time);
+              }}
               background={
                 index + 1 === selectedFilter ? "#cf1c84" : "transparent"
               }
@@ -222,8 +264,8 @@ export default function LineChartSet() {
         </TimeFilterContainer>
       </Grid>
       <Grid container spacing={3} justifyContent="center" mt={0}>
-        <Notifications />
-        <Subscribers />
+        <Notifications max={max} min={min} />
+        <Subscribers max={max} min={min} />
       </Grid>
     </>
   );

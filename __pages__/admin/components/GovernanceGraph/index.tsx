@@ -9,20 +9,9 @@ import {
 import ReactECharts from "echarts-for-react";
 import { useTheme } from "@mui/material/styles";
 
-const style = {
-  position: "absolute" as "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: 4,
-};
-
-const PushStatistics = ({ data, title, label, value }: any) => {
+const GovernanceGraph = ({ data, title, label, value }: any) => {
   const theme = useTheme();
+  // Checking whether screen is mobile screen
   const isSmall = useMediaQuery("(max-width:480px)");
 
   // Constructing data for chart
@@ -42,7 +31,15 @@ const PushStatistics = ({ data, title, label, value }: any) => {
 
     return {
       tooltip: {
+        theme: "dark",
         trigger: "item",
+        valueFormatter: (value) => value + "%",
+        backgroundColor: theme.palette.background.default,
+        textStyle: {
+          color: theme.palette.text.primary,
+        },
+        borderWidth: 0,
+        borderRadius: 10,
       },
       legend: {
         show: isSmall ? false : true,
@@ -76,9 +73,11 @@ const PushStatistics = ({ data, title, label, value }: any) => {
               shadowColor: "rgba(0, 0, 0, 0.5)",
             },
           },
-          // label: {
-          //   formatter: "{b}: ({d}%)",
-          // },
+          label: {
+            show: true,
+            formatter: "{b}\n {d}%",
+            color: theme.palette.text.primary,
+          },
         },
       ],
     };
@@ -111,7 +110,7 @@ const PushStatistics = ({ data, title, label, value }: any) => {
             ml={3}
             style={{ fontWeight: 400, fontSize: "28px" }}
           >
-            ${value}
+            ${value.toLocaleString()}
           </Typography>
         )}
         <Box
@@ -137,4 +136,4 @@ const PushStatistics = ({ data, title, label, value }: any) => {
   );
 };
 
-export default PushStatistics;
+export default GovernanceGraph;

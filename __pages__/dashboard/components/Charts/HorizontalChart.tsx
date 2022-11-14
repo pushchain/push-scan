@@ -1,20 +1,26 @@
-import { Card, CardContent, CardHeader, Grid, Typography } from "@mui/material";
+import { Card, CardContent, CardHeader, Grid } from "@mui/material";
 import dynamic from "next/dynamic";
-import BaseOptions from "./BaseOptions";
+import BaseOptions from "../BaseOptions";
 import { useTheme } from "@mui/material/styles";
 import _ from "lodash";
 const ReactApexChart = dynamic(() => import("react-apexcharts"), {
   ssr: false,
 });
 
-export default function HorizontalChart({ title }: { title: string }) {
+export default function HorizontalChart({
+  title,
+  label,
+}: {
+  title: string;
+  label: string;
+}) {
   const theme = useTheme();
 
   const options = _.merge(BaseOptions(), {
     series: [
       {
         data: [400, 430, 448, 470, 540, 580, 690, 1100, 1200, 1380].reverse(),
-        name: "Notifications",
+        name: label,
       },
     ],
     chart: {

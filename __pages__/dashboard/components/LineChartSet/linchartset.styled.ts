@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 export const Select = styled.div`
   position: relative;
   height: 48px;
-  width: 235px;
+  width: 237px;
   background-color: ${(props) => props?.background || "#cf1c84"};
   border: 1px solid ${(props) => props?.border || "#657795"};
   border-radius: 33px;
@@ -74,7 +74,7 @@ export const TimeFilterContainer = styled.div(
   `
 );
 
-export const TimeFilter = styled.div`
+export const TimeFilter = styled.button`
   border: none;
   background-color: ${(props) => props.background || "#cf1c84"};
   color: ${(props) => props.color || "#657795"};
