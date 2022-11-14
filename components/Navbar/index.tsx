@@ -18,7 +18,7 @@ import { Text } from "__pages__/dashboard/dashboard.styled";
 
 export default function Navbar() {
   const { isDarkMode, darkModeToggle } = Theme();
-  const { isLoggedIn, setIsLoggedIn } = useData();
+  const { isLoggedIn, setIsLoggedIn, token } = useData();
   const router = useRouter();
   const theme = useTheme();
   const isSmall = useMediaQuery("(max-width:480px)");
@@ -53,10 +53,10 @@ export default function Navbar() {
             style={{ marginRight: "5px" }}
             onClick={() => {
               router.push(ROUTES.DASHBOARD);
-              // getChannels();
-              // getSubscribers();
-              // getNotifications();
-              // getLeaderBoard();
+              getChannels({ token });
+              getSubscribers({ token });
+              getNotifications({ token });
+              getLeaderBoard({ token });
             }}
           >
             Dashboard

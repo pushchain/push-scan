@@ -83,7 +83,7 @@ export default function LeaderBoard({
                     }}
                   >
                     <Avatar
-                      src={channel.image}
+                      src={channel.icon}
                       sx={{ width: 26, height: 26, marginRight: 1 }}
                     />
                     <Box
@@ -104,7 +104,7 @@ export default function LeaderBoard({
                     align="right"
                     sx={{ color: theme.palette.text.secondary }}
                   >
-                    {channel.value.toLocaleString()}
+                    {channel?.subscriber?.toLocaleString()}
                   </TableCell>
                   {isTrending && (
                     <TableCell align="right">
