@@ -10,9 +10,9 @@ import {
   TableHead,
   TableRow,
   TableCell,
-} from "@mui/material";
-import { useTheme } from "@mui/material/styles";
-import { tableCellClasses } from "@mui/material/TableCell";
+} from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+import { tableCellClasses } from '@mui/material/TableCell';
 
 export default function LeaderBoard({
   title,
@@ -28,34 +28,34 @@ export default function LeaderBoard({
     <Grid item xs={12} md={4} lg={4}>
       <Card
         sx={{
-          height: "100%",
+          height: '100%',
           backgroundColor: theme.palette.background.card,
           border: `1px solid ${theme.palette.outline}`,
         }}
       >
         <CardHeader
           title={title}
-          sx={{ fontWeight: 500, fontSize: "18px", marginLeft: 2 }}
+          sx={{ fontWeight: 500, fontSize: '18px', marginLeft: 2 }}
         />
-        <CardContent style={{ paddingTop: "0px" }}>
+        <CardContent style={{ paddingTop: '0px' }}>
           <Table
             sx={{
-              width: "100%",
+              width: '100%',
               [`& .${tableCellClasses.root}`]: {
-                borderBottom: "none",
+                borderBottom: 'none',
                 // fontSize: "14px",
                 fontWeight: 600,
-                paddingTop: "9px",
-                paddingBottom: "9px",
+                paddingTop: '9px',
+                paddingBottom: '9px',
               },
             }}
           >
             <TableHead>
               <TableRow
                 sx={{
-                  "& th": {
+                  '& th': {
                     color: theme.palette.text.secondary,
-                    fontSize: "12px",
+                    fontSize: '12px',
                   },
                 }}
               >
@@ -69,8 +69,8 @@ export default function LeaderBoard({
                 <TableRow
                   key={channel.name}
                   sx={{
-                    "&:last-child td, &:last-child th": {
-                      border: "none",
+                    '&:last-child td, &:last-child th': {
+                      border: 'none',
                     },
                   }}
                 >
@@ -78,7 +78,7 @@ export default function LeaderBoard({
                     component="th"
                     scope="row"
                     sx={{
-                      display: "flex",
+                      display: 'flex',
                       color: theme.palette.text.secondary,
                     }}
                   >
@@ -89,14 +89,14 @@ export default function LeaderBoard({
                     <Box
                       component="span"
                       sx={{
-                        display: "block",
-                        maxWidth: "99px",
-                        whiteSpace: "nowrap",
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
+                        display: 'block',
+                        maxWidth: '99px',
+                        whiteSpace: 'nowrap',
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
                       }}
                     >
-                      {" "}
+                      {' '}
                       {channel.name}
                     </Box>
                   </TableCell>
@@ -110,20 +110,20 @@ export default function LeaderBoard({
                     <TableCell align="right">
                       <Box
                         sx={{
-                          display: "flex",
-                          alignItems: "center",
-                          color: "#30CC8B",
+                          display: 'flex',
+                          alignItems: 'center',
+                          color: '#30CC8B',
                         }}
                       >
                         <Box
                           component="img"
                           sx={{
-                            height: "6.67px",
-                            width: "10px",
+                            height: '6.67px',
+                            width: '10px',
                             marginRight: 0.5,
                           }}
                           alt="Trend."
-                          src={"./static/increase.png"}
+                          src={'./static/increase.png'}
                         />
                         {channel.trend}%
                       </Box>

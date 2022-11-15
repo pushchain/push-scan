@@ -36,7 +36,7 @@ export default function useLogin() {
     if (res?.token) {
       setIsLoggedIn(true);
       sessionStorage.setItem(CREDENTIALKEYS.LOGINCHECK, "" + true);
-      sessionStorage.setItem(CREDENTIALKEYS.TOKEN, res?.token);
+      // sessionStorage.setItem(CREDENTIALKEYS.TOKEN, res?.token);
       router.push(ROUTES.ADMIN);
       // router.push(ROUTES.DASHBOARD);
     } else {
