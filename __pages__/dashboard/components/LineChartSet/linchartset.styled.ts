@@ -28,15 +28,14 @@ export const OptionList = styled.div(
   position: absolute;
   top: 50px;
   left: 0px;
-  padding:50px;
   border-radius: 20px;
   background-color: ${
     background ? background : theme.palette.background.default
   };
   border: 1px solid grey;
   width: inherit;
-  max-height: 200px;
-  overflow-y: auto;
+  // max-height: 200px;
+  // overflow-y: auto;
   overflow-x:hidden;
   display: flex;
   flex-direction: column;

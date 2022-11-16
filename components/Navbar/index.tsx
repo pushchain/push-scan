@@ -56,16 +56,18 @@ export default function Navbar() {
               // getChannels({ token });
               // getSubscribers({
               //   token,
-              //   startDate: '',
-              //   endDate: '',
+              //   startDate: '2022-01-01',
+              //   endDate: '2022-11-16',
               //   channel: 'All',
-              //   source: 'ETH_TEST_GOERLI',
+              //   chain: 'ETH_TEST_GOERLI',
               // });
-              getNotifications({
-                token,
-                startDate: '2022-10-20',
-                endDate: '2022-10-29',
-              });
+              // getNotifications({
+              //   token,
+              //   startDate: '2022-01-01',
+              //   endDate: '2022-11-16',
+              //   channel: '0x0000000000000000000000000000000000000000',
+              //   chain: 'ETH_TEST_GOERLI',
+              // });
               // getLeaderBoard({ token });
             }}
           >

@@ -19,7 +19,7 @@ export default function LineChartSet() {
     name: 'All Channels',
     channel: 'All',
   });
-  const [channel, setChannel] = React.useState('All');
+  // const [channel, setChannel] = React.useState('All');
   const [showChannel, setShowChannel] = React.useState(false);
   const [selectedChain, setSelectedChain] = React.useState({
     image: './static/ethereum.svg',
@@ -28,7 +28,7 @@ export default function LineChartSet() {
   });
   const [showChain, setShowChain] = React.useState(false);
   const [selectedFilter, setSelectedFilter] = React.useState(5);
-  const [startDate, setStartDate] = React.useState('2022-01-01');
+  const [startDate, setStartDate] = React.useState('2022-10-01');
   const [endDate, setEndDate] = React.useState(
     new Date(Date.now()).toISOString().split('T')[0]
   );
@@ -38,10 +38,10 @@ export default function LineChartSet() {
   const [max, setMax] = React.useState<any>();
   const [totalSubscribers, setTotalSubscribers] = React.useState(0);
   const [totalNotifications, setTotalNotifications] = React.useState(0);
-  const [interval, setInterval] = React.useState(2);
+  const [interval, setInterval] = React.useState(1);
   const [subscriberData, setSubscriberData] = React.useState<any[]>([]);
   const [notificationData, setNotificationData] = React.useState<any[]>([]);
-  const [channelList, setChannelList] = React.useState([]);
+  const [channelList, setChannelList] = React.useState<any[]>([]);
 
   const TimeFilterOptions = [
     { time: '1D' },
@@ -94,8 +94,33 @@ export default function LineChartSet() {
     return arr;
   };
 
+  const getDateLength = (arrayLength) => {
+    let length = 0;
+    switch (interval) {
+      case 1:
+        length = 1;
+        break;
+      case 7:
+        length = 7;
+        break;
+      case 30:
+        length = 6;
+        break;
+      default:
+        length = arrayLength;
+        break;
+    }
+    return length;
+  };
+
   React.useEffect(() => {
     (async () => {
+      setChannelList([]);
+      const allChannels = {
+        icon: './static/Clothing.png',
+        name: 'All Channels',
+        channel: 'All',
+      };
       try {
         const res = await getLeaderBoard({
           token: token,
@@ -103,21 +128,24 @@ export default function LineChartSet() {
           sort: 'subscribers',
           order: 'desc',
         });
-        console.log('channels', res);
-        setChannelList(res.leaderboardAnalytics);
+        // console.log('channels', res);
+        setChannelList([allChannels, ...res.leaderboardAnalytics]);
       } catch (e) {
         console.log('Error occured', e);
       }
     })();
-  }, []);
+    return () => setChannelList([]);
+  }, [selectedChain]);
 
   React.useEffect(() => {
     (async () => {
+      setTotalSubscribers(0);
+      setTotalNotifications(0);
       const totalSubsc = await getSubscribers({
         token,
         startDate,
         endDate,
-        channel: channel,
+        channel: selectedChannel.channel,
         chain: selectedChain.value,
       });
       setTotalSubscribers(totalSubsc?.totalSubscribers);
@@ -125,8 +153,8 @@ export default function LineChartSet() {
         token,
         startDate,
         endDate,
-        channel: channel,
-        chain: selectedChain.value,
+        channel: selectedChannel?.channel,
+        chain: selectedChain?.value,
       });
       setTotalNotifications(totalNotifi?.totalNotification);
       // console.log(
@@ -136,82 +164,100 @@ export default function LineChartSet() {
       //   totalNotifi.totalNotification
       // );
     })();
-  }, [selectedChain]);
+    return () => {
+      setTotalSubscribers(0);
+      setTotalNotifications(0);
+    };
+  }, [selectedChain, selectedChannel]);
 
   React.useEffect(() => {
-    setSubscriberData([]);
-    setNotificationData([]);
-
-    const dateArray = getDatesArray({
-      start: startDate,
-      end: endDate,
-      interval,
-    });
-    setMin(dateArray[dateArray.length - 1]);
-    setMax(dateArray[0]);
-
     (async () => {
-      for (let i = 0; i < 10; i++) {
+      setSubscriberData([]);
+      setNotificationData([]);
+
+      const dateArray = getDatesArray({
+        start: startDate,
+        end: endDate,
+        interval,
+      });
+      setMin(dateArray[dateArray.length - 1]);
+      setMax(dateArray[0]);
+      // const dateLength = getDateLength(dateArray.length);
+      for (let i = 0; i < dateArray.length; i++) {
         const newStartDate = dateArray[i + 1];
         const newEndDate = dateArray[i];
         const subscriberRes = await getSubscribers({
           token: token,
           startDate: newStartDate,
           endDate: newEndDate,
-          channel: channel,
-          chain: selectedChain.value,
+          channel: selectedChannel?.channel,
+          chain: selectedChain?.value,
         });
         setSubscriberData((data) => [
           ...data,
-          [new Date(newEndDate).getTime(), subscriberRes.totalSubscribers],
+          [new Date(newEndDate).getTime(), subscriberRes?.totalSubscribers],
         ]);
         // console.log('subscriberSet', subscriberData);
         const notificationRes = await getNotifications({
           token: token,
-          startDate: startDate,
-          endDate: endDate,
-          channel: channel,
+          startDate: newStartDate,
+          endDate: newEndDate,
+          channel: selectedChannel?.channel,
           chain: selectedChain.value,
         });
         setNotificationData((data) => [
           ...data,
-          [new Date(newEndDate).getTime(), notificationRes.totalNotification],
+          [new Date(newEndDate).getTime(), notificationRes?.totalNotification],
         ]);
       }
     })();
-    // setTotalNotifications(notificationRes.totalNotification);
-    // console.log('Notificationset', notificationData);
-    // console.log('NotifRes', notificationRes.totalNotification);
-  }, [selectedChain, interval]);
+    return () => {
+      setSubscriberData([]);
+      setNotificationData([]);
+    };
+  }, [selectedChain, selectedChannel]);
 
-  const handleChannelChange = (channel: { image: string; channel: string }) => {
+  const handleChannelChange = (channel: {
+    icon: string;
+    name: string;
+    channel: string;
+  }) => {
     setShowChannel(!showChannel);
     setSelectedChannel(channel);
   };
 
-  const handleChainChange = (chain: { image: string; chain: string }) => {
+  const handleChainChange = (chain: {
+    image: string;
+    chain: string;
+    value: string;
+  }) => {
     setShowChain(!showChain);
     setSelectedChain(chain);
   };
 
   const handle1 = () => {
+    // setInterval(1);
     setMin(Date.now() - 1 * 86400000);
   };
 
   const handle7 = () => {
+    // setInterval(1);
     setMin(Date.now() - 7 * 86400000);
   };
 
   const handle30 = () => {
+    // setInterval(5);
     setMin(Date.now() - 30 * 86400000);
   };
 
   const handleYTD = () => {
+    // setInterval(30);
     setMin(Date.now() - 356 * 86400000);
   };
 
   const handleAll = () => {
-    setMin(new Date('2022-10-28').getTime());
+    // setInterval(30);
+    setMin(new Date('2022-10-01').getTime());
     setMax(Date.now());
   };
 
@@ -236,6 +282,9 @@ export default function LineChartSet() {
         console.log('No option');
     }
   };
+
+  console.log('NotificationData', notificationData);
+  console.log('subscriberData', subscriberData);
 
   return (
     <>
@@ -281,7 +330,7 @@ export default function LineChartSet() {
                   borderRadius: '50%',
                 }}
                 alt=""
-                src={selectedChannel.icon}
+                src={selectedChannel?.icon}
               />
               <Box
                 sx={{
@@ -307,26 +356,43 @@ export default function LineChartSet() {
             />
             {showChannel && (
               <OptionList background="#cf1c84">
-                {channelList.map((channel, index) => (
-                  <Option
-                    key={index}
-                    onClick={() => handleChannelChange(channel)}
-                  >
-                    <Box
-                      component="img"
-                      sx={{
-                        height: '33px',
-                        width: '33px',
-                        marginRight: '5px',
-                        borderRadius: '50%',
-                      }}
-                      alt=""
-                      src={channel?.icon}
-                      onClick={() => setShowChain(!showChain)}
-                    />
-                    {channel.name}
-                  </Option>
-                ))}
+                <Box
+                  sx={{
+                    width: '100%',
+                    maxHeight: '200px',
+                    overflowY: 'auto',
+                    '::-webkit-scrollbar': {
+                      width: '5px',
+                      backgroundColor: 'transparent',
+                      borderRadius: '5px',
+                    },
+                    '::-webkit-scrollbar-thumb': {
+                      backgroundColor: 'white',
+                      borderRadius: '5px',
+                    },
+                  }}
+                >
+                  {channelList.map((channel, index) => (
+                    <Option
+                      key={index}
+                      onClick={() => handleChannelChange(channel)}
+                    >
+                      <Box
+                        component="img"
+                        sx={{
+                          height: '33px',
+                          width: '33px',
+                          marginRight: '5px',
+                          borderRadius: '50%',
+                        }}
+                        alt=""
+                        src={channel?.icon}
+                        onClick={() => setShowChain(!showChain)}
+                      />
+                      {channel?.name}
+                    </Option>
+                  ))}
+                </Box>
               </OptionList>
             )}
           </Select>
@@ -352,7 +418,7 @@ export default function LineChartSet() {
                   marginRight: '5px',
                 }}
                 alt=""
-                src={selectedChain.image}
+                src={selectedChain?.image}
               />
               <Box
                 sx={{
@@ -361,7 +427,7 @@ export default function LineChartSet() {
                   },
                 }}
               >
-                {selectedChain.chain}
+                {selectedChain?.chain}
               </Box>
             </Box>
             <Box

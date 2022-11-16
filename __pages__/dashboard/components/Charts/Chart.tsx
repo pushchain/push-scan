@@ -129,13 +129,13 @@ export default function Chart({
           ml={3}
           style={{ fontWeight: 400, fontSize: '28px' }}
         >
-          {value.toLocaleString()}
+          {value?.toLocaleString()}
         </Typography>
 
         <CardContent>
           <ReactApexChart
             type="area"
-            series={options.series}
+            series={options?.series}
             options={options}
             height={250}
           />
