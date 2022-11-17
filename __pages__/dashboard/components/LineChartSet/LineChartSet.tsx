@@ -252,7 +252,7 @@ export default function LineChartSet() {
 
   const handleYTD = () => {
     // setInterval(30);
-    setMin(Date.now() - 356 * 86400000);
+    setMin(new Date('2022-01-01').getTime());
   };
 
   const handleAll = () => {
@@ -283,8 +283,8 @@ export default function LineChartSet() {
     }
   };
 
-  console.log('NotificationData', notificationData);
-  console.log('subscriberData', subscriberData);
+  // console.log('NotificationData', notificationData);
+  // console.log('subscriberData', subscriberData);
 
   return (
     <>
@@ -389,7 +389,17 @@ export default function LineChartSet() {
                         src={channel?.icon}
                         onClick={() => setShowChain(!showChain)}
                       />
-                      {channel?.name}
+                      <Box
+                        sx={{
+                          display: 'block',
+                          maxWidth: '160px',
+                          whiteSpace: 'nowrap',
+                          overflow: 'hidden',
+                          textOverflow: 'ellipsis',
+                        }}
+                      >
+                        {channel?.name}
+                      </Box>
                     </Option>
                   ))}
                 </Box>

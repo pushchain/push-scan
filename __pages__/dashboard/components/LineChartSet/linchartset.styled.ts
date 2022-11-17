@@ -56,11 +56,9 @@ export const Option = styled.div`
   justify-content: flex-start;
   align-items: center;
   padding: 5px 0px;
-  // &:hover {
-  //   padding: 5px 0px;
-  //   border-radius: 20px;
-  //   background-color: black;
-  // }
+  &:hover {
+    opacity: 0.8;
+  }
 `;
 
 export const TimeFilterContainer = styled.div(

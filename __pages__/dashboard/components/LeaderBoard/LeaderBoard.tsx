@@ -112,6 +112,7 @@ export default function LeaderBoard({
                         sx={{
                           display: 'flex',
                           alignItems: 'center',
+                          justifyContent: 'flex-end',
                           color: '#30CC8B',
                         }}
                       >
@@ -123,9 +124,13 @@ export default function LeaderBoard({
                             marginRight: 0.5,
                           }}
                           alt="Trend."
-                          src={'./static/increase.png'}
+                          src={
+                            channel?.trend > 0
+                              ? './static/increase.png'
+                              : './static/decrease.png'
+                          }
                         />
-                        {channel.trend}%
+                        {channel?.trend}%
                       </Box>
                     </TableCell>
                   )}

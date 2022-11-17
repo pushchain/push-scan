@@ -98,7 +98,6 @@ export default function Chart({
     },
     xaxis: {
       type: 'datetime',
-      //   min: new Date("01 Mar 2012").getTime(),
       min: min,
       max: max,
       // tickAmount: 5,
