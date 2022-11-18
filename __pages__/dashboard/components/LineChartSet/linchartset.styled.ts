@@ -64,7 +64,6 @@ export const Option = styled.div`
 export const TimeFilterContainer = styled.div(
   ({ theme }) => `
   display:flex;
-  width:203px;
   height:42px;
   background-color:${theme.palette.background.paper};
   border-radius:16px;
