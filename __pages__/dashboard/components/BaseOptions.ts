@@ -107,6 +107,8 @@ export default function BaseOptions() {
       tooltip: {
         enabled: false,
       },
+      // forceNiceScale: true,
+      // tickAmount: 2,
     },
 
     // Markers

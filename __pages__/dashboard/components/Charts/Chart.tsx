@@ -24,43 +24,7 @@ export default function Chart({
   min: any;
   data: any;
 }) {
-  // const [min, setMin] = useState(Date.now() - 30 * 86400000);
-  // const [max, setMax] = useState(Date.now());
   const theme = useTheme();
-
-  // [
-  //   [Date.now() - 30 * 86400000, 9000],
-  //   [Date.now() - 29 * 86400000, 5000],
-  //   [Date.now() - 28 * 86400000, 8000],
-  //   [Date.now() - 27 * 86400000, 7000],
-  //   [Date.now() - 26 * 86400000, 6000],
-  //   [Date.now() - 25 * 86400000, 5000],
-  //   [Date.now() - 24 * 86400000, 4000],
-  //   [Date.now() - 23 * 86400000, 3000],
-  //   [Date.now() - 22 * 86400000, 2000],
-  //   [Date.now() - 21 * 86400000, 1000],
-  //   [Date.now() - 20 * 86400000, 2000],
-  //   [Date.now() - 19 * 86400000, 4000],
-  //   [Date.now() - 18 * 86400000, 3000],
-  //   [Date.now() - 17 * 86400000, 1000],
-  //   [Date.now() - 16 * 86400000, 2000],
-  //   [Date.now() - 15 * 86400000, 4000],
-  //   [Date.now() - 14 * 86400000, 5000],
-  //   [Date.now() - 13 * 86400000, 3000],
-  //   [Date.now() - 12 * 86400000, 5000],
-  //   [Date.now() - 11 * 86400000, 8000],
-  //   [Date.now() - 10 * 86400000, 2000],
-  //   [Date.now() - 9 * 86400000, 1000],
-  //   [Date.now() - 8 * 86400000, 3000],
-  //   [Date.now() - 7 * 86400000, 6000],
-  //   [Date.now() - 6 * 86400000, 4000],
-  //   [Date.now() - 5 * 86400000, 2000],
-  //   [Date.now() - 4 * 86400000, 3000],
-  //   [Date.now() - 3 * 86400000, 2000],
-  //   [Date.now() - 2 * 86400000, 1000],
-  //   [Date.now() - 86400000, 4000],
-  //   [Date.now(), 5000],
-  // ],
 
   const options = _.merge(BaseOptions(), {
     series: [
@@ -100,6 +64,11 @@ export default function Chart({
       type: 'datetime',
       min: min,
       max: max,
+      // labels: {
+      //   formatter: function (value) {
+      //     return new Date(value);
+      //   },
+      // },
       // tickAmount: 5,
     },
     fill: {

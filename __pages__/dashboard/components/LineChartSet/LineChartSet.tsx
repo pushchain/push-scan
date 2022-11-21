@@ -19,7 +19,6 @@ export default function LineChartSet() {
     name: 'All Channels',
     channel: 'All',
   });
-  // const [channel, setChannel] = React.useState('All');
   const [showChannel, setShowChannel] = React.useState(false);
   const [selectedChain, setSelectedChain] = React.useState({
     image: './static/ethereum.svg',
@@ -57,12 +56,6 @@ export default function LineChartSet() {
     { time: 'ALL' },
   ];
 
-  // const ChannelList = [
-  //   { image: './static/Clothing.png', channel: 'All Channels' },
-  //   { image: './static/Clothing.png', channel: 'Aave' },
-  //   { image: './static/Clothing.png', channel: 'Lens Protocol' },
-  // ];
-
   const ChainList = [
     {
       image: './static/ethereum.svg',
@@ -86,43 +79,20 @@ export default function LineChartSet() {
     interval: number;
   }) {
     for (
-      var dateArray = [], dt = new Date(end);
-      dt >= new Date(start);
-      dt.setDate(dt.getDate() - interval)
+      var dateArray = [], dt = new Date(start);
+      dt <= new Date(end);
+      dt.setDate(dt.getDate() + interval)
     ) {
       dateArray.push(new Date(dt));
     }
 
+    const date = dateArray[dateArray.length - 1];
+    if (new Date(date).getDate() !== new Date(end).getDate()) {
+      dateArray.push(new Date(end));
+    }
+
     return dateArray;
   };
-
-  const getDateLength = (arrayLength: number) => {
-    let length = 0;
-    switch (interval) {
-      case 1:
-        length = 1;
-        break;
-      case 7:
-        length = 7;
-        break;
-      case 30:
-        length = 6;
-        break;
-      default:
-        length = arrayLength;
-        break;
-    }
-    return length;
-  };
-
-  // React.useEffect(() => {
-  //   const startDate = new Date('2022-01-01').getTime();
-  //   const endDate = new Date().getTime();
-  //   const diffTime = Math.abs(endDate - startDate);
-  //   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-  //   const interval = Math.ceil(diffDays / 60);
-  //   setInterval(interval);
-  // }, []);
 
   React.useEffect(() => {
     const dateArray = getDatesArray({
@@ -131,8 +101,8 @@ export default function LineChartSet() {
       interval,
     });
 
-    setMin(dateArray[dateArray.length - 1]);
-    setMax(dateArray[0]);
+    setMin(dateArray[0]);
+    setMax(dateArray[dateArray.length - 1]);
   }, []);
 
   React.useEffect(() => {
@@ -150,7 +120,6 @@ export default function LineChartSet() {
           sort: 'subscribers',
           order: 'desc',
         });
-        // console.log('channels', res);
         setChannelList([allChannels, ...res.leaderboardAnalytics]);
       } catch (e) {
         console.log('Error occured', e);
@@ -179,12 +148,6 @@ export default function LineChartSet() {
         chain: selectedChain?.value,
       });
       setTotalNotifications(totalNotifi?.totalNotification);
-      // console.log(
-      //   'sub',
-      //   totalSubsc.totalSubscribers,
-      //   'notif',
-      //   totalNotifi.totalNotification
-      // );
     })();
     return () => {
       setTotalSubscribers(0);
@@ -203,12 +166,9 @@ export default function LineChartSet() {
         interval,
       });
 
-      // setMin(dateArray[dateArray.length - 1]);
-      // setMax(dateArray[0]);
-      // const dateLength = getDateLength(dateArray.length);
-      for (let i = dateArray.length - 1; i > 0; i--) {
+      for (let i = 0; i < dateArray.length - 1; i++) {
         const newStartDate = dateArray[i];
-        const newEndDate = dateArray[i - 1];
+        const newEndDate = dateArray[i + 1];
         const subscriberRes = await getSubscribers({
           token: token,
           startDate: newStartDate,
@@ -220,7 +180,7 @@ export default function LineChartSet() {
           ...data,
           [new Date(newEndDate).getTime(), subscriberRes?.totalSubscribers],
         ]);
-        // console.log('subscriberSet', subscriberData);
+
         const notificationRes = await getNotifications({
           token: token,
           startDate: newStartDate,
@@ -234,11 +194,12 @@ export default function LineChartSet() {
         ]);
       }
     })();
+
     return () => {
       setSubscriberData([]);
       setNotificationData([]);
     };
-  }, [selectedChain, selectedChannel, interval]);
+  }, [selectedChain, selectedChannel, interval, startDate]);
 
   const handleChannelChange = (channel: {
     icon: string;
@@ -258,15 +219,15 @@ export default function LineChartSet() {
     setSelectedChain(chain);
   };
 
-  const handle1 = () => {
-    setMin(Date.now() - 1 * 86400000);
+  const handle1Day = () => {
+    setMin(Date.now() - 2 * 86400000);
     setStartDate(
-      new Date(Date.now() - 1 * 86400000).toISOString().split('T')[0]
+      new Date(Date.now() - 2 * 86400000).toISOString().split('T')[0]
     );
     setInterval(1);
   };
 
-  const handle7 = () => {
+  const handle7Day = () => {
     setMin(Date.now() - 7 * 86400000);
     setStartDate(
       new Date(Date.now() - 7 * 86400000).toISOString().split('T')[0]
@@ -274,7 +235,7 @@ export default function LineChartSet() {
     setInterval(1);
   };
 
-  const handle30 = () => {
+  const handle30Day = () => {
     setMin(Date.now() - 30 * 86400000);
     setStartDate(
       new Date(Date.now() - 30 * 86400000).toISOString().split('T')[0]
@@ -282,8 +243,9 @@ export default function LineChartSet() {
     setInterval(1);
   };
 
-  const handle12 = () => {
-    // const isLeapYear=((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0);
+  const handle1Year = () => {
+    // const noOfDaysOfYear =
+    //   (year % 4 == 0 && year % 100 != 0) || year % 400 == 0 ? 366 : 355;
     if (new Date(Date.now() - 365 * 86400000) < new Date('2022-01-01')) {
       setMin(new Date('2022-01-01').getTime());
       setStartDate('2022-01-01');
@@ -293,44 +255,61 @@ export default function LineChartSet() {
         new Date(Date.now() - 365 * 86400000).toISOString().split('T')[0]
       );
     }
-    setInterval(15);
+    setInterval(7);
   };
 
   const handleYTD = () => {
     const currentYear = new Date().getFullYear();
+    const currentMonth = new Date().getMonth();
     setMin(new Date(`${currentYear}-01-01`).getTime());
     setStartDate(`${currentYear}-01-01`);
-    setInterval(15);
-
-    const currentMonth = new Date().getMonth();
+    if (currentMonth <= 2) {
+      setInterval(1);
+    } else {
+      const interval = Math.ceil(
+        Math.ceil(
+          Math.abs(
+            new Date(`${currentYear}-01-01`).getTime() - new Date().getTime()
+          ) /
+            (1000 * 60 * 60 * 24)
+        ) / 60
+      );
+      setInterval(interval);
+    }
   };
 
-  const handleAll = () => {
+  const handleTillDate = () => {
     setMin(new Date('2022-01-01').getTime());
     setStartDate('2022-01-01');
     setMax(Date.now());
-    setInterval(5);
+    const interval = Math.ceil(
+      Math.ceil(
+        Math.abs(new Date('2022-01-01').getTime() - new Date().getTime()) /
+          (1000 * 60 * 60 * 24)
+      ) / 60
+    );
+    setInterval(interval);
   };
 
   const handleTimeFilter = (time: any) => {
     switch (time) {
       case '1D':
-        handle1();
+        handle1Day();
         break;
       case '7D':
-        handle7();
+        handle7Day();
         break;
       case '1M':
-        handle30();
+        handle30Day();
         break;
       case 'YTD':
         handleYTD();
         break;
       case '1Y':
-        handle12();
+        handle1Year();
         break;
       case 'ALL':
-        handleAll();
+        handleTillDate();
         break;
       default:
         console.log('No option');
