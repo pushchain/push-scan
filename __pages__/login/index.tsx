@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Box,
   Paper,
@@ -11,10 +11,10 @@ import {
   FormControl,
   Button,
   Typography,
-} from "@mui/material";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import useLogin from "hooks/useLogin";
+} from '@mui/material';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import useLogin from 'hooks/useLogin';
 
 export default function LoginView() {
   const {
@@ -29,22 +29,22 @@ export default function LoginView() {
     <>
       <Box
         sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "90vh",
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: '90vh',
         }}
       >
         <Paper>
-          <Typography variant="h4" textAlign={"center"} mt={3}>
+          <Typography variant="h4" textAlign={'center'} mt={3}>
             Admin Sign In
           </Typography>
           <form onSubmit={Login}>
             <Grid
               container
               spacing={2}
-              direction={"column"}
-              alignItems={"center"}
+              direction={'column'}
+              alignItems={'center'}
               padding={5}
             >
               <Grid item xs={12} lg={6} md={6}>
@@ -52,15 +52,15 @@ export default function LoginView() {
                   id="outlined-basic"
                   name="username"
                   value={values.username}
-                  onChange={handleChange("username")}
+                  onChange={handleChange('username')}
                   label="Username"
                   variant="outlined"
                   autoComplete="off"
                   style={{ width: 257 }}
                 />
               </Grid>
-              <Grid item xs={12} lg={6} md={6} sx={{ width: "100%" }}>
-                <FormControl sx={{ width: "100%" }} variant="outlined">
+              <Grid item xs={12} lg={6} md={6} sx={{ width: '100%' }}>
+                <FormControl sx={{ width: 257 }} variant="outlined">
                   <InputLabel htmlFor="outlined-adornment-password">
                     Password
                   </InputLabel>
@@ -68,10 +68,10 @@ export default function LoginView() {
                   <OutlinedInput
                     id="outlined-adornment-password"
                     name="password"
-                    type={values.showPassword ? "text" : "password"}
+                    type={values.showPassword ? 'text' : 'password'}
                     value={values.password}
                     autoComplete="off"
-                    onChange={handleChange("password")}
+                    onChange={handleChange('password')}
                     endAdornment={
                       <InputAdornment position="end">
                         <IconButton

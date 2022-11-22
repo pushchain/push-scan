@@ -31,6 +31,13 @@ export default function LeaderBoard({
           height: '100%',
           backgroundColor: theme.palette.background.card,
           border: `1px solid ${theme.palette.outline}`,
+          '@media(max-width:480px)': {
+            // borderWidth: '0px 0px 1px 0px',
+            // borderColor: '#E6E7EC',
+            // borderStyle: 'solid',
+            // borderRadius: 0,
+            border: 'none',
+          },
         }}
       >
         <CardHeader

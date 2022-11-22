@@ -1,14 +1,15 @@
 import * as React from 'react';
-import { Grid, Box, Typography } from '@mui/material';
+import { Grid, Box, Typography, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { OverviewItem } from './overview.styled';
-import { Text } from '../../dashboard.styled';
+import { Text, HorizontalLine } from '../../dashboard.styled';
 import HorizontalChart from '../Charts/HorizontalChart';
 import { getSubscribers, getNotifications } from 'utils/api';
 import { useData } from 'contexts/DataContext';
 
 export default function OverViewSet() {
   const { token } = useData();
+  const isSmall = useMediaQuery('(max-width:480px)');
   const [subscriberCategories, setSubscriberCategories] = React.useState<any[]>(
     []
   );
@@ -118,18 +119,19 @@ export default function OverViewSet() {
           </OverviewItem>
         ))}
       </Grid>
-      <Grid container spacing={3} justifyContent="center" mt={0}>
-        <HorizontalChart
-          title="Notifications By Channel"
-          label="Notifications"
-          category={notificationCategories}
-          value={notificationValues}
-        />
+      <Grid container spacing={isSmall ? 0 : 3} justifyContent="center" mt={0}>
         <HorizontalChart
           title="Subscribers By Channel"
           label="Subscribers"
           category={subscriberCategories}
           value={subscriberValues}
+        />
+        <HorizontalLine />
+        <HorizontalChart
+          title="Notifications By Channel"
+          label="Notifications"
+          category={notificationCategories}
+          value={notificationValues}
         />
       </Grid>
     </Box>

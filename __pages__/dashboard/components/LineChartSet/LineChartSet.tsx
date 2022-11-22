@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Grid, Box } from '@mui/material';
+import { Grid, Box, useMediaQuery } from '@mui/material';
 import {
   Select,
   OptionList,
@@ -7,6 +7,7 @@ import {
   TimeFilterContainer,
   TimeFilter,
 } from './linchartset.styled';
+import { HorizontalLine } from '__pages__/dashboard/dashboard.styled';
 import Notifications from '../Notifications';
 import Subscribers from '../Subscribers';
 import { getSubscribers, getNotifications, getLeaderBoard } from 'utils/api';
@@ -14,6 +15,7 @@ import { useData } from 'contexts/DataContext';
 
 export default function LineChartSet() {
   const { token } = useData();
+  const isSmall = useMediaQuery('(max-width:480px)');
   const [selectedChannel, setSelectedChannel] = React.useState({
     icon: './static/Clothing.png',
     name: 'All Channels',
@@ -531,13 +533,14 @@ export default function LineChartSet() {
           ))}
         </TimeFilterContainer>
       </Grid>
-      <Grid container spacing={3} justifyContent="center" mt={0}>
+      <Grid container spacing={isSmall ? 0 : 3} justifyContent="center" mt={0}>
         <Notifications
           data={notificationData}
           max={max}
           min={min}
           total={totalNotifications}
         />
+        <HorizontalLine />
         <Subscribers
           data={subscriberData}
           max={max}
