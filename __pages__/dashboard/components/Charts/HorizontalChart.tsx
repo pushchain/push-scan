@@ -1,4 +1,10 @@
-import { Card, CardContent, CardHeader, Grid } from '@mui/material';
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  Grid,
+  useMediaQuery,
+} from '@mui/material';
 import dynamic from 'next/dynamic';
 import BaseOptions from '../BaseOptions';
 import { useTheme } from '@mui/material/styles';
@@ -19,6 +25,7 @@ export default function HorizontalChart({
   value: number[];
 }) {
   const theme = useTheme();
+  const isSmall = useMediaQuery('(max-width:480px)');
 
   const options = _.merge(BaseOptions(), {
     series: [
@@ -64,6 +71,14 @@ export default function HorizontalChart({
     yaxis: {
       labels: {
         show: true,
+        formatter: function (value) {
+          const editedValue = isSmall
+            ? value.length > 8
+              ? value.substr(0, 6) + '...'
+              : value
+            : value;
+          return editedValue;
+        },
       },
       axisBorder: {
         show: false,
@@ -91,7 +106,9 @@ export default function HorizontalChart({
       <Card
         sx={{
           height: '100%',
-          backgroundColor: theme.palette.background.card,
+          backgroundColor: isSmall
+            ? 'transparent'
+            : theme.palette.background.card,
           border: `1px solid ${theme.palette.outline}`,
           '@media(max-width:480px)': {
             border: 'none',

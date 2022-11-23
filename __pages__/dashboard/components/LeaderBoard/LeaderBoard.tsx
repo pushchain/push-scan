@@ -10,6 +10,7 @@ import {
   TableHead,
   TableRow,
   TableCell,
+  useMediaQuery,
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { tableCellClasses } from '@mui/material/TableCell';
@@ -24,12 +25,15 @@ export default function LeaderBoard({
   isTrending?: boolean;
 }) {
   const theme = useTheme();
+  const isSmall = useMediaQuery('(max-width:480px)');
   return (
     <Grid item xs={12} md={4} lg={4}>
       <Card
         sx={{
           height: '100%',
-          backgroundColor: theme.palette.background.card,
+          backgroundColor: isSmall
+            ? 'transparent'
+            : theme.palette.background.card,
           border: `1px solid ${theme.palette.outline}`,
           '@media(max-width:480px)': {
             // borderWidth: '0px 0px 1px 0px',
@@ -93,18 +97,15 @@ export default function LeaderBoard({
                       src={channel.icon}
                       sx={{ width: 26, height: 26, marginRight: 1 }}
                     />
-                    <Box
-                      component="span"
-                      sx={{
-                        display: 'block',
-                        maxWidth: '99px',
-                        whiteSpace: 'nowrap',
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis',
-                      }}
-                    >
+                    <Box component="span">
                       {' '}
-                      {channel.name}
+                      {isSmall && isTrending
+                        ? channel.name.length < 8
+                          ? channel.name
+                          : channel.name.substr(0, 8) + '...'
+                        : channel.name.length < 10
+                        ? channel.name
+                        : channel.name.substr(0, 10) + '...'}
                     </Box>
                   </TableCell>
                   <TableCell

@@ -73,7 +73,7 @@ export default function Navbar() {
           >
             Dashboard
           </Button>
-          <Button
+          {/* <Button
             variant="outlined"
             style={{ marginRight: '5px' }}
             onClick={() => router.push(ROUTES.ADMIN)}
@@ -84,7 +84,7 @@ export default function Navbar() {
             <Button variant="outlined" onClick={() => logout()}>
               Logout
             </Button>
-          ) : null}
+          ) : null} */}
           <Box
             sx={{
               border: '1px solid #BAC4D6',

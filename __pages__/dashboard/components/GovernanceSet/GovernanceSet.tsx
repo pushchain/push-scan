@@ -73,6 +73,7 @@ export default function GovernanceSet() {
           title="Push Grants Proposal Categories"
           label="PGP Category"
         />
+        <HorizontalLine />
         {/* <GovernanceGraph
         data={data?.Downloads}
         title="Application Usage Data"

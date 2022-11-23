@@ -18,13 +18,15 @@ export const Text = styled(Typography)(({ theme, size, weight, color }) => ({
   color: `${color || theme.palette.text.primary}`,
 }));
 
-export const HorizontalLine = styled.div`
+export const HorizontalLine = styled.div(
+  ({ theme }) => `
   display: none;
   height: 0px;
-  border: 0.5px solid #e6e7ec;
+  border: 0.5px solid ${theme.palette.background.paper};
   width: 100%;
   margin: 0 auto;
   @media (max-width: 480px) {
     display: block;
   }
-`;
+`
+);

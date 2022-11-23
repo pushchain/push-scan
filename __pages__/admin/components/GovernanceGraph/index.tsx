@@ -96,7 +96,9 @@ const GovernanceGraph = ({ data, title, label, value }: any) => {
         sx={{
           height: '100%',
           width: '100%',
-          backgroundColor: theme.palette.background.card,
+          backgroundColor: isSmall
+            ? 'transparent'
+            : theme.palette.background.card,
           border: `1px solid ${theme.palette.outline}`,
           '@media(max-width:480px)': {
             border: 'none',

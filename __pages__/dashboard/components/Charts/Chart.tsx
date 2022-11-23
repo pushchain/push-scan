@@ -1,5 +1,12 @@
 import { useState } from 'react';
-import { Card, CardContent, CardHeader, Grid, Typography } from '@mui/material';
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  Grid,
+  Typography,
+  useMediaQuery,
+} from '@mui/material';
 import dynamic from 'next/dynamic';
 import styled from '@emotion/styled';
 import { useTheme } from '@mui/material/styles';
@@ -25,6 +32,7 @@ export default function Chart({
   data: any;
 }) {
   const theme = useTheme();
+  const isSmall = useMediaQuery('(max-width:480px)');
 
   const options = _.merge(BaseOptions(), {
     series: [
@@ -86,8 +94,10 @@ export default function Chart({
     <Grid item xs={12} md={6} lg={6}>
       <Card
         sx={{
-          height: '100%',
-          backgroundColor: theme.palette.background.card,
+          height: 'auto',
+          backgroundColor: isSmall
+            ? 'transparent'
+            : theme.palette.background.card,
           border: `1px solid ${theme.palette.outline}`,
           '@media(max-width:480px)': {
             border: 'none',
