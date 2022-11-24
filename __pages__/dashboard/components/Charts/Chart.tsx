@@ -1,11 +1,18 @@
-import { useState } from "react";
-import { Card, CardContent, CardHeader, Grid, Typography } from "@mui/material";
-import dynamic from "next/dynamic";
-import styled from "@emotion/styled";
-import { useTheme } from "@mui/material/styles";
-import BaseOptions from "../BaseOptions";
-import _ from "lodash";
-const ReactApexChart = dynamic(() => import("react-apexcharts"), {
+import { useState } from 'react';
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  Grid,
+  Typography,
+  useMediaQuery,
+} from '@mui/material';
+import dynamic from 'next/dynamic';
+import styled from '@emotion/styled';
+import { useTheme } from '@mui/material/styles';
+import BaseOptions from '../BaseOptions';
+import _ from 'lodash';
+const ReactApexChart = dynamic(() => import('react-apexcharts'), {
   ssr: false,
 });
 
@@ -15,61 +22,29 @@ export default function Chart({
   label,
   max,
   min,
+  data,
 }: {
   title: string;
   value: number;
   label: string;
   max: any;
   min: any;
+  data: any;
 }) {
-  // const [min, setMin] = useState(Date.now() - 30 * 86400000);
-  // const [max, setMax] = useState(Date.now());
-  const [active, setActive] = useState<number>(4);
   const theme = useTheme();
+  const isSmall = useMediaQuery('(max-width:480px)');
 
   const options = _.merge(BaseOptions(), {
     series: [
       {
         name: label,
-        data: [
-          [Date.now() - 30 * 86400000, 9000],
-          [Date.now() - 29 * 86400000, 5000],
-          [Date.now() - 28 * 86400000, 8000],
-          [Date.now() - 27 * 86400000, 7000],
-          [Date.now() - 26 * 86400000, 6000],
-          [Date.now() - 25 * 86400000, 5000],
-          [Date.now() - 24 * 86400000, 4000],
-          [Date.now() - 23 * 86400000, 3000],
-          [Date.now() - 22 * 86400000, 2000],
-          [Date.now() - 21 * 86400000, 1000],
-          [Date.now() - 20 * 86400000, 2000],
-          [Date.now() - 19 * 86400000, 4000],
-          [Date.now() - 18 * 86400000, 3000],
-          [Date.now() - 17 * 86400000, 1000],
-          [Date.now() - 16 * 86400000, 2000],
-          [Date.now() - 15 * 86400000, 4000],
-          [Date.now() - 14 * 86400000, 5000],
-          [Date.now() - 13 * 86400000, 3000],
-          [Date.now() - 12 * 86400000, 5000],
-          [Date.now() - 11 * 86400000, 8000],
-          [Date.now() - 10 * 86400000, 2000],
-          [Date.now() - 9 * 86400000, 1000],
-          [Date.now() - 8 * 86400000, 3000],
-          [Date.now() - 7 * 86400000, 6000],
-          [Date.now() - 6 * 86400000, 4000],
-          [Date.now() - 5 * 86400000, 2000],
-          [Date.now() - 4 * 86400000, 3000],
-          [Date.now() - 3 * 86400000, 2000],
-          [Date.now() - 2 * 86400000, 1000],
-          [Date.now() - 86400000, 4000],
-          [Date.now(), 5000],
-        ],
+        data: data,
       },
     ],
-    colors: ["#DF4FA3"],
+    colors: ['#DF4FA3'],
     chart: {
-      id: "area-datetime",
-      type: "area",
+      id: 'area-datetime',
+      type: 'area',
       height: 350,
       zoom: {
         autoScaleYaxis: true,
@@ -94,14 +69,18 @@ export default function Chart({
       },
     },
     xaxis: {
-      type: "datetime",
-      //   min: new Date("01 Mar 2012").getTime(),
+      type: 'datetime',
       min: min,
       max: max,
+      // labels: {
+      //   formatter: function (value) {
+      //     return new Date(value);
+      //   },
+      // },
       // tickAmount: 5,
     },
     fill: {
-      type: "gradient",
+      type: 'gradient',
       gradient: {
         shadeIntensity: 0,
         opacityFrom: 0.5,
@@ -115,48 +94,29 @@ export default function Chart({
     <Grid item xs={12} md={6} lg={6}>
       <Card
         sx={{
-          height: "100%",
-          backgroundColor: theme.palette.background.card,
+          height: 'auto',
+          backgroundColor: isSmall
+            ? 'transparent'
+            : theme.palette.background.card,
           border: `1px solid ${theme.palette.outline}`,
+          '@media(max-width:480px)': {
+            border: 'none',
+          },
         }}
       >
         <CardHeader title={title} />
         <Typography
           variant="subtitle1"
           ml={3}
-          style={{ fontWeight: 400, fontSize: "28px" }}
+          style={{ fontWeight: 400, fontSize: '28px' }}
         >
-          {value.toLocaleString()}
+          {value?.toLocaleString()}
         </Typography>
 
         <CardContent>
-          {/* <Button
-            style={{ backgroundColor: `${active === 1 ? "blue" : "white"}` }}
-            onClick={handle1}
-          >
-            10D
-          </Button>
-          <Button
-            style={{ backgroundColor: `${active === 2 ? "blue" : "white"}` }}
-            onClick={handle6}
-          >
-            20D
-          </Button>
-          <Button
-            style={{ backgroundColor: `${active === 3 ? "blue" : "white"}` }}
-            onClick={handle12}
-          >
-            30D
-          </Button>
-          <Button
-            style={{ backgroundColor: `${active === 4 ? "blue" : "white"}` }}
-            onClick={handleAll}
-          >
-            ALL
-          </Button> */}
           <ReactApexChart
             type="area"
-            series={options.series}
+            series={options?.series}
             options={options}
             height={250}
           />

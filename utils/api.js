@@ -1,6 +1,6 @@
-import axios from "axios";
+import axios from 'axios';
 
-const API_BASE = "https://backend-dev.epns.io/apis/v1";
+const API_BASE = 'https://backend-dev.epns.io/apis/v1';
 
 export const login = async ({ user, pass }) => {
   try {
@@ -8,44 +8,95 @@ export const login = async ({ user, pass }) => {
       username: user,
       password: pass,
     });
+    // console.log('Login', res.data);
     return res.data;
   } catch (e) {
-    console.log("Error in login", e);
+    console.log('Error in login', e);
   }
 };
 
-export const getNotifications = async () => {
+export const getNotifications = async ({
+  token,
+  startDate,
+  endDate,
+  channel,
+  chain,
+}) => {
   try {
-    const res = await axios.post(`${API_BASE}/analytics/notification`);
-    console.log("notifications", res.data);
+    const res = await axios.get(`${API_BASE}/analytics/notification`, {
+      params: {
+        startDate,
+        endDate,
+        channel,
+        source: chain,
+        spam: true,
+      },
+      headers: {
+        'x-access-token': token,
+      },
+    });
+    // console.log('notifications', res.data);
+    return res.data;
   } catch (e) {
-    console.log("Error occured in notification", e);
+    console.log('Error occured in notification', e);
   }
 };
 
-export const getSubscribers = async () => {
+export const getSubscribers = async ({
+  token,
+  startDate,
+  endDate,
+  channel,
+  chain,
+}) => {
   try {
-    const res = await axios.post(`${API_BASE}/analytics/subscriber`);
-    console.log("subscribers", res.data);
+    const res = await axios.get(`${API_BASE}/analytics/subscriber`, {
+      params: {
+        startDate,
+        endDate,
+        channel,
+        source: chain,
+      },
+      headers: {
+        'x-access-token': token,
+      },
+    });
+    // console.log('subscribers', res.data);
+    return res.data;
   } catch (e) {
-    console.log("Error occured in subscribers", e);
+    console.log('Error occured in subscribers', e);
   }
 };
 
-export const getChannels = async () => {
+export const getChannels = async ({ token }) => {
   try {
-    const res = await axios.post(`${API_BASE}/analytics/channel`);
-    console.log("channels", res.data);
+    const res = await axios.get(`${API_BASE}/analytics/channel`, {
+      params: {
+        startDate: '2022-01-01',
+        endDate: '2022-11-01',
+        source: 'ETH_TEST_GOERLI',
+      },
+      headers: {
+        'x-access-token': token,
+      },
+    });
+    console.log('channels', res.data);
   } catch (e) {
-    console.log("Error occured in channels", e);
+    console.log('Error occured in channels', e);
   }
 };
 
-export const getLeaderBoard = async () => {
+export const getLeaderBoard = async ({ token, limit, sort, order }) => {
   try {
-    const res = await axios.post(`${API_BASE}/analytics/leaderboard`);
-    console.log("leaderboard", res.data);
+    const res = await axios.get(`${API_BASE}/analytics/leaderboard/`, {
+      params: { limit, sort, order },
+      headers: {
+        'x-access-token': token,
+      },
+    });
+    // console.log('leaderboard', res.data);
+    return res.data;
   } catch (e) {
-    console.log("Error occured in leaderboard", e);
+    console.log('Error occured in leaderboard', e);
   }
 };

@@ -1,5 +1,5 @@
-import { useTheme } from "@mui/material/styles";
-import { useTheme as Theme } from "contexts/ThemeContext";
+import { useTheme } from '@mui/material/styles';
+import { useTheme as Theme } from 'contexts/ThemeContext';
 
 export default function BaseOptions() {
   const theme = useTheme();
@@ -42,11 +42,11 @@ export default function BaseOptions() {
       },
       zoom: {
         enabled: true,
-        type: "x",
+        type: 'x',
         autoScaleYaxis: false,
         zoomedArea: {
           fill: {
-            color: "#90CAF9",
+            color: '#90CAF9',
             opacity: 0.4,
           },
         },
@@ -61,13 +61,13 @@ export default function BaseOptions() {
     states: {
       hover: {
         filter: {
-          type: "lighten",
+          type: 'lighten',
           value: 0.04,
         },
       },
       active: {
         filter: {
-          type: "darken",
+          type: 'darken',
           value: 0.88,
         },
       },
@@ -77,7 +77,7 @@ export default function BaseOptions() {
     fill: {
       opacity: 1,
       gradient: {
-        type: "vertical",
+        type: 'vertical',
         shadeIntensity: 0,
         opacityFrom: 0.4,
         opacityTo: 0,
@@ -90,8 +90,8 @@ export default function BaseOptions() {
 
     // Stroke
     stroke: {
-      width: 3,
-      curve: "straight",
+      width: 2,
+      curve: 'straight',
     },
 
     // Grid
@@ -107,6 +107,8 @@ export default function BaseOptions() {
       tooltip: {
         enabled: false,
       },
+      // forceNiceScale: true,
+      // tickAmount: 2,
     },
 
     // Markers
@@ -117,10 +119,10 @@ export default function BaseOptions() {
 
     // Tooltip
     tooltip: {
-      theme: isDarkMode ? "dark" : "light",
+      theme: isDarkMode ? 'dark' : 'light',
       x: {
         show: true,
-        format: "dd MMM yyyy",
+        format: 'dd MMM yyyy',
       },
       borderRadius: 10,
     },
@@ -129,8 +131,8 @@ export default function BaseOptions() {
     legend: {
       show: true,
       fontSize: 13,
-      position: "top",
-      horizontalAlign: "right",
+      position: 'top',
+      horizontalAlign: 'right',
       markers: {
         radius: 12,
       },
@@ -145,7 +147,7 @@ export default function BaseOptions() {
     plotOptions: {
       // Bar
       bar: {
-        columnWidth: "28%",
+        columnWidth: '28%',
         borderRadius: 10,
       },
       // Pie + Donut
@@ -161,7 +163,7 @@ export default function BaseOptions() {
       // Radialbar
       radialBar: {
         track: {
-          strokeWidth: "100%",
+          strokeWidth: '100%',
           //   background: theme.palette.grey[500_16],
         },
         // dataLabels: {
@@ -172,7 +174,7 @@ export default function BaseOptions() {
       // Radar
       radar: {
         polygons: {
-          fill: { colors: ["transparent"] },
+          fill: { colors: ['transparent'] },
           strokeColors: theme.palette.divider,
           connectorColors: theme.palette.divider,
         },
@@ -194,14 +196,14 @@ export default function BaseOptions() {
         // sm
         breakpoint: theme.breakpoints.values.sm,
         options: {
-          plotOptions: { bar: { columnWidth: "40%" } },
+          plotOptions: { bar: { columnWidth: '40%' } },
         },
       },
       {
         // md
         breakpoint: theme.breakpoints.values.md,
         options: {
-          plotOptions: { bar: { columnWidth: "32%" } },
+          plotOptions: { bar: { columnWidth: '32%' } },
         },
       },
     ],

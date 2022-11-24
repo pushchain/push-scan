@@ -1,14 +1,15 @@
 // import LineChart from "./LineChart";
-import Chart from "./Charts/Chart";
+import Chart from './Charts/Chart';
 
-export default function Subscribers({ min, max }) {
+export default function Subscribers({ data, min, max, total }) {
   return (
     <Chart
       title="Subscribers"
-      value={12345}
+      value={total}
       label="Subscribers"
       min={min}
       max={max}
+      data={data}
     />
   );
 }

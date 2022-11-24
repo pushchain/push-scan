@@ -10,9 +10,10 @@ import {
   TableHead,
   TableRow,
   TableCell,
-} from "@mui/material";
-import { useTheme } from "@mui/material/styles";
-import { tableCellClasses } from "@mui/material/TableCell";
+  useMediaQuery,
+} from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+import { tableCellClasses } from '@mui/material/TableCell';
 
 export default function LeaderBoard({
   title,
@@ -24,38 +25,48 @@ export default function LeaderBoard({
   isTrending?: boolean;
 }) {
   const theme = useTheme();
+  const isSmall = useMediaQuery('(max-width:480px)');
   return (
     <Grid item xs={12} md={4} lg={4}>
       <Card
         sx={{
-          height: "100%",
-          backgroundColor: theme.palette.background.card,
+          height: '100%',
+          backgroundColor: isSmall
+            ? 'transparent'
+            : theme.palette.background.card,
           border: `1px solid ${theme.palette.outline}`,
+          '@media(max-width:480px)': {
+            // borderWidth: '0px 0px 1px 0px',
+            // borderColor: '#E6E7EC',
+            // borderStyle: 'solid',
+            // borderRadius: 0,
+            border: 'none',
+          },
         }}
       >
         <CardHeader
           title={title}
-          sx={{ fontWeight: 500, fontSize: "18px", marginLeft: 2 }}
+          sx={{ fontWeight: 500, fontSize: '18px', marginLeft: 2 }}
         />
-        <CardContent style={{ paddingTop: "0px" }}>
+        <CardContent style={{ paddingTop: '0px' }}>
           <Table
             sx={{
-              width: "100%",
+              width: '100%',
               [`& .${tableCellClasses.root}`]: {
-                borderBottom: "none",
+                borderBottom: 'none',
                 // fontSize: "14px",
                 fontWeight: 600,
-                paddingTop: "9px",
-                paddingBottom: "9px",
+                paddingTop: '9px',
+                paddingBottom: '9px',
               },
             }}
           >
             <TableHead>
               <TableRow
                 sx={{
-                  "& th": {
+                  '& th': {
                     color: theme.palette.text.secondary,
-                    fontSize: "12px",
+                    fontSize: '12px',
                   },
                 }}
               >
@@ -69,8 +80,8 @@ export default function LeaderBoard({
                 <TableRow
                   key={channel.name}
                   sx={{
-                    "&:last-child td, &:last-child th": {
-                      border: "none",
+                    '&:last-child td, &:last-child th': {
+                      border: 'none',
                     },
                   }}
                 >
@@ -78,54 +89,56 @@ export default function LeaderBoard({
                     component="th"
                     scope="row"
                     sx={{
-                      display: "flex",
+                      display: 'flex',
                       color: theme.palette.text.secondary,
                     }}
                   >
                     <Avatar
-                      src={channel.image}
+                      src={channel.icon}
                       sx={{ width: 26, height: 26, marginRight: 1 }}
                     />
-                    <Box
-                      component="span"
-                      sx={{
-                        display: "block",
-                        maxWidth: "99px",
-                        whiteSpace: "nowrap",
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
-                      }}
-                    >
-                      {" "}
-                      {channel.name}
+                    <Box component="span">
+                      {' '}
+                      {isSmall && isTrending
+                        ? channel.name.length < 8
+                          ? channel.name
+                          : channel.name.substr(0, 8) + '...'
+                        : channel.name.length < 10
+                        ? channel.name
+                        : channel.name.substr(0, 10) + '...'}
                     </Box>
                   </TableCell>
                   <TableCell
                     align="right"
                     sx={{ color: theme.palette.text.secondary }}
                   >
-                    {channel.value.toLocaleString()}
+                    {channel?.subscriber?.toLocaleString()}
                   </TableCell>
                   {isTrending && (
                     <TableCell align="right">
                       <Box
                         sx={{
-                          display: "flex",
-                          alignItems: "center",
-                          color: "#30CC8B",
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'flex-end',
+                          color: '#30CC8B',
                         }}
                       >
                         <Box
                           component="img"
                           sx={{
-                            height: "6.67px",
-                            width: "10px",
+                            height: '6.67px',
+                            width: '10px',
                             marginRight: 0.5,
                           }}
                           alt="Trend."
-                          src={"./static/increase.png"}
+                          src={
+                            channel?.trend > 0
+                              ? './static/increase.png'
+                              : './static/decrease.png'
+                          }
                         />
-                        {channel.trend}%
+                        {channel?.trend}%
                       </Box>
                     </TableCell>
                   )}

@@ -1,14 +1,15 @@
 // import LineChart from "./LineChart";
-import Chart from "./Charts/Chart";
+import Chart from './Charts/Chart';
 
-export default function Notifications({ min, max }) {
+export default function Notifications({ data, min, max, total }) {
   return (
     <Chart
       title="Notifications Sent"
-      value={123456}
+      value={total}
       label="Sent"
       min={min}
       max={max}
+      data={data}
     />
   );
 }

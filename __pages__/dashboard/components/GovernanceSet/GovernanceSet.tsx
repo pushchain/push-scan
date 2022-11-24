@@ -1,12 +1,13 @@
-import { Grid, Box } from "@mui/material";
-import GovernanceGraph from "__pages__/admin/components/GovernanceGraph";
-import { Text } from "__pages__/dashboard/dashboard.styled";
+import { Grid, Box, useMediaQuery } from '@mui/material';
+import GovernanceGraph from '__pages__/admin/components/GovernanceGraph';
+import { Text, HorizontalLine } from '__pages__/dashboard/dashboard.styled';
 
 export default function GovernanceSet() {
+  const isSmall = useMediaQuery('(max-width:480px)');
   const data = {
     Governance: {
       PGP_Amount: {
-        "Yet To Be Allocated": 80,
+        'Yet To Be Allocated': 80,
         Approved: 20,
       },
       PGP_Proposals: {
@@ -31,44 +32,48 @@ export default function GovernanceSet() {
     },
     Downloads: {
       DApp: 40,
-      "Chrome Extension": 10,
-      "Mobile-iOS": 25,
-      "Mobile-Android": 25,
+      'Chrome Extension': 10,
+      'Mobile-iOS': 25,
+      'Mobile-Android': 25,
     },
   };
 
   return (
     <Box
       sx={{
-        display: "flex",
-        flexDirection: "column",
+        display: 'flex',
+        flexDirection: 'column',
         flex: 1,
       }}
       mt={5}
     >
       <Text size="18px">Push Governance</Text>
-      <Grid container spacing={3} justifyContent="center" mt={0}>
+      <Grid container spacing={isSmall ? 0 : 3} justifyContent="center" mt={0}>
         <GovernanceGraph
           data={data?.Governance?.PGP_Amount}
           title="Push Grants ($PUSH)"
           label="PGP_Amount"
           value={123456}
         />
+        <HorizontalLine />
         <GovernanceGraph
           data={data?.Governance?.PGIP}
           title="Push Grant Improvement Proposal"
           label="PGIP"
         />
+        <HorizontalLine />
         <GovernanceGraph
           data={data?.Governance?.PGP_Proposals}
           title="Push Grants Proposals"
           label="PGP Proposals"
         />
+        <HorizontalLine />
         <GovernanceGraph
           data={data?.Governance?.PGP_Categories}
           title="Push Grants Proposal Categories"
           label="PGP Category"
         />
+        <HorizontalLine />
         {/* <GovernanceGraph
         data={data?.Downloads}
         title="Application Usage Data"
