@@ -37,7 +37,7 @@ export default function Navbar() {
           <Logo src="./static/push.svg" sx={{ width: 90, height: 120 }} />
           <Box>
             <Text size="32px" weight="500">
-              Push SnapShots
+              Push Snapshots
             </Text>
             {!isSmall && (
               <Text size="15px" color="#657795">
