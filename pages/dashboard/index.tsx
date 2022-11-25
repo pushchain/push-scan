@@ -9,16 +9,14 @@ import Footer from 'components/Footer';
 export default function Dashboard() {
   return (
     <RequiresAuth>
-      <>
-        <Head>
-          <title>Push Analytics DashBoard</title>
-        </Head>
-        <Grid>
-          <Navbar />
-          <DashBoardView />
-          <Footer />
-        </Grid>
-      </>
+      <Head>
+        <title>Push Analytics DashBoard</title>
+      </Head>
+      <Grid>
+        <Navbar />
+        <DashBoardView />
+        <Footer />
+      </Grid>
     </RequiresAuth>
   );
 }
