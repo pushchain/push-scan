@@ -48,7 +48,7 @@ export default function Navbar() {
         </Box>
 
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
-          <Button
+          {/* <Button
             variant="outlined"
             style={{ marginRight: '5px' }}
             onClick={() => {
@@ -84,7 +84,7 @@ export default function Navbar() {
             <Button variant="outlined" onClick={() => logout()}>
               Logout
             </Button>
-          ) : null}
+          ) : null} */}
           <Box
             sx={{
               border: '1px solid #BAC4D6',

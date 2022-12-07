@@ -1,3 +1,4 @@
+import React from 'react';
 import { Grid, Box, useMediaQuery } from '@mui/material';
 import GovernanceGraph from '__pages__/admin/components/GovernanceGraph';
 import { Text, HorizontalLine } from '__pages__/dashboard/dashboard.styled';

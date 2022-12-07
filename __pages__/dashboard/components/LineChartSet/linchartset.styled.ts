@@ -34,8 +34,6 @@ export const OptionList = styled.div(
   };
   border: 1px solid grey;
   width: inherit;
-  // max-height: 200px;
-  // overflow-y: auto;
   overflow-x:hidden;
   display: flex;
   flex-direction: column;
@@ -59,6 +57,9 @@ export const Option = styled.div`
   &:hover {
     opacity: 0.8;
   }
+  // @media (max-width: 480px) {
+  //   justify-content: center;
+  // }
 `;
 
 export const TimeFilterContainer = styled.div(

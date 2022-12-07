@@ -1,12 +1,11 @@
 import React from 'react';
 import Chart from './Charts/Chart';
-
-export default function Subscribers({ data, min, max, total }) {
+export default function ChatUsers({ data, min, max, total }) {
   return (
     <Chart
-      title="Subscribers"
+      title="Chat Users"
       value={total}
-      label="Subscribers"
+      label="Users"
       min={min}
       max={max}
       data={data}

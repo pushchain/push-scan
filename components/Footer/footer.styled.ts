@@ -1,8 +1,8 @@
-import styled from "@emotion/styled";
-import { Container } from "@mui/system";
+import styled from '@emotion/styled';
+import { Container } from '@mui/system';
 
 export const FooterContainer = styled(Container)`
-  width: 95vw;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;

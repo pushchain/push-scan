@@ -7,9 +7,11 @@ import {
   TimeFilterContainer,
   TimeFilter,
 } from './linchartset.styled';
-import { HorizontalLine } from '__pages__/dashboard/dashboard.styled';
+import { Text, HorizontalLine } from '__pages__/dashboard/dashboard.styled';
 import Notifications from '../Notifications';
 import Subscribers from '../Subscribers';
+import ChatUsers from '../ChatUsers';
+import RequestSent from '../RequestSent';
 import { getSubscribers, getNotifications, getLeaderBoard } from 'utils/api';
 import { useData } from 'contexts/DataContext';
 
@@ -535,6 +537,13 @@ export default function LineChartSet() {
           ))}
         </TimeFilterContainer>
       </Grid>
+      <Box
+        sx={{ display: 'flex', width: '100%', justifyContent: 'flex-start' }}
+      >
+        <Text size="18px" marginTop={5}>
+          Notifications Statistics
+        </Text>
+      </Box>
       <Grid container spacing={isSmall ? 0 : 3} justifyContent="center" mt={0}>
         <Notifications
           data={notificationData}
@@ -544,6 +553,28 @@ export default function LineChartSet() {
         />
         <HorizontalLine />
         <Subscribers
+          data={subscriberData}
+          max={max}
+          min={min}
+          total={totalSubscribers}
+        />
+      </Grid>
+      <Box
+        sx={{ display: 'flex', width: '100%', justifyContent: 'flex-start' }}
+      >
+        <Text size="18px" marginTop={5}>
+          Chat Statistics
+        </Text>
+      </Box>
+      <Grid container spacing={isSmall ? 0 : 3} justifyContent="center" mt={0}>
+        <RequestSent
+          data={notificationData}
+          max={max}
+          min={min}
+          total={totalNotifications}
+        />
+        <HorizontalLine />
+        <ChatUsers
           data={subscriberData}
           max={max}
           min={min}

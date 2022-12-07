@@ -3,7 +3,7 @@ import { Container } from '@mui/system';
 import { Typography } from '@mui/material';
 
 export const DashBoardContainer = styled(Container)`
-  width: 95vw;
+  width: 98%;
   margin-top: 120px;
   height: auto;
   display: flex;
@@ -11,12 +11,15 @@ export const DashBoardContainer = styled(Container)`
   align-items: center;
 `;
 
-export const Text = styled(Typography)(({ theme, size, weight, color }) => ({
-  margin: 0,
-  fontSize: `${size || '16px'}`,
-  fontWeight: `${weight || 500}`,
-  color: `${color || theme.palette.text.primary}`,
-}));
+export const Text = styled(Typography)(
+  ({ theme, size, weight, color, marginTop }) => ({
+    // margin: 0,
+    fontSize: `${size || '16px'}`,
+    fontWeight: `${weight || 500}`,
+    color: `${color || theme.palette.text.primary}`,
+    marginTop: `${marginTop || '0px'}`,
+  })
+);
 
 export const HorizontalLine = styled.div(
   ({ theme }) => `
