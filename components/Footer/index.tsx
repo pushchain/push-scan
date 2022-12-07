@@ -1,3 +1,4 @@
+import React from 'react';
 import { FooterContainer } from './footer.styled';
 import { useTheme } from 'contexts/ThemeContext';
 import { Box, Grid } from '@mui/material';
