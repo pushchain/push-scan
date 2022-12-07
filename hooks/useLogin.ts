@@ -1,16 +1,16 @@
-import { useData } from "contexts/DataContext";
-import { useRouter } from "next/router";
-import React from "react";
-import { toast } from "react-toastify";
-import { ROUTES, CREDENTIALKEYS } from "utils/constants";
-import { login } from "utils/api";
+import { useData } from 'contexts/DataContext';
+import { useRouter } from 'next/router';
+import React from 'react';
+import { toast } from 'react-toastify';
+import { ROUTES, CREDENTIALKEYS } from 'utils/constants';
+import { login } from 'utils/api';
 
 export default function useLogin() {
   const router = useRouter();
   const { setIsLoggedIn } = useData();
   const [values, setValues] = React.useState({
-    username: "",
-    password: "",
+    username: '',
+    password: '',
     showPassword: false,
   });
 
@@ -35,13 +35,12 @@ export default function useLogin() {
     const res = await login({ user: username.value, pass: password.value });
     if (res?.token) {
       setIsLoggedIn(true);
-      sessionStorage.setItem(CREDENTIALKEYS.LOGINCHECK, "" + true);
+      sessionStorage.setItem(CREDENTIALKEYS.LOGINCHECK, '' + true);
       // sessionStorage.setItem(CREDENTIALKEYS.TOKEN, res?.token);
-      router.push(ROUTES.ADMIN);
-      // router.push(ROUTES.DASHBOARD);
+      router.push(ROUTES.DASHBOARD);
     } else {
-      toast.error("Please enter the correct Username and Password");
-      setValues({ username: "", password: "", showPassword: false });
+      toast.error('Please enter the correct Username and Password');
+      setValues({ username: '', password: '', showPassword: false });
     }
   };
 

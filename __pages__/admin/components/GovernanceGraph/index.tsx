@@ -46,7 +46,14 @@ const GovernanceGraph = ({ data, title, label, value }: any) => {
         orient: 'vertical',
         left: 'left',
         textStyle: {
-          color: theme.palette.text.primary,
+          color: '#9C9CBE',
+          fontSize: 12,
+          fontWeight: 500,
+        },
+        itemWidth: 15,
+        itemHeight: 6,
+        itemStyle: {
+          borderRadius: 6,
         },
       },
       color: [
@@ -76,7 +83,8 @@ const GovernanceGraph = ({ data, title, label, value }: any) => {
           label: {
             show: true,
             formatter: '{b}\n {d}%',
-            color: theme.palette.text.primary,
+            color: '#9C9CBE',
+            fontWeight: 500,
           },
         },
       ],

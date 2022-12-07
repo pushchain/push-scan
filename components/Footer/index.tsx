@@ -1,7 +1,9 @@
-import { FooterContainer } from "./footer.styled";
-import { useTheme } from "contexts/ThemeContext";
-import { Box, Grid } from "@mui/material";
-import { Text } from "__pages__/dashboard/dashboard.styled";
+import React from 'react';
+import { FooterContainer } from './footer.styled';
+import { useTheme } from 'contexts/ThemeContext';
+import { Box, Grid } from '@mui/material';
+import { Text } from '__pages__/dashboard/dashboard.styled';
+
 export default function Footer() {
   const { isDarkMode } = useTheme();
   return (
@@ -11,8 +13,8 @@ export default function Footer() {
         alignItems="center"
         gap="30px"
         sx={{
-          "@media(max-width:480px)": {
-            flexDirection: "column",
+          '@media(max-width:480px)': {
+            flexDirection: 'column',
           },
         }}
       >
@@ -21,7 +23,7 @@ export default function Footer() {
           width="125px"
           height="48px"
           src={
-            isDarkMode ? "./static/push-logo-1.svg" : "./static/push-logo-2.svg"
+            isDarkMode ? './static/push-logo-1.svg' : './static/push-logo-2.svg'
           }
         />
         <Box display="flex" gap={3}>
@@ -34,7 +36,7 @@ export default function Footer() {
         display="flex"
         alignItems="center"
         gap={3}
-        sx={{ cursor: "pointer" }}
+        sx={{ cursor: 'pointer' }}
       >
         <Box component="img" src="./static/twitter.svg" />
         <Box component="img" src="./static/github.svg" />

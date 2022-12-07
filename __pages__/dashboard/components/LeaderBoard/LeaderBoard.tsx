@@ -133,7 +133,7 @@ export default function LeaderBoard({
                           }}
                           alt="Trend."
                           src={
-                            channel?.trend > 0
+                            channel?.trend >= 0
                               ? './static/increase.png'
                               : './static/decrease.png'
                           }
