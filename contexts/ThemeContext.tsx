@@ -1,9 +1,9 @@
-import { useEffect, useState, useContext, createContext } from "react";
+import React, { useEffect, useState, useContext, createContext } from 'react';
 
 const defaultTheme: any = {
   isDarkMode: false,
   darkModeToggle: () => {
-    alert("clicked");
+    alert('clicked');
   },
 };
 
@@ -15,16 +15,16 @@ const ThemeProvider = ({ children }: { children: any }) => {
   const darkModeToggle = () => {
     if (isDarkMode) {
       setDarkMode(!isDarkMode);
-      localStorage.removeItem("darkMode");
+      localStorage.removeItem('darkMode');
     } else {
       setDarkMode(!isDarkMode);
-      localStorage.setItem("darkMode", !isDarkMode + "");
+      localStorage.setItem('darkMode', !isDarkMode + '');
     }
   };
 
   useEffect(() => {
     (async () => {
-      const darkMode = localStorage.getItem("darkMode");
+      const darkMode = localStorage.getItem('darkMode');
       if (darkMode) {
         setDarkMode(true);
       } else {

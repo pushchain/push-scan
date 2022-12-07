@@ -17,7 +17,7 @@ export default function LineChartSet() {
   const { token } = useData();
   const isSmall = useMediaQuery('(max-width:480px)');
   const [selectedChannel, setSelectedChannel] = React.useState({
-    icon: './static/Clothing.png',
+    icon: './static/ethereum.svg',
     name: 'All Channels',
     channel: 'All',
   });
@@ -65,7 +65,7 @@ export default function LineChartSet() {
       value: 'ETH_TEST_GOERLI',
     },
     {
-      image: './static/ethereum.svg',
+      image: './static/polygon.svg',
       chain: 'Polygon Network',
       value: 'POLYGON_TEST_MUMBAI',
     },
@@ -111,7 +111,7 @@ export default function LineChartSet() {
     (async () => {
       setChannelList([]);
       const allChannels = {
-        icon: './static/Clothing.png',
+        icon: selectedChain?.image,
         name: 'All Channels',
         channel: 'All',
       };
@@ -367,6 +367,7 @@ export default function LineChartSet() {
                 alt=""
                 src={selectedChannel?.icon}
               />
+
               <Box
                 sx={{
                   display: 'block',
@@ -424,6 +425,7 @@ export default function LineChartSet() {
                         src={channel?.icon}
                         onClick={() => setShowChain(!showChain)}
                       />
+
                       <Box
                         sx={{
                           display: 'block',
