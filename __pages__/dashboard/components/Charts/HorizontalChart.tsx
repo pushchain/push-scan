@@ -26,7 +26,7 @@ export default function HorizontalChart({
   value: number[];
 }) {
   const theme = useTheme();
-  const isSmall = useMediaQuery('(max-width:480px)');
+  const isMobile = useMediaQuery('(max-width:480px)');
 
   const options = _.merge(BaseOptions(), {
     series: [
@@ -73,7 +73,7 @@ export default function HorizontalChart({
       labels: {
         show: true,
         formatter: function (value) {
-          const editedValue = isSmall
+          const editedValue = isMobile
             ? value.length > 8
               ? value.substr(0, 6) + '...'
               : value
@@ -107,7 +107,7 @@ export default function HorizontalChart({
       <Card
         sx={{
           height: '100%',
-          backgroundColor: isSmall
+          backgroundColor: isMobile
             ? 'transparent'
             : theme.palette.background.card,
           border: `1px solid ${theme.palette.outline}`,
@@ -117,7 +117,7 @@ export default function HorizontalChart({
         }}
       >
         <CardHeader title={title} />
-        <CardContent>
+        <CardContent style={{ padding: isMobile ? '0px' : '24px' }}>
           <ReactApexChart
             type="bar"
             series={options.series}

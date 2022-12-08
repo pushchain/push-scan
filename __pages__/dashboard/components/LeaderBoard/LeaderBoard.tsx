@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   Card,
   CardContent,
@@ -25,13 +26,13 @@ export default function LeaderBoard({
   isTrending?: boolean;
 }) {
   const theme = useTheme();
-  const isSmall = useMediaQuery('(max-width:480px)');
+  const isMobile = useMediaQuery('(max-width:480px)');
   return (
-    <Grid item xs={12} md={4} lg={4}>
+    <Grid item xs={12} md={4} lg={4} mb={isMobile ? 2 : 0}>
       <Card
         sx={{
           height: '100%',
-          backgroundColor: isSmall
+          backgroundColor: isMobile
             ? 'transparent'
             : theme.palette.background.card,
           border: `1px solid ${theme.palette.outline}`,
@@ -46,9 +47,14 @@ export default function LeaderBoard({
       >
         <CardHeader
           title={title}
-          sx={{ fontWeight: 500, fontSize: '18px', marginLeft: 2 }}
+          sx={{
+            fontWeight: 500,
+            fontSize: '18px',
+            padding: isMobile ? '24px 0px 8px' : '24px 24px 0px',
+          }}
         />
-        <CardContent style={{ paddingTop: '0px' }}>
+        {/* <CardContent style={{ paddingTop: '0px' }}></CardContent> */}
+        <CardContent style={{ padding: isMobile ? '0px' : '0px 24px 24px' }}>
           <Table
             sx={{
               width: '100%',
@@ -56,6 +62,7 @@ export default function LeaderBoard({
                 borderBottom: 'none',
                 // fontSize: "14px",
                 fontWeight: 600,
+                padding: '0px',
                 paddingTop: '9px',
                 paddingBottom: '9px',
               },
@@ -65,7 +72,7 @@ export default function LeaderBoard({
               <TableRow
                 sx={{
                   '& th': {
-                    color: theme.palette.text.secondary,
+                    color: theme.palette.text.disabled,
                     fontSize: '12px',
                   },
                 }}
@@ -99,7 +106,7 @@ export default function LeaderBoard({
                     />
                     <Box component="span">
                       {' '}
-                      {isSmall && isTrending
+                      {isMobile && isTrending
                         ? channel.name.length < 8
                           ? channel.name
                           : channel.name.substr(0, 8) + '...'

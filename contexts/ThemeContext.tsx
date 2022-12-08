@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext, createContext } from 'react';
 
 const defaultTheme: any = {
-  isDarkMode: false,
+  isDarkMode: true,
   darkModeToggle: () => {
     alert('clicked');
   },
@@ -10,7 +10,7 @@ const defaultTheme: any = {
 const ThemeContext = createContext(defaultTheme);
 
 const ThemeProvider = ({ children }: { children: any }) => {
-  const [isDarkMode, setDarkMode] = useState(false);
+  const [isDarkMode, setDarkMode] = useState(true);
 
   const darkModeToggle = () => {
     if (isDarkMode) {

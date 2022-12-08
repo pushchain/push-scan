@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   Grid,
   Card,
@@ -12,7 +13,7 @@ import { useTheme } from '@mui/material/styles';
 const GovernanceGraph = ({ data, title, label, value }: any) => {
   const theme = useTheme();
   // Checking whether screen is mobile screen
-  const isSmall = useMediaQuery('(max-width:480px)');
+  const isMobile = useMediaQuery('(max-width:480px)');
 
   // Constructing data for chart
   const getTotal = (data: any) => {
@@ -42,11 +43,11 @@ const GovernanceGraph = ({ data, title, label, value }: any) => {
         borderRadius: 10,
       },
       legend: {
-        show: isSmall ? false : true,
+        show: isMobile ? false : true,
         orient: 'vertical',
         left: 'left',
         textStyle: {
-          color: '#9C9CBE',
+          color: theme.palette.text.secondary,
           fontSize: 12,
           fontWeight: 500,
         },
@@ -71,7 +72,7 @@ const GovernanceGraph = ({ data, title, label, value }: any) => {
           name: label,
           type: 'pie',
           radius: ['40%', '70%'],
-          center: isSmall ? ['50%', '50%'] : ['65%', '40%'],
+          center: isMobile ? ['50%', '50%'] : ['65%', '40%'],
           data: [...values],
           emphasis: {
             itemStyle: {
@@ -83,7 +84,7 @@ const GovernanceGraph = ({ data, title, label, value }: any) => {
           label: {
             show: true,
             formatter: '{b}\n {d}%',
-            color: '#9C9CBE',
+            color: theme.palette.text.secondary,
             fontWeight: 500,
           },
         },
@@ -104,7 +105,7 @@ const GovernanceGraph = ({ data, title, label, value }: any) => {
         sx={{
           height: '100%',
           width: '100%',
-          backgroundColor: isSmall
+          backgroundColor: isMobile
             ? 'transparent'
             : theme.palette.background.card,
           border: `1px solid ${theme.palette.outline}`,
@@ -115,7 +116,7 @@ const GovernanceGraph = ({ data, title, label, value }: any) => {
       >
         <CardHeader
           title={title}
-          style={{ marginBottom: value ? '0px' : '40px' }}
+          style={{ marginBottom: value ? '0px' : !isMobile ? '40px' : '0px' }}
         />
         {value && (
           <Typography

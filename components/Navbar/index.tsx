@@ -10,6 +10,8 @@ import {
   getNotifications,
   getLeaderBoard,
   getChannels,
+  getGovernanceData,
+  updateGovernanceData,
 } from 'utils/api';
 import React from 'react';
 import { DarkModeSwitch } from 'react-toggle-dark-mode';
@@ -36,11 +38,11 @@ export default function Navbar() {
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <Logo src="./static/push.svg" sx={{ width: 90, height: 120 }} />
           <Box>
-            <Text size="32px" weight="500">
+            <Text size={isSmall ? '24px' : '32px'} weight="500">
               Push Snapshots
             </Text>
             {!isSmall && (
-              <Text size="15px" color="#657795">
+              <Text size="15px" color={theme.palette.text.secondary}>
                 Explore trends, activity and track growth on the Push Network
               </Text>
             )}
@@ -48,11 +50,13 @@ export default function Navbar() {
         </Box>
 
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
-          {/* <Button
+          <Button
             variant="outlined"
             style={{ marginRight: '5px' }}
             onClick={() => {
               router.push(ROUTES.DASHBOARD);
+              // updateGovernanceData();
+              // getGovernanceData();
               // getChannels({ token });
               // getSubscribers({
               //   token,
@@ -84,7 +88,7 @@ export default function Navbar() {
             <Button variant="outlined" onClick={() => logout()}>
               Logout
             </Button>
-          ) : null} */}
+          ) : null}
           <Box
             sx={{
               border: '1px solid #BAC4D6',

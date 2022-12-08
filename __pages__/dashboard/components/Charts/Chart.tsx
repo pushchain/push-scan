@@ -32,7 +32,7 @@ export default function Chart({
   data: any;
 }) {
   const theme = useTheme();
-  const isSmall = useMediaQuery('(max-width:480px)');
+  const isMobile = useMediaQuery('(max-width:480px)');
 
   const options = _.merge(BaseOptions(), {
     series: [
@@ -95,7 +95,7 @@ export default function Chart({
       <Card
         sx={{
           height: 'auto',
-          backgroundColor: isSmall
+          backgroundColor: isMobile
             ? 'transparent'
             : theme.palette.background.card,
           border: `1px solid ${theme.palette.outline}`,
@@ -113,7 +113,7 @@ export default function Chart({
           {value?.toLocaleString()}
         </Typography>
 
-        <CardContent>
+        <CardContent style={{ padding: isMobile ? '0px' : '24px' }}>
           <ReactApexChart
             type="area"
             series={options?.series}
@@ -125,9 +125,3 @@ export default function Chart({
     </Grid>
   );
 }
-
-const Button = styled.button`
-  padding: 3px 5px;
-  margin-right: 0px;
-  border: none;
-`;

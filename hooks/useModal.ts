@@ -1,7 +1,12 @@
-import { useState } from "react";
+import { useState } from 'react';
+import { updateGovernanceData } from '../utils/api';
+import { useData } from '../contexts/DataContext';
 
 export default function useModal() {
+  const { updateTracker, setUpdateTracker } = useData();
   const [open, setOpen] = useState<boolean>(false);
+  const token =
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoicHVzaF9zdGFnaW5nX3VzZXIiLCJpYXQiOjE2NzA1MDg1OTAsImV4cCI6MTY3MDU5NDk5MH0.d-R-DJCeGnu-d5SmdavVgKfJstdOl2UihcCZUTIPAi4';
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [formData, setFormData] = useState({
@@ -30,12 +35,12 @@ export default function useModal() {
     setFormData({ ...formData, [prop]: parseInt(event.target.value) });
   };
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     const data = {
       Governance: {
         PGP_Amount: {
-          "Yet To Be Allocated": formData.allocatedgrant,
+          'Yet To Be Allocated': formData.allocatedgrant,
           Approved: formData.approvedgrant,
         },
         PGP_Proposals: {
@@ -60,12 +65,14 @@ export default function useModal() {
       },
       Downloads: {
         DApp: formData.dapp,
-        "Chrome Extension": formData.extensions,
-        "Mobile-iOS": formData.mobile_ios,
-        "Mobile-Android": formData.mobile_android,
+        'Chrome Extension': formData.extensions,
+        'Mobile-iOS': formData.mobile_ios,
+        'Mobile-Android': formData.mobile_android,
       },
     };
-    console.log("submitted", data);
+    const res = await updateGovernanceData({ data, token });
+    setUpdateTracker(!updateTracker);
+    console.log('Result', res);
   };
 
   return {

@@ -2,42 +2,20 @@ import React from 'react';
 import { Grid, Box, useMediaQuery } from '@mui/material';
 import GovernanceGraph from '__pages__/admin/components/GovernanceGraph';
 import { Text, HorizontalLine } from '__pages__/dashboard/dashboard.styled';
+import { getGovernanceData } from '../../../../utils/api';
 
 export default function GovernanceSet() {
   const isSmall = useMediaQuery('(max-width:480px)');
-  const data = {
-    Governance: {
-      PGP_Amount: {
-        'Yet To Be Allocated': 80,
-        Approved: 20,
-      },
-      PGP_Proposals: {
-        Approved: 4,
-        Open: 7,
-        Closed: 11,
-      },
-      PGP_Categories: {
-        Defi: 6,
-        NFT: 3,
-        DAO: 4,
-        Tooling: 11,
-        Marketing: 2,
-        Educational: 6,
-        Gaming: 2,
-        Other: 2,
-      },
-      PGIP: {
-        Closed: 4,
-        Approved: 8,
-      },
-    },
-    Downloads: {
-      DApp: 40,
-      'Chrome Extension': 10,
-      'Mobile-iOS': 25,
-      'Mobile-Android': 25,
-    },
-  };
+  const [data, setData] = React.useState();
+  const token =
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoicHVzaF9zdGFnaW5nX3VzZXIiLCJpYXQiOjE2NzA1MDg1OTAsImV4cCI6MTY3MDU5NDk5MH0.d-R-DJCeGnu-d5SmdavVgKfJstdOl2UihcCZUTIPAi4';
+
+  React.useEffect(() => {
+    (async () => {
+      const res = await getGovernanceData({ token });
+      setData(res?.governance_data);
+    })();
+  }, []);
 
   return (
     <Box
@@ -59,7 +37,7 @@ export default function GovernanceSet() {
         <HorizontalLine />
         <GovernanceGraph
           data={data?.Governance?.PGIP}
-          title="Push Grant Improvement Proposal"
+          title="Push Governance Improvement Proposals"
           label="PGIP"
         />
         <HorizontalLine />
