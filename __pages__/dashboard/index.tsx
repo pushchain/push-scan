@@ -9,10 +9,10 @@ import OverViewSet from './components/OverViewSet/OverViewSet';
 import GovernanceSet from './components/GovernanceSet/GovernanceSet';
 
 const DashBoardView = () => {
-  const isSmall = useMediaQuery('(max-width:480px)');
+  const isMobile = useMediaQuery('(max-width:480px)');
   return (
-    <DashBoardContainer maxWidth="xl">
-      <Grid container spacing={!isSmall ? 4 : 0} justifyContent="center">
+    <DashBoardContainer maxWidth="xl" marginTop={isMobile ? '90px' : '135px'}>
+      <Grid container spacing={!isMobile ? 4 : 0} justifyContent="center">
         <Trending />
         <HorizontalLine />
         <RecentlyAdded />
