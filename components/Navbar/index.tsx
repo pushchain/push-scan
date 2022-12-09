@@ -1,9 +1,11 @@
+import React from 'react';
+import { DarkModeSwitch } from 'react-toggle-dark-mode';
+import { useRouter } from 'next/router';
 import { Box, Button, useMediaQuery } from '@mui/material';
 import Logo from 'components/Logo';
 import { useTheme } from '@mui/material/styles';
 import { useTheme as Theme } from 'contexts/ThemeContext';
 import { useData } from 'contexts/DataContext';
-import { useRouter } from 'next/router';
 import { ROUTES, CREDENTIALKEYS } from 'utils/constants';
 import {
   getSubscribers,
@@ -12,18 +14,20 @@ import {
   getChannels,
   getGovernanceData,
   updateGovernanceData,
+  getChats,
+  getUsers,
 } from 'utils/api';
-import React from 'react';
-import { DarkModeSwitch } from 'react-toggle-dark-mode';
+
 import { RootStyle, ToolbarStyle } from './navbar.styled';
 import { Text } from '__pages__/dashboard/dashboard.styled';
 
 export default function Navbar() {
   const { isDarkMode, darkModeToggle } = Theme();
-  const { isLoggedIn, setIsLoggedIn, token } = useData();
+  const { isLoggedIn, setIsLoggedIn, token, stagingToken } = useData();
   const router = useRouter();
   const theme = useTheme();
-  const isSmall = useMediaQuery('(max-width:480px)');
+  const isMobile = useMediaQuery('(max-width:480px)');
+  const { asPath, pathname } = useRouter();
 
   const logout = () => {
     setIsLoggedIn(false);
@@ -36,12 +40,19 @@ export default function Navbar() {
     <RootStyle>
       <ToolbarStyle>
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
-          <Logo src="./static/push.svg" sx={{ width: 90, height: 120 }} />
+          <Logo
+            src="./static/push-icon.svg"
+            sx={{
+              width: isMobile ? 38 : 65,
+              height: isMobile ? 39 : 66,
+              margin: '33px 10px 33px 0px',
+            }}
+          />
           <Box>
-            <Text size={isSmall ? '24px' : '32px'} weight="500">
+            <Text size={isMobile ? '24px' : '32px'} weight="500">
               Push Snapshots
             </Text>
-            {!isSmall && (
+            {!isMobile && (
               <Text size="15px" color={theme.palette.text.secondary}>
                 Explore trends, activity and track growth on the Push Network
               </Text>
@@ -50,45 +61,61 @@ export default function Navbar() {
         </Box>
 
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
-          <Button
-            variant="outlined"
-            style={{ marginRight: '5px' }}
-            onClick={() => {
-              router.push(ROUTES.DASHBOARD);
-              // updateGovernanceData();
-              // getGovernanceData();
-              // getChannels({ token });
-              // getSubscribers({
-              //   token,
-              //   startDate: '2022-01-01',
-              //   endDate: '2022-11-16',
-              //   channel: 'All',
-              //   chain: 'ETH_TEST_GOERLI',
-              // });
-              // getNotifications({
-              //   token,
-              //   startDate: '2022-01-01',
-              //   endDate: '2022-11-16',
-              //   channel: '0x0000000000000000000000000000000000000000',
-              //   chain: 'ETH_TEST_GOERLI',
-              // });
-              // getLeaderBoard({ token });
-            }}
-          >
-            Dashboard
-          </Button>
-          <Button
-            variant="outlined"
-            style={{ marginRight: '5px' }}
-            onClick={() => router.push(ROUTES.ADMIN)}
-          >
-            Admin Panel
-          </Button>
-          {isLoggedIn ? (
-            <Button variant="outlined" onClick={() => logout()}>
-              Logout
-            </Button>
-          ) : null}
+          {asPath !== '/dashboard' && (
+            <>
+              <Button
+                variant="outlined"
+                style={{ marginRight: '5px' }}
+                onClick={() => {
+                  router.push(ROUTES.DASHBOARD);
+                  // getChats({
+                  //   token: stagingToken,
+                  //   startDate: '2022-12-07',
+                  //   endDate: '2022-12-08',
+                  //   channel: 'All',
+                  //   chain: 'ETH_TEST_GOERLI',
+                  // });
+                  // getUsers({ token: stagingToken });
+                  // updateGovernanceData();
+                  // getGovernanceData();
+                  // getChannels({ token });
+                  // getSubscribers({
+                  //   token,
+                  //   startDate: '2022-01-01',
+                  //   endDate: '2022-11-16',
+                  //   channel: 'All',
+                  //   chain: 'ETH_TEST_GOERLI',
+                  // });
+                  // getNotifications({
+                  //   token,
+                  //   startDate: '2022-01-01',
+                  //   endDate: '2022-11-16',
+                  //   channel: '0x0000000000000000000000000000000000000000',
+                  //   chain: 'ETH_TEST_GOERLI',
+                  // });
+                  // getLeaderBoard({ token });
+                }}
+              >
+                Dashboard
+              </Button>
+              <Button
+                variant="outlined"
+                style={{ marginRight: '5px' }}
+                onClick={() => router.push(ROUTES.ADMIN)}
+              >
+                Admin Panel
+              </Button>
+              {isLoggedIn ? (
+                <Button
+                  variant="outlined"
+                  style={{ marginRight: '5px' }}
+                  onClick={() => logout()}
+                >
+                  Logout
+                </Button>
+              ) : null}
+            </>
+          )}
           <Box
             sx={{
               border: '1px solid #BAC4D6',
@@ -105,8 +132,8 @@ export default function Navbar() {
               checked={isDarkMode}
               onChange={darkModeToggle}
               size={28}
-              sunColor="#494D5F"
-              moonColor="#787E99"
+              sunColor="#575D73"
+              moonColor="#FFFFFF"
             />
           </Box>
         </Box>

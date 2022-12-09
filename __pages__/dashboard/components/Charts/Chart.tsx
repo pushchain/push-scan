@@ -72,6 +72,9 @@ export default function Chart({
       type: 'datetime',
       min: min,
       max: max,
+      labels: {
+        show: true,
+      },
       // labels: {
       //   formatter: function (value) {
       //     return new Date(value);

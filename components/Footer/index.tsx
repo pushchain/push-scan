@@ -32,10 +32,14 @@ export default function Footer() {
           />
         </a>
         <Box display="flex" gap={3}>
-          <a href="#">
+          <a href="https://push.org/tos" target={'_blank'} rel={'noreferrer'}>
             <Text color="#9C9CBE">Terms</Text>
           </a>
-          <a href="#">
+          <a
+            href="https://push.org/privacy"
+            target={'_blank'}
+            rel={'noreferrer'}
+          >
             <Text color="#9C9CBE">Privacy</Text>
           </a>
           <a

@@ -1,15 +1,25 @@
-import * as React from 'react';
+import React from 'react';
 import { Grid, Box, Typography, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { OverviewItem } from './overview.styled';
 import { Text, HorizontalLine } from '../../dashboard.styled';
 import HorizontalChart from '../Charts/HorizontalChart';
-import { getSubscribers, getNotifications } from 'utils/api';
+import {
+  getSubscribers,
+  getNotifications,
+  getChats,
+  getUsers,
+  getGovernanceData,
+} from 'utils/api';
 import { useData } from 'contexts/DataContext';
 
 export default function OverViewSet() {
-  const { token } = useData();
+  const { token, stagingToken } = useData();
   const isSmall = useMediaQuery('(max-width:480px)');
+  const [chatUsers, setChatUsers] = React.useState<number>(0);
+  const [chatSent, setChatSent] = React.useState<number>(0);
+  const [pushIntegrations, setPushIntegrations] = React.useState<number>(0);
+  const [chatRequests, setChatRequests] = React.useState<number>(0);
   const [subscriberCategories, setSubscriberCategories] = React.useState<any[]>(
     []
   );
@@ -19,30 +29,45 @@ export default function OverViewSet() {
   >([]);
   const [notificationValues, setNotificationValues] = React.useState<any[]>([]);
 
-  const val = [400, 430, 448, 470, 540, 580, 690, 1100, 1200, 1380].reverse();
-  const cat = [
-    'Push Protocol',
-    'Coindesk',
-    'Snapshot',
-    'MakerDAO',
-    'Rekt',
-    'Tollan Worlds',
-    'CFI',
-    'Earnifi-Crypto',
-    'Banker',
-    'Lens Protocol',
-  ];
   const overViewData = [
     {
       image: './static/push-integration.svg',
       title: 'Push Integrations',
-      value: 1234,
+      value: pushIntegrations,
     },
-    { image: './static/chat-sent.svg', title: 'Chat Sent', value: 1234 },
-    { image: './static/chat-user.svg', title: 'Chat User', value: 1234 },
-    { image: './static/chat-request.svg', title: 'Chat Request', value: 1234 },
+    {
+      image: './static/chat-sent.svg',
+      title: 'Chat Sent',
+      value: chatSent,
+    },
+    {
+      image: './static/chat-user.svg',
+      title: 'Chat Users',
+      value: chatUsers,
+    },
+    {
+      image: './static/chat-request.svg',
+      title: 'Chat Requests',
+      value: chatRequests,
+    },
   ];
   const theme = useTheme();
+
+  React.useEffect(() => {
+    (async () => {
+      const chatRes = await getChats({ token: stagingToken });
+      setChatSent(chatRes?.totalMessages);
+      // console.log('chat', chatRes?.totalMessages);
+      const userRes = await getUsers({ token: stagingToken });
+      setChatUsers(userRes?.totalUsers);
+      // console.log('user', userRes?.totalUsers);
+      const govRes = await getGovernanceData({ token: stagingToken });
+      setPushIntegrations(
+        govRes?.governance_data?.Miscellaneous?.Push_Integrations
+      );
+      setChatRequests(govRes?.governance_data?.Miscellaneous?.Chat_Requests);
+    })();
+  }, []);
 
   React.useEffect(() => {
     let subscriberCategory = [],
@@ -60,8 +85,8 @@ export default function OverViewSet() {
         sortedSubscribers.length > 10 ? 10 : sortedSubscribers.length;
 
       for (let i = 0; i < subscriberChannelLimit; i++) {
-        subscriberCategory.push(sortedSubscribers[i].name);
-        subscriberValue.push(sortedSubscribers[i].subscriber);
+        subscriberCategory.push(sortedSubscribers[i]?.name);
+        subscriberValue.push(sortedSubscribers[i]?.subscriber);
       }
       const sortedNotifications = notificationsRes?.notificationAnalytics?.sort(
         (a, b) => b?.notification - a?.notification

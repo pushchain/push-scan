@@ -7,7 +7,7 @@ import { login } from 'utils/api';
 
 export default function useLogin() {
   const router = useRouter();
-  const { setIsLoggedIn } = useData();
+  const { setIsLoggedIn, setToken } = useData();
   const [values, setValues] = React.useState({
     username: '',
     password: '',
@@ -36,7 +36,8 @@ export default function useLogin() {
     if (res?.token) {
       setIsLoggedIn(true);
       sessionStorage.setItem(CREDENTIALKEYS.LOGINCHECK, '' + true);
-      // sessionStorage.setItem(CREDENTIALKEYS.TOKEN, res?.token);
+      setToken(res?.token);
+      sessionStorage.setItem(CREDENTIALKEYS.TOKEN, res?.token);
       router.push(ROUTES.DASHBOARD);
     } else {
       toast.error('Please enter the correct Username and Password');

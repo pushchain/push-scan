@@ -2,13 +2,14 @@ import React from 'react';
 import { Grid, Box, useMediaQuery } from '@mui/material';
 import GovernanceGraph from '__pages__/admin/components/GovernanceGraph';
 import { Text, HorizontalLine } from '__pages__/dashboard/dashboard.styled';
-import { getGovernanceData } from '../../../../utils/api';
+import { getGovernanceData } from 'utils/api';
+import { useData } from 'contexts/DataContext';
 
 export default function GovernanceSet() {
   const isSmall = useMediaQuery('(max-width:480px)');
   const [data, setData] = React.useState();
-  const token =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoicHVzaF9zdGFnaW5nX3VzZXIiLCJpYXQiOjE2NzA1MDg1OTAsImV4cCI6MTY3MDU5NDk5MH0.d-R-DJCeGnu-d5SmdavVgKfJstdOl2UihcCZUTIPAi4';
+  const { stagingToken } = useData();
+  const token = stagingToken;
 
   React.useEffect(() => {
     (async () => {
@@ -32,7 +33,7 @@ export default function GovernanceSet() {
           data={data?.Governance?.PGP_Amount}
           title="Push Grants ($PUSH)"
           label="PGP_Amount"
-          value={123456}
+          value={data?.Miscellaneous?.Push_Grants}
         />
         <HorizontalLine />
         <GovernanceGraph

@@ -107,12 +107,12 @@ export default function LeaderBoard({
                     <Box component="span">
                       {' '}
                       {isMobile && isTrending
-                        ? channel.name.length < 8
+                        ? channel.name.length < 15
                           ? channel.name
-                          : channel.name.substr(0, 8) + '...'
-                        : channel.name.length < 10
+                          : channel.name.substr(0, 15) + '...'
+                        : channel.name.length < 15
                         ? channel.name
-                        : channel.name.substr(0, 10) + '...'}
+                        : channel.name.substr(0, 15) + '...'}
                     </Box>
                   </TableCell>
                   <TableCell
@@ -129,6 +129,7 @@ export default function LeaderBoard({
                           alignItems: 'center',
                           justifyContent: 'flex-end',
                           color: '#30CC8B',
+                          paddingLeft: '20px',
                         }}
                       >
                         <Box

@@ -25,16 +25,17 @@ const GovernanceGraph = ({ data, title, label, value }: any) => {
   };
   const getDataPoints = ({ data, label }: any) => {
     let values = [];
-    const sum = getTotal(data);
+    // const sum = getTotal(data);
+    // ((data[key] / sum) * 100).toFixed(2)
     for (let key in data) {
-      values.push({ value: ((data[key] / sum) * 100).toFixed(2), name: key });
+      values.push({ value: data[key], name: key });
     }
 
     return {
       tooltip: {
         theme: 'dark',
         trigger: 'item',
-        valueFormatter: (value: number) => value + '%',
+        valueFormatter: (value: number) => value,
         backgroundColor: theme.palette.background.default,
         textStyle: {
           color: theme.palette.text.primary,
@@ -83,7 +84,7 @@ const GovernanceGraph = ({ data, title, label, value }: any) => {
           },
           label: {
             show: true,
-            formatter: '{b}\n {d}%',
+            formatter: (value) => `${value?.name}\n ${value?.value}`, //'{b}\n {d}%',
             color: theme.palette.text.secondary,
             fontWeight: 500,
           },

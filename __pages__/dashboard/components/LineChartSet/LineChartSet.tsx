@@ -39,7 +39,7 @@ export default function LineChartSet() {
       Math.ceil(
         Math.abs(new Date('2022-01-01').getTime() - new Date().getTime()) /
           (1000 * 60 * 60 * 24)
-      ) / 60
+      ) / 12
     )
   );
   const { subscriberData, notificationData } = useStatisticData({
@@ -110,7 +110,7 @@ export default function LineChartSet() {
     setStartDate(
       new Date(Date.now() - 30 * 86400000).toISOString().split('T')[0]
     );
-    setInterval(1);
+    setInterval(4);
   };
 
   const handle1Year = () => {
@@ -125,7 +125,7 @@ export default function LineChartSet() {
         new Date(Date.now() - 365 * 86400000).toISOString().split('T')[0]
       );
     }
-    setInterval(7);
+    setInterval(30);
   };
 
   const handleYTD = () => {
@@ -142,7 +142,7 @@ export default function LineChartSet() {
             new Date(`${currentYear}-01-01`).getTime() - new Date().getTime()
           ) /
             (1000 * 60 * 60 * 24)
-        ) / 60
+        ) / 12
       );
       setInterval(interval);
     }
@@ -156,7 +156,7 @@ export default function LineChartSet() {
       Math.ceil(
         Math.abs(new Date('2022-01-01').getTime() - new Date().getTime()) /
           (1000 * 60 * 60 * 24)
-      ) / 60
+      ) / 12
     );
     setInterval(interval);
   };
@@ -218,13 +218,13 @@ export default function LineChartSet() {
           handleTimeFilter={handleTimeFilter}
         />
       </Grid>
-      <Box
+      {/* <Box
         sx={{ display: 'flex', width: '100%', justifyContent: 'flex-start' }}
       >
         <Text size="18px" marginTop={5}>
           Notifications Statistics
         </Text>
-      </Box>
+      </Box> */}
       <Grid container spacing={isMobile ? 0 : 3} justifyContent="center" mt={0}>
         <Notifications
           data={notificationData}
@@ -240,7 +240,7 @@ export default function LineChartSet() {
           total={totalSubscribers}
         />
       </Grid>
-      <Box
+      {/* <Box
         sx={{ display: 'flex', width: '100%', justifyContent: 'flex-start' }}
       >
         <Text size="18px" marginTop={5}>
@@ -261,7 +261,7 @@ export default function LineChartSet() {
           min={min}
           total={totalSubscribers}
         />
-      </Grid>
+      </Grid> */}
     </>
   );
 }

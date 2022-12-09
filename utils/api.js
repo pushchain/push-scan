@@ -80,7 +80,8 @@ export const getChannels = async ({ token }) => {
         'x-access-token': token,
       },
     });
-    console.log('channels', res.data);
+    // console.log('channels', res.data);
+    return res.data;
   } catch (e) {
     console.log('Error occured in channels', e);
   }
@@ -111,7 +112,7 @@ export const getGovernanceData = async ({ token }) => {
         },
       }
     );
-    console.log('get data', res.data);
+    // console.log('get data', res.data);
     return res.data;
   } catch (e) {
     console.log('Error occured in fetching governance data', e);
@@ -169,5 +170,45 @@ export const updateGovernanceData = async ({ data, token }) => {
     return res.data;
   } catch (e) {
     console.log('Error occured in updating governance data', e);
+  }
+};
+
+export const getChats = async ({ token }) => {
+  try {
+    const res = await axios.get(
+      `https://backend-staging.epns.io/apis/v1/analytics/chat/chats`,
+      {
+        // params: {
+        //   startDate: '2022-01-01',
+        //   endDate: '2022-11-01',
+        // },
+        headers: {
+          'x-access-token': token,
+        },
+      }
+    );
+
+    // console.log('chats res', res.data);
+    return res.data;
+  } catch (e) {
+    console.log('error', e);
+  }
+};
+
+export const getUsers = async ({ token }) => {
+  try {
+    const res = await axios.get(
+      `https://backend-staging.epns.io/apis/v1/analytics/chat/users`,
+      {
+        headers: {
+          'x-access-token': token,
+        },
+      }
+    );
+
+    // console.log('user res', res.data);
+    return res.data;
+  } catch (e) {
+    console.log('error', e);
   }
 };

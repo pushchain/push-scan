@@ -3,16 +3,16 @@ import { updateGovernanceData } from '../utils/api';
 import { useData } from '../contexts/DataContext';
 
 export default function useModal() {
-  const { updateTracker, setUpdateTracker } = useData();
+  const { updateTracker, setUpdateTracker, stagingToken } = useData();
   const [open, setOpen] = useState<boolean>(false);
-  const token =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoicHVzaF9zdGFnaW5nX3VzZXIiLCJpYXQiOjE2NzA1MDg1OTAsImV4cCI6MTY3MDU5NDk5MH0.d-R-DJCeGnu-d5SmdavVgKfJstdOl2UihcCZUTIPAi4';
+  const token = stagingToken;
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [formData, setFormData] = useState({
     inprogress: 0,
     approved: 0,
     rejected: 0,
+    pushgrants: 0,
     approvedgrant: 0,
     allocatedgrant: 0,
     approvedimprovement: 0,
@@ -29,6 +29,8 @@ export default function useModal() {
     mobile_ios: 0,
     mobile_android: 0,
     extensions: 0,
+    push_integrations: 0,
+    chat_requests: 0,
   });
 
   const handleChange = (prop: any) => (event: any) => {
@@ -69,10 +71,14 @@ export default function useModal() {
         'Mobile-iOS': formData.mobile_ios,
         'Mobile-Android': formData.mobile_android,
       },
+      Miscellaneous: {
+        Push_Grants: formData.pushgrants,
+        Push_Integrations: formData.push_integrations,
+        Chat_Requests: formData.chat_requests,
+      },
     };
-    const res = await updateGovernanceData({ data, token });
+    await updateGovernanceData({ data, token });
     setUpdateTracker(!updateTracker);
-    console.log('Result', res);
   };
 
   return {

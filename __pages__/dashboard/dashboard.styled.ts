@@ -4,7 +4,7 @@ import { Typography } from '@mui/material';
 
 export const DashBoardContainer = styled(Container)`
   width: 98%;
-  margin-top: 120px;
+  margin-top: 135px;
   height: auto;
   display: flex;
   flex-direction: column;

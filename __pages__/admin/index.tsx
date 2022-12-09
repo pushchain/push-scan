@@ -1,5 +1,5 @@
-import { Grid, Typography, Button } from '@mui/material';
 import React from 'react';
+import { Grid, Typography, Button } from '@mui/material';
 import { AdminContainer, StyledEditIcon } from './admin.styled';
 import useModal from 'hooks/useModal';
 import FormDialog from './editModal';
@@ -9,10 +9,9 @@ import { useData } from '../../contexts/DataContext';
 
 export default function AdminView() {
   const { open, handleOpen, handleClose } = useModal();
-  const { updateTracker } = useData();
+  const { updateTracker, stagingToken } = useData();
   const [data, setData] = React.useState();
-  const token =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoicHVzaF9zdGFnaW5nX3VzZXIiLCJpYXQiOjE2NzA1MDg1OTAsImV4cCI6MTY3MDU5NDk5MH0.d-R-DJCeGnu-d5SmdavVgKfJstdOl2UihcCZUTIPAi4';
+  const token = stagingToken;
 
   React.useEffect(() => {
     (async () => {
