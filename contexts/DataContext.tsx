@@ -4,13 +4,10 @@ import { CREDENTIALKEYS } from 'utils/constants';
 const DataContext = createContext<any>({});
 
 const DataProvider = ({ children }: { children: any }) => {
-<<<<<<< HEAD
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(true);
   const [token, setToken] = useState<string>("");
-=======
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+
   const [updateTracker, setUpdateTracker] = useState<boolean>(false);
-  const [token, setToken] = useState<string>('');
   const stagingToken =
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoicHVzaF9zdGFnaW5nX3VzZXIiLCJpYXQiOjE2NzA1OTk3MTYsImV4cCI6MTY3MDY4NjExNn0.rm34qGbgEgIx-ugSBA-jWMapZ5NkXwYv3oCZ5i6607g';
   const timeFilterOptions = [
@@ -34,7 +31,6 @@ const DataProvider = ({ children }: { children: any }) => {
       value: 'POLYGON_TEST_MUMBAI',
     },
   ];
->>>>>>> 8f5360e4426db5609acdc82315749444251df7d3
 
   useEffect(() => {
     if (Boolean(sessionStorage.getItem(CREDENTIALKEYS.LOGINCHECK))) {

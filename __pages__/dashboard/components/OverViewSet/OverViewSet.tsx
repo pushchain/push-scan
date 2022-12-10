@@ -140,7 +140,7 @@ export default function OverViewSet() {
               }}
             >
               <Text size="18px">{data.title}</Text>
-              <Text size="36px">{data.value.toLocaleString()}</Text>
+              <Text size="36px">{data.value?.toLocaleString()}</Text>
             </Box>
             <Box
               component="img"
