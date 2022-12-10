@@ -1,7 +1,7 @@
-import styled from "@emotion/styled";
-import EditIcon from "@mui/icons-material/Edit";
-import { Dialog } from "@mui/material";
-import { Container } from "@mui/system";
+import styled from '@emotion/styled';
+import EditIcon from '@mui/icons-material/Edit';
+import { Dialog } from '@mui/material';
+import { Container } from '@mui/system';
 
 export const AdminContainer = styled(Container)`
   margin-top: 150px;
@@ -37,6 +37,15 @@ export const StyledDialog = styled(Dialog)`
   & > div {
     & > div {
       box-shadow: none;
+      &::-webkit-scrollbar {
+        width: 5px;
+        background-color: transparent;
+        border-radius: 5px;
+      },
+      &::-webkit-scrollbar-thumb {
+        background-color: #CF1C84;
+        border-radius: 5px;
+      },
     }
   }
 `;

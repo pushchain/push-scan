@@ -39,3 +39,28 @@ export function fShortenNumber(number) {
 export function fData(number) {
   return numeral(number).format('0.0 b');
 }
+
+export default function getDatesArray({
+  start,
+  end,
+  interval,
+}: {
+  start: string;
+  end: string;
+  interval: number;
+}) {
+  for (
+    var dateArray: Date[] = [], dt = new Date(start);
+    dt <= new Date(end);
+    dt.setDate(dt.getDate() + interval)
+  ) {
+    dateArray.push(new Date(dt));
+  }
+
+  const date = dateArray[dateArray.length - 1];
+  if (new Date(date).getDate() !== new Date(end).getDate()) {
+    dateArray.push(new Date(end));
+  }
+
+  return dateArray;
+}
