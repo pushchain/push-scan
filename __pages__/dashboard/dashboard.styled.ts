@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { Container } from '@mui/system';
 import { Typography } from '@mui/material';
 
-export const DashBoardContainer = styled(Container)`
+export const DashBoardContainer = styled(Container)<any>`
   width: 98%;
   margin-top: ${(props) => props.marginTop};
   height: auto;
@@ -12,7 +12,7 @@ export const DashBoardContainer = styled(Container)`
 `;
 
 export const Text = styled(Typography)(
-  ({ theme, size, weight, color, marginTop }) => ({
+  ({ theme, size, weight, color, marginTop }:any) => ({
     // margin: 0,
     fontSize: `${size || '16px'}`,
     fontWeight: `${weight || 500}`,

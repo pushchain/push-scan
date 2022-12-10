@@ -1,6 +1,7 @@
 import axios from 'axios';
+import { ROUTES, CREDENTIALKEYS } from 'utils/constants';
 
-const API_BASE = 'https://backend-dev.epns.io/apis/v1';
+const API_BASE = 'https://backend-staging.epns.io/apis/v1';
 
 export const login = async ({ user, pass }) => {
   try {
@@ -32,7 +33,7 @@ export const getNotifications = async ({
         spam: true,
       },
       headers: {
-        'x-access-token': token,
+        'x-access-token': String(sessionStorage.getItem(CREDENTIALKEYS.TOKEN)),
       },
     });
     // console.log('notifications', res.data);
@@ -58,7 +59,7 @@ export const getSubscribers = async ({
         source: chain,
       },
       headers: {
-        'x-access-token': token,
+        'x-access-token': String(sessionStorage.getItem(CREDENTIALKEYS.TOKEN)),
       },
     });
     // console.log('subscribers', res.data);
@@ -77,7 +78,7 @@ export const getChannels = async ({ token }) => {
         source: 'ETH_TEST_GOERLI',
       },
       headers: {
-        'x-access-token': token,
+        'x-access-token': String(sessionStorage.getItem(CREDENTIALKEYS.TOKEN)),
       },
     });
     // console.log('channels', res.data);
@@ -92,7 +93,7 @@ export const getLeaderBoard = async ({ token, limit, sort, order }) => {
     const res = await axios.get(`${API_BASE}/analytics/leaderboard/`, {
       params: { limit, sort, order },
       headers: {
-        'x-access-token': token,
+        'x-access-token': String(sessionStorage.getItem(CREDENTIALKEYS.TOKEN)),
       },
     });
     // console.log('leaderboard', res.data);

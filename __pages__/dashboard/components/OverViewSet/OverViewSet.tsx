@@ -82,7 +82,7 @@ export default function OverViewSet() {
         (a, b) => b?.subscriber - a?.subscriber
       );
       const subscriberChannelLimit =
-        sortedSubscribers.length > 10 ? 10 : sortedSubscribers.length;
+        sortedSubscribers?.length > 10 ? 10 : sortedSubscribers?.length;
 
       for (let i = 0; i < subscriberChannelLimit; i++) {
         subscriberCategory.push(sortedSubscribers[i]?.name);
@@ -93,7 +93,7 @@ export default function OverViewSet() {
       );
 
       const notificationChannelLimit =
-        sortedNotifications.length > 10 ? 10 : sortedNotifications.length;
+        sortedNotifications?.length > 10 ? 10 : sortedNotifications?.length;
       for (let i = 0; i < notificationChannelLimit; i++) {
         notificationCategory.push(sortedNotifications[i].name);
         notificationValue.push(sortedNotifications[i].notification);
@@ -140,7 +140,7 @@ export default function OverViewSet() {
               }}
             >
               <Text size="18px">{data.title}</Text>
-              <Text size="36px">{data.value.toLocaleString()}</Text>
+              <Text size="36px">{data.value?.toLocaleString()}</Text>
             </Box>
             <Box
               component="img"
