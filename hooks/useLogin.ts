@@ -34,9 +34,9 @@ export default function useLogin() {
     const { username, password } = e.target.elements;
     const res = await login({ user: username.value, pass: password.value });
     if (res?.token) {
-      setIsLoggedIn(true);
       sessionStorage.setItem(CREDENTIALKEYS.LOGINCHECK, '' + true);
-      // sessionStorage.setItem(CREDENTIALKEYS.TOKEN, res?.token);
+      sessionStorage.setItem(CREDENTIALKEYS.TOKEN, res.token);
+      setIsLoggedIn(true);
       router.push(ROUTES.DASHBOARD);
     } else {
       toast.error('Please enter the correct Username and Password');
