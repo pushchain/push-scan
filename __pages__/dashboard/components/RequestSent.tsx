@@ -1,12 +1,11 @@
 import React from 'react';
 import Chart from './Charts/Chart';
-
-export default function Subscribers({ data, min, max, total }) {
+export default function RequestSent({ data, min, max, total }) {
   return (
     <Chart
-      title="Subscribers"
+      title="Requests Sent"
       value={total}
-      label="Subscribers"
+      label="Sent"
       min={min}
       max={max}
       data={data}
