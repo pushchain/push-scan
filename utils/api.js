@@ -109,7 +109,7 @@ export const getGovernanceData = async ({ token }) => {
       `https://backend-staging.epns.io/apis/v1/analytics/governance_data/`,
       {
         headers: {
-          'x-access-token': token,
+          'x-access-token': String(sessionStorage.getItem(CREDENTIALKEYS.TOKEN)),
         },
       }
     );
@@ -163,7 +163,7 @@ export const updateGovernanceData = async ({ data, token }) => {
       },
       {
         headers: {
-          'x-access-token': token,
+          'x-access-token': String(sessionStorage.getItem(CREDENTIALKEYS.TOKEN)),
         },
       }
     );
@@ -184,7 +184,7 @@ export const getChats = async ({ token }) => {
         //   endDate: '2022-11-01',
         // },
         headers: {
-          'x-access-token': token,
+          'x-access-token': String(sessionStorage.getItem(CREDENTIALKEYS.TOKEN)),
         },
       }
     );
@@ -202,7 +202,7 @@ export const getUsers = async ({ token }) => {
       `https://backend-staging.epns.io/apis/v1/analytics/chat/users`,
       {
         headers: {
-          'x-access-token': token,
+          'x-access-token': String(sessionStorage.getItem(CREDENTIALKEYS.TOKEN)),
         },
       }
     );
