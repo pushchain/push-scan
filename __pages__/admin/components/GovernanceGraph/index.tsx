@@ -59,9 +59,9 @@ const GovernanceGraph = ({ data, title, label, value }: any) => {
         },
       },
       color: [
+        '#CF1C84',
         '#F9BFE0',
-        '#F982AC',
-        '#DF4FA3',
+        '#E479CC',
         '#AB7FEA',
         '#C66BD3',
         '#D874D7',

@@ -9,6 +9,8 @@ export default function useStatisticData({
   endDate,
   interval,
   token,
+  // setShouldBreak,
+  // shouldBreak,
 }) {
   const [subscriberData, setSubscriberData] = React.useState<any[]>([]);
   const [notificationData, setNotificationData] = React.useState<any[]>([]);
@@ -16,6 +18,8 @@ export default function useStatisticData({
     (async () => {
       setSubscriberData([]);
       setNotificationData([]);
+      let localNotificationData: any[] = [];
+      let localSubscriberData: any[] = [];
 
       const dateArray = getDatesArray({
         start: startDate,
@@ -33,9 +37,10 @@ export default function useStatisticData({
           channel: selectedChannel?.channel,
           chain: selectedChain?.value,
         });
-        setSubscriberData((data) => [
-          ...data,
-          [new Date(newEndDate).getTime(), subscriberRes?.totalSubscribers],
+
+        localSubscriberData.push([
+          new Date(i === 0 ? newStartDate : newEndDate).getTime(),
+          subscriberRes?.totalSubscribers,
         ]);
 
         const notificationRes = await getNotifications({
@@ -45,16 +50,20 @@ export default function useStatisticData({
           channel: selectedChannel?.channel,
           chain: selectedChain.value,
         });
-        setNotificationData((data) => [
-          ...data,
-          [new Date(newEndDate).getTime(), notificationRes?.totalNotification],
+
+        localNotificationData.push([
+          new Date(i === 0 ? newStartDate : newEndDate).getTime(),
+          notificationRes?.totalNotification,
         ]);
       }
+      setSubscriberData(localSubscriberData);
+      setNotificationData(localNotificationData);
     })();
 
     return () => {
       setSubscriberData([]);
       setNotificationData([]);
+      // setShouldBreak(false);
     };
   }, [selectedChain, selectedChannel, interval, startDate]);
 

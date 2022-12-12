@@ -41,8 +41,8 @@ export default function HorizontalChart({
     },
     plotOptions: {
       bar: {
-        barHeight: '30%',
-        borderRadius: 0.9,
+        barHeight: '25%',
+        borderRadius: 2.5,
         distributed: true,
         horizontal: true,
         dataLabels: {
@@ -68,6 +68,10 @@ export default function HorizontalChart({
       axisBorder: {
         show: true,
       },
+      style: {
+        fontSize: '12px',
+        colors: ['#657795', '#657795'],
+      },
     },
     yaxis: {
       labels: {
@@ -77,8 +81,14 @@ export default function HorizontalChart({
             ? value.length > 8
               ? value.substr(0, 6) + '...'
               : value
+            : value.length > 15
+            ? value.substr(0, 12) + '...'
             : value;
           return editedValue;
+        },
+        style: {
+          colors: ['#657795', '#657795'],
+          fontSize: '12px',
         },
       },
       axisBorder: {
@@ -88,6 +98,10 @@ export default function HorizontalChart({
     legend: {
       show: false,
     },
+    // stroke: {
+    //   width: 6,
+    //   curve: 'straight',
+    // },
     grid: {
       yaxis: {
         lines: {
@@ -117,12 +131,12 @@ export default function HorizontalChart({
         }}
       >
         <CardHeader title={title} />
-        <CardContent style={{ padding: isMobile ? '0px' : '24px' }}>
+        <CardContent style={{ padding: isMobile ? '0px' : '0px 24px' }}>
           <ReactApexChart
             type="bar"
             series={options.series}
             options={options}
-            height={250}
+            // height={250}
           />
         </CardContent>
       </Card>

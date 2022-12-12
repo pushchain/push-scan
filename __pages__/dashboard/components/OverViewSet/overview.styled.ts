@@ -1,9 +1,9 @@
-import styled from "@emotion/styled";
-import { Container, Typography } from "@mui/material";
+import styled from '@emotion/styled';
+import { Container, Typography } from '@mui/material';
 
 export const OverviewItem = styled.div`
   border-radius: 28px;
-  padding: 20px;
+  padding: 25px 25px 25px 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;

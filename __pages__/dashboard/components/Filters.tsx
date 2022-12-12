@@ -7,6 +7,7 @@ import {
   TimeFilterContainer,
   TimeFilter,
 } from './LineChartSet/linchartset.styled';
+import { useTheme } from '@mui/material/styles';
 
 export default function Filters({
   selectedChannel,
@@ -23,7 +24,10 @@ export default function Filters({
   selectedFilter,
   setSelectedFilter,
   handleTimeFilter,
+  // setShouldBreak,
 }) {
+  const { theme } = useTheme();
+  const isMobile = useMediaQuery('(max-width:480px)');
   return (
     <>
       <Box
@@ -36,7 +40,12 @@ export default function Filters({
           },
         }}
       >
-        <Select background="#cf1c84" color="#fff" border="transparent">
+        <Select
+          background="#cf1c84"
+          color="#fff"
+          border="transparent"
+          marginRight={isMobile ? '0px' : '10px'}
+        >
           <Box
             sx={{
               display: 'flex',
@@ -46,17 +55,19 @@ export default function Filters({
             }}
             onClick={() => setShowChannel(!showChannel)}
           >
-            <Box
-              component="img"
-              sx={{
-                height: '33px',
-                width: '33px',
-                marginRight: '5px',
-                borderRadius: '50%',
-              }}
-              alt=""
-              src={selectedChannel?.icon}
-            />
+            {selectedChannel?.icon && (
+              <Box
+                component="img"
+                sx={{
+                  height: '33px',
+                  width: '33px',
+                  marginRight: '5px',
+                  borderRadius: '50%',
+                }}
+                alt=""
+                src={selectedChannel?.icon}
+              />
+            )}
 
             <Box
               sx={{
@@ -65,6 +76,7 @@ export default function Filters({
                 whiteSpace: 'nowrap',
                 overflow: 'hidden',
                 textOverflow: 'ellipsis',
+                paddingLeft: !selectedChannel?.icon ? '15px' : null,
               }}
             >
               {selectedChannel?.name}
@@ -101,20 +113,24 @@ export default function Filters({
                 {channelList.map((channel, index) => (
                   <Option
                     key={index}
-                    onClick={() => handleChannelChange(channel)}
+                    onClick={() => {
+                      handleChannelChange(channel);
+                      setShowChain(!showChain);
+                    }}
                   >
-                    <Box
-                      component="img"
-                      sx={{
-                        height: '33px',
-                        width: '33px',
-                        marginRight: '5px',
-                        borderRadius: '50%',
-                      }}
-                      alt=""
-                      src={channel?.icon}
-                      onClick={() => setShowChain(!showChain)}
-                    />
+                    {channel?.icon && (
+                      <Box
+                        component="img"
+                        sx={{
+                          height: '33px',
+                          width: '33px',
+                          marginRight: '5px',
+                          borderRadius: '50%',
+                        }}
+                        alt=""
+                        src={channel?.icon}
+                      />
+                    )}
 
                     <Box
                       sx={{
@@ -123,6 +139,7 @@ export default function Filters({
                         whiteSpace: 'nowrap',
                         overflow: 'hidden',
                         textOverflow: 'ellipsis',
+                        paddingLeft: !channel?.icon ? '10px' : null,
                       }}
                     >
                       {channel?.name}
@@ -138,6 +155,7 @@ export default function Filters({
           color="#657795"
           border="#657795"
           width="80px"
+          marginRight={isMobile ? '0px' : '10px'}
         >
           <Box
             sx={{
@@ -214,6 +232,7 @@ export default function Filters({
             onClick={() => {
               setSelectedFilter(index + 1);
               handleTimeFilter(time.time);
+              // setShouldBreak(true);
             }}
             background={
               index + 1 === selectedFilter ? '#cf1c84' : 'transparent'

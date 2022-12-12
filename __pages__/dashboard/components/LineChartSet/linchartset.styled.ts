@@ -13,7 +13,7 @@ export const Select = styled.div`
   padding: 0 15px 0 8px;
   color: ${(props) => props?.color || '#fff'};
   font-size: 18px;
-  margin-right: 10px;
+  margin-right: ${(props) => props?.marginRight || '10px'};
   &:hover {
     cursor: pointer;
   }

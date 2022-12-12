@@ -8,7 +8,7 @@ export default function useChannelList({ token, selectedChain }) {
     (async () => {
       setChannelList([]);
       const allChannels = {
-        icon: selectedChain?.image,
+        // icon: selectedChain?.image,
         name: 'All Channels',
         channel: 'All',
       };

@@ -10,13 +10,14 @@ import { useData } from 'contexts/DataContext';
 import useStatisticData from 'hooks/useStatisticData';
 import useStatisticCount from 'hooks/useStatisticCount';
 import useChannelList from 'hooks/useChannelList';
+import useChannelStatistics from 'hooks/useChannelStatistics';
 import getDatesArray from '/utils/helpers';
+import HorizontalChart from '../Charts/HorizontalChart';
 
 export default function LineChartSet() {
   const isMobile = useMediaQuery('(max-width:480px)');
   const { token, chainList, timeFilterOptions } = useData();
   const [selectedChannel, setSelectedChannel] = React.useState({
-    icon: './static/ethereum.svg',
     name: 'All Channels',
     channel: 'All',
   });
@@ -42,6 +43,7 @@ export default function LineChartSet() {
       ) / 12
     )
   );
+  // const [shouldBreak, setShouldBreak] = React.useState<boolean>(false);
   const { subscriberData, notificationData } = useStatisticData({
     selectedChannel,
     selectedChain,
@@ -49,6 +51,8 @@ export default function LineChartSet() {
     endDate,
     interval,
     token,
+    // setShouldBreak,
+    // shouldBreak,
   });
   const { totalNotifications, totalSubscribers } = useStatisticCount({
     token,
@@ -59,6 +63,12 @@ export default function LineChartSet() {
   });
 
   const channelList = useChannelList({ token, selectedChain });
+  const {
+    subscriberCategories,
+    subscriberValues,
+    notificationCategories,
+    notificationValues,
+  } = useChannelStatistics({ token });
 
   React.useEffect(() => {
     const dateArray = getDatesArray({
@@ -216,6 +226,7 @@ export default function LineChartSet() {
           selectedFilter={selectedFilter}
           setSelectedFilter={setSelectedFilter}
           handleTimeFilter={handleTimeFilter}
+          // setShouldBreak={setShouldBreak}
         />
       </Grid>
       {/* <Box
@@ -238,6 +249,19 @@ export default function LineChartSet() {
           max={max}
           min={min}
           total={totalSubscribers}
+        />
+        <HorizontalChart
+          title="Subscribers By Channel"
+          label="Subscribers"
+          category={subscriberCategories}
+          value={subscriberValues}
+        />
+        <HorizontalLine />
+        <HorizontalChart
+          title="Notifications By Channel"
+          label="Notifications"
+          category={notificationCategories}
+          value={notificationValues}
         />
       </Grid>
       {/* <Box

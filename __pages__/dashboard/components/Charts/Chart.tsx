@@ -67,6 +67,12 @@ export default function Chart({
       axisBorder: {
         show: true,
       },
+      labels: {
+        style: {
+          fontSize: '12px',
+          colors: ['#657795', '#657795'],
+        },
+      },
     },
     xaxis: {
       type: 'datetime',
@@ -74,6 +80,10 @@ export default function Chart({
       max: max,
       labels: {
         show: true,
+        style: {
+          fontSize: '12px',
+          colors: ['#657795', '#657795'],
+        },
       },
       // labels: {
       //   formatter: function (value) {
@@ -97,6 +107,7 @@ export default function Chart({
     <Grid item xs={12} md={6} lg={6}>
       <Card
         sx={{
+          color: theme.palette.text.primary,
           height: 'auto',
           backgroundColor: isMobile
             ? 'transparent'

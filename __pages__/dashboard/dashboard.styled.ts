@@ -12,10 +12,9 @@ export const DashBoardContainer = styled(Container)<any>`
 `;
 
 export const Text = styled(Typography)(
-  ({ theme, size, weight, color, marginTop }:any) => ({
-    // margin: 0,
+  ({ theme, size, weight, color, marginTop }: any) => ({
     fontSize: `${size || '16px'}`,
-    fontWeight: `${weight || 500}`,
+    fontWeight: `${weight || 400}`,
     color: `${color || theme.palette.text.primary}`,
     marginTop: `${marginTop || '0px'}`,
   })
