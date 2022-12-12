@@ -14,7 +14,7 @@ import {
 import { useData } from 'contexts/DataContext';
 
 export default function OverViewSet() {
-  const { token, stagingToken } = useData();
+  const { token } = useData();
   const isSmall = useMediaQuery('(max-width:480px)');
   const [chatUsers, setChatUsers] = React.useState<number>(0);
   const [chatSent, setChatSent] = React.useState<number>(0);
@@ -55,13 +55,13 @@ export default function OverViewSet() {
 
   React.useEffect(() => {
     (async () => {
-      const chatRes = await getChats({ token: stagingToken });
+      const chatRes = await getChats({ token });
       setChatSent(chatRes?.totalMessages);
       // console.log('chat', chatRes?.totalMessages);
-      const userRes = await getUsers({ token: stagingToken });
+      const userRes = await getUsers({ token });
       setChatUsers(userRes?.totalUsers);
       // console.log('user', userRes?.totalUsers);
-      const govRes = await getGovernanceData({ token: stagingToken });
+      const govRes = await getGovernanceData({ token });
       setPushIntegrations(
         govRes?.governance_data?.Miscellaneous?.Push_Integrations
       );

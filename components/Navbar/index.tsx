@@ -23,7 +23,7 @@ import { Text } from '__pages__/dashboard/dashboard.styled';
 
 export default function Navbar() {
   const { isDarkMode, darkModeToggle } = Theme();
-  const { isLoggedIn, setIsLoggedIn, token, stagingToken } = useData();
+  const { isLoggedIn, setIsLoggedIn, token } = useData();
   const router = useRouter();
   const theme = useTheme();
   const isMobile = useMediaQuery('(max-width:480px)');
@@ -69,13 +69,13 @@ export default function Navbar() {
                 onClick={() => {
                   router.push(ROUTES.DASHBOARD);
                   // getChats({
-                  //   token: stagingToken,
+                  //   token,
                   //   startDate: '2022-12-07',
                   //   endDate: '2022-12-08',
                   //   channel: 'All',
                   //   chain: 'ETH_TEST_GOERLI',
                   // });
-                  // getUsers({ token: stagingToken });
+                  // getUsers({ token });
                   // updateGovernanceData();
                   // getGovernanceData();
                   // getChannels({ token });

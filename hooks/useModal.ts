@@ -3,9 +3,8 @@ import { updateGovernanceData } from '../utils/api';
 import { useData } from '../contexts/DataContext';
 
 export default function useModal() {
-  const { updateTracker, setUpdateTracker, stagingToken } = useData();
+  const { updateTracker, setUpdateTracker, token } = useData();
   const [open, setOpen] = useState<boolean>(false);
-  const token = stagingToken;
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [formData, setFormData] = useState({

@@ -8,8 +8,7 @@ import { useData } from 'contexts/DataContext';
 export default function GovernanceSet() {
   const isSmall = useMediaQuery('(max-width:480px)');
   const [data, setData] = React.useState();
-  const { stagingToken } = useData();
-  const token = stagingToken;
+  const { token } = useData();
 
   React.useEffect(() => {
     (async () => {
