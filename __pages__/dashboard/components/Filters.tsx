@@ -26,7 +26,7 @@ export default function Filters({
   handleTimeFilter,
 }) {
   const { theme } = useTheme();
-  const isMobile = useMediaQuery('(max-width:480px)');
+  const isMobile = useMediaQuery('(max-width:768px)');
   return (
     <>
       <Box
