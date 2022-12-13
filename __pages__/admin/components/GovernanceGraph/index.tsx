@@ -47,6 +47,7 @@ const GovernanceGraph = ({ data, title, label, value }: any) => {
         show: isMobile ? false : true,
         orient: 'vertical',
         left: 'left',
+        top: value ? 30 : 0,
         textStyle: {
           color: theme.palette.text.secondary,
           fontSize: 12,
@@ -57,6 +58,7 @@ const GovernanceGraph = ({ data, title, label, value }: any) => {
         itemStyle: {
           borderRadius: 6,
         },
+        icon: 'roundRect',
       },
       color: [
         '#CF1C84',
@@ -84,9 +86,22 @@ const GovernanceGraph = ({ data, title, label, value }: any) => {
           },
           label: {
             show: true,
-            formatter: (value) => `${value?.name}\n ${value?.value}`, //'{b}\n {d}%',
+            // formatter: (value) =>
+            //   `{a|${value?.name}}\n {b|${value?.value}}\t\t\t\t\t`,'{b}\n {d}%',
+            formatter: '{a|{b}}\n {b|{d}%}\t\t\t\t',
             color: theme.palette.text.secondary,
             fontWeight: 500,
+            rich: {
+              a: {
+                lineHeight: 25,
+                color: theme.palette.text.secondary,
+              },
+              b: {
+                fontWeight: 600,
+                color: theme.palette.text.primary,
+                textAlign: 'left',
+              },
+            },
           },
         },
       ],
@@ -110,6 +125,7 @@ const GovernanceGraph = ({ data, title, label, value }: any) => {
             ? 'transparent'
             : theme.palette.background.card,
           border: `1px solid ${theme.palette.outline}`,
+          padding: isMobile ? '35px 0px 0px' : '25px 30px',
           '@media(max-width:480px)': {
             border: 'none',
           },
@@ -117,12 +133,14 @@ const GovernanceGraph = ({ data, title, label, value }: any) => {
       >
         <CardHeader
           title={title}
-          style={{ marginBottom: value ? '0px' : !isMobile ? '40px' : '0px' }}
+          style={{
+            padding: 0,
+            marginBottom: value ? '0px' : !isMobile ? '40px' : '0px',
+          }}
         />
         {value && (
           <Typography
             variant="subtitle1"
-            ml={3}
             style={{ fontWeight: 600, fontSize: '28px' }}
           >
             ${value.toLocaleString()}
@@ -130,7 +148,7 @@ const GovernanceGraph = ({ data, title, label, value }: any) => {
         )}
         <Box
           sx={{
-            p: 3,
+            p: 0,
             display: 'flex',
             justifyContent: 'center',
             height: '100%',
@@ -142,6 +160,8 @@ const GovernanceGraph = ({ data, title, label, value }: any) => {
             style={{
               height: '75%',
               width: '100%',
+              display: 'flex',
+              justifyContent: 'center',
             }}
             option={getDataPoints({ data, label })}
           />

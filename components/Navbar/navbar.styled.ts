@@ -20,4 +20,8 @@ export const ToolbarStyle = styled(Toolbar)(({ theme }) => ({
     minHeight: APPBAR_DESKTOP,
     padding: theme.spacing(0, 6),
   },
+  [theme.breakpoints.up('md')]: {
+    minHeight: APPBAR_DESKTOP,
+    padding: theme.spacing(0, 6),
+  },
 }));

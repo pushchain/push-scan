@@ -74,6 +74,7 @@ export default function Trending() {
             channelData.push({
               name: currentChannelData[j].name,
               channel: weekChannelData[i].channel,
+              icon: weekChannelData[i].icon,
               trend: trendPercentage,
               subscriber: currentChannelData[j].subscriber,
             });

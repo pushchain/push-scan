@@ -74,6 +74,9 @@ export const TimeFilterContainer = styled.div(
   @media (max-width: 480px) {
     width: 100%;
   }
+  @media (max-width: 768px) {
+    width: 100%;
+  }
   `
 );
 
@@ -84,10 +87,11 @@ export const TimeFilter = styled.button`
   font-weight: 550;
   font-size: 15px;
   border-radius: 12px;
-  min-width: 34px;
+  min-width: 40px;
   height: 32px;
   padding: 5px;
   display: flex;
+  flex: 1 1 0;
   align-items: center;
   justify-content: center;
   cursor: pointer;

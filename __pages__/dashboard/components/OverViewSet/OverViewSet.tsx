@@ -75,7 +75,13 @@ export default function OverViewSet() {
         <Text size="18px" weight={400}>
           Overview
         </Text>
-        <Grid container width="100%" justifyContent="space-between" mt={2}>
+        <Grid
+          container
+          width="100%"
+          gap={3}
+          justifyContent="space-between"
+          mt={2}
+        >
           {overViewData.map((data) => (
             <OverviewItem
               key={data.title}

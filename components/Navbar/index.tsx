@@ -7,17 +7,6 @@ import { useTheme } from '@mui/material/styles';
 import { useTheme as Theme } from 'contexts/ThemeContext';
 import { useData } from 'contexts/DataContext';
 import { ROUTES, CREDENTIALKEYS } from 'utils/constants';
-import {
-  getSubscribers,
-  getNotifications,
-  getLeaderBoard,
-  getChannels,
-  getGovernanceData,
-  updateGovernanceData,
-  getChats,
-  getUsers,
-} from 'utils/api';
-
 import { RootStyle, ToolbarStyle } from './navbar.styled';
 import { Text } from '__pages__/dashboard/dashboard.styled';
 

@@ -24,7 +24,6 @@ export default function Filters({
   selectedFilter,
   setSelectedFilter,
   handleTimeFilter,
-  // setShouldBreak,
 }) {
   const { theme } = useTheme();
   const isMobile = useMediaQuery('(max-width:480px)');
@@ -34,6 +33,11 @@ export default function Filters({
         display="flex"
         sx={{
           '@media(max-width:480px)': {
+            width: '100%',
+            justifyContent: 'space-between',
+            marginBottom: '10px',
+          },
+          '@media(max-width:768px)': {
             width: '100%',
             justifyContent: 'space-between',
             marginBottom: '10px',
@@ -232,7 +236,6 @@ export default function Filters({
             onClick={() => {
               setSelectedFilter(index + 1);
               handleTimeFilter(time.time);
-              // setShouldBreak(true);
             }}
             background={
               index + 1 === selectedFilter ? '#cf1c84' : 'transparent'

@@ -2,13 +2,20 @@ import styled from '@emotion/styled';
 import { Container } from '@mui/system';
 import { Typography } from '@mui/material';
 
-export const DashBoardContainer = styled(Container)<any>`
-  width: 98%;
+export const DashBoardContainer = styled(Container)`
+  width: 100%;
+  margin: 0px;
   margin-top: ${(props) => props.marginTop};
   height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
+  @media (min-width: 600px) {
+    padding: 0px 24px !important;
+  }
+  @media (min-width: 1080px) {
+    padding: 0px 50px !important;
+  }
 `;
 
 export const Text = styled(Typography)(

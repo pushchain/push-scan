@@ -11,9 +11,9 @@ import GovernanceSet from './components/GovernanceSet/GovernanceSet';
 const DashBoardView = () => {
   const isMobile = useMediaQuery('(max-width:480px)');
   return (
-    <DashBoardContainer maxWidth="xl" marginTop={isMobile ? '90px' : '100px'}>
+    <DashBoardContainer maxWidth="xl" marginTop={isMobile ? '90px ' : '100px'}>
       <OverViewSet />
-      <Grid container spacing={!isMobile ? 4 : 0} justifyContent="center">
+      <Grid container spacing={!isMobile ? 3 : 0} justifyContent="center">
         <Trending />
         <HorizontalLine />
         <RecentlyAdded />

@@ -43,7 +43,6 @@ export default function LineChartSet() {
       ) / 12
     )
   );
-  // const [shouldBreak, setShouldBreak] = React.useState<boolean>(false);
   const { subscriberData, notificationData } = useStatisticData({
     selectedChannel,
     selectedChain,
@@ -51,8 +50,6 @@ export default function LineChartSet() {
     endDate,
     interval,
     token,
-    // setShouldBreak,
-    // shouldBreak,
   });
   const { totalNotifications, totalSubscribers } = useStatisticCount({
     token,
@@ -226,7 +223,6 @@ export default function LineChartSet() {
           selectedFilter={selectedFilter}
           setSelectedFilter={setSelectedFilter}
           handleTimeFilter={handleTimeFilter}
-          // setShouldBreak={setShouldBreak}
         />
       </Grid>
       {/* <Box
