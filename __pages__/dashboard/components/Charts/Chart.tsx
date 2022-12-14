@@ -47,18 +47,10 @@ export default function Chart({
       type: 'area',
       height: 350,
       zoom: {
-        autoScaleYaxis: true,
+        enabled: false,
+        // autoScaleYaxis: true,
       },
       offsetX: -10,
-      // dropShadow: {
-      //   enabled: true,
-      //   enabledOnSeries: "Push Data",
-      //   top: 0,
-      //   left: 0,
-      //   blur: 3,
-      //   color: ["#CF1C84", "#CF1C84", "#CF1C84"],
-      //   opacity: 0.01,
-      // },
     },
     yaxis: {
       axisTicks: {
@@ -67,6 +59,12 @@ export default function Chart({
       axisBorder: {
         show: true,
       },
+      labels: {
+        style: {
+          fontSize: '12px',
+          colors: theme.palette.text.secondary,
+        },
+      },
     },
     xaxis: {
       type: 'datetime',
@@ -74,6 +72,10 @@ export default function Chart({
       max: max,
       labels: {
         show: true,
+        style: {
+          fontSize: '12px',
+          colors: theme.palette.text.secondary,
+        },
       },
       // labels: {
       //   formatter: function (value) {
@@ -97,26 +99,28 @@ export default function Chart({
     <Grid item xs={12} md={6} lg={6}>
       <Card
         sx={{
+          color: theme.palette.text.primary,
           height: 'auto',
           backgroundColor: isMobile
             ? 'transparent'
             : theme.palette.background.card,
           border: `1px solid ${theme.palette.outline}`,
+          padding: isMobile ? '35px 0px 0px' : '35px 40px',
           '@media(max-width:480px)': {
             border: 'none',
           },
         }}
       >
-        <CardHeader title={title} />
+        <CardHeader style={{ padding: 0 }} title={title} />
         <Typography
           variant="subtitle1"
-          ml={3}
+          ml={0}
           style={{ fontWeight: 400, fontSize: '28px' }}
         >
           {value?.toLocaleString()}
         </Typography>
 
-        <CardContent style={{ padding: isMobile ? '0px' : '24px' }}>
+        <CardContent style={{ padding: 0 }}>
           <ReactApexChart
             type="area"
             series={options?.series}

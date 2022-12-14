@@ -14,6 +14,7 @@ import {
   useMediaQuery,
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
+import { useTheme as getTheme } from 'contexts/ThemeContext';
 import { tableCellClasses } from '@mui/material/TableCell';
 
 export default function LeaderBoard({
@@ -27,20 +28,18 @@ export default function LeaderBoard({
 }) {
   const theme = useTheme();
   const isMobile = useMediaQuery('(max-width:480px)');
+  const { isDarkMode } = getTheme();
   return (
     <Grid item xs={12} md={4} lg={4} mb={isMobile ? 2 : 0}>
       <Card
         sx={{
           height: '100%',
+          padding: isMobile ? '30px 5px 0px' : '30px',
           backgroundColor: isMobile
             ? 'transparent'
             : theme.palette.background.card,
           border: `1px solid ${theme.palette.outline}`,
           '@media(max-width:480px)': {
-            // borderWidth: '0px 0px 1px 0px',
-            // borderColor: '#E6E7EC',
-            // borderStyle: 'solid',
-            // borderRadius: 0,
             border: 'none',
           },
         }}
@@ -50,11 +49,12 @@ export default function LeaderBoard({
           sx={{
             fontWeight: 500,
             fontSize: '18px',
-            padding: isMobile ? '24px 0px 8px' : '24px 24px 0px',
+            padding: '0px',
+            // padding: isMobile ? '24px 0px 8px' : '24px 24px 0px',
           }}
         />
-        {/* <CardContent style={{ paddingTop: '0px' }}></CardContent> */}
-        <CardContent style={{ padding: isMobile ? '0px' : '0px 24px 24px' }}>
+        <CardContent style={{ padding: '0px' }}>
+          {/* <CardContent style={{ padding: isMobile ? '0px' : '0px 24px 24px' }}> */}
           <Table
             sx={{
               width: '100%',
@@ -63,8 +63,8 @@ export default function LeaderBoard({
                 // fontSize: "14px",
                 fontWeight: 600,
                 padding: '0px',
-                paddingTop: '9px',
-                paddingBottom: '9px',
+                paddingTop: '18px',
+                // paddingBottom: '9px',
               },
             }}
           >
@@ -72,7 +72,7 @@ export default function LeaderBoard({
               <TableRow
                 sx={{
                   '& th': {
-                    color: theme.palette.text.disabled,
+                    color: !isDarkMode ? '#657795' : '#787E99',
                     fontSize: '12px',
                   },
                 }}
@@ -97,7 +97,9 @@ export default function LeaderBoard({
                     scope="row"
                     sx={{
                       display: 'flex',
-                      color: theme.palette.text.secondary,
+                      color: !isDarkMode
+                        ? theme.palette.text.primary
+                        : theme.palette.text.secondary,
                     }}
                   >
                     <Avatar
@@ -117,7 +119,11 @@ export default function LeaderBoard({
                   </TableCell>
                   <TableCell
                     align="right"
-                    sx={{ color: theme.palette.text.secondary }}
+                    sx={{
+                      color: !isDarkMode
+                        ? theme.palette.text.primary
+                        : theme.palette.text.secondary,
+                    }}
                   >
                     {channel?.subscriber?.toLocaleString()}
                   </TableCell>
@@ -128,7 +134,7 @@ export default function LeaderBoard({
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'flex-end',
-                          color: '#30CC8B',
+                          color: channel?.trend >= 0 ? '#30CC8B' : '#E93636',
                           paddingLeft: '20px',
                         }}
                       >

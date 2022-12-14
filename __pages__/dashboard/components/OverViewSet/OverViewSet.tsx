@@ -2,32 +2,22 @@ import React from 'react';
 import { Grid, Box, Typography, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { OverviewItem } from './overview.styled';
-import { Text, HorizontalLine } from '../../dashboard.styled';
-import HorizontalChart from '../Charts/HorizontalChart';
+import { Text } from '../../dashboard.styled';
 import {
-  getSubscribers,
-  getNotifications,
   getChats,
   getUsers,
   getGovernanceData,
+  getNotifications,
 } from 'utils/api';
 import { useData } from 'contexts/DataContext';
+import { HorizontalLine } from '../../dashboard.styled';
 
 export default function OverViewSet() {
-  const { token, stagingToken } = useData();
-  const isSmall = useMediaQuery('(max-width:480px)');
+  const { token } = useData();
   const [chatUsers, setChatUsers] = React.useState<number>(0);
   const [chatSent, setChatSent] = React.useState<number>(0);
   const [pushIntegrations, setPushIntegrations] = React.useState<number>(0);
-  const [chatRequests, setChatRequests] = React.useState<number>(0);
-  const [subscriberCategories, setSubscriberCategories] = React.useState<any[]>(
-    []
-  );
-  const [subscriberValues, setSubscriberValues] = React.useState<any[]>([]);
-  const [notificationCategories, setNotificationCategories] = React.useState<
-    any[]
-  >([]);
-  const [notificationValues, setNotificationValues] = React.useState<any[]>([]);
+  const [notifiactionsSent, setNotificationsSent] = React.useState<number>(0);
 
   const overViewData = [
     {
@@ -46,125 +36,81 @@ export default function OverViewSet() {
       value: chatUsers,
     },
     {
-      image: './static/chat-request.svg',
-      title: 'Chat Requests',
-      value: chatRequests,
+      image: './static/notifications.svg',
+      title: 'Notifications Sent',
+      value: notifiactionsSent,
     },
   ];
   const theme = useTheme();
 
   React.useEffect(() => {
     (async () => {
-      const chatRes = await getChats({ token: stagingToken });
+      const chatRes = await getChats({ token });
       setChatSent(chatRes?.totalMessages);
       // console.log('chat', chatRes?.totalMessages);
-      const userRes = await getUsers({ token: stagingToken });
+      const userRes = await getUsers({ token });
       setChatUsers(userRes?.totalUsers);
       // console.log('user', userRes?.totalUsers);
-      const govRes = await getGovernanceData({ token: stagingToken });
+      const govRes = await getGovernanceData({ token });
       setPushIntegrations(
         govRes?.governance_data?.Miscellaneous?.Push_Integrations
       );
-      setChatRequests(govRes?.governance_data?.Miscellaneous?.Chat_Requests);
-    })();
-  }, []);
-
-  React.useEffect(() => {
-    let subscriberCategory = [],
-      subscriberValue = [],
-      notificationCategory = [],
-      notificationValue = [];
-
-    (async () => {
-      const subscriberRes = await getSubscribers({ token });
-      const notificationsRes = await getNotifications({ token });
-      const sortedSubscribers = subscriberRes?.subscriberAnalytics?.sort(
-        (a, b) => b?.subscriber - a?.subscriber
-      );
-      const subscriberChannelLimit =
-        sortedSubscribers?.length > 10 ? 10 : sortedSubscribers?.length;
-
-      for (let i = 0; i < subscriberChannelLimit; i++) {
-        subscriberCategory.push(sortedSubscribers[i]?.name);
-        subscriberValue.push(sortedSubscribers[i]?.subscriber);
-      }
-      const sortedNotifications = notificationsRes?.notificationAnalytics?.sort(
-        (a, b) => b?.notification - a?.notification
-      );
-
-      const notificationChannelLimit =
-        sortedNotifications?.length > 10 ? 10 : sortedNotifications?.length;
-      for (let i = 0; i < notificationChannelLimit; i++) {
-        notificationCategory.push(sortedNotifications[i].name);
-        notificationValue.push(sortedNotifications[i].notification);
-      }
-      setSubscriberCategories(subscriberCategory);
-      setSubscriberValues(subscriberValue);
-      setNotificationCategories(notificationCategory);
-      setNotificationValues(notificationValue);
+      const notifRes = await getNotifications({ token });
+      setNotificationsSent(notifRes?.totalNotification);
     })();
   }, []);
 
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        flex: 1,
-        width: '100%',
-      }}
-      mt={5}
-    >
-      <Text size="18px">Overview</Text>
-      <Grid
-        container
-        gap={3}
-        width="100%"
-        justifyContent="space-between"
-        mt={2}
+    <>
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          flex: 1,
+          width: '100%',
+        }}
+        mt={5}
+        mb={3}
       >
-        {overViewData.map((data) => (
-          <OverviewItem
-            key={data.title}
-            style={{
-              backgroundColor: theme.palette.background.card,
-              border: `1px solid ${theme.palette.outline}`,
-            }}
-          >
-            <Box
-              sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                height: '100%',
-                justifyContent: 'space-between',
+        <Text size="18px" weight={400}>
+          Overview
+        </Text>
+        <Grid
+          container
+          width="100%"
+          gap={3}
+          justifyContent="space-between"
+          mt={2}
+        >
+          {overViewData.map((data) => (
+            <OverviewItem
+              key={data.title}
+              style={{
+                backgroundColor: theme.palette.background.card,
+                border: `1px solid ${theme.palette.outline}`,
               }}
             >
-              <Text size="18px">{data.title}</Text>
-              <Text size="36px">{data.value?.toLocaleString()}</Text>
-            </Box>
-            <Box
-              component="img"
-              src={data.image}
-              sx={{ width: '60px', height: '60px' }}
-            />
-          </OverviewItem>
-        ))}
-      </Grid>
-      <Grid container spacing={isSmall ? 0 : 3} justifyContent="center" mt={0}>
-        <HorizontalChart
-          title="Subscribers By Channel"
-          label="Subscribers"
-          category={subscriberCategories}
-          value={subscriberValues}
-        />
-        <HorizontalLine />
-        <HorizontalChart
-          title="Notifications By Channel"
-          label="Notifications"
-          category={notificationCategories}
-          value={notificationValues}
-        />
-      </Grid>
-    </Box>
+              <Box
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  height: '100%',
+                  justifyContent: 'space-between',
+                }}
+              >
+                <Text size="18px">{data.title}</Text>
+                <Text size="36px">{data.value?.toLocaleString()}</Text>
+              </Box>
+              <Box
+                component="img"
+                src={data.image}
+                sx={{ width: '60px', height: '60px' }}
+              />
+            </OverviewItem>
+          ))}
+        </Grid>
+      </Box>
+      <HorizontalLine />
+    </>
   );
 }

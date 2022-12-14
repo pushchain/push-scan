@@ -16,6 +16,8 @@ export default function useStatisticData({
     (async () => {
       setSubscriberData([]);
       setNotificationData([]);
+      let localNotificationData: any[] = [];
+      let localSubscriberData: any[] = [];
 
       const dateArray = getDatesArray({
         start: startDate,
@@ -24,6 +26,7 @@ export default function useStatisticData({
       });
 
       for (let i = 0; i < dateArray.length - 1; i++) {
+        console.log('checking', i, interval);
         const newStartDate = dateArray[i];
         const newEndDate = dateArray[i + 1];
         const subscriberRes = await getSubscribers({
@@ -33,9 +36,10 @@ export default function useStatisticData({
           channel: selectedChannel?.channel,
           chain: selectedChain?.value,
         });
-        setSubscriberData((data) => [
-          ...data,
-          [new Date(newEndDate).getTime(), subscriberRes?.totalSubscribers],
+
+        localSubscriberData.push([
+          new Date(i === 0 ? newStartDate : newEndDate).getTime(),
+          subscriberRes?.totalSubscribers,
         ]);
 
         const notificationRes = await getNotifications({
@@ -45,11 +49,14 @@ export default function useStatisticData({
           channel: selectedChannel?.channel,
           chain: selectedChain.value,
         });
-        setNotificationData((data) => [
-          ...data,
-          [new Date(newEndDate).getTime(), notificationRes?.totalNotification],
+
+        localNotificationData.push([
+          new Date(i === 0 ? newStartDate : newEndDate).getTime(),
+          notificationRes?.totalNotification,
         ]);
       }
+      setSubscriberData(localSubscriberData);
+      setNotificationData(localNotificationData);
     })();
 
     return () => {

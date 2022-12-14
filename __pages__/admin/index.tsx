@@ -9,9 +9,8 @@ import { useData } from '../../contexts/DataContext';
 
 export default function AdminView() {
   const { open, handleOpen, handleClose } = useModal();
-  const { updateTracker, stagingToken } = useData();
+  const { updateTracker, token } = useData();
   const [data, setData] = React.useState();
-  const token = stagingToken;
 
   React.useEffect(() => {
     (async () => {

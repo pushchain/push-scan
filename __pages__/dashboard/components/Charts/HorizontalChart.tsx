@@ -42,7 +42,7 @@ export default function HorizontalChart({
     plotOptions: {
       bar: {
         barHeight: '30%',
-        borderRadius: 0.9,
+        borderRadius: 2.5,
         distributed: true,
         horizontal: true,
         dataLabels: {
@@ -68,6 +68,20 @@ export default function HorizontalChart({
       axisBorder: {
         show: true,
       },
+      tickAmount: 8,
+      labels: {
+        formatter: (value) => {
+          if (value > 1000) {
+            let dividend = parseInt(value / 1000);
+            return dividend + 'K';
+          }
+          return value;
+        },
+        style: {
+          fontSize: '12px',
+          colors: theme.palette.text.secondary,
+        },
+      },
     },
     yaxis: {
       labels: {
@@ -77,8 +91,14 @@ export default function HorizontalChart({
             ? value.length > 8
               ? value.substr(0, 6) + '...'
               : value
+            : value.length > 15
+            ? value.substr(0, 12) + '...'
             : value;
           return editedValue;
+        },
+        style: {
+          fontSize: '12px',
+          colors: theme.palette.text.secondary,
         },
       },
       axisBorder: {
@@ -88,6 +108,10 @@ export default function HorizontalChart({
     legend: {
       show: false,
     },
+    // stroke: {
+    //   width: 6,
+    //   curve: 'straight',
+    // },
     grid: {
       yaxis: {
         lines: {
@@ -106,23 +130,24 @@ export default function HorizontalChart({
     <Grid item xs={12} sm={12} md={6} lg={6}>
       <Card
         sx={{
-          height: '100%',
+          height: 'auto',
           backgroundColor: isMobile
             ? 'transparent'
             : theme.palette.background.card,
           border: `1px solid ${theme.palette.outline}`,
+          padding: isMobile ? '35px 0px 0px' : '35px 40px',
           '@media(max-width:480px)': {
             border: 'none',
           },
         }}
       >
-        <CardHeader title={title} />
-        <CardContent style={{ padding: isMobile ? '0px' : '24px' }}>
+        <CardHeader style={{ padding: 0 }} title={title} />
+        <CardContent style={{ padding: 0 }}>
           <ReactApexChart
             type="bar"
             series={options.series}
             options={options}
-            height={250}
+            height={300}
           />
         </CardContent>
       </Card>

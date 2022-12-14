@@ -5,11 +5,9 @@ const DataContext = createContext<any>({});
 
 const DataProvider = ({ children }: { children: any }) => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(true);
-  const [token, setToken] = useState<string>("");
+  const [token, setToken] = useState<string>('');
 
   const [updateTracker, setUpdateTracker] = useState<boolean>(false);
-  const stagingToken =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoicHVzaF9zdGFnaW5nX3VzZXIiLCJpYXQiOjE2NzA1OTk3MTYsImV4cCI6MTY3MDY4NjExNn0.rm34qGbgEgIx-ugSBA-jWMapZ5NkXwYv3oCZ5i6607g';
   const timeFilterOptions = [
     { time: '1D' },
     { time: '7D' },
@@ -41,7 +39,7 @@ const DataProvider = ({ children }: { children: any }) => {
       setToken('');
     }
   }, []);
-  console.log({token});
+  // console.log({ token });
 
   return (
     <DataContext.Provider
@@ -54,7 +52,6 @@ const DataProvider = ({ children }: { children: any }) => {
         chainList,
         updateTracker,
         setUpdateTracker,
-        stagingToken,
       }}
     >
       {children}

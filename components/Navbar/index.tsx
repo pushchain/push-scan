@@ -7,23 +7,12 @@ import { useTheme } from '@mui/material/styles';
 import { useTheme as Theme } from 'contexts/ThemeContext';
 import { useData } from 'contexts/DataContext';
 import { ROUTES, CREDENTIALKEYS } from 'utils/constants';
-import {
-  getSubscribers,
-  getNotifications,
-  getLeaderBoard,
-  getChannels,
-  getGovernanceData,
-  updateGovernanceData,
-  getChats,
-  getUsers,
-} from 'utils/api';
-
 import { RootStyle, ToolbarStyle } from './navbar.styled';
 import { Text } from '__pages__/dashboard/dashboard.styled';
 
 export default function Navbar() {
   const { isDarkMode, darkModeToggle } = Theme();
-  const { isLoggedIn, setIsLoggedIn, token, stagingToken } = useData();
+  const { isLoggedIn, setIsLoggedIn, token } = useData();
   const router = useRouter();
   const theme = useTheme();
   const isMobile = useMediaQuery('(max-width:480px)');
@@ -49,11 +38,11 @@ export default function Navbar() {
             }}
           />
           <Box>
-            <Text size={isMobile ? '24px' : '32px'} weight="500">
+            <Text size={isMobile ? '24px' : '32px'} weight="600">
               Push Snapshots
             </Text>
             {!isMobile && (
-              <Text size="15px" color={theme.palette.text.secondary}>
+              <Text size="15px" color={isDarkMode ? '#B6BCD6' : '#657795'}>
                 Explore trends, activity and track growth on the Push Network
               </Text>
             )}
@@ -68,32 +57,6 @@ export default function Navbar() {
                 style={{ marginRight: '5px' }}
                 onClick={() => {
                   router.push(ROUTES.DASHBOARD);
-                  // getChats({
-                  //   token: stagingToken,
-                  //   startDate: '2022-12-07',
-                  //   endDate: '2022-12-08',
-                  //   channel: 'All',
-                  //   chain: 'ETH_TEST_GOERLI',
-                  // });
-                  // getUsers({ token: stagingToken });
-                  // updateGovernanceData();
-                  // getGovernanceData();
-                  // getChannels({ token });
-                  // getSubscribers({
-                  //   token,
-                  //   startDate: '2022-01-01',
-                  //   endDate: '2022-11-16',
-                  //   channel: 'All',
-                  //   chain: 'ETH_TEST_GOERLI',
-                  // });
-                  // getNotifications({
-                  //   token,
-                  //   startDate: '2022-01-01',
-                  //   endDate: '2022-11-16',
-                  //   channel: '0x0000000000000000000000000000000000000000',
-                  //   chain: 'ETH_TEST_GOERLI',
-                  // });
-                  // getLeaderBoard({ token });
                 }}
               >
                 Dashboard
