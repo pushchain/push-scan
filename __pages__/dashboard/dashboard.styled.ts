@@ -5,7 +5,7 @@ import { Typography } from '@mui/material';
 export const DashBoardContainer = styled(Container)`
   width: 100%;
   margin: 0px;
-  margin-top: ${(props) => props.marginTop};
+  margin-top: ${(props) => props.margintop};
   height: auto;
   display: flex;
   flex-direction: column;
@@ -13,7 +13,7 @@ export const DashBoardContainer = styled(Container)`
   @media (min-width: 600px) {
     padding: 0px 24px !important;
   }
-  @media (min-width: 1080px) {
+  @media (min-width: 1024px) {
     padding: 0px 50px !important;
   }
 `;

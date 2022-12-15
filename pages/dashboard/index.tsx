@@ -12,7 +12,7 @@ export default function Dashboard() {
       <Head>
         <title>Push Analytics DashBoard</title>
       </Head>
-      <Grid>
+      <Grid width="100%">
         <Navbar />
         <DashBoardView />
         <Footer />

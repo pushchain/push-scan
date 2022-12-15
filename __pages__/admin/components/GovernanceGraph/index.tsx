@@ -93,13 +93,13 @@ const GovernanceGraph = ({ data, title, label, value }: any) => {
             fontWeight: 500,
             rich: {
               a: {
-                lineHeight: 25,
+                lineHeight: 10,
                 color: theme.palette.text.secondary,
               },
               b: {
                 fontWeight: 600,
                 color: theme.palette.text.primary,
-                textAlign: 'left',
+                lineHeight: 20,
               },
             },
           },

@@ -8,6 +8,7 @@ import {
 } from '@mui/material';
 import dynamic from 'next/dynamic';
 import BaseOptions from '../BaseOptions';
+import { DAPP_LINKS } from 'utils/constants';
 import { useTheme } from '@mui/material/styles';
 import _ from 'lodash';
 const ReactApexChart = dynamic(() => import('react-apexcharts'), {
@@ -38,6 +39,14 @@ export default function HorizontalChart({
     chart: {
       type: 'bar',
       height: 380,
+      events: {
+        // dataPointMouseEnter: function (event) {
+        //   event.path[0].style.cursor = 'pointer';
+        // },
+        xAxisLabelClick: function () {
+          window.open(DAPP_LINKS.CHANNELS, '_blank');
+        },
+      },
     },
     plotOptions: {
       bar: {
@@ -80,6 +89,7 @@ export default function HorizontalChart({
         style: {
           fontSize: '12px',
           colors: theme.palette.text.secondary,
+          cursor: 'pointer',
         },
       },
     },

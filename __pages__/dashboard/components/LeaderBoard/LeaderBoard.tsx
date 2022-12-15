@@ -14,6 +14,7 @@ import {
   useMediaQuery,
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
+import { DAPP_LINKS } from 'utils/constants';
 import { useTheme as getTheme } from 'contexts/ThemeContext';
 import { tableCellClasses } from '@mui/material/TableCell';
 
@@ -92,31 +93,39 @@ export default function LeaderBoard({
                     },
                   }}
                 >
-                  <TableCell
-                    component="th"
-                    scope="row"
-                    sx={{
-                      display: 'flex',
-                      color: !isDarkMode
-                        ? theme.palette.text.primary
-                        : theme.palette.text.secondary,
-                    }}
-                  >
-                    <Avatar
-                      src={channel.icon}
-                      sx={{ width: 26, height: 26, marginRight: 1 }}
-                    />
-                    <Box component="span">
-                      {' '}
-                      {isMobile && isTrending
-                        ? channel.name.length < 15
-                          ? channel.name
-                          : channel.name.substr(0, 15) + '...'
-                        : channel.name.length < 15
-                        ? channel.name
-                        : channel.name.substr(0, 15) + '...'}
-                    </Box>
+                  <TableCell component="th" scope="row">
+                    <a
+                      href={DAPP_LINKS.CHANNELS}
+                      target={'_blank'}
+                      rel={'noreferrer'}
+                    >
+                      <Box
+                        sx={{
+                          display: 'flex',
+                          color: !isDarkMode
+                            ? theme.palette.text.primary
+                            : theme.palette.text.secondary,
+                        }}
+                      >
+                        <Avatar
+                          src={channel.icon}
+                          sx={{ width: 26, height: 26, marginRight: 1 }}
+                        />
+
+                        <Box component="span">
+                          {' '}
+                          {isMobile && isTrending
+                            ? channel.name.length < 15
+                              ? channel.name
+                              : channel.name.substr(0, 15) + '...'
+                            : channel.name.length < 15
+                            ? channel.name
+                            : channel.name.substr(0, 15) + '...'}
+                        </Box>
+                      </Box>
+                    </a>
                   </TableCell>
+
                   <TableCell
                     align="right"
                     sx={{

@@ -29,7 +29,6 @@ export default function useModal() {
     mobile_android: 0,
     extensions: 0,
     push_integrations: 0,
-    chat_requests: 0,
   });
 
   const handleChange = (prop: any) => (event: any) => {
@@ -73,7 +72,6 @@ export default function useModal() {
       Miscellaneous: {
         Push_Grants: formData.pushgrants,
         Push_Integrations: formData.push_integrations,
-        Chat_Requests: formData.chat_requests,
       },
     };
     await updateGovernanceData({ data, token });

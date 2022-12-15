@@ -26,7 +26,6 @@ export default function useStatisticData({
       });
 
       for (let i = 0; i < dateArray.length - 1; i++) {
-        console.log('checking', i, interval);
         const newStartDate = dateArray[i];
         const newEndDate = dateArray[i + 1];
         const subscriberRes = await getSubscribers({

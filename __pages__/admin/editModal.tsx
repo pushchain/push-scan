@@ -228,15 +228,6 @@ export default function FormDialog({
             fullWidth
             variant="standard"
           />
-          <TextField
-            autoFocus
-            margin="dense"
-            id="chat_requests"
-            label="Chat Requests"
-            onChange={handleChange('chat_requests')}
-            fullWidth
-            variant="standard"
-          />
         </DialogContent>
 
         <DialogActions>

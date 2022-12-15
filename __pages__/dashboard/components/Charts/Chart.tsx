@@ -12,6 +12,7 @@ import styled from '@emotion/styled';
 import { useTheme } from '@mui/material/styles';
 import BaseOptions from '../BaseOptions';
 import _ from 'lodash';
+import moment from 'moment';
 const ReactApexChart = dynamic(() => import('react-apexcharts'), {
   ssr: false,
 });
@@ -69,13 +70,26 @@ export default function Chart({
     xaxis: {
       type: 'datetime',
       min: min,
-      max: max,
+      // max: max,
       labels: {
         show: true,
+        rotate: -45,
+        hideOverlappingLabels: true,
         style: {
           fontSize: '12px',
           colors: theme.palette.text.secondary,
         },
+        datetimeFormatter: {
+          year: 'yyyy',
+          month: 'MMM',
+          day: 'dd MMM',
+          hour: 'HH:mm',
+        },
+        // formatter: (value) => {
+        //   //const d = new Date(new Date(value)).toISOString();
+        //   const d = moment(new Date(value)).format('DD-MMM-YY');
+        //   return d;
+        // },
       },
       // labels: {
       //   formatter: function (value) {

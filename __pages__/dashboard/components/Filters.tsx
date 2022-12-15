@@ -98,6 +98,7 @@ export default function Filters({
           />
           {showChannel && (
             <OptionList background="#cf1c84">
+              <input type="search" placeholder="Type channel name" />
               <Box
                 sx={{
                   width: '100%',
