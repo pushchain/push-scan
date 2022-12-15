@@ -3,6 +3,7 @@ import getDatesArray from '../utils/helpers';
 import { getSubscribers, getNotifications } from 'utils/api';
 
 export default function useStatisticData({
+  setIsLoading,
   selectedChannel,
   selectedChain,
   startDate,
@@ -14,6 +15,7 @@ export default function useStatisticData({
   const [notificationData, setNotificationData] = React.useState<any[]>([]);
   React.useEffect(() => {
     (async () => {
+      setIsLoading(true);
       setSubscriberData([]);
       setNotificationData([]);
       let localNotificationData: any[] = [];
@@ -56,6 +58,7 @@ export default function useStatisticData({
       }
       setSubscriberData(localSubscriberData);
       setNotificationData(localNotificationData);
+      setIsLoading(false);
     })();
 
     return () => {

@@ -97,7 +97,7 @@ const GovernanceGraph = ({ data, title, label, value }: any) => {
                 color: theme.palette.text.secondary,
               },
               b: {
-                fontWeight: 600,
+                fontWeight: 500,
                 color: theme.palette.text.primary,
                 lineHeight: 20,
               },
@@ -158,7 +158,7 @@ const GovernanceGraph = ({ data, title, label, value }: any) => {
         >
           <ReactECharts
             style={{
-              height: '75%',
+              height: '100%',
               width: '100%',
               display: 'flex',
               justifyContent: 'center',

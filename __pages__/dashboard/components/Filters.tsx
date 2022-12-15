@@ -8,6 +8,7 @@ import {
   TimeFilter,
 } from './LineChartSet/linchartset.styled';
 import { useTheme } from '@mui/material/styles';
+import styled from 'styled-components';
 
 export default function Filters({
   selectedChannel,
@@ -27,6 +28,20 @@ export default function Filters({
 }) {
   const { theme } = useTheme();
   const isMobile = useMediaQuery('(max-width:768px)');
+  const [channels, setChannels] = React.useState<any[]>(channelList);
+
+  const handleChange = (event: any) => {
+    const text = event.target.value;
+    const res = channelList.filter((obj) =>
+      JSON.stringify(obj).toLowerCase().includes(text.toLowerCase())
+    );
+    if (res.length > 0) {
+      setChannels(res);
+    } else {
+      setChannels(channelList);
+    }
+  };
+
   return (
     <>
       <Box
@@ -98,7 +113,10 @@ export default function Filters({
           />
           {showChannel && (
             <OptionList background="#cf1c84">
-              <input type="search" placeholder="Type channel name" />
+              <Searchbar
+                placeholder="Search for channel here..."
+                onChange={handleChange}
+              />
               <Box
                 sx={{
                   width: '100%',
@@ -115,7 +133,7 @@ export default function Filters({
                   },
                 }}
               >
-                {channelList.map((channel, index) => (
+                {channels.map((channel, index) => (
                   <Option
                     key={index}
                     onClick={() => {
@@ -250,3 +268,13 @@ export default function Filters({
     </>
   );
 }
+
+const Searchbar = styled.input`
+  border: none;
+  outline: none;
+  width: 100%;
+  padding: 10px;
+  background-color: transaparent;
+  border-radius: 16px;
+  font-size: 15px;
+`;

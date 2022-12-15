@@ -35,6 +35,7 @@ export default function LineChartSet() {
   );
   const [min, setMin] = React.useState<any>(new Date('2022-01-01').getTime());
   const [max, setMax] = React.useState<any>(new Date().getTime());
+  const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const [interval, setInterval] = React.useState(
     Math.ceil(
       Math.ceil(
@@ -44,6 +45,7 @@ export default function LineChartSet() {
     )
   );
   const { subscriberData, notificationData } = useStatisticData({
+    setIsLoading,
     selectedChannel,
     selectedChain,
     startDate,
@@ -234,6 +236,7 @@ export default function LineChartSet() {
       </Box> */}
       <Grid container spacing={isMobile ? 0 : 3} justifyContent="center" mt={0}>
         <Notifications
+          isLoading={isLoading}
           data={notificationData}
           max={max}
           min={min}
@@ -241,6 +244,7 @@ export default function LineChartSet() {
         />
         <HorizontalLine />
         <Subscribers
+          isLoading={isLoading}
           data={subscriberData}
           max={max}
           min={min}

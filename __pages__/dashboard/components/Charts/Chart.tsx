@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {
   Card,
+  Box,
   CardContent,
   CardHeader,
   Grid,
@@ -12,7 +13,7 @@ import styled from '@emotion/styled';
 import { useTheme } from '@mui/material/styles';
 import BaseOptions from '../BaseOptions';
 import _ from 'lodash';
-import moment from 'moment';
+import CircularProgress from '@mui/material/CircularProgress';
 const ReactApexChart = dynamic(() => import('react-apexcharts'), {
   ssr: false,
 });
@@ -24,6 +25,7 @@ export default function Chart({
   max,
   min,
   data,
+  isLoading,
 }: {
   title: string;
   value: number;
@@ -31,6 +33,7 @@ export default function Chart({
   max: any;
   min: any;
   data: any;
+  isLoading: boolean;
 }) {
   const theme = useTheme();
   const isMobile = useMediaQuery('(max-width:480px)');
@@ -69,7 +72,7 @@ export default function Chart({
     },
     xaxis: {
       type: 'datetime',
-      min: min,
+      //min: min,
       // max: max,
       labels: {
         show: true,
@@ -96,7 +99,7 @@ export default function Chart({
       //     return new Date(value);
       //   },
       // },
-      // tickAmount: 5,
+      // tickAmount: 7,
     },
     fill: {
       type: 'gradient',
@@ -134,13 +137,31 @@ export default function Chart({
           {value?.toLocaleString()}
         </Typography>
 
-        <CardContent style={{ padding: 0 }}>
-          <ReactApexChart
-            type="area"
-            series={options?.series}
-            options={options}
-            height={250}
-          />
+        <CardContent
+          style={{
+            padding: 0,
+            height: '250px',
+          }}
+        >
+          {isLoading ? (
+            <Box
+              sx={{
+                height: '100%',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <CircularProgress />
+            </Box>
+          ) : (
+            <ReactApexChart
+              type="area"
+              series={options?.series}
+              options={options}
+              height={250}
+            />
+          )}
         </CardContent>
       </Card>
     </Grid>

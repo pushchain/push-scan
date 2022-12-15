@@ -6,6 +6,7 @@ const APPBAR_MOBILE = 64;
 const APPBAR_DESKTOP = 92;
 
 export const RootStyle = styled(AppBar)(({ theme }) => ({
+  position: 'static',
   boxShadow: 'none',
   backdropFilter: 'blur(6px)',
   WebkitBackdropFilter: 'blur(6px)', // Fix on Mobile
