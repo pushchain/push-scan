@@ -8,7 +8,7 @@ import {
   useMediaQuery,
 } from '@mui/material';
 import ReactECharts from 'echarts-for-react';
-import { useTheme } from '@mui/material/styles';
+import { useTheme } from 'styled-components';
 
 const GovernanceGraph = ({ data, title, label, value }: any) => {
   const theme = useTheme();
@@ -36,9 +36,9 @@ const GovernanceGraph = ({ data, title, label, value }: any) => {
         theme: 'dark',
         trigger: 'item',
         valueFormatter: (value: number) => value,
-        backgroundColor: theme.palette.background.default,
+        backgroundColor: theme.default.tooltipBackground,
         textStyle: {
-          color: theme.palette.text.primary,
+          color: theme.default.color,
         },
         borderWidth: 0,
         borderRadius: 10,
@@ -49,7 +49,7 @@ const GovernanceGraph = ({ data, title, label, value }: any) => {
         left: 'left',
         top: value ? 30 : 0,
         textStyle: {
-          color: theme.palette.text.secondary,
+          color: theme.default.secondaryColor,
           fontSize: 12,
           fontWeight: 500,
         },
@@ -89,16 +89,16 @@ const GovernanceGraph = ({ data, title, label, value }: any) => {
             // formatter: (value) =>
             //   `{a|${value?.name}}\n {b|${value?.value}}\t\t\t\t\t`,'{b}\n {d}%',
             formatter: '{a|{b}}\n {b|{d}%}\t\t\t\t',
-            color: theme.palette.text.secondary,
+            color: theme.default.secondaryColor,
             fontWeight: 500,
             rich: {
               a: {
                 lineHeight: 10,
-                color: theme.palette.text.secondary,
+                color: theme.default.secondaryColor,
               },
               b: {
                 fontWeight: 500,
-                color: theme.palette.text.primary,
+                color: theme.default.color,
                 lineHeight: 20,
               },
             },
@@ -121,10 +121,8 @@ const GovernanceGraph = ({ data, title, label, value }: any) => {
         sx={{
           height: '100%',
           width: '100%',
-          backgroundColor: isMobile
-            ? 'transparent'
-            : theme.palette.background.card,
-          border: `1px solid ${theme.palette.outline}`,
+          backgroundColor: isMobile ? 'transparent' : theme.default.secondaryBg,
+          border: `1px solid ${theme.default.border}`,
           padding: isMobile ? '35px 0px 0px' : '25px 30px',
           '@media(max-width:480px)': {
             border: 'none',

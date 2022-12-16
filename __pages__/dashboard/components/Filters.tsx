@@ -7,7 +7,6 @@ import {
   TimeFilterContainer,
   TimeFilter,
 } from './LineChartSet/linchartset.styled';
-import { useTheme } from '@mui/material/styles';
 import styled from 'styled-components';
 
 export default function Filters({
@@ -26,7 +25,6 @@ export default function Filters({
   setSelectedFilter,
   handleTimeFilter,
 }) {
-  const { theme } = useTheme();
   const isMobile = useMediaQuery('(max-width:768px)');
   const [channels, setChannels] = React.useState<any[]>(channelList);
 

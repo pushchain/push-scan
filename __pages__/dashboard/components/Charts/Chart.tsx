@@ -9,8 +9,7 @@ import {
   useMediaQuery,
 } from '@mui/material';
 import dynamic from 'next/dynamic';
-import styled from '@emotion/styled';
-import { useTheme } from '@mui/material/styles';
+import { useTheme } from 'styled-components';
 import BaseOptions from '../BaseOptions';
 import _ from 'lodash';
 import CircularProgress from '@mui/material/CircularProgress';
@@ -66,7 +65,7 @@ export default function Chart({
       labels: {
         style: {
           fontSize: '12px',
-          colors: theme.palette.text.secondary,
+          colors: theme.default.secondaryColor,
         },
       },
     },
@@ -80,7 +79,7 @@ export default function Chart({
         hideOverlappingLabels: true,
         style: {
           fontSize: '12px',
-          colors: theme.palette.text.secondary,
+          colors: theme.default.secondaryColor,
         },
         datetimeFormatter: {
           year: 'yyyy',
@@ -116,12 +115,10 @@ export default function Chart({
     <Grid item xs={12} md={6} lg={6}>
       <Card
         sx={{
-          color: theme.palette.text.primary,
+          color: theme.default.color,
           height: 'auto',
-          backgroundColor: isMobile
-            ? 'transparent'
-            : theme.palette.background.card,
-          border: `1px solid ${theme.palette.outline}`,
+          backgroundColor: isMobile ? 'transparent' : theme.default.secondaryBg,
+          border: `1px solid ${theme.default.border}`,
           padding: isMobile ? '35px 0px 0px' : '35px 40px',
           '@media(max-width:480px)': {
             border: 'none',

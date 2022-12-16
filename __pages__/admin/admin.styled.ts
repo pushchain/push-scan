@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import styled from 'styled-components';
 import EditIcon from '@mui/icons-material/Edit';
 import { Dialog } from '@mui/material';
 import { Container } from '@mui/system';

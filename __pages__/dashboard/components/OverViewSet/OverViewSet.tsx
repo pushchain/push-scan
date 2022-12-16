@@ -1,6 +1,6 @@
 import React from 'react';
 import { Grid, Box, Typography, useMediaQuery } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
+import { useTheme } from 'styled-components';
 import { OverviewItem } from './overview.styled';
 import { Text } from '../../dashboard.styled';
 import {
@@ -86,8 +86,8 @@ export default function OverViewSet() {
             <OverviewItem
               key={data.title}
               style={{
-                backgroundColor: theme.palette.background.card,
-                border: `1px solid ${theme.palette.outline}`,
+                backgroundColor: theme.default.secondaryBg,
+                border: `1px solid ${theme.default.border}`,
               }}
             >
               <Box

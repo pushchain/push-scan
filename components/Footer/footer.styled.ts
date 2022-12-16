@@ -1,5 +1,4 @@
-import styled from '@emotion/styled';
-import { Container } from '@mui/system';
+import styled from 'styled-components';
 
 export const FooterContainer = styled.div`
   width: 100%;

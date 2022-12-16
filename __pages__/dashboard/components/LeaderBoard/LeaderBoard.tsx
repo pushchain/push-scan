@@ -13,7 +13,7 @@ import {
   TableCell,
   useMediaQuery,
 } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
+import { useTheme } from 'styled-components';
 import { DAPP_LINKS } from 'utils/constants';
 import { useTheme as getTheme } from 'contexts/ThemeContext';
 import { tableCellClasses } from '@mui/material/TableCell';
@@ -36,10 +36,8 @@ export default function LeaderBoard({
         sx={{
           height: '100%',
           padding: isMobile ? '30px 5px 0px' : '30px',
-          backgroundColor: isMobile
-            ? 'transparent'
-            : theme.palette.background.card,
-          border: `1px solid ${theme.palette.outline}`,
+          backgroundColor: isMobile ? 'transparent' : theme.default.secondaryBg,
+          border: `1px solid ${theme.default.border}`,
           '@media(max-width:480px)': {
             border: 'none',
           },
@@ -103,8 +101,8 @@ export default function LeaderBoard({
                         sx={{
                           display: 'flex',
                           color: !isDarkMode
-                            ? theme.palette.text.primary
-                            : theme.palette.text.secondary,
+                            ? theme.default.color
+                            : theme.default.secondaryColor,
                         }}
                       >
                         <Avatar
@@ -130,8 +128,8 @@ export default function LeaderBoard({
                     align="right"
                     sx={{
                       color: !isDarkMode
-                        ? theme.palette.text.primary
-                        : theme.palette.text.secondary,
+                        ? theme.default.color
+                        : theme.default.secondaryColor,
                     }}
                   >
                     {channel?.subscriber?.toLocaleString()}

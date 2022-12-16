@@ -1,4 +1,4 @@
-import { useTheme } from '@mui/material/styles';
+import { useTheme } from 'styled-components';
 import { useTheme as Theme } from 'contexts/ThemeContext';
 
 export default function BaseOptions() {
@@ -53,8 +53,8 @@ export default function BaseOptions() {
       },
 
       // animations: { enabled: false },
-      foreColor: theme.palette.text.disabled,
-      fontFamily: theme.typography.fontFamily,
+      foreColor: theme.default.leaderBoardHeader,
+      //fontFamily: theme.typography.fontFamily,
     },
 
     // States
@@ -97,7 +97,7 @@ export default function BaseOptions() {
     // Grid
     grid: {
       strokeDashArray: 3,
-      borderColor: theme.palette.divider,
+      borderColor: theme.default.secondaryColor, // need to find out
     },
 
     // Xaxis
@@ -114,7 +114,7 @@ export default function BaseOptions() {
     // Markers
     markers: {
       size: 0,
-      strokeColors: theme.palette.background.paper,
+      strokeColors: theme.default.timeFilterBg,
     },
 
     // Tooltip
@@ -139,7 +139,7 @@ export default function BaseOptions() {
       fontWeight: 500,
       itemMargin: { horizontal: 12 },
       labels: {
-        colors: theme.palette.text.primary,
+        colors: theme.default.color,
       },
     },
 
@@ -175,37 +175,37 @@ export default function BaseOptions() {
       radar: {
         polygons: {
           fill: { colors: ['transparent'] },
-          strokeColors: theme.palette.divider,
-          connectorColors: theme.palette.divider,
+          strokeColors: theme.default.secondaryColor, // check
+          connectorColors: theme.default.secondaryColor, //check
         },
       },
       // polarArea
       polarArea: {
         rings: {
-          strokeColor: theme.palette.divider,
+          strokeColor: theme.default.secondaryColor, //check
         },
         spokes: {
-          connectorColors: theme.palette.divider,
+          connectorColors: theme.default.secondaryColor, //check
         },
       },
     },
 
     // Responsive
-    responsive: [
-      {
-        // sm
-        breakpoint: theme.breakpoints.values.sm,
-        options: {
-          plotOptions: { bar: { columnWidth: '40%' } },
-        },
-      },
-      {
-        // md
-        breakpoint: theme.breakpoints.values.md,
-        options: {
-          plotOptions: { bar: { columnWidth: '32%' } },
-        },
-      },
-    ],
+    // responsive: [
+    //   {
+    //     // sm
+    //     breakpoint: theme.breakpoints.values.sm,
+    //     options: {
+    //       plotOptions: { bar: { columnWidth: '40%' } },
+    //     },
+    //   },
+    //   {
+    //     // md
+    //     breakpoint: theme.breakpoints.values.md,
+    //     options: {
+    //       plotOptions: { bar: { columnWidth: '32%' } },
+    //     },
+    //   },
+    // ],
   };
 }

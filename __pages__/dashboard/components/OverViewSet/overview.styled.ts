@@ -1,5 +1,4 @@
-import styled from '@emotion/styled';
-import { Container, Typography } from '@mui/material';
+import styled from 'styled-components';
 
 export const OverviewItem = styled.div`
   border-radius: 28px;

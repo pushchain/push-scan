@@ -9,7 +9,7 @@ import {
 import dynamic from 'next/dynamic';
 import BaseOptions from '../BaseOptions';
 import { DAPP_LINKS } from 'utils/constants';
-import { useTheme } from '@mui/material/styles';
+import { useTheme } from 'styled-components';
 import _ from 'lodash';
 const ReactApexChart = dynamic(() => import('react-apexcharts'), {
   ssr: false,
@@ -88,7 +88,7 @@ export default function HorizontalChart({
         },
         style: {
           fontSize: '12px',
-          colors: theme.palette.text.secondary,
+          colors: theme.default.secondaryColor,
           cursor: 'pointer',
         },
       },
@@ -108,7 +108,7 @@ export default function HorizontalChart({
         },
         style: {
           fontSize: '12px',
-          colors: theme.palette.text.secondary,
+          colors: theme.default.secondaryColor,
         },
       },
       axisBorder: {
@@ -141,10 +141,8 @@ export default function HorizontalChart({
       <Card
         sx={{
           height: 'auto',
-          backgroundColor: isMobile
-            ? 'transparent'
-            : theme.palette.background.card,
-          border: `1px solid ${theme.palette.outline}`,
+          backgroundColor: isMobile ? 'transparent' : theme.default.secondaryBg,
+          border: `1px solid ${theme.default.border}`,
           padding: isMobile ? '35px 0px 0px' : '35px 40px',
           '@media(max-width:480px)': {
             border: 'none',
