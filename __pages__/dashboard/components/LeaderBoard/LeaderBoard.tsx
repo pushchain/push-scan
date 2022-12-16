@@ -1,9 +1,5 @@
 import React from 'react';
 import {
-  Card,
-  CardContent,
-  CardHeader,
-  Box,
   Grid,
   Avatar,
   Table,
@@ -17,7 +13,7 @@ import { useTheme } from 'styled-components';
 import { DAPP_LINKS } from 'utils/constants';
 import { useTheme as getTheme } from 'contexts/ThemeContext';
 import { tableCellClasses } from '@mui/material/TableCell';
-import { ItemVV2, ItemHV2 } from 'theme/SharedStyling';
+import { ItemVV2, ItemHV2, ImageV2, SpanV2 } from 'theme/SharedStyling';
 import styled from 'styled-components';
 import { Text } from '../../dashboard.styled';
 
@@ -37,24 +33,15 @@ export default function LeaderBoard({
     <Grid item xs={12} md={4} lg={4} mb={isMobile ? 2 : 0}>
       <CardContainer
         padding={isMobile ? '30px 5px 0px' : '30px'}
-        backgroundColor={isMobile ? 'transparent' : theme.default.cardBg}
+        paddingLeft="30px"
+        paddingRight="30px"
+        background={isMobile ? 'transparent' : theme.default.cardBg}
         border={`1px solid ${theme.default.border}`}
       >
-        {/* <CardHeader
-          style={{
-            fontWeight: 500,
-            fontSize: '18px',
-            padding: '0px',
-            color: theme.default.color,
-            // padding: isMobile ? '24px 0px 8px' : '24px 24px 0px',
-          }}
-          title={title}
-        /> */}
         <Text weight={500} size="18px" color={theme.default.color}>
           {title}
         </Text>
-        <CardContent style={{ padding: '0px' }}>
-          {/* <CardContent style={{ padding: isMobile ? '0px' : '0px 24px 24px' }}> */}
+        <ItemHV2>
           <Table
             sx={{
               width: '100%',
@@ -99,20 +86,20 @@ export default function LeaderBoard({
                       target={'_blank'}
                       rel={'noreferrer'}
                     >
-                      <Box
-                        sx={{
-                          display: 'flex',
-                          color: !isDarkMode
+                      <ItemHV2
+                        justifyContent="flex-start"
+                        color={
+                          !isDarkMode
                             ? theme.default.color
-                            : theme.default.secondaryColor,
-                        }}
+                            : theme.default.secondaryColor
+                        }
                       >
                         <Avatar
                           src={channel.icon}
                           sx={{ width: 26, height: 26, marginRight: 1 }}
                         />
 
-                        <Box component="span">
+                        <TextContainer>
                           {' '}
                           {isMobile && isTrending
                             ? channel.name.length < 15
@@ -121,8 +108,8 @@ export default function LeaderBoard({
                             : channel.name.length < 15
                             ? channel.name
                             : channel.name.substr(0, 15) + '...'}
-                        </Box>
-                      </Box>
+                        </TextContainer>
+                      </ItemHV2>
                     </a>
                   </TableCell>
 
@@ -138,22 +125,16 @@ export default function LeaderBoard({
                   </TableCell>
                   {isTrending && (
                     <TableCell align="right">
-                      <Box
-                        sx={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'flex-end',
-                          color: channel?.trend >= 0 ? '#30CC8B' : '#E93636',
-                          paddingLeft: '20px',
-                        }}
+                      <ItemHV2
+                        alignItems="center"
+                        justifyContent="flex-end"
+                        color={channel?.trend >= 0 ? '#30CC8B' : '#E93636'}
+                        paddingLeft="20px"
                       >
-                        <Box
-                          component="img"
-                          sx={{
-                            height: '6.67px',
-                            width: '10px',
-                            marginRight: 0.5,
-                          }}
+                        <ImageV2
+                          height="6.67px"
+                          width="10px"
+                          marginRight="4px"
                           alt="Trend."
                           src={
                             channel?.trend >= 0
@@ -162,14 +143,14 @@ export default function LeaderBoard({
                           }
                         />
                         {channel?.trend}%
-                      </Box>
+                      </ItemHV2>
                     </TableCell>
                   )}
                 </TableRow>
               ))}
             </TableBody>
           </Table>
-        </CardContent>
+        </ItemHV2>
       </CardContainer>
     </Grid>
   );
@@ -183,4 +164,10 @@ const CardContainer = styled(ItemVV2)`
   @media (max-width: 480px) {
     border: none;
   }
+`;
+
+const TextContainer = styled(SpanV2)`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 `;

@@ -24,7 +24,7 @@ export default function Footer() {
             }
           />
         </a>
-        <Box display="flex" gap={3}>
+        <LinkContainer>
           <a href="https://push.org/tos" target={'_blank'} rel={'noreferrer'}>
             <Text color="#9C9CBE">Terms</Text>
           </a>
@@ -42,7 +42,7 @@ export default function Footer() {
           >
             <Text color="#9C9CBE">Docs</Text>
           </a>
-        </Box>
+        </LinkContainer>
       </LeftContainer>
       <RightContainer>
         <a
@@ -71,14 +71,32 @@ export default function Footer() {
   );
 }
 
+const LinkContainer = styled(ItemHV2)`
+  justify-content: flex-start;
+  gap: 17px;
+  @media (max-width: 480px) {
+    width: 100%;
+    justify-content: center;
+  }
+`;
+
 const LeftContainer = styled(ItemHV2)`
-  gap='30px';
-  '@media(max-width:480px)': {
-    flexdirection: 'column';
+  gap: 37px;
+  justify-content: flex-start;
+  @media (max-width: 480px) {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
   }
 `;
 
 const RightContainer = styled(ItemHV2)`
-  gap={3};
+  gap: 17px;
+  justify-content: flex-end;
   cursor: 'pointer';
+  @media (max-width: 480px) {
+    width: 100%;
+    justify-content: center;
+  }
 `;

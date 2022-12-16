@@ -12,7 +12,8 @@ export const Select = styled.div`
   align-items: center;
   padding: 0 15px 0 8px;
   color: ${(props) => props?.color || '#fff'};
-  font-size: 18px;
+  font-size: 15px;
+  font-weight: 400;
   margin-right: ${(props) => props?.marginRight || '10px'};
   &:hover {
     cursor: pointer;
@@ -82,7 +83,7 @@ export const TimeFilter = styled.button`
   border: none;
   background-color: ${(props) => props.background || '#cf1c84'};
   color: ${(props) => props.color || '#657795'};
-  font-weight: 550;
+  font-weight: 500;
   font-size: 15px;
   border-radius: 12px;
   min-width: 40px;

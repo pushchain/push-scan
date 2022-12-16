@@ -9,11 +9,13 @@ import {
 import dynamic from 'next/dynamic';
 import BaseOptions from '../BaseOptions';
 import { DAPP_LINKS } from 'utils/constants';
-import { useTheme } from 'styled-components';
+import styled, { useTheme } from 'styled-components';
 import _ from 'lodash';
 const ReactApexChart = dynamic(() => import('react-apexcharts'), {
   ssr: false,
 });
+import { ItemVV2, ItemHV2 } from 'theme/SharedStyling';
+import { Text } from '../../dashboard.styled';
 
 export default function HorizontalChart({
   title,
@@ -138,28 +140,35 @@ export default function HorizontalChart({
 
   return (
     <Grid item xs={12} sm={12} md={6} lg={6}>
-      <Card
-        sx={{
-          height: 'auto',
-          backgroundColor: isMobile ? 'transparent' : theme.default.cardBg,
-          border: `1px solid ${theme.default.border}`,
-          borderRadius: '28px',
-          padding: isMobile ? '35px 0px 0px' : '35px 40px',
-          '@media(max-width:480px)': {
-            border: 'none',
-          },
-        }}
+      <CardContainer
+        color={theme.default.color}
+        alignItems="flex-start"
+        height="auto"
+        width="100%"
+        background={isMobile ? 'transparent' : theme.default.cardBg}
+        border={`1px solid ${theme.default.border}`}
+        borderRadius="28px"
+        padding={isMobile ? '35px 0px 0px' : '35px 40px'}
       >
-        <CardHeader style={{ padding: 0 }} title={title} />
-        <CardContent style={{ padding: 0 }}>
+        <Text weight={500} size="18px" color={theme.default.color}>
+          {title}
+        </Text>
+        <ItemHV2 flex={1}>
           <ReactApexChart
             type="bar"
             series={options.series}
             options={options}
             height={300}
+            width={500}
           />
-        </CardContent>
-      </Card>
+        </ItemHV2>
+      </CardContainer>
     </Grid>
   );
 }
+
+const CardContainer = styled(ItemVV2)`
+  @media (max-width: 480px) {
+    border: 'none';
+  }
+`;

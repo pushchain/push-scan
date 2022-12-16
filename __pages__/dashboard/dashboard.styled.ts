@@ -1,11 +1,9 @@
 import styled from 'styled-components';
 import { Container } from '@mui/system';
-import { Typography } from '@mui/material';
 
 export const DashBoardContainer = styled(Container)`
   width: 100%;
   margin: 0px;
-  // margin-top: ${(props) => props.margintop};
   height: auto;
   display: flex;
   flex-direction: column;

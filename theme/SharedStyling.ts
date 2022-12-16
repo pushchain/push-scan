@@ -58,8 +58,6 @@ export const ItemHV2 = styled.div`
   justify-content: ${(props) => props.justifyContent || 'center'};
   left: ${(props) => props.left || 'auto'};
   margin: ${(props) => props.margin || '0px'};
-  margin-top: ${(props) => props.marginTop || '0px'};
-  margin-bottom: ${(props) => props.marginBottom || '0px'};
   max-width: ${(props) => props.maxWidth || 'initial'};
   min-width: ${(props) => props.minWidth || 'auto'};
   overflow: ${(props) => props.overflow || 'initial'};
@@ -72,6 +70,8 @@ export const ItemHV2 = styled.div`
   width: ${(props) => props.width || 'auto'};
   z-index: ${(props) => props.zIndex || 'auto'};
   gap: ${(props) => props.gap || '0px'};
+  font-size: ${(props) => props.fontSize || '14px'};
+  color: ${(props) => props.color || themeLight.default.primary};
 
   &:hover & {
     filter: ${(props) =>
@@ -207,6 +207,7 @@ export const ImageV2 = styled.img`
   padding: ${(props) => props.padding || '0px'};
   width: ${(props) => props.width || '100%'};
   margin: ${(props) => props.margin || '0px'};
+  margin-right: ${(props) => props.marginRight || '0px'};
   vertical-align: ${(props) => props.verticalAlign || 'auto'};
   border-radius: ${(props) => props.borderRadius || 'initial'};
   overflow: ${(props) => props.overflow || 'initial'};

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Box, useMediaQuery } from '@mui/material';
+import { Avatar, Box, useMediaQuery } from '@mui/material';
 import {
   Select,
   OptionList,
@@ -8,6 +8,8 @@ import {
   TimeFilter,
 } from './LineChartSet/linchartset.styled';
 import styled from 'styled-components';
+import { useTheme } from 'contexts/ThemeContext';
+import { ItemHV2, ImageV2, SpanV2 } from 'theme/SharedStyling';
 
 export default function Filters({
   selectedChannel,
@@ -26,6 +28,7 @@ export default function Filters({
   handleTimeFilter,
 }) {
   const isMobile = useMediaQuery('(max-width:768px)');
+  const { isDarkMode } = useTheme();
   const [channels, setChannels] = React.useState<any[]>(channelList);
 
   const handleChange = (event: any) => {
@@ -42,21 +45,7 @@ export default function Filters({
 
   return (
     <>
-      <Box
-        display="flex"
-        sx={{
-          '@media(max-width:480px)': {
-            width: '100%',
-            justifyContent: 'space-between',
-            marginBottom: '10px',
-          },
-          '@media(max-width:768px)': {
-            width: '100%',
-            justifyContent: 'space-between',
-            marginBottom: '10px',
-          },
-        }}
-      >
+      <FirstFilterContainer>
         <Select
           background="#cf1c84"
           color="#fff"
@@ -73,14 +62,11 @@ export default function Filters({
             onClick={() => setShowChannel(!showChannel)}
           >
             {selectedChannel?.icon && (
-              <Box
-                component="img"
-                sx={{
-                  height: '33px',
-                  width: '33px',
-                  marginRight: '5px',
-                  borderRadius: '50%',
-                }}
+              <ImageV2
+                height="33px"
+                width="33px"
+                marginRight="5px"
+                borderRadius="50%"
                 alt=""
                 src={selectedChannel?.icon}
               />
@@ -99,12 +85,9 @@ export default function Filters({
               {selectedChannel?.name}
             </Box>
           </Box>
-          <Box
-            component="img"
-            sx={{
-              height: '20px',
-              width: '20px',
-            }}
+          <ImageV2
+            height="20px"
+            width="20px"
             alt=""
             src={'./static/caret-down-white.png'}
             onClick={() => setShowChannel(!showChannel)}
@@ -131,7 +114,7 @@ export default function Filters({
                   },
                 }}
               >
-                {channels.map((channel, index) => (
+                {channelList.map((channel, index) => (
                   <Option
                     key={index}
                     onClick={() => {
@@ -140,14 +123,11 @@ export default function Filters({
                     }}
                   >
                     {channel?.icon && (
-                      <Box
-                        component="img"
-                        sx={{
-                          height: '33px',
-                          width: '33px',
-                          marginRight: '5px',
-                          borderRadius: '50%',
-                        }}
+                      <ImageV2
+                        height="33px"
+                        width="33px"
+                        borderRadius="33px"
+                        marginRight="5px"
                         alt=""
                         src={channel?.icon}
                       />
@@ -173,26 +153,20 @@ export default function Filters({
         </Select>
         <Select
           background="transparent"
-          color="#657795"
+          color={!isDarkMode ? '#657795' : '#B6BCD6'}
           border="#657795"
           width="80px"
           marginRight={isMobile ? '0px' : '10px'}
         >
-          <Box
-            sx={{
-              display: 'flex',
-              justifyContent: 'flex-start',
-              alignItems: 'center',
-            }}
+          <ItemHV2
+            justifyContent="flex-start"
             onClick={() => setShowChain(!showChain)}
           >
-            <Box
-              component="img"
-              sx={{
-                height: '33px',
-                width: '33px',
-                marginRight: '5px',
-              }}
+            <ImageV2
+              height="33px"
+              width="33px"
+              marginRight="5px"
+              borderRadius="50%"
               alt=""
               src={selectedChain?.image}
             />
@@ -205,13 +179,10 @@ export default function Filters({
             >
               {selectedChain?.chain}
             </Box>
-          </Box>
-          <Box
-            component="img"
-            sx={{
-              height: '20px',
-              width: '20px',
-            }}
+          </ItemHV2>
+          <ImageV2
+            height="20px"
+            width="20px"
             alt=""
             src={'./static/caret-down-black.png'}
             onClick={() => setShowChain(!showChain)}
@@ -220,13 +191,11 @@ export default function Filters({
             <OptionList>
               {chainList.map((chain, index) => (
                 <Option key={index} onClick={() => handleChainChange(chain)}>
-                  <Box
-                    component="img"
-                    sx={{
-                      height: '33px',
-                      width: '33px',
-                      marginRight: '5px',
-                    }}
+                  <ImageV2
+                    height="33px"
+                    width="33px"
+                    marginRight="5px"
+                    borderRadius="50%"
                     alt=""
                     src={chain.image}
                     onClick={() => setShowChain(!showChain)}
@@ -245,7 +214,7 @@ export default function Filters({
             </OptionList>
           )}
         </Select>
-      </Box>
+      </FirstFilterContainer>
       <TimeFilterContainer>
         {TimeFilterOptions?.map((time, index) => (
           <TimeFilter
@@ -275,4 +244,18 @@ const Searchbar = styled.input`
   background-color: transaparent;
   border-radius: 16px;
   font-size: 15px;
+`;
+
+const FirstFilterContainer = styled(ItemHV2)`
+justify-content:flex-start;
+@media(max-width:480px){
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 10px;
+};
+@media(max-width:768px) {
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 10px;
+},
 `;

@@ -66,12 +66,7 @@ export default function OverViewSet() {
 
   return (
     <>
-      <ItemVV2
-        width="100%"
-        marginTop="50px"
-        marginBottom="30px"
-        alignItems="flex-start"
-      >
+      <ItemVV2 width="100%" margin="50px 0px 30px" alignItems="flex-start">
         <Text size="18px" weight={400}>
           Overview
         </Text>

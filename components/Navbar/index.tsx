@@ -32,7 +32,7 @@ export default function Navbar() {
       display="flex"
       flexDirection="row"
       justifyContent="space-between"
-      padding="0px 50px"
+      padding=" 0px 50px"
       height="100px"
       position="static"
     >
