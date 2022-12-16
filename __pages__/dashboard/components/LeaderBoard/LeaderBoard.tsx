@@ -17,6 +17,9 @@ import { useTheme } from 'styled-components';
 import { DAPP_LINKS } from 'utils/constants';
 import { useTheme as getTheme } from 'contexts/ThemeContext';
 import { tableCellClasses } from '@mui/material/TableCell';
+import { ItemVV2, ItemHV2 } from 'theme/SharedStyling';
+import styled from 'styled-components';
+import { Text } from '../../dashboard.styled';
 
 export default function LeaderBoard({
   title,
@@ -32,26 +35,24 @@ export default function LeaderBoard({
   const { isDarkMode } = getTheme();
   return (
     <Grid item xs={12} md={4} lg={4} mb={isMobile ? 2 : 0}>
-      <Card
-        sx={{
-          height: '100%',
-          padding: isMobile ? '30px 5px 0px' : '30px',
-          backgroundColor: isMobile ? 'transparent' : theme.default.secondaryBg,
-          border: `1px solid ${theme.default.border}`,
-          '@media(max-width:480px)': {
-            border: 'none',
-          },
-        }}
+      <CardContainer
+        padding={isMobile ? '30px 5px 0px' : '30px'}
+        backgroundColor={isMobile ? 'transparent' : theme.default.cardBg}
+        border={`1px solid ${theme.default.border}`}
       >
-        <CardHeader
-          title={title}
-          sx={{
+        {/* <CardHeader
+          style={{
             fontWeight: 500,
             fontSize: '18px',
             padding: '0px',
+            color: theme.default.color,
             // padding: isMobile ? '24px 0px 8px' : '24px 24px 0px',
           }}
-        />
+          title={title}
+        /> */}
+        <Text weight={500} size="18px" color={theme.default.color}>
+          {title}
+        </Text>
         <CardContent style={{ padding: '0px' }}>
           {/* <CardContent style={{ padding: isMobile ? '0px' : '0px 24px 24px' }}> */}
           <Table
@@ -60,7 +61,8 @@ export default function LeaderBoard({
               [`& .${tableCellClasses.root}`]: {
                 borderBottom: 'none',
                 // fontSize: "14px",
-                fontWeight: 600,
+                fontFamily: 'Strawford,sans-serif',
+                fontWeight: 500,
                 padding: '0px',
                 paddingTop: '18px',
                 // paddingBottom: '9px',
@@ -168,7 +170,17 @@ export default function LeaderBoard({
             </TableBody>
           </Table>
         </CardContent>
-      </Card>
+      </CardContainer>
     </Grid>
   );
 }
+
+const CardContainer = styled(ItemVV2)`
+  height: 100%;
+  border: 1px solid ${({ theme }) => theme.default.border};
+  border-radius: 28px;
+  align-items: flex-start;
+  @media (max-width: 480px) {
+    border: none;
+  }
+`;

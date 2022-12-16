@@ -141,8 +141,9 @@ export default function HorizontalChart({
       <Card
         sx={{
           height: 'auto',
-          backgroundColor: isMobile ? 'transparent' : theme.default.secondaryBg,
+          backgroundColor: isMobile ? 'transparent' : theme.default.cardBg,
           border: `1px solid ${theme.default.border}`,
+          borderRadius: '28px',
           padding: isMobile ? '35px 0px 0px' : '35px 40px',
           '@media(max-width:480px)': {
             border: 'none',

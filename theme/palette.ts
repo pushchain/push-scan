@@ -14,6 +14,7 @@ export const themeLight = {
     footerLinkText: '#9C9CBE',
     tooltipBackground: '#E5E8F6',
     timeFilterBg: '#F4F5FA',
+    cardBg: '#FFFFFF',
   },
 
   // Default Background Theme
@@ -37,6 +38,7 @@ export const themeDark = {
     footerLinkText: '#B6BCD6',
     tooltipBackground: '#2F3137',
     timeFilterBg: '#404650',
+    cardBg: '#404650',
   },
 
   // Default Background Theme

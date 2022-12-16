@@ -9,6 +9,7 @@ import {
 } from '@mui/material';
 import ReactECharts from 'echarts-for-react';
 import { useTheme } from 'styled-components';
+import { ItemHV2 } from 'theme/SharedStyling';
 
 const GovernanceGraph = ({ data, title, label, value }: any) => {
   const theme = useTheme();
@@ -121,8 +122,9 @@ const GovernanceGraph = ({ data, title, label, value }: any) => {
         sx={{
           height: '100%',
           width: '100%',
-          backgroundColor: isMobile ? 'transparent' : theme.default.secondaryBg,
+          backgroundColor: isMobile ? 'transparent' : theme.default.cardBg,
           border: `1px solid ${theme.default.border}`,
+          borderRadius: '28px',
           padding: isMobile ? '35px 0px 0px' : '25px 30px',
           '@media(max-width:480px)': {
             border: 'none',
@@ -134,12 +136,18 @@ const GovernanceGraph = ({ data, title, label, value }: any) => {
           style={{
             padding: 0,
             marginBottom: value ? '0px' : !isMobile ? '40px' : '0px',
+            color: theme.default.color,
+            fontSize: '18px',
           }}
         />
         {value && (
           <Typography
             variant="subtitle1"
-            style={{ fontWeight: 600, fontSize: '28px' }}
+            style={{
+              fontWeight: 500,
+              fontSize: '28px',
+              color: theme.default.color,
+            }}
           >
             ${value.toLocaleString()}
           </Typography>

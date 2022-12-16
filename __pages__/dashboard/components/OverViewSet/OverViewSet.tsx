@@ -1,5 +1,4 @@
 import React from 'react';
-import { Grid, Box, Typography, useMediaQuery } from '@mui/material';
 import { useTheme } from 'styled-components';
 import { OverviewItem } from './overview.styled';
 import { Text } from '../../dashboard.styled';
@@ -11,6 +10,7 @@ import {
 } from 'utils/api';
 import { useData } from 'contexts/DataContext';
 import { HorizontalLine } from '../../dashboard.styled';
+import { ItemHV2, ItemVV2, ImageV2 } from 'theme/SharedStyling';
 
 export default function OverViewSet() {
   const { token } = useData();
@@ -24,21 +24,25 @@ export default function OverViewSet() {
       image: './static/push-integration.svg',
       title: 'Push Integrations',
       value: pushIntegrations,
+      size: 60,
     },
     {
       image: './static/chat-sent.svg',
       title: 'Chat Sent',
       value: chatSent,
+      size: 51,
     },
     {
       image: './static/chat-user.svg',
       title: 'Chat Users',
       value: chatUsers,
+      size: 65,
     },
     {
       image: './static/notifications.svg',
       title: 'Notifications Sent',
       value: notifiactionsSent,
+      size: 41,
     },
   ];
   const theme = useTheme();
@@ -62,54 +66,48 @@ export default function OverViewSet() {
 
   return (
     <>
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          flex: 1,
-          width: '100%',
-        }}
-        mt={5}
-        mb={3}
+      <ItemVV2
+        width="100%"
+        marginTop="50px"
+        marginBottom="30px"
+        alignItems="flex-start"
       >
         <Text size="18px" weight={400}>
           Overview
         </Text>
-        <Grid
-          container
+        <ItemHV2
           width="100%"
-          gap={3}
+          gap="23px"
           justifyContent="space-between"
-          mt={2}
+          marginTop="20px"
         >
           {overViewData.map((data) => (
             <OverviewItem
               key={data.title}
               style={{
-                backgroundColor: theme.default.secondaryBg,
+                backgroundColor: theme.default.cardBg,
                 border: `1px solid ${theme.default.border}`,
+                height: '114px',
               }}
             >
-              <Box
-                sx={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  height: '100%',
-                  justifyContent: 'space-between',
-                }}
+              <ItemVV2
+                height="64px"
+                alignItems="flex-start"
+                justifyContent="space-between"
               >
-                <Text size="18px">{data.title}</Text>
-                <Text size="36px">{data.value?.toLocaleString()}</Text>
-              </Box>
-              <Box
-                component="img"
-                src={data.image}
-                sx={{ width: '60px', height: '60px' }}
-              />
+                <Text size="18px" weight={500}>
+                  {data.title}
+                </Text>
+
+                <Text size="36px" weight={500}>
+                  {data.value?.toLocaleString()}
+                </Text>
+              </ItemVV2>
+              <ImageV2 src={data.image} width={data.size} height={data.size} />
             </OverviewItem>
           ))}
-        </Grid>
-      </Box>
+        </ItemHV2>
+      </ItemVV2>
       <HorizontalLine />
     </>
   );

@@ -9,7 +9,7 @@ import { useData } from 'contexts/DataContext';
 import { ROUTES, CREDENTIALKEYS } from 'utils/constants';
 import { RootStyle, ToolbarStyle } from './navbar.styled';
 import { Text } from '__pages__/dashboard/dashboard.styled';
-import { ItemHV2, ItemVV2, ButtonV2 } from 'theme/SharedStyling';
+import { ItemHV2, ItemVV2 } from 'theme/SharedStyling';
 
 export default function Navbar() {
   const { isDarkMode, darkModeToggle } = Theme();
@@ -46,7 +46,7 @@ export default function Navbar() {
           }}
         />
         <ItemVV2 alignItems="start" justifyContent="center">
-          <Text size={isMobile ? '24px' : '32px'} weight="600">
+          <Text size={isMobile ? '24px' : '32px'} weight="500">
             Push Snapshots
           </Text>
           {!isMobile && (

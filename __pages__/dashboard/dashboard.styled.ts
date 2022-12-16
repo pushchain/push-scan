@@ -18,14 +18,21 @@ export const DashBoardContainer = styled(Container)`
   }
 `;
 
-export const Text = styled(Typography)(
-  ({ theme, size, weight, color, marginTop }: any) => ({
-    fontSize: `${size || '16px'}`,
-    fontWeight: `${weight || 400}`,
-    color: `${color || theme.default.color}`,
-    marginTop: `${marginTop || '0px'}`,
-  })
-);
+// export const Text = styled(Typography)(
+//   ({ theme, size, weight, color, marginTop }: any) => ({
+//     fontSize: `${size || '16px'}`,
+//     fontWeight: `${weight || 400}`,
+//     color: `${color || theme.default.color}`,
+//     marginTop: `${marginTop || '0px'}`,
+//   })
+// );
+
+export const Text = styled.p`
+  font-size: ${(props) => props.size || '16px'};
+  font-weight: ${(props) => props.weight || 400};
+  color: ${(props) => props.color || props.theme.default.color};
+  margin-top: ${(props) => props.marginTop || '0px'};
+`;
 
 export const HorizontalLine = styled.div(
   ({ theme }) => `

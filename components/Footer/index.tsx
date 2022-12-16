@@ -4,21 +4,14 @@ import { FooterContainer } from './footer.styled';
 import { useTheme } from 'contexts/ThemeContext';
 import { Box, Grid } from '@mui/material';
 import { Text } from '__pages__/dashboard/dashboard.styled';
+import { ItemHV2 } from 'theme/SharedStyling';
+import styled from 'styled-components';
 
 export default function Footer() {
   const { isDarkMode } = useTheme();
   return (
     <FooterContainer>
-      <Box
-        display="flex"
-        alignItems="center"
-        gap="30px"
-        sx={{
-          '@media(max-width:480px)': {
-            flexDirection: 'column',
-          },
-        }}
-      >
+      <LeftContainer>
         <a href="https://www.push.org" target={'_blank'} rel={'noreferrer'}>
           <Box
             component="img"
@@ -50,13 +43,8 @@ export default function Footer() {
             <Text color="#9C9CBE">Docs</Text>
           </a>
         </Box>
-      </Box>
-      <Box
-        display="flex"
-        alignItems="center"
-        gap={3}
-        sx={{ cursor: 'pointer' }}
-      >
+      </LeftContainer>
+      <RightContainer>
         <a
           href="https://twitter.com/PushProtocol"
           target={'_blank'}
@@ -78,7 +66,19 @@ export default function Footer() {
         >
           <Box component="img" src="./static/discord.svg" />
         </a>
-      </Box>
+      </RightContainer>
     </FooterContainer>
   );
 }
+
+const LeftContainer = styled(ItemHV2)`
+  gap='30px';
+  '@media(max-width:480px)': {
+    flexdirection: 'column';
+  }
+`;
+
+const RightContainer = styled(ItemHV2)`
+  gap={3};
+  cursor: 'pointer';
+`;
