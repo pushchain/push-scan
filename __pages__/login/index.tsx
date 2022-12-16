@@ -32,10 +32,10 @@ export default function LoginView() {
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
-          height: '80vh',
+          minHeight: '60vh',
         }}
       >
-        <Paper style={{ marginTop: '150px' }}>
+        <Paper>
           <Typography variant="h4" textAlign={'center'} mt={3}>
             Admin Sign In
           </Typography>
