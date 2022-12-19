@@ -47,7 +47,7 @@ export default function LeaderBoard({
               [`& .${tableCellClasses.root}`]: {
                 borderBottom: 'none',
                 // fontSize: "14px",
-                fontFamily: 'Strawford,sans-serif',
+                fontFamily: 'Strawford, sans-serif',
                 fontWeight: 500,
                 padding: '0px',
                 paddingTop: '18px',
@@ -122,7 +122,7 @@ export default function LeaderBoard({
                         alignItems="center"
                         justifyContent="flex-end"
                         color={channel?.trend >= 0 ? '#30CC8B' : '#E93636'}
-                        paddingLeft="20px"
+                        padding="0px 0px 0px 30px"
                       >
                         <ImageV2
                           height="6.67px"

@@ -31,17 +31,17 @@ export default function Navbar() {
         <Logo
           src="./static/push-icon.svg"
           sx={{
-            width: isMobile ? 38 : 65,
-            height: isMobile ? 39 : 66,
-            margin: '33px 10px 33px 0px',
+            width: isMobile ? 38 : 54,
+            height: isMobile ? 39 : 56,
+            margin: isMobile ? '33px 10px 33px 0px' : '39px 10px 33px 0px',
           }}
         />
-        <ItemVV2 alignItems="start" justifyContent="center">
+        <ItemVV2 alignItems="flex-start" justifyContent="center">
           <Text size={isMobile ? '24px' : '32px'} weight="500">
             Push Snapshots
           </Text>
           {!isMobile && (
-            <Text size="15px" color={theme.text.secondary}>
+            <Text size="15px" color={theme.text.secondary} weight="400">
               Explore trends, activity and track growth on the Push Network
             </Text>
           )}
