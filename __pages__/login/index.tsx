@@ -32,7 +32,7 @@ export default function LoginView() {
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
-          minHeight: '60vh',
+          minHeight: '70vh',
         }}
       >
         <Paper>

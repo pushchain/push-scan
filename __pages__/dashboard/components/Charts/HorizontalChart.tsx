@@ -61,18 +61,7 @@ export default function HorizontalChart({
         },
       },
     },
-    colors: [
-      '#DF4FA3',
-      '#AB7FEA',
-      '#B477E4',
-      '#C66BD3',
-      '#C66BD3',
-      '#D874D7',
-      '#E479CC',
-      '#F16CB3',
-      '#F982AC',
-      '#FF95A7',
-    ],
+    colors: theme.graph.barchartColorSet,
 
     xaxis: {
       categories: category,
@@ -90,7 +79,7 @@ export default function HorizontalChart({
         },
         style: {
           fontSize: '12px',
-          colors: theme.default.secondaryColor,
+          colors: theme.graph.primaryLabel,
           cursor: 'pointer',
         },
       },
@@ -110,7 +99,7 @@ export default function HorizontalChart({
         },
         style: {
           fontSize: '12px',
-          colors: theme.default.secondaryColor,
+          colors: theme.graph.primaryLabel,
         },
       },
       axisBorder: {
@@ -141,18 +130,18 @@ export default function HorizontalChart({
   return (
     <Grid item xs={12} sm={12} md={6} lg={6}>
       <CardContainer
-        color={theme.default.color}
+        color={theme.text.primary}
         alignItems="flex-start"
         justifyContent="flex-start"
         height="auto"
         width="100%"
-        background={isMobile ? 'transparent' : theme.default.cardBg}
-        border={`1px solid ${theme.default.border}`}
+        background={isMobile ? 'transparent' : theme.background.card}
+        border={`1px solid ${theme.background.border}`}
         borderRadius="28px"
         minHeight="384px"
         padding={isMobile ? '35px 0px 0px' : '30px 30px 6px'}
       >
-        <Text weight={500} size="18px" color={theme.default.color}>
+        <Text weight={500} size="18px" color={theme.text.primary}>
           {title}
         </Text>
         <CardContent sx={{ width: '100%', padding: '0px' }}>

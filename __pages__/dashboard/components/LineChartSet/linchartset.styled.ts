@@ -30,7 +30,7 @@ export const OptionList = styled.div(
   top: 50px;
   left: 0px;
   border-radius: 20px;
-  background-color: ${background ? background : theme.default.bg};
+  background-color: ${background ? background : theme.background.default};
   border: 1px solid grey;
   width: inherit;
   overflow-x:hidden;
@@ -65,7 +65,7 @@ export const TimeFilterContainer = styled.div(
   ({ theme }) => `
   display:flex;
   height:42px;
-  background-color:${theme.default.timeFilterBg};
+  background-color:${theme.background.secondary};
   border-radius:16px;
   padding:5px;
   align-items:center;

@@ -1,14 +1,19 @@
 import React from 'react';
 import Link from 'next/link';
-import { FooterContainer } from './footer.styled';
-import { useTheme } from 'contexts/ThemeContext';
+import {
+  FooterContainer,
+  LinkContainer,
+  LeftContainer,
+  RightContainer,
+} from './footer.styled';
+import { useTheme as Theme } from 'contexts/ThemeContext';
 import { Box, Grid } from '@mui/material';
 import { Text } from '__pages__/dashboard/dashboard.styled';
-import { ItemHV2 } from 'theme/SharedStyling';
-import styled from 'styled-components';
+import { useTheme } from 'styled-components';
 
 export default function Footer() {
-  const { isDarkMode } = useTheme();
+  const { isDarkMode } = Theme();
+  const theme = useTheme();
   return (
     <FooterContainer>
       <LeftContainer>
@@ -26,21 +31,21 @@ export default function Footer() {
         </a>
         <LinkContainer>
           <a href="https://push.org/tos" target={'_blank'} rel={'noreferrer'}>
-            <Text color="#9C9CBE">Terms</Text>
+            <Text color={theme.text.link}>Terms</Text>
           </a>
           <a
             href="https://push.org/privacy"
             target={'_blank'}
             rel={'noreferrer'}
           >
-            <Text color="#9C9CBE">Privacy</Text>
+            <Text color={theme.text.link}>Privacy</Text>
           </a>
           <a
             href="https://docs.push.org/hub/"
             target={'_blank'}
             rel={'noreferrer'}
           >
-            <Text color="#9C9CBE">Docs</Text>
+            <Text color={theme.text.link}>Docs</Text>
           </a>
         </LinkContainer>
       </LeftContainer>
@@ -70,33 +75,3 @@ export default function Footer() {
     </FooterContainer>
   );
 }
-
-const LinkContainer = styled(ItemHV2)`
-  justify-content: flex-start;
-  gap: 17px;
-  @media (max-width: 480px) {
-    width: 100%;
-    justify-content: center;
-  }
-`;
-
-const LeftContainer = styled(ItemHV2)`
-  gap: 37px;
-  justify-content: flex-start;
-  @media (max-width: 480px) {
-    width: 100%;
-    flex-direction: column;
-    align-items: center;
-    gap: 16px;
-  }
-`;
-
-const RightContainer = styled(ItemHV2)`
-  gap: 17px;
-  justify-content: flex-end;
-  cursor: 'pointer';
-  @media (max-width: 480px) {
-    width: 100%;
-    justify-content: center;
-  }
-`;

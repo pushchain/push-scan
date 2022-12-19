@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  Grid,
-  Card,
-  CardHeader,
-  Box,
-  Typography,
-  useMediaQuery,
-} from '@mui/material';
+import { Grid, Card, useMediaQuery } from '@mui/material';
 import ReactECharts from 'echarts-for-react';
 import { useTheme } from 'styled-components';
 import { ItemHV2 } from 'theme/SharedStyling';
@@ -51,7 +44,7 @@ const GovernanceGraph = ({ data, title, label, value }: any) => {
         left: 'left',
         top: value ? 30 : 0,
         textStyle: {
-          color: theme.default.secondaryColor,
+          color: theme.graph.legendText,
           fontSize: 12,
           fontWeight: 500,
         },
@@ -62,21 +55,12 @@ const GovernanceGraph = ({ data, title, label, value }: any) => {
         },
         icon: 'roundRect',
       },
-      color: [
-        '#CF1C84',
-        '#F9BFE0',
-        '#E479CC',
-        '#AB7FEA',
-        '#C66BD3',
-        '#D874D7',
-        '#E479CC',
-        '#F16CB3',
-      ],
+      color: theme.graph.piechartColorSet,
       series: [
         {
           name: label,
           type: 'pie',
-          radius: ['35%', '70%'],
+          radius: ['38%', '70%'],
           center: isMobile ? ['50%', '50%'] : ['62%', '40%'],
           data: [...values],
           emphasis: {
@@ -91,16 +75,16 @@ const GovernanceGraph = ({ data, title, label, value }: any) => {
             // formatter: (value) =>
             //   `{a|${value?.name}}\n {b|${value?.value}}\t\t\t\t\t`,'{b}\n {d}%',
             formatter: '{a|{b}}\n {b|{d}%}\t\t\t\t',
-            color: theme.default.secondaryColor,
+            color: theme.graph.primaryLabel,
             fontWeight: 500,
             rich: {
               a: {
                 lineHeight: 10,
-                color: theme.default.secondaryColor,
+                color: theme.graph.primaryLabel,
               },
               b: {
                 fontWeight: 500,
-                color: theme.default.color,
+                color: theme.graph.secondaryLabel,
                 lineHeight: 20,
               },
             },
@@ -123,8 +107,8 @@ const GovernanceGraph = ({ data, title, label, value }: any) => {
         sx={{
           height: '100%',
           width: '100%',
-          backgroundColor: isMobile ? 'transparent' : theme.default.cardBg,
-          border: `1px solid ${theme.default.border}`,
+          backgroundColor: isMobile ? 'transparent' : theme.background.card,
+          border: `1px solid ${theme.background.border}`,
           borderRadius: '28px',
           padding: isMobile ? '35px 0px 0px' : '28px 30px',
           boxShadow: 'none',
@@ -136,7 +120,7 @@ const GovernanceGraph = ({ data, title, label, value }: any) => {
         <Text
           weight={500}
           size="18px"
-          color={theme.default.color}
+          color={theme.text.primary}
           marginBottom={value ? '5px' : '45px'}
         >
           {title}
@@ -145,7 +129,7 @@ const GovernanceGraph = ({ data, title, label, value }: any) => {
           <Text
             weight={500}
             size="28px"
-            color={theme.default.color}
+            color={theme.text.primary}
             marginBottom={value ? '5px' : '0px'}
           >
             $ {value?.toLocaleString()}

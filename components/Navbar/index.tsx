@@ -7,7 +7,6 @@ import { useTheme } from 'styled-components';
 import { useTheme as Theme } from 'contexts/ThemeContext';
 import { useData } from 'contexts/DataContext';
 import { ROUTES, CREDENTIALKEYS } from 'utils/constants';
-import { RootStyle, ToolbarStyle } from './navbar.styled';
 import { Text } from '__pages__/dashboard/dashboard.styled';
 import { ItemHV2, ItemVV2 } from 'theme/SharedStyling';
 
@@ -50,7 +49,7 @@ export default function Navbar() {
             Push Snapshots
           </Text>
           {!isMobile && (
-            <Text size="15px" color={theme.default.secondaryColor}>
+            <Text size="15px" color={theme.text.secondary}>
               Explore trends, activity and track growth on the Push Network
             </Text>
           )}
@@ -64,8 +63,8 @@ export default function Navbar() {
               variant="outlined"
               style={{
                 marginRight: '5px',
-                color: theme.default.color,
-                border: `1px solid ${theme.default.border}`,
+                color: theme.text.primary,
+                border: `1px solid ${theme.background.border}`,
               }}
               onClick={() => {
                 router.push(ROUTES.DASHBOARD);
@@ -77,8 +76,8 @@ export default function Navbar() {
               variant="outlined"
               style={{
                 marginRight: '5px',
-                color: theme.default.color,
-                border: `1px solid ${theme.default.border}`,
+                color: theme.text.primary,
+                border: `1px solid ${theme.background.border}`,
               }}
               onClick={() => router.push(ROUTES.ADMIN)}
             >
@@ -89,8 +88,8 @@ export default function Navbar() {
                 variant="outlined"
                 style={{
                   marginRight: '5px',
-                  color: theme.default.color,
-                  border: `1px solid ${theme.default.border}`,
+                  color: theme.text.primary,
+                  border: `1px solid ${theme.background.border}`,
                 }}
                 onClick={() => logout()}
               >
@@ -102,7 +101,7 @@ export default function Navbar() {
         <Box
           sx={{
             border: '1px solid #BAC4D6',
-            backgroundColor: isDarkMode ? '#282A2E' : 'transparent',
+            backgroundColor: theme.background.headerIcon,
             borderRadius: '50%',
             height: '50px',
             width: '50px',

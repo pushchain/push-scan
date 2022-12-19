@@ -54,7 +54,7 @@ export default function BaseOptions() {
       },
 
       // animations: { enabled: false },
-      foreColor: theme.default.leaderBoardHeader,
+      foreColor: theme.graph.divider,
       //fontFamily: theme.typography.fontFamily,
     },
 
@@ -98,7 +98,7 @@ export default function BaseOptions() {
     // Grid
     grid: {
       strokeDashArray: 3,
-      borderColor: theme.default.secondaryColor, // need to find out
+      borderColor: theme.graph.axis,
     },
 
     // Xaxis
@@ -115,7 +115,7 @@ export default function BaseOptions() {
     // Markers
     markers: {
       size: 0,
-      strokeColors: theme.default.timeFilterBg,
+      strokeColors: theme.graph.axis,
     },
 
     // Tooltip
@@ -140,7 +140,7 @@ export default function BaseOptions() {
       fontWeight: 500,
       itemMargin: { horizontal: 12 },
       labels: {
-        colors: theme.default.color,
+        colors: theme.text.primary,
       },
     },
 
@@ -176,17 +176,17 @@ export default function BaseOptions() {
       radar: {
         polygons: {
           fill: { colors: ['transparent'] },
-          strokeColors: theme.default.secondaryColor, // check
-          connectorColors: theme.default.secondaryColor, //check
+          strokeColors: theme.graph.axis, // check
+          connectorColors: theme.graph.axis, //check
         },
       },
       // polarArea
       polarArea: {
         rings: {
-          strokeColor: theme.default.secondaryColor, //check
+          strokeColor: theme.graph.axis, //check
         },
         spokes: {
-          connectorColors: theme.default.secondaryColor, //check
+          connectorColors: theme.graph.axisr, //check
         },
       },
     },

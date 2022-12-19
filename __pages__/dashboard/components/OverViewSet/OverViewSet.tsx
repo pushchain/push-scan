@@ -80,8 +80,8 @@ export default function OverViewSet() {
             <OverviewItem
               key={data.title}
               style={{
-                backgroundColor: theme.default.cardBg,
-                border: `1px solid ${theme.default.border}`,
+                backgroundColor: theme.background.card,
+                border: `1px solid ${theme.background.border}`,
                 height: '114px',
               }}
             >

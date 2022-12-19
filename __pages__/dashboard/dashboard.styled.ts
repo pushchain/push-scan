@@ -28,7 +28,7 @@ export const DashBoardContainer = styled(Container)`
 export const Text = styled.p`
   font-size: ${(props) => props.size || '16px'};
   font-weight: ${(props) => props.weight || 400};
-  color: ${(props) => props.color || props.theme.default.color};
+  color: ${(props) => props.color || props.theme.text.primary};
   margin-top: ${(props) => props.marginTop || '0px'};
   margin-bottom: ${(props) => props.marginBottom || '0px'};
 `;
@@ -37,7 +37,7 @@ export const HorizontalLine = styled.div(
   ({ theme }) => `
   display: none;
   height: 0px;
-  border: 0.5px solid ${theme.default.timeFilterBg};
+  border: 0.5px solid ${theme.background.timeFilter};
   width: 100%;
   margin: 0 auto;
   @media (max-width: 480px) {

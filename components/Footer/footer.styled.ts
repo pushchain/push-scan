@@ -1,3 +1,4 @@
+import { ItemHV2 } from 'theme/SharedStyling';
 import styled from 'styled-components';
 
 export const FooterContainer = styled.div`
@@ -19,5 +20,35 @@ export const FooterContainer = styled.div`
   }
   @media (min-width: 1080px) {
     padding: 47px 50px 35px;
+  }
+`;
+
+export const LinkContainer = styled(ItemHV2)`
+  justify-content: flex-start;
+  gap: 17px;
+  @media (max-width: 480px) {
+    width: 100%;
+    justify-content: center;
+  }
+`;
+
+export const LeftContainer = styled(ItemHV2)`
+  gap: 37px;
+  justify-content: flex-start;
+  @media (max-width: 480px) {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+`;
+
+export const RightContainer = styled(ItemHV2)`
+  gap: 17px;
+  justify-content: flex-end;
+  cursor: 'pointer';
+  @media (max-width: 480px) {
+    width: 100%;
+    justify-content: center;
   }
 `;

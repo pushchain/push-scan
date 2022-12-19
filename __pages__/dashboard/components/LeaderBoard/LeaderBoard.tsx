@@ -1,7 +1,7 @@
 import React from 'react';
 import {
-  Grid,
   Avatar,
+  Grid,
   Table,
   TableBody,
   TableHead,
@@ -9,12 +9,11 @@ import {
   TableCell,
   useMediaQuery,
 } from '@mui/material';
-import { useTheme } from 'styled-components';
 import { DAPP_LINKS } from 'utils/constants';
 import { useTheme as getTheme } from 'contexts/ThemeContext';
 import { tableCellClasses } from '@mui/material/TableCell';
 import { ItemVV2, ItemHV2, ImageV2, SpanV2 } from 'theme/SharedStyling';
-import styled from 'styled-components';
+import styled, { useTheme } from 'styled-components';
 import { Text } from '../../dashboard.styled';
 
 export default function LeaderBoard({
@@ -35,10 +34,10 @@ export default function LeaderBoard({
         padding={isMobile ? '30px 5px 0px' : '30px'}
         paddingLeft="30px"
         paddingRight="30px"
-        background={isMobile ? 'transparent' : theme.default.cardBg}
-        border={`1px solid ${theme.default.border}`}
+        background={isMobile ? 'transparent' : theme.background.card}
+        border={`1px solid ${theme.background.border}`}
       >
-        <Text weight={500} size="18px" color={theme.default.color}>
+        <Text weight={500} size="18px" color={theme.text.primary}>
           {title}
         </Text>
         <ItemHV2>
@@ -60,7 +59,7 @@ export default function LeaderBoard({
               <TableRow
                 sx={{
                   '& th': {
-                    color: !isDarkMode ? '#657795' : '#787E99',
+                    color: theme.text.leaderboardHeader,
                     fontSize: '12px',
                   },
                 }}
@@ -88,11 +87,7 @@ export default function LeaderBoard({
                     >
                       <ItemHV2
                         justifyContent="flex-start"
-                        color={
-                          !isDarkMode
-                            ? theme.default.color
-                            : theme.default.secondaryColor
-                        }
+                        color={theme.text.leaderboardText}
                       >
                         <Avatar
                           src={channel.icon}
@@ -116,9 +111,7 @@ export default function LeaderBoard({
                   <TableCell
                     align="right"
                     sx={{
-                      color: !isDarkMode
-                        ? theme.default.color
-                        : theme.default.secondaryColor,
+                      color: theme.text.leaderboardText,
                     }}
                   >
                     {channel?.subscriber?.toLocaleString()}
@@ -158,7 +151,7 @@ export default function LeaderBoard({
 
 const CardContainer = styled(ItemVV2)`
   height: 100%;
-  border: 1px solid ${({ theme }) => theme.default.border};
+  border: 1px solid ${({ theme }) => theme.background.border};
   border-radius: 28px;
   align-items: flex-start;
   @media (max-width: 480px) {
