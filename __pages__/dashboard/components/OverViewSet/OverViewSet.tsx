@@ -11,9 +11,11 @@ import {
 import { useData } from 'contexts/DataContext';
 import { HorizontalLine } from '../../dashboard.styled';
 import { ItemHV2, ItemVV2, ImageV2 } from 'theme/SharedStyling';
+import { useMediaQuery } from '@mui/material';
 
 export default function OverViewSet() {
   const { token } = useData();
+  const isMobile = useMediaQuery('(max-width:480px)');
   const [chatUsers, setChatUsers] = React.useState<number>(0);
   const [chatSent, setChatSent] = React.useState<number>(0);
   const [pushIntegrations, setPushIntegrations] = React.useState<number>(0);
@@ -66,7 +68,11 @@ export default function OverViewSet() {
 
   return (
     <>
-      <ItemVV2 width="100%" margin="50px 0px 30px" alignItems="flex-start">
+      <ItemVV2
+        width="100%"
+        margin={isMobile ? '25px 0px 30px' : '50px 0px 30px'}
+        alignItems="flex-start"
+      >
         <Text size="18px" weight={400} marginBottom="20px">
           Overview
         </Text>

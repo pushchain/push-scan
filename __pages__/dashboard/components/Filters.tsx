@@ -227,6 +227,7 @@ export default function Filters({
               index + 1 === selectedFilter ? '#cf1c84' : 'transparent'
             }
             color={index + 1 === selectedFilter ? '#fff' : '#657795'}
+            fontWeight={index + 1 === selectedFilter ? '700' : '500'}
           >
             {time?.time}
           </TimeFilter>

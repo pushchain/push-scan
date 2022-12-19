@@ -3,7 +3,7 @@ import { DarkModeSwitch } from 'react-toggle-dark-mode';
 import { useRouter } from 'next/router';
 import { Box, Button, useMediaQuery } from '@mui/material';
 import Logo from 'components/Logo';
-import { useTheme } from 'styled-components';
+import styled, { useTheme } from 'styled-components';
 import { useTheme as Theme } from 'contexts/ThemeContext';
 import { useData } from 'contexts/DataContext';
 import { ROUTES, CREDENTIALKEYS } from 'utils/constants';
@@ -26,16 +26,8 @@ export default function Navbar() {
   };
 
   return (
-    <ItemHV2
-      width="100%"
-      display="flex"
-      flexDirection="row"
-      justifyContent="space-between"
-      padding=" 0px 50px"
-      height="100px"
-      position="static"
-    >
-      <ItemHV2 alignItems="center" justifyContent="flex-start" width="50%">
+    <NavbarContainer>
+      <ItemHV2 alignItems="center" justifyContent="flex-start">
         <Logo
           src="./static/push-icon.svg"
           sx={{
@@ -56,7 +48,7 @@ export default function Navbar() {
         </ItemVV2>
       </ItemHV2>
 
-      <ItemHV2 justifyContent="flex-end" alignItems="center" width="50%">
+      <ItemHV2 justifyContent="flex-end" alignItems="center">
         {asPath !== '/dashboard' && (
           <>
             <Button
@@ -119,6 +111,19 @@ export default function Navbar() {
           />
         </Box>
       </ItemHV2>
-    </ItemHV2>
+    </NavbarContainer>
   );
 }
+
+const NavbarContainer = styled(ItemHV2)`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0px 50px;
+  height: 100px;
+  position: static;
+  @media (max-width: 480px) {
+    padding: 0px 15px;
+  }
+`;

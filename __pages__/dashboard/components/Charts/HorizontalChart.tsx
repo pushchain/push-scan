@@ -159,6 +159,6 @@ export default function HorizontalChart({
 
 const CardContainer = styled(ItemVV2)`
   @media (max-width: 480px) {
-    border: 'none';
+    border: none;
   }
 `;

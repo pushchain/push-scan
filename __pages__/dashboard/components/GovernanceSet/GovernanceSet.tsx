@@ -7,7 +7,7 @@ import { useData } from 'contexts/DataContext';
 import { useTheme } from 'styled-components';
 
 export default function GovernanceSet() {
-  const isSmall = useMediaQuery('(max-width:480px)');
+  const isMobile = useMediaQuery('(max-width:480px)');
   const [data, setData] = React.useState();
   const { token } = useData();
   const theme = useTheme();
@@ -28,10 +28,10 @@ export default function GovernanceSet() {
       }}
       mt={5}
     >
-      <Text size="18px" marginTop="40px">
+      <Text size="18px" marginTop={isMobile ? '0px' : '40px'}>
         Push Governance
       </Text>
-      <Grid container spacing={isSmall ? 0 : 3} justifyContent="center" mt={0}>
+      <Grid container spacing={isMobile ? 0 : 3} justifyContent="center" mt={0}>
         <GovernanceGraph
           data={data?.Governance?.PGP_Amount}
           title="Push Grants ($PUSH)"
