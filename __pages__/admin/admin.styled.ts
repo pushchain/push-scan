@@ -4,7 +4,7 @@ import { Dialog } from '@mui/material';
 import { Container } from '@mui/system';
 
 export const AdminContainer = styled(Container)`
-  margin-top: 150px;
+  margin-top: 20px;
   height: auto;
   display: flex;
   flex-direction: column;
@@ -38,7 +38,7 @@ export const StyledDialog = styled(Dialog)`
     & > div {
       box-shadow: none;
       &::-webkit-scrollbar {
-        width: 5px;
+        width: 0px;
         background-color: transparent;
         border-radius: 5px;
       },
