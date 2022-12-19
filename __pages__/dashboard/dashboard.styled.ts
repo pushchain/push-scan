@@ -30,6 +30,7 @@ export const Text = styled.p`
   font-weight: ${(props) => props.weight || 400};
   color: ${(props) => props.color || props.theme.default.color};
   margin-top: ${(props) => props.marginTop || '0px'};
+  margin-bottom: ${(props) => props.marginBottom || '0px'};
 `;
 
 export const HorizontalLine = styled.div(

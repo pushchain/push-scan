@@ -10,6 +10,7 @@ import {
 import ReactECharts from 'echarts-for-react';
 import { useTheme } from 'styled-components';
 import { ItemHV2 } from 'theme/SharedStyling';
+import { Text } from '../../../dashboard/dashboard.styled';
 
 const GovernanceGraph = ({ data, title, label, value }: any) => {
   const theme = useTheme();
@@ -75,8 +76,8 @@ const GovernanceGraph = ({ data, title, label, value }: any) => {
         {
           name: label,
           type: 'pie',
-          radius: ['40%', '70%'],
-          center: isMobile ? ['50%', '50%'] : ['65%', '40%'],
+          radius: ['35%', '70%'],
+          center: isMobile ? ['50%', '50%'] : ['62%', '40%'],
           data: [...values],
           emphasis: {
             itemStyle: {
@@ -111,7 +112,7 @@ const GovernanceGraph = ({ data, title, label, value }: any) => {
 
   return (
     <Grid
-      sx={{ height: '400px', position: 'relative' }}
+      sx={{ height: '450px', position: 'relative' }}
       item
       xs={12}
       sm={12}
@@ -125,53 +126,40 @@ const GovernanceGraph = ({ data, title, label, value }: any) => {
           backgroundColor: isMobile ? 'transparent' : theme.default.cardBg,
           border: `1px solid ${theme.default.border}`,
           borderRadius: '28px',
-          padding: isMobile ? '35px 0px 0px' : '25px 30px',
+          padding: isMobile ? '35px 0px 0px' : '28px 30px',
+          boxShadow: 'none',
           '@media(max-width:480px)': {
             border: 'none',
           },
         }}
       >
-        <CardHeader
-          title={title}
-          style={{
-            padding: 0,
-            marginBottom: value ? '0px' : !isMobile ? '40px' : '0px',
-            color: theme.default.color,
-            fontSize: '18px',
-          }}
-        />
-        {value && (
-          <Typography
-            variant="subtitle1"
-            style={{
-              fontWeight: 500,
-              fontSize: '28px',
-              color: theme.default.color,
-            }}
-          >
-            ${value.toLocaleString()}
-          </Typography>
-        )}
-        <Box
-          sx={{
-            p: 0,
-            display: 'flex',
-            justifyContent: 'center',
-            height: '100%',
-            width: '100%',
-          }}
-          dir="ltr"
+        <Text
+          weight={500}
+          size="18px"
+          color={theme.default.color}
+          marginBottom={value ? '5px' : '45px'}
         >
+          {title}
+        </Text>
+        {value && (
+          <Text
+            weight={500}
+            size="28px"
+            color={theme.default.color}
+            marginBottom={value ? '5px' : '0px'}
+          >
+            $ {value?.toLocaleString()}
+          </Text>
+        )}
+        <ItemHV2 padding="0px" height="100%" width="100%">
           <ReactECharts
             style={{
-              height: '100%',
+              height: '90%',
               width: '100%',
-              display: 'flex',
-              justifyContent: 'center',
             }}
             option={getDataPoints({ data, label })}
           />
-        </Box>
+        </ItemHV2>
       </Card>
     </Grid>
   );

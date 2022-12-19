@@ -31,6 +31,7 @@ export default function BaseOptions() {
 
     // Chart
     chart: {
+      width: '100%',
       toolbar: {
         show: false,
         tools: {
@@ -190,22 +191,23 @@ export default function BaseOptions() {
       },
     },
 
-    // Responsive
-    // responsive: [
-    //   {
-    //     // sm
-    //     breakpoint: theme.breakpoints.values.sm,
-    //     options: {
-    //       plotOptions: { bar: { columnWidth: '40%' } },
-    //     },
-    //   },
-    //   {
-    //     // md
-    //     breakpoint: theme.breakpoints.values.md,
-    //     options: {
-    //       plotOptions: { bar: { columnWidth: '32%' } },
-    //     },
-    //   },
-    // ],
+    //Responsive
+    // theme.breakpoints.values.sm,
+    responsive: [
+      {
+        // sm
+        breakpoint: '768px',
+        options: {
+          plotOptions: { bar: { columnWidth: '40%' } },
+        },
+      },
+      {
+        // md
+        breakpoint: '1024px',
+        options: {
+          plotOptions: { bar: { columnWidth: '32%' } },
+        },
+      },
+    ],
   };
 }

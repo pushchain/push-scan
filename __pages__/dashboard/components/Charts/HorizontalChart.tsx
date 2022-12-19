@@ -143,25 +143,26 @@ export default function HorizontalChart({
       <CardContainer
         color={theme.default.color}
         alignItems="flex-start"
+        justifyContent="flex-start"
         height="auto"
         width="100%"
         background={isMobile ? 'transparent' : theme.default.cardBg}
         border={`1px solid ${theme.default.border}`}
         borderRadius="28px"
-        padding={isMobile ? '35px 0px 0px' : '35px 40px'}
+        minHeight="384px"
+        padding={isMobile ? '35px 0px 0px' : '30px 30px 6px'}
       >
         <Text weight={500} size="18px" color={theme.default.color}>
           {title}
         </Text>
-        <ItemHV2 flex={1}>
+        <CardContent sx={{ width: '100%', padding: '0px' }}>
           <ReactApexChart
             type="bar"
             series={options.series}
             options={options}
             height={300}
-            width={500}
           />
-        </ItemHV2>
+        </CardContent>
       </CardContainer>
     </Grid>
   );
