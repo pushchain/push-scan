@@ -5,7 +5,7 @@ import { useTheme } from 'styled-components';
 import { ItemHV2 } from 'theme/SharedStyling';
 import { Text } from '../../../dashboard/dashboard.styled';
 
-const GovernanceGraph = ({ data, title, label, value }: any) => {
+const GovernanceGraph = ({ data, title, label, value, colorSet }: any) => {
   const theme = useTheme();
   // Checking whether screen is mobile screen
   const isMobile = useMediaQuery('(max-width:480px)');
@@ -55,7 +55,7 @@ const GovernanceGraph = ({ data, title, label, value }: any) => {
         },
         icon: 'roundRect',
       },
-      color: theme.graph.piechartColorSet,
+      color: colorSet,
       series: [
         {
           name: label,

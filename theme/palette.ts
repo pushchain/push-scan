@@ -47,16 +47,19 @@ export const themeLight = {
     secondaryLabel: '#000000',
     legendText: '#657795',
     axis: '#BAC4D6',
-    piechartColorSet: [
-      '#CF1C84',
-      '#F9BFE0',
-      '#E479CC',
+    grantsAndPIPColors: ['#CF1C84', '#F9BFE0'],
+    grantsProposals: ['#CF1C84', '#E479CC', '#F9BFE0'],
+    pgpCategories: [
+      '#DF4FA3',
       '#AB7FEA',
       '#C66BD3',
       '#D874D7',
       '#E479CC',
       '#F16CB3',
+      '#F982AC',
+      '#FF95A7',
     ],
+
     barchartColorSet: [
       '#DF4FA3',
       '#AB7FEA',
@@ -120,16 +123,19 @@ export const themeDark = {
     legendText: '#B6BCD6',
     secondaryLabel: '#FFFFFF',
     axis: '#B6BCD6',
-    piechartColorSet: [
-      '#CF1C84',
-      '#F9BFE0',
-      '#E479CC',
+    grantsAndPIPColors: ['#CF1C84', '#F9BFE0'],
+    grantsProposals: ['#CF1C84', '#E479CC', '#F9BFE0'],
+    pgpCategories: [
+      '#DF4FA3',
       '#AB7FEA',
       '#C66BD3',
       '#D874D7',
       '#E479CC',
       '#F16CB3',
+      '#F982AC',
+      '#FF95A7',
     ],
+
     barchartColorSet: [
       '#DF4FA3',
       '#AB7FEA',

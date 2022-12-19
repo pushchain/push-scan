@@ -40,8 +40,8 @@ export default function useModal() {
     const data = {
       Governance: {
         PGP_Amount: {
-          'Yet To Be Allocated': formData.allocatedgrant,
           Approved: formData.approvedgrant,
+          'Yet To Be Allocated': formData.allocatedgrant,
         },
         PGP_Proposals: {
           Approved: formData.approved,
@@ -52,15 +52,15 @@ export default function useModal() {
           Defi: formData.defi,
           NFT: formData.nft,
           DAO: formData.dao,
-          Tooling: formData.tooling,
+          Education: formData.edu,
           Marketing: formData.marketing,
-          Educational: formData.edu,
+          Tooling: formData.tooling,
           Gaming: formData.gaming,
           Other: formData.others,
         },
         PGIP: {
-          Closed: formData.rejectedimprovement,
           Approved: formData.approvedimprovement,
+          Closed: formData.rejectedimprovement,
         },
       },
       Downloads: {
