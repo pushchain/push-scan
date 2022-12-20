@@ -15,6 +15,7 @@ import {
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import useLogin from 'hooks/useLogin';
+import { useTheme } from 'styled-components';
 
 export default function LoginView() {
   const {
@@ -24,6 +25,7 @@ export default function LoginView() {
     handleMouseDownPassword,
     values,
   } = useLogin();
+  const theme = useTheme();
 
   return (
     <>
@@ -35,8 +37,13 @@ export default function LoginView() {
           minHeight: '70vh',
         }}
       >
-        <Paper>
-          <Typography variant="h4" textAlign={'center'} mt={3}>
+        <Paper style={{ backgroundColor: theme.background.secondary }}>
+          <Typography
+            variant="h4"
+            textAlign={'center'}
+            mt={3}
+            color={theme.text.primary}
+          >
             Admin Sign In
           </Typography>
           <form onSubmit={Login}>
@@ -56,11 +63,14 @@ export default function LoginView() {
                   label="Username"
                   variant="outlined"
                   autoComplete="off"
-                  style={{ width: 257 }}
+                  style={{ width: 257, color: theme.text.primary }}
                 />
               </Grid>
               <Grid item xs={12} lg={6} md={6} sx={{ width: '100%' }}>
-                <FormControl sx={{ width: 257 }} variant="outlined">
+                <FormControl
+                  sx={{ width: 257, color: theme.text.primary }}
+                  variant="outlined"
+                >
                   <InputLabel htmlFor="outlined-adornment-password">
                     Password
                   </InputLabel>

@@ -1,14 +1,13 @@
 import styled from 'styled-components';
 import { Container } from '@mui/system';
+import { ItemVV2 } from '../../theme/SharedStyling';
 
-export const DashBoardContainer = styled(Container)`
+export const DashBoardContainer = styled(ItemVV2)`
   width: 100%;
-  margin: 0px;
   height: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  @media (min-width: 600px) {
+  justify-content: flex-start;
+
+  @media (min-width: 310px) {
     padding: 0px 24px !important;
   }
   @media (min-width: 1024px) {
@@ -16,17 +15,8 @@ export const DashBoardContainer = styled(Container)`
   }
 `;
 
-// export const Text = styled(Typography)(
-//   ({ theme, size, weight, color, marginTop }: any) => ({
-//     fontSize: `${size || '16px'}`,
-//     fontWeight: `${weight || 400}`,
-//     color: `${color || theme.default.color}`,
-//     marginTop: `${marginTop || '0px'}`,
-//   })
-// );
-
 export const Text = styled.p`
-  font-size: ${(props) => props.size || '16px'};
+  font-size: ${(props) => props.size || '15px'};
   font-weight: ${(props) => props.weight || 400};
   color: ${(props) => props.color || props.theme.text.primary};
   margin-top: ${(props) => props.marginTop || '0px'};

@@ -138,7 +138,7 @@ const GovernanceGraph = ({ data, title, label, value, colorSet }: any) => {
         <ItemHV2 padding="0px" height="100%" width="100%">
           <ReactECharts
             style={{
-              height: '90%',
+              height: '100%',
               width: '100%',
             }}
             option={getDataPoints({ data, label })}
