@@ -79,7 +79,7 @@ const GovernanceGraph = ({ data, title, label, value, colorSet }: any) => {
             fontWeight: 500,
             rich: {
               a: {
-                lineHeight: 10,
+                lineHeight: 15,
                 color: theme.graph.primaryLabel,
               },
               b: {
