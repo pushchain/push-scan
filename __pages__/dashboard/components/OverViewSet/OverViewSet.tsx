@@ -91,11 +91,7 @@ export default function OverViewSet() {
                 height: '114px',
               }}
             >
-              <ItemVV2
-                height="64px"
-                alignItems="flex-start"
-                justifyContent="space-between"
-              >
+              <ItemVV2 alignItems="flex-start" justifyContent="center">
                 <Text size="18px" weight={500}>
                   {data.title}
                 </Text>

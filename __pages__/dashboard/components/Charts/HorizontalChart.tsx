@@ -79,6 +79,7 @@ export default function HorizontalChart({
         },
         style: {
           fontSize: '12px',
+          fontFamily: 'Strawford, Helvetica, sans-serif',
           colors: theme.graph.primaryLabel,
           cursor: 'pointer',
         },
@@ -99,6 +100,7 @@ export default function HorizontalChart({
         },
         style: {
           fontSize: '12px',
+          fontFamily: 'Strawford, Helvetica, sans-serif',
           colors: theme.graph.primaryLabel,
         },
       },

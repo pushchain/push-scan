@@ -123,7 +123,10 @@ const NavbarContainer = styled(ItemHV2)`
   padding: 0px 50px;
   height: 100px;
   position: static;
-  @media (max-width: 480px) {
-    padding: 0px 15px;
+  @media (min-width: 310px) {
+    padding: 0px 24px;
+  }
+  @media (min-width: 1024px) {
+    padding: 0px 50px;
   }
 `;

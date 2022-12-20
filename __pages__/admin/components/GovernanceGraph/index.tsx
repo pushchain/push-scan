@@ -34,6 +34,7 @@ const GovernanceGraph = ({ data, title, label, value, colorSet }: any) => {
         backgroundColor: theme.default.tooltipBackground,
         textStyle: {
           color: theme.default.color,
+          fontFamily: 'Strawford, Helvetica, sans-serif',
         },
         borderWidth: 0,
         borderRadius: 10,
@@ -46,6 +47,7 @@ const GovernanceGraph = ({ data, title, label, value, colorSet }: any) => {
         textStyle: {
           color: theme.graph.legendText,
           fontSize: 12,
+          fontFamily: 'Strawford, Helvetica, sans-serif',
           fontWeight: 500,
         },
         itemWidth: 15,
@@ -81,10 +83,14 @@ const GovernanceGraph = ({ data, title, label, value, colorSet }: any) => {
               a: {
                 lineHeight: 15,
                 color: theme.graph.primaryLabel,
+                fontFamily: 'Strawford, Helvetica, sans-serif',
+                fontSize: '12px',
               },
               b: {
                 fontWeight: 500,
                 color: theme.graph.secondaryLabel,
+                fontFamily: 'Strawford, Helvetica, sans-serif',
+                fontSize: '14px',
                 lineHeight: 20,
               },
             },

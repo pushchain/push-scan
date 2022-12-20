@@ -67,6 +67,7 @@ export default function Chart({
       labels: {
         style: {
           fontSize: '12px',
+          fontFamily: 'Strawford, Helvetica, sans-serif',
           colors: theme.graph.primaryLabel,
         },
       },
@@ -81,6 +82,7 @@ export default function Chart({
         hideOverlappingLabels: true,
         style: {
           fontSize: '12px',
+          fontFamily: 'Strawford, Helvetica, sans-serif',
           colors: theme.graph.primaryLabel,
         },
         datetimeFormatter: {
