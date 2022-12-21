@@ -63,14 +63,16 @@ export default function LoginView() {
                   label="Username"
                   variant="outlined"
                   autoComplete="off"
-                  style={{ width: 257, color: theme.text.primary }}
+                  sx={{
+                    width: 257,
+                    input: {
+                      color: theme.text.primary,
+                    },
+                  }}
                 />
               </Grid>
               <Grid item xs={12} lg={6} md={6} sx={{ width: '100%' }}>
-                <FormControl
-                  sx={{ width: 257, color: theme.text.primary }}
-                  variant="outlined"
-                >
+                <FormControl sx={{ width: 257 }} variant="outlined">
                   <InputLabel htmlFor="outlined-adornment-password">
                     Password
                   </InputLabel>
@@ -82,6 +84,11 @@ export default function LoginView() {
                     value={values.password}
                     autoComplete="off"
                     onChange={handleChange('password')}
+                    sx={{
+                      input: {
+                        color: theme.text.primary,
+                      },
+                    }}
                     endAdornment={
                       <InputAdornment position="end">
                         <IconButton

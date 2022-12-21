@@ -31,7 +31,7 @@ export default function Filters({
   const { isDarkMode } = useTheme();
   const [channels, setChannels] = React.useState<any[]>(channelList);
 
-  const handleChange = (event: any) => {
+  const handleSearch = (event: any) => {
     const text = event.target.value;
     const res = channelList.filter((obj) =>
       JSON.stringify(obj).toLowerCase().includes(text.toLowerCase())
@@ -96,7 +96,7 @@ export default function Filters({
             <OptionList background="#cf1c84">
               <Searchbar
                 placeholder="Search for channel here..."
-                onChange={handleChange}
+                onChange={handleSearch}
               />
               <Box
                 sx={{
@@ -114,7 +114,7 @@ export default function Filters({
                   },
                 }}
               >
-                {channelList.map((channel, index) => (
+                {channels.map((channel, index) => (
                   <Option
                     key={index}
                     onClick={() => {
@@ -140,7 +140,7 @@ export default function Filters({
                         whiteSpace: 'nowrap',
                         overflow: 'hidden',
                         textOverflow: 'ellipsis',
-                        paddingLeft: !channel?.icon ? '10px' : null,
+                        margin: !channel?.icon ? '5px auto' : null,
                       }}
                     >
                       {channel?.name}

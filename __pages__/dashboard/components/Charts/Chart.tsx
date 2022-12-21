@@ -56,6 +56,7 @@ export default function Chart({
         // autoScaleYaxis: true,
       },
       offsetX: -10,
+      fontFamily: 'Strawford, Helvetica, sans-serif',
     },
     yaxis: {
       axisTicks: {

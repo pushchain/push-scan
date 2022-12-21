@@ -49,6 +49,7 @@ export default function HorizontalChart({
           window.open(DAPP_LINKS.CHANNELS, '_blank');
         },
       },
+      fontFamily: 'Strawford, Helvetica, sans-serif',
     },
     plotOptions: {
       bar: {
