@@ -1,60 +1,141 @@
 import React from 'react';
 import getDatesArray from '../utils/helpers';
-import { getSubscribers, getNotifications } from 'utils/api';
+import { getSubscribers, getNotifications } from '../utils/api';
 
 export default function useStatisticData({
   selectedChannel,
   selectedChain,
   startDate,
   endDate,
-  interval,
+  // interval,
   token,
 }) {
   const [subscriberData, setSubscriberData] = React.useState<any[]>([]);
   const [notificationData, setNotificationData] = React.useState<any[]>([]);
+  const [totalSubscribers, setTotalSubscribers] = React.useState(0);
+  const [totalNotifications, setTotalNotifications] = React.useState(0);
+
   React.useEffect(() => {
     (async () => {
       setSubscriberData([]);
       setNotificationData([]);
       let localNotificationData: any[] = [];
       let localSubscriberData: any[] = [];
+      let totalNotifications = 0;
+      let totalSubscribers = 0;
 
       const dateArray = getDatesArray({
         start: startDate,
         end: endDate,
-        interval,
+        interval: 1,
       });
 
-      for (let i = 0; i < dateArray.length - 1; i++) {
-        console.log('checking', i, interval);
-        const newStartDate = dateArray[i];
-        const newEndDate = dateArray[i + 1];
-        const subscriberRes = await getSubscribers({
-          token: token,
-          startDate: newStartDate,
-          endDate: newEndDate,
-          channel: selectedChannel?.channel,
-          chain: selectedChain?.value,
-        });
+      // for (let i = 0; i < dateArray.length - 1; i++) {
+      //   const newStartDate = dateArray[i];
+      //   const newEndDate = dateArray[i + 1];
+      const subscriberRes = await getSubscribers({
+        token: token,
+        startDate: startDate,
+        endDate: endDate,
+        channel: selectedChannel?.channel,
+        chain: selectedChain?.value,
+      });
 
-        localSubscriberData.push([
-          new Date(i === 0 ? newStartDate : newEndDate).getTime(),
-          subscriberRes?.totalSubscribers,
-        ]);
-
-        const notificationRes = await getNotifications({
-          token: token,
-          startDate: newStartDate,
-          endDate: newEndDate,
-          channel: selectedChannel?.channel,
-          chain: selectedChain.value,
-        });
-
-        localNotificationData.push([
-          new Date(i === 0 ? newStartDate : newEndDate).getTime(),
-          notificationRes?.totalNotification,
-        ]);
+      const subscriberAnalyticsData = subscriberRes.subscriberAnalytics;
+      let subscriberArray: any[] = [];
+      for (let i = 0; i < subscriberAnalyticsData.length; i++) {
+        let total = 0,
+          dat = '';
+        for (let key in subscriberAnalyticsData[i]) {
+          if (key === 'date') {
+            dat = subscriberAnalyticsData[i][key];
+          } else {
+            // console.log("Subscribers", data[i][key].subscriber);
+            total += subscriberAnalyticsData[i][key].subscriber;
+          }
+        }
+        subscriberArray.push({ date: dat, subscribers: total });
       }
+
+      for (let i = 0; i < dateArray.length; i++) {
+        let isFound = false;
+        for (let j = 0; j < subscriberArray.length; j++) {
+          if (
+            new Date(subscriberArray[j].date).toDateString() ===
+            new Date(dateArray[i]).toDateString()
+          ) {
+            isFound = true;
+            localSubscriberData.push([
+              subscriberArray[j].date,
+              subscriberArray[j].subscribers,
+            ]);
+            totalSubscribers += subscriberArray[j].subscribers;
+            break;
+          }
+        }
+        if (!isFound) {
+          localSubscriberData.push([dateArray[i], 0]);
+        }
+      }
+
+      // localSubscriberData.push([
+      //   new Date(i === 0 ? newStartDate : newEndDate).getTime(),
+      //   subscriberRes?.totalSubscribers,
+      // ]);
+
+      const notificationRes = await getNotifications({
+        token: token,
+        startDate: startDate,
+        endDate: endDate,
+        channel: selectedChannel?.channel,
+        chain: selectedChain.value,
+      });
+
+      const analyticsData = notificationRes.notificationAnalytics;
+      let notificationsArray: any[] = [];
+      for (let i = 0; i < analyticsData.length; i++) {
+        let total = 0,
+          dat = '';
+
+        for (let key in analyticsData[i]) {
+          if (key === 'date') {
+            dat = analyticsData[i][key];
+          } else {
+            total += analyticsData[i][key].notification;
+          }
+        }
+        notificationsArray.push({ date: dat, notifications: total });
+      }
+
+      for (let i = 0; i < dateArray.length; i++) {
+        let isFound = false;
+        for (let j = 0; j < notificationsArray.length; j++) {
+          //console.log("dates", new Date(array[j].date), new Date(dateArray[i]));
+          if (
+            new Date(notificationsArray[j].date).toDateString() ===
+            new Date(dateArray[i]).toDateString()
+          ) {
+            isFound = true;
+            localNotificationData.push([
+              notificationsArray[j].date,
+              notificationsArray[j].notifications,
+            ]);
+            totalNotifications += notificationsArray[j].notifications;
+            break;
+          }
+        }
+        if (!isFound) {
+          localNotificationData.push([dateArray[i], 0]);
+        }
+      }
+
+      // localNotificationData.push([
+      //   new Date(i === 0 ? newStartDate : newEndDate).getTime(),
+      //   notificationRes?.totalNotification,
+      // ]);
+      //}
+      setTotalNotifications(totalNotifications);
+      setTotalSubscribers(totalSubscribers);
       setSubscriberData(localSubscriberData);
       setNotificationData(localNotificationData);
     })();
@@ -63,7 +144,12 @@ export default function useStatisticData({
       setSubscriberData([]);
       setNotificationData([]);
     };
-  }, [selectedChain, selectedChannel, interval, startDate]);
+  }, [selectedChain, selectedChannel, startDate]);
 
-  return { notificationData, subscriberData };
+  return {
+    totalNotifications,
+    totalSubscribers,
+    notificationData,
+    subscriberData,
+  };
 }

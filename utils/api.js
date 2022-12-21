@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { ROUTES, CREDENTIALKEYS } from 'utils/constants';
 
-const API_BASE = 'https://backend-staging.epns.io/apis/v1';
+const API_BASE = 'https://backend-dev.epns.io/apis/v1';
 
 export const login = async ({ user, pass }) => {
   try {
@@ -109,7 +109,9 @@ export const getGovernanceData = async ({ token }) => {
       `https://backend-staging.epns.io/apis/v1/analytics/governance_data/`,
       {
         headers: {
-          'x-access-token': String(sessionStorage.getItem(CREDENTIALKEYS.TOKEN)),
+          'x-access-token': String(
+            sessionStorage.getItem(CREDENTIALKEYS.TOKEN)
+          ),
         },
       }
     );
@@ -163,7 +165,9 @@ export const updateGovernanceData = async ({ data, token }) => {
       },
       {
         headers: {
-          'x-access-token': String(sessionStorage.getItem(CREDENTIALKEYS.TOKEN)),
+          'x-access-token': String(
+            sessionStorage.getItem(CREDENTIALKEYS.TOKEN)
+          ),
         },
       }
     );
@@ -184,7 +188,9 @@ export const getChats = async ({ token }) => {
         //   endDate: '2022-11-01',
         // },
         headers: {
-          'x-access-token': String(sessionStorage.getItem(CREDENTIALKEYS.TOKEN)),
+          'x-access-token': String(
+            sessionStorage.getItem(CREDENTIALKEYS.TOKEN)
+          ),
         },
       }
     );
@@ -202,7 +208,9 @@ export const getUsers = async ({ token }) => {
       `https://backend-staging.epns.io/apis/v1/analytics/chat/users`,
       {
         headers: {
-          'x-access-token': String(sessionStorage.getItem(CREDENTIALKEYS.TOKEN)),
+          'x-access-token': String(
+            sessionStorage.getItem(CREDENTIALKEYS.TOKEN)
+          ),
         },
       }
     );

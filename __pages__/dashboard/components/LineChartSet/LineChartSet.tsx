@@ -43,21 +43,26 @@ export default function LineChartSet() {
       ) / 12
     )
   );
-  const { subscriberData, notificationData } = useStatisticData({
+  const {
+    subscriberData,
+    notificationData,
+    totalNotifications,
+    totalSubscribers,
+  } = useStatisticData({
     selectedChannel,
     selectedChain,
     startDate,
     endDate,
-    interval,
+    // interval,
     token,
   });
-  const { totalNotifications, totalSubscribers } = useStatisticCount({
-    token,
-    startDate,
-    endDate,
-    selectedChannel,
-    selectedChain,
-  });
+  // const { totalNotifications, totalSubscribers } = useStatisticCount({
+  //   token,
+  //   startDate,
+  //   endDate,
+  //   selectedChannel,
+  //   selectedChain,
+  // });
 
   const channelList = useChannelList({ token, selectedChain });
   const {
