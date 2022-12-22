@@ -172,7 +172,7 @@ const SidebarContainer = styled(ItemVV2)`
   height: auto;
   position: absolute;
   top: 95px;
-  border: 1px solid white;
+  border: 1px solid ${(props) => props.theme.background.border};
   border-radius: 28px;
   color: ${(props) => props.theme.text.secondary};
   background-color: ${(props) => props.theme.background.secondary};
