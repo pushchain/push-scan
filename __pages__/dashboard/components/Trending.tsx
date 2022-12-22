@@ -6,48 +6,19 @@ import { useData } from 'contexts/DataContext';
 export default function Trending() {
   const { token } = useData();
   const [leaderBoard, setLeaderBoard] = React.useState<any[]>([]);
-  // const data = [
-  //   {
-  //     icon: '/static/Clothing.png',
-  //     name: 'Lens Protocol',
-  //     subscriber: 100,
-  //     trend: 10,
-  //   },
-  //   {
-  //     icon: '/static/Clothing.png',
-  //     name: 'Coinshots',
-  //     subscriber: 200,
-  //     trend: 7.4,
-  //   },
-  //   {
-  //     icon: '/static/Clothing.png',
-  //     name: 'Aave',
-  //     subscriber: 300,
-  //     trend: 3.2,
-  //   },
-  //   {
-  //     icon: '/static/Clothing.png',
-  //     name: 'Meet with Wallet',
-  //     subscriber: 200,
-  //     trend: 7.5,
-  //   },
-  //   {
-  //     icon: '/static/Clothing.png',
-  //     name: 'Uniswap',
-  //     subscriber: 300,
-  //     trend: 3.2,
-  //   },
-  // ];
+
   React.useEffect(() => {
     (async () => {
       let trendingChannelData: any[] = [];
       let currentSubscriberData = {};
       let weekBackSubscriberData = {};
+
       const firstEndDate = new Date(Date.now()).toISOString().split('T')[0];
       const secondEndDate = new Date(Date.now() - 7 * 86400000)
         .toISOString()
         .split('T')[0];
       const startDate = new Date('2022-01-01');
+
       const currentRes = await getSubscribers({
         token,
         startDate,
