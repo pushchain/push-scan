@@ -9,6 +9,7 @@ import {
   InfoContent,
   Button,
   InfoContainer,
+  GraphContainer,
 } from './admin.styled';
 import useModal from '../../hooks/useModal';
 
@@ -17,11 +18,11 @@ import { getGovernanceData } from '../../utils/api';
 import { useData } from '../../contexts/DataContext';
 import { useTheme } from 'styled-components';
 import { ItemHV2, ItemVV2, ImageV2 } from '../../theme/SharedStyling';
+import { Text } from '../dashboard/dashboard.styled';
 
 export default function AdminView() {
   const {
     handleSubmit,
-    handleClose,
     updateGovernanceImprovementData,
     updateGrantProposalData,
     updateGrantsData,
@@ -70,12 +71,9 @@ export default function AdminView() {
 
   return (
     <AdminContainer>
-      <Typography
-        variant="h4"
-        sx={{ mt: 5, mb: 10, textAlign: 'center', color: theme.text.primary }}
-      >
-        Push Protocol Admin Dashboard
-      </Typography>
+      <Text size="32px" marginTop="40px" marginBottom="20px">
+        Push Protocol Admin Panel
+      </Text>
 
       <Grid container justifyContent="center">
         <FormContainer>

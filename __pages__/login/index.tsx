@@ -63,9 +63,15 @@ export default function LoginView() {
                 onChange={handleChange('password')}
               />
               {showPassword ? (
-                <Visibility onClick={() => setShowPassword(false)} />
+                <Visibility
+                  onClick={() => setShowPassword(false)}
+                  style={{ color: theme.text.secondary }}
+                />
               ) : (
-                <VisibilityOff onClick={() => setShowPassword(true)} />
+                <VisibilityOff
+                  onClick={() => setShowPassword(true)}
+                  style={{ color: theme.text.secondary }}
+                />
               )}
             </InputContainer>
 
@@ -75,7 +81,7 @@ export default function LoginView() {
               borderRadius="10px"
               padding="15px 10px"
               type="submit"
-              background={theme.background.default}
+              background="transparent"
               border="1px solid #DF4FA3"
               color={theme.text.primary}
             >

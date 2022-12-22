@@ -80,3 +80,5 @@ export const InfoContainer = styled(ItemVV2)`
     padding: 0px;
   }
 `;
+
+export const GraphContainer = styled.div``;

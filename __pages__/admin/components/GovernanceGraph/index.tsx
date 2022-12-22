@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid, Card, useMediaQuery } from '@mui/material';
 import ReactECharts from 'echarts-for-react';
-import { useTheme } from 'styled-components';
+import styled, { useTheme } from 'styled-components';
 import { ItemHV2 } from 'theme/SharedStyling';
 import { Text } from '../../../dashboard/dashboard.styled';
 
@@ -102,7 +102,13 @@ const GovernanceGraph = ({ data, title, label, value, colorSet }: any) => {
 
   return (
     <Grid
-      sx={{ height: '389px', position: 'relative' }}
+      sx={{
+        minHeight: '389px',
+        position: 'relative',
+        '@media(max-width:901px)': {
+          minWidth: '100%',
+        },
+      }}
       item
       xs={12}
       sm={12}
@@ -111,8 +117,8 @@ const GovernanceGraph = ({ data, title, label, value, colorSet }: any) => {
     >
       <Card
         sx={{
-          height: '100%',
-          width: '100%',
+          minHeight: '100%',
+          minWidth: '100%',
           backgroundColor: isMobile ? 'transparent' : theme.background.card,
           border: `1px solid ${theme.background.border}`,
           borderRadius: '28px',
@@ -141,18 +147,24 @@ const GovernanceGraph = ({ data, title, label, value, colorSet }: any) => {
             $ {value?.toLocaleString()}
           </Text>
         )}
-        <ItemHV2 padding="0px" height="100%" width="100%">
+        <GraphContainer>
           <ReactECharts
             style={{
-              height: '100%',
-              width: '100%',
+              minHeight: '100%',
+              minWidth: '100%',
             }}
             option={getDataPoints({ data, label })}
           />
-        </ItemHV2>
+        </GraphContainer>
       </Card>
     </Grid>
   );
 };
 
 export default GovernanceGraph;
+
+const GraphContainer = styled(ItemHV2)`
+  padding: 0px;
+  min-height: 100%;
+  min-width: 100%;
+`;

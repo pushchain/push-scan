@@ -18,6 +18,7 @@ export const DashBoardContainer = styled(ItemVV2)`
 export const Text = styled.p`
   font-size: ${(props) => props.size || '15px'};
   font-weight: ${(props) => props.weight || 400};
+  font-family: 'Strawford', Helvetica, sans-serif;
   color: ${(props) => props.color || props.theme.text.primary};
   margin-top: ${(props) => props.marginTop || '0px'};
   margin-bottom: ${(props) => props.marginBottom || '0px'};

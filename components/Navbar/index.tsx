@@ -159,7 +159,8 @@ const NavbarContainer = styled(ItemHV2)`
 const HamburgerLine = styled.div`
   height: 1px;
   width: 30px;
-  border: 1px solid ${(props) => props.theme.text.primary};
+  border-bottom: 3px solid ${(props) => props.theme.text.primary};
+  border-radius: 3px;
   margin: 5px 0px;
 `;
 
