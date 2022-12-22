@@ -15,7 +15,9 @@ import {
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import useLogin from 'hooks/useLogin';
-import { useTheme } from 'styled-components';
+import styled, { useTheme } from 'styled-components';
+import { ItemHV2, ItemVV2, ButtonV2 } from '../../theme/SharedStyling';
+import { Text } from '../dashboard/dashboard.styled';
 
 export default function LoginView() {
   const {
@@ -26,98 +28,83 @@ export default function LoginView() {
     values,
   } = useLogin();
   const theme = useTheme();
+  const [showPassword, setShowPassword] = React.useState(false);
 
   return (
-    <>
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          minHeight: '70vh',
-        }}
+    <ItemHV2 minHeight="80vh">
+      <ItemVV2
+        maxWidth="300px"
+        height="350px"
+        background={theme.background.secondary}
+        margin="100px 0px 0px"
+        borderRadius="10px"
       >
-        <Paper style={{ backgroundColor: theme.background.secondary }}>
-          <Typography
-            variant="h4"
-            textAlign={'center'}
-            mt={3}
-            color={theme.text.primary}
-          >
-            Admin Sign In
-          </Typography>
-          <form onSubmit={Login}>
-            <Grid
-              container
-              spacing={2}
-              direction={'column'}
-              alignItems={'center'}
-              padding={5}
-            >
-              <Grid item xs={12} lg={6} md={6}>
-                <TextField
-                  id="outlined-basic"
-                  name="username"
-                  value={values.username}
-                  onChange={handleChange('username')}
-                  label="Username"
-                  variant="outlined"
-                  autoComplete="off"
-                  sx={{
-                    width: 257,
-                    input: {
-                      color: theme.text.primary,
-                    },
-                  }}
-                />
-              </Grid>
-              <Grid item xs={12} lg={6} md={6} sx={{ width: '100%' }}>
-                <FormControl sx={{ width: 257 }} variant="outlined">
-                  <InputLabel htmlFor="outlined-adornment-password">
-                    Password
-                  </InputLabel>
+        <Text size="24px" weight="400" marginBottom="25px">
+          Admin Login
+        </Text>
+        <form onSubmit={Login}>
+          <ItemVV2 height="100%" justifyContent="space-around">
+            <InputContainer>
+              <Input
+                type="text"
+                name="username"
+                onChange={handleChange('username')}
+                autoComplete="off"
+                placeholder="Username"
+              />
+            </InputContainer>
 
-                  <OutlinedInput
-                    id="outlined-adornment-password"
-                    name="password"
-                    type={values.showPassword ? 'text' : 'password'}
-                    value={values.password}
-                    autoComplete="off"
-                    onChange={handleChange('password')}
-                    sx={{
-                      input: {
-                        color: theme.text.primary,
-                      },
-                    }}
-                    endAdornment={
-                      <InputAdornment position="end">
-                        <IconButton
-                          aria-label="toggle password visibility"
-                          onClick={handleClickShowPassword}
-                          onMouseDown={handleMouseDownPassword}
-                          edge="end"
-                        >
-                          {values.showPassword ? (
-                            <Visibility />
-                          ) : (
-                            <VisibilityOff />
-                          )}
-                        </IconButton>
-                      </InputAdornment>
-                    }
-                    label="Password"
-                  />
-                </FormControl>
-              </Grid>
-              <Grid item xs={12} lg={6} md={6}>
-                <Button variant="outlined" type="submit">
-                  Sign In
-                </Button>
-              </Grid>
-            </Grid>
-          </form>
-        </Paper>
-      </Box>
-    </>
+            <InputContainer>
+              <Input
+                type={showPassword ? 'text' : 'password'}
+                name="password"
+                autoComplete="off"
+                placeholder="Password"
+                onChange={handleChange('password')}
+              />
+              {showPassword ? (
+                <Visibility onClick={() => setShowPassword(false)} />
+              ) : (
+                <VisibilityOff onClick={() => setShowPassword(true)} />
+              )}
+            </InputContainer>
+
+            <ButtonV2
+              fontSize="18px"
+              fontWeight="600"
+              borderRadius="10px"
+              padding="15px 10px"
+              type="submit"
+              background={theme.background.default}
+              border="1px solid #DF4FA3"
+              color={theme.text.primary}
+            >
+              Sign In
+            </ButtonV2>
+          </ItemVV2>
+        </form>
+      </ItemVV2>
+    </ItemHV2>
   );
 }
+
+const Input = styled.input`
+  outline: none;
+  border: none;
+  width: 85%;
+  font-size: 18px;
+  font-family: 'Strawford', Helvetica, sans-serif;
+  padding: 15px 10px;
+  margin: 5px 0px;
+  background-color: ${(props) => props.theme.background.secondary};
+  color: ${(props) => props.theme.text.primary};
+`;
+
+const InputContainer = styled(ItemHV2)`
+  border: 1px solid ${(props) => props.theme.background.border};
+  justify-content: space-between;
+  border-radius: 10px;
+  width: 250px;
+  padding: 0px 5px;
+  margin-bottom: 15px;
+`;

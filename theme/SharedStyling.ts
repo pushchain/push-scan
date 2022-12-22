@@ -72,6 +72,7 @@ export const ItemHV2 = styled.div`
   gap: ${(props) => props.gap || '0px'};
   font-size: ${(props) => props.fontSize || '14px'};
   color: ${(props) => props.color || themeLight.default.primary};
+  cursor: ${(props) => props.cursor || 'auto'};
 
   &:hover & {
     filter: ${(props) =>

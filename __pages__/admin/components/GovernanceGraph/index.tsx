@@ -102,7 +102,7 @@ const GovernanceGraph = ({ data, title, label, value, colorSet }: any) => {
 
   return (
     <Grid
-      sx={{ height: '450px', position: 'relative' }}
+      sx={{ height: '389px', position: 'relative' }}
       item
       xs={12}
       sm={12}

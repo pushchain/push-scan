@@ -11,7 +11,7 @@ import {
   InfoContainer,
 } from './admin.styled';
 import useModal from '../../hooks/useModal';
-import FormDialog from './editModal';
+
 import PushStatistics from './components/GovernanceGraph';
 import { getGovernanceData } from '../../utils/api';
 import { useData } from '../../contexts/DataContext';
@@ -20,11 +20,8 @@ import { ItemHV2, ItemVV2, ImageV2 } from '../../theme/SharedStyling';
 
 export default function AdminView() {
   const {
-    open,
-    handleChange,
     handleSubmit,
     handleClose,
-    formData,
     updateGovernanceImprovementData,
     updateGrantProposalData,
     updateGrantsData,
@@ -72,8 +69,7 @@ export default function AdminView() {
   }, [updateTracker]);
 
   return (
-    <ItemVV2 width="100%" padding="0px 50px">
-      {/* <Button onClick={handleOpen}>Edit</Button> */}
+    <AdminContainer>
       <Typography
         variant="h4"
         sx={{ mt: 5, mb: 10, textAlign: 'center', color: theme.text.primary }}
@@ -169,6 +165,7 @@ export default function AdminView() {
             label="PGP_Amount"
             colorSet={theme.graph.grantsAndPIPColors}
           />
+
           <InputContainer>
             {showIndex === 2 ? (
               <>
@@ -245,6 +242,7 @@ export default function AdminView() {
             label="PGIP"
             colorSet={theme.graph.grantsAndPIPColors}
           />
+
           <InputContainer>
             {showIndex === 3 ? (
               <>
@@ -312,6 +310,7 @@ export default function AdminView() {
             label="PGP Category"
             colorSet={theme.graph.pgpCategories}
           />
+
           <InputContainer>
             {showIndex === 4 ? (
               <ItemHV2
@@ -475,6 +474,6 @@ export default function AdminView() {
           </Button>
         </ItemVV2>
       </Grid>
-    </ItemVV2>
+    </AdminContainer>
   );
 }

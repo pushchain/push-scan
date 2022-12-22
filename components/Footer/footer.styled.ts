@@ -15,10 +15,10 @@ export const FooterContainer = styled.div`
     width: 100%;
     gap: 30px;
   }
-  @media (min-width: 600px) {
-    padding: 47px 24px 35px;
+  @media (min-width: 768px) {
+    padding: 47px 50px 35px;
   }
-  @media (min-width: 1080px) {
+  @media (min-width: 1024px) {
     padding: 47px 50px 35px;
   }
 `;

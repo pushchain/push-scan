@@ -4,57 +4,14 @@ import { Dialog } from '@mui/material';
 import { Container } from '@mui/system';
 import { ItemHV2, ItemVV2, SpanV2 } from '../../theme/SharedStyling';
 
-export const AdminContainer = styled(Container)`
+export const AdminContainer = styled(ItemVV2)`
   width: 100%;
-  margin-top: 20px;
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  @media (min-width: 600px) {
-    padding: 0px 24px !important;
+  padding: 0px 50px;
+  @media (min-width: 310px) {
+    padding: 0px 24px;
   }
-  @media (min-width: 1024px) {
-    padding: 0px 50px !important;
-  }
-`;
-
-export const StyledEditIcon = styled(EditIcon)`
-  position: absolute;
-  top: 40px;
-  right: 35px;
-  cursor: pointer;
-  height: 40px;
-  width: 40px;
-  padding: 8px;
-  background: transparent;
-  border-radius: 50%;
-  transition: 500ms;
-
-  &:hover {
-    background: gray;
-  }
-
-  &:active {
-    opacity: 0.7;
-  }
-`;
-
-export const StyledDialog = styled(Dialog)`
-  overflow: auto;
-  & > div {
-    & > div {
-      box-shadow: none;
-      &::-webkit-scrollbar {
-        width: 0px;
-        background-color: transparent;
-        border-radius: 5px;
-      },
-      &::-webkit-scrollbar-thumb {
-        background-color: #CF1C84;
-        border-radius: 5px;
-      },
-    }
+  @media (min-width: 768px) {
+    padding: 0px 50px;
   }
 `;
 
@@ -81,6 +38,10 @@ export const FormContainer = styled(ItemHV2)`
   border: 1px solid ${(props) => props.theme.background.border};
   padding: 10px;
   border-radius: 28px;
+  @media (max-width: 900px) {
+    flex-direction: column;
+    height: max-content;
+  }
 `;
 
 export const Button = styled.button`
@@ -114,4 +75,8 @@ export const InfoHeader = styled(SpanV2)`
 export const InfoContainer = styled(ItemVV2)`
   align-items: flex-start;
   padding: 0px 0px 0px 40px;
+  @media (max-width: 900px) {
+    align-items: center;
+    padding: 0px;
+  }
 `;
