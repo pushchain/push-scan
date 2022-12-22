@@ -40,7 +40,9 @@ export default function Trending() {
   // ];
   React.useEffect(() => {
     (async () => {
-      let channelData = [];
+      let trendingChannelData: any[] = [];
+      let currentSubscriberData = {};
+      let weekBackSubscriberData = {};
       const firstEndDate = new Date(Date.now()).toISOString().split('T')[0];
       const secondEndDate = new Date(Date.now() - 7 * 86400000)
         .toISOString()
@@ -60,33 +62,63 @@ export default function Trending() {
         channel: 'All',
         chain: 'ETH_TEST_GOERLI',
       });
-      const weekChannelData = weekRes?.subscriberAnalytics;
-      const currentChannelData = currentRes?.subscriberAnalytics;
-      for (let i = 0; i < weekChannelData?.length; i++) {
-        for (let j = i; j < currentChannelData?.length; j++) {
-          if (weekChannelData[i].channel === currentChannelData[j].channel) {
-            const trendPercentage = (
-              ((currentChannelData[j].subscriber -
-                weekChannelData[i].subscriber) /
-                weekChannelData[i].subscriber) *
-              100
-            ).toFixed(2);
-            channelData.push({
-              name: currentChannelData[j].name,
-              channel: weekChannelData[i].channel,
-              icon: weekChannelData[i].icon,
-              trend: trendPercentage,
-              subscriber: currentChannelData[j].subscriber,
-            });
-            break;
+      const weekChannelDataResponse = weekRes?.subscriberAnalytics;
+      const currentChannelDataResponse = currentRes?.subscriberAnalytics;
+      const channelDetails = weekRes?.channelDetails;
+
+      for (let i = 0; i < currentChannelDataResponse.length; i++) {
+        for (let key in currentChannelDataResponse[i]) {
+          if (key === 'date') {
+            continue;
+          } else {
+            if (currentSubscriberData[key]) {
+              currentSubscriberData[key] +=
+                currentChannelDataResponse[i][key].subscriber;
+            } else {
+              currentSubscriberData[key] = 0;
+              currentSubscriberData[key] +=
+                currentChannelDataResponse[i][key].subscriber;
+            }
           }
         }
       }
-      // console.log('current', currentRes?.subscriberAnalytics);
-      // console.log('week', weekRes?.subscriberAnalytics);
-      const sorted = channelData.sort(
+      for (let i = 0; i < weekChannelDataResponse.length; i++) {
+        for (let key in weekChannelDataResponse[i]) {
+          if (key === 'date') {
+            continue;
+          } else {
+            if (weekBackSubscriberData[key]) {
+              weekBackSubscriberData[key] +=
+                weekChannelDataResponse[i][key].subscriber;
+            } else {
+              weekBackSubscriberData[key] = 0;
+              weekBackSubscriberData[key] +=
+                weekChannelDataResponse[i][key].subscriber;
+            }
+          }
+        }
+      }
+
+      for (let key in weekBackSubscriberData) {
+        let finalValue = currentSubscriberData[key] || 0;
+        const trend = (
+          ((finalValue - weekBackSubscriberData[key]) /
+            weekBackSubscriberData[key]) *
+          100
+        ).toFixed(2);
+        trendingChannelData.push({
+          channel: key,
+          subscriber: currentSubscriberData[key],
+          name: channelDetails[key].name,
+          icon: channelDetails[key].icon,
+          trend: trend,
+        });
+      }
+
+      const sorted = trendingChannelData.sort(
         (a, b) => parseFloat(b?.trend) - parseFloat(a?.trend)
       );
+
       setLeaderBoard(sorted.slice(0, 5));
     })();
   }, []);
