@@ -32,8 +32,6 @@ export default function LeaderBoard({
     <Grid item xs={12} md={4} lg={4} mb={isMobile ? 2 : 0}>
       <CardContainer
         padding={isMobile ? '30px 5px 0px' : '30px'}
-        paddingLeft="30px"
-        paddingRight="30px"
         background={isMobile ? 'transparent' : theme.background.card}
         border={`1px solid ${theme.background.border}`}
       >
