@@ -56,6 +56,7 @@ export default function LineChartSet() {
     // interval,
     token,
   });
+
   // const { totalNotifications, totalSubscribers } = useStatisticCount({
   //   token,
   //   startDate,
@@ -64,13 +65,14 @@ export default function LineChartSet() {
   //   selectedChain,
   // });
 
-  const channelList = useChannelList({ token, selectedChain });
+  // const channelList = useChannelList({ token, selectedChain });
   const {
     subscriberCategories,
     subscriberValues,
     notificationCategories,
     notificationValues,
-  } = useChannelStatistics({ token });
+    channelList,
+  } = useChannelStatistics({ token, selectedChain });
 
   React.useEffect(() => {
     const dateArray = getDatesArray({

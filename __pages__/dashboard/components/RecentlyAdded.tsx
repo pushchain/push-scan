@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
-import { getLeaderBoard } from "utils/api";
-import { useData } from "contexts/DataContext";
-import LeaderBoard from "./LeaderBoard/LeaderBoard";
+import React, { useEffect, useState } from 'react';
+import { getLeaderBoard } from 'utils/api';
+import { useData } from 'contexts/DataContext';
+import LeaderBoard from './LeaderBoard/LeaderBoard';
 
 export default function RecentlyAdded() {
   const [data, setData] = useState([]);
@@ -13,12 +13,13 @@ export default function RecentlyAdded() {
         const res = await getLeaderBoard({
           token: token,
           limit: 5,
-          sort: "created",
-          order: "desc",
+          sort: 'created',
+          order: 'desc',
         });
+
         setData(res.leaderboardAnalytics);
       } catch (e) {
-        console.log("Error occured", e);
+        console.log('Error occured', e);
       }
     })();
   }, []);

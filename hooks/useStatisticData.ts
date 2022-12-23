@@ -14,6 +14,7 @@ export default function useStatisticData({
   const [notificationData, setNotificationData] = React.useState<any[]>([]);
   const [totalSubscribers, setTotalSubscribers] = React.useState(0);
   const [totalNotifications, setTotalNotifications] = React.useState(0);
+  const [channelList, setChannelList] = React.useState<any[]>([]);
 
   React.useEffect(() => {
     (async () => {
@@ -23,6 +24,11 @@ export default function useStatisticData({
       let localSubscriberData: any[] = [];
       let totalNotifications = 0;
       let totalSubscribers = 0;
+      let channels: any[] = [];
+      channels.push({
+        name: 'All Channels',
+        channel: 'All',
+      });
 
       const dateArray = getDatesArray({
         start: startDate,
@@ -30,9 +36,6 @@ export default function useStatisticData({
         interval: 1,
       });
 
-      // for (let i = 0; i < dateArray.length - 1; i++) {
-      //   const newStartDate = dateArray[i];
-      //   const newEndDate = dateArray[i + 1];
       const subscriberRes = await getSubscribers({
         token: token,
         startDate: startDate,
@@ -42,6 +45,8 @@ export default function useStatisticData({
       });
 
       const subscriberAnalyticsData = subscriberRes.subscriberAnalytics;
+      const channelDetails = subscriberRes.channelDetails;
+
       let subscriberArray: any[] = [];
       for (let i = 0; i < subscriberAnalyticsData.length; i++) {
         let total = 0,
@@ -50,7 +55,6 @@ export default function useStatisticData({
           if (key === 'date') {
             dat = subscriberAnalyticsData[i][key];
           } else {
-            // console.log("Subscribers", data[i][key].subscriber);
             total += subscriberAnalyticsData[i][key].subscriber;
           }
         }
@@ -77,11 +81,6 @@ export default function useStatisticData({
           localSubscriberData.push([dateArray[i], 0]);
         }
       }
-
-      // localSubscriberData.push([
-      //   new Date(i === 0 ? newStartDate : newEndDate).getTime(),
-      //   subscriberRes?.totalSubscribers,
-      // ]);
 
       const notificationRes = await getNotifications({
         token: token,
@@ -110,7 +109,6 @@ export default function useStatisticData({
       for (let i = 0; i < dateArray.length; i++) {
         let isFound = false;
         for (let j = 0; j < notificationsArray.length; j++) {
-          //console.log("dates", new Date(array[j].date), new Date(dateArray[i]));
           if (
             new Date(notificationsArray[j].date).toDateString() ===
             new Date(dateArray[i]).toDateString()
@@ -129,15 +127,11 @@ export default function useStatisticData({
         }
       }
 
-      // localNotificationData.push([
-      //   new Date(i === 0 ? newStartDate : newEndDate).getTime(),
-      //   notificationRes?.totalNotification,
-      // ]);
-      //}
       setTotalNotifications(totalNotifications);
       setTotalSubscribers(totalSubscribers);
       setSubscriberData(localSubscriberData);
       setNotificationData(localNotificationData);
+      setChannelList(channels);
     })();
 
     return () => {
@@ -151,5 +145,6 @@ export default function useStatisticData({
     totalSubscribers,
     notificationData,
     subscriberData,
+    channelList,
   };
 }

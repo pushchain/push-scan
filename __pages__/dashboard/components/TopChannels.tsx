@@ -16,6 +16,7 @@ export default function TopChannels() {
           sort: 'subscribers',
           order: 'desc',
         });
+
         setData(res.leaderboardAnalytics);
       } catch (e) {
         console.log('Error occured', e);

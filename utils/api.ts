@@ -122,40 +122,6 @@ export const getGovernanceData = async ({ token }) => {
   }
 };
 
-// const data = {
-//   Governance: {
-//     PGP_Amount: {
-//       'Yet To Be Allocated': 80,
-//       Approved: 20,
-//     },
-//     PGP_Proposals: {
-//       Approved: 4,
-//       Open: 7,
-//       Closed: 11,
-//     },
-//     PGP_Categories: {
-//       Defi: 6,
-//       NFT: 3,
-//       DAO: 4,
-//       Tooling: 11,
-//       Marketing: 2,
-//       Educational: 6,
-//       Gaming: 2,
-//       Other: 2,
-//     },
-//     PGIP: {
-//       Closed: 4,
-//       Approved: 8,
-//     },
-//   },
-//   Downloads: {
-//     DApp: 40,
-//     'Chrome Extension': 10,
-//     'Mobile-iOS': 25,
-//     'Mobile-Android': 25,
-//   },
-// };
-
 export const updateGovernanceData = async ({ data, token }) => {
   try {
     const res = await axios.post(

@@ -26,6 +26,7 @@ export default function Trending() {
         channel: 'All',
         chain: 'ETH_TEST_GOERLI',
       });
+
       const weekRes = await getSubscribers({
         token,
         startDate,
@@ -33,6 +34,7 @@ export default function Trending() {
         channel: 'All',
         chain: 'ETH_TEST_GOERLI',
       });
+
       const weekChannelDataResponse = weekRes?.subscriberAnalytics;
       const currentChannelDataResponse = currentRes?.subscriberAnalytics;
       const channelDetails = weekRes?.channelDetails;

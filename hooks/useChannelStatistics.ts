@@ -1,7 +1,7 @@
 import React from 'react';
 import { getSubscribers, getNotifications } from '../utils/api';
 
-export default function useChannelStatistics({ token }) {
+export default function useChannelStatistics({ token, selectedChain }) {
   const [subscriberCategories, setSubscriberCategories] = React.useState<any[]>(
     []
   );
@@ -10,22 +10,29 @@ export default function useChannelStatistics({ token }) {
     any[]
   >([]);
   const [notificationValues, setNotificationValues] = React.useState<any[]>([]);
+  const [channelList, setChannelList] = React.useState<any[]>([]);
 
   React.useEffect(() => {
     let subscriberCategory: any[] = [],
       subscriberValue: any[] = [],
       notificationCategory: any[] = [],
-      notificationValue: any[] = [];
+      notificationValue: any[] = [],
+      channels: any[] = [];
+    channels.push({
+      name: 'All Channels',
+      channel: 'All',
+    });
 
     (async () => {
-      const subscriberRes = await getSubscribers({ token });
-      const notificationsRes = await getNotifications({ token });
+      const subscriberRes = await getSubscribers({ token, selectedChain });
+      const notificationsRes = await getNotifications({ token, selectedChain });
 
       // Retrieving and formatting Subscriber data
       const subscriberAnalytics = subscriberRes.subscriberAnalytics;
       const channelSubscriberDetails = subscriberRes.channelDetails;
       let channelSubscriberData = {};
       let subscriberData: any[] = [];
+
       for (let i = 0; i < subscriberAnalytics.length; i++) {
         for (let key in subscriberAnalytics[i]) {
           if (key === 'date') {
@@ -47,6 +54,11 @@ export default function useChannelStatistics({ token }) {
         subscriberData.push({
           name: name,
           subscribers: channelSubscriberData[key],
+        });
+        channels.push({
+          name: name,
+          channel: key,
+          icon: channelSubscriberDetails[key].icon,
         });
       }
 
@@ -93,7 +105,6 @@ export default function useChannelStatistics({ token }) {
       const sortedNotifications = notificationData?.sort(
         (a, b) => b?.notifications - a?.notifications
       );
-      console.log('notifcations', sortedNotifications);
       const notificationChannelLimit =
         sortedNotifications?.length > 10 ? 10 : sortedNotifications?.length;
 
@@ -105,13 +116,15 @@ export default function useChannelStatistics({ token }) {
       setSubscriberValues(subscriberValue);
       setNotificationCategories(notificationCategory);
       setNotificationValues(notificationValue);
+      setChannelList(channels);
     })();
-  }, []);
+  }, [selectedChain]);
 
   return {
     subscriberCategories,
     subscriberValues,
     notificationCategories,
     notificationValues,
+    channelList,
   };
 }

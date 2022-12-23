@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Box, useMediaQuery } from '@mui/material';
+import { Box, useMediaQuery } from '@mui/material';
 import {
   Select,
   OptionList,
@@ -27,6 +27,8 @@ export default function Filters({
 }) {
   const { theme } = useTheme();
   const isMobile = useMediaQuery('(max-width:768px)');
+  const timeOutRef = React.useRef<any>(null);
+
   return (
     <>
       <Box
