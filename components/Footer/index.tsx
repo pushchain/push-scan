@@ -1,14 +1,13 @@
 import React from 'react';
-import Link from 'next/link';
 import {
   FooterContainer,
   LinkContainer,
   LeftContainer,
   RightContainer,
 } from './footer.styled';
-import { useTheme as Theme } from 'contexts/ThemeContext';
-import { Box, Grid } from '@mui/material';
-import { Text } from '__pages__/dashboard/dashboard.styled';
+import { useTheme as Theme } from '../../contexts/ThemeContext';
+import { Box } from '@mui/material';
+import { Text } from '../../__pages__/dashboard/dashboard.styled';
 import { useTheme } from 'styled-components';
 
 export default function Footer() {

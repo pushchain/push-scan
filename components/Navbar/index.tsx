@@ -2,14 +2,19 @@ import React from 'react';
 import { DarkModeSwitch } from 'react-toggle-dark-mode';
 import { useRouter } from 'next/router';
 import { Box, Button, useMediaQuery } from '@mui/material';
-import Logo from 'components/Logo';
-import styled, { useTheme } from 'styled-components';
-import { useTheme as Theme } from 'contexts/ThemeContext';
-import { useData } from 'contexts/DataContext';
-import { ROUTES, CREDENTIALKEYS } from 'utils/constants';
-import { Text } from '__pages__/dashboard/dashboard.styled';
-import { ItemHV2, ItemVV2 } from 'theme/SharedStyling';
+import Logo from '../Logo';
+import { useTheme } from 'styled-components';
+import { useTheme as Theme } from '../../contexts/ThemeContext';
+import { useData } from '../../contexts/DataContext';
+import { ROUTES, CREDENTIALKEYS } from '../../utils/constants';
+import { Text } from '../../__pages__/dashboard/dashboard.styled';
+import { ItemHV2, ItemVV2 } from '../../theme/SharedStyling';
 import { NavBarButtons } from './NavBarButtons';
+import {
+  NavbarContainer,
+  HamburgerLine,
+  SidebarContainer,
+} from './navbar.styled';
 
 export default function Navbar() {
   const { isDarkMode, darkModeToggle } = Theme();
@@ -136,51 +141,3 @@ export default function Navbar() {
     </NavbarContainer>
   );
 }
-
-const NavbarContainer = styled(ItemHV2)`
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding: 0px 50px;
-  height: 100px;
-  position: static;
-  z-index: 10;
-  @media (min-width: 310px) {
-    padding: 0px 24px;
-  }
-  @media (min-width: 768px) {
-    padding: 0px 50px;
-  }
-  @media (min-width: 1024px) {
-    padding: 0px 50px;
-  }
-`;
-const HamburgerLine = styled.div`
-  height: 1px;
-  width: 30px;
-  border-bottom: 3px solid ${(props) => props.theme.text.primary};
-  border-radius: 3px;
-  margin: 5px 0px;
-`;
-
-const SidebarContainer = styled(ItemVV2)`
-  z-index: 10;
-  justify-content: space-between;
-  align-items: flex-start;
-  width: 250px;
-  height: auto;
-  position: absolute;
-  top: 95px;
-  border: 1px solid ${(props) => props.theme.background.border};
-  border-radius: 28px;
-  color: ${(props) => props.theme.text.secondary};
-  background-color: ${(props) => props.theme.background.secondary};
-  padding: 30px;
-  @media (min-width: 310px) {
-    right: 24px;
-  }
-  @media (min-width: 768px) {
-    right: 50px;
-  }
-`;

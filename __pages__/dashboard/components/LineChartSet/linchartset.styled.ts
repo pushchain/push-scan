@@ -56,9 +56,6 @@ export const Option = styled.div`
   &:hover {
     opacity: 0.8;
   }
-  // @media (max-width: 480px) {
-  //   justify-content: center;
-  // }
 `;
 
 export const TimeFilterContainer = styled.div(

@@ -17,7 +17,7 @@ const ReactApexChart = dynamic(() => import('react-apexcharts'), {
 import { ItemVV2, ItemHV2 } from 'theme/SharedStyling';
 import { Text } from '../../dashboard.styled';
 
-export default function HorizontalChart({
+export default function HorizontalBarChart({
   title,
   label,
   category,

@@ -1,12 +1,10 @@
 import React from 'react';
-import { useMediaQuery } from '@mui/material';
-import { ROUTES } from 'utils/constants';
+import { ROUTES } from '../../utils/constants';
 import { useRouter } from 'next/router';
 import { ItemHV2, ButtonV2 } from '../../theme/SharedStyling';
-import styled, { useTheme } from 'styled-components';
+import styled from 'styled-components';
 
 export const NavBarButtons = ({ logout, isLoggedIn }) => {
-  const theme = useTheme();
   const router = useRouter();
   return (
     <ButtonContainer>

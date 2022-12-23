@@ -1,32 +1,14 @@
 import React from 'react';
-import {
-  Box,
-  Paper,
-  Grid,
-  TextField,
-  IconButton,
-  InputAdornment,
-  OutlinedInput,
-  InputLabel,
-  FormControl,
-  Button,
-  Typography,
-} from '@mui/material';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import useLogin from 'hooks/useLogin';
-import styled, { useTheme } from 'styled-components';
+import useLogin from '../../hooks/useLogin';
+import { useTheme } from 'styled-components';
 import { ItemHV2, ItemVV2, ButtonV2 } from '../../theme/SharedStyling';
 import { Text } from '../dashboard/dashboard.styled';
+import { Input, InputContainer } from './login.styled';
 
 export default function LoginView() {
-  const {
-    Login,
-    handleChange,
-    handleClickShowPassword,
-    handleMouseDownPassword,
-    values,
-  } = useLogin();
+  const { Login, handleChange, values } = useLogin();
   const theme = useTheme();
   const [showPassword, setShowPassword] = React.useState(false);
 
@@ -76,7 +58,7 @@ export default function LoginView() {
             </InputContainer>
 
             <ButtonV2
-              fontSize="18px"
+              fontSize="16px"
               fontWeight="600"
               borderRadius="10px"
               padding="15px 10px"
@@ -93,24 +75,3 @@ export default function LoginView() {
     </ItemHV2>
   );
 }
-
-const Input = styled.input`
-  outline: none;
-  border: none;
-  width: 85%;
-  font-size: 18px;
-  font-family: 'Strawford', Helvetica, sans-serif;
-  padding: 15px 10px;
-  margin: 5px 0px;
-  background-color: ${(props) => props.theme.background.secondary};
-  color: ${(props) => props.theme.text.primary};
-`;
-
-const InputContainer = styled(ItemHV2)`
-  border: 1px solid ${(props) => props.theme.background.border};
-  justify-content: space-between;
-  border-radius: 10px;
-  width: 250px;
-  padding: 0px 5px;
-  margin-bottom: 15px;
-`;

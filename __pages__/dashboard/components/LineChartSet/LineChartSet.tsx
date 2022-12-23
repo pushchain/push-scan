@@ -12,7 +12,7 @@ import useStatisticCount from 'hooks/useStatisticCount';
 import useChannelList from 'hooks/useChannelList';
 import useChannelStatistics from 'hooks/useChannelStatistics';
 import getDatesArray from '/utils/helpers';
-import HorizontalChart from '../Charts/HorizontalChart';
+import HorizontalBarChart from '../Charts/HorizontalBarChart';
 
 export default function LineChartSet() {
   const isMobile = useMediaQuery('(max-width:480px)');
@@ -250,14 +250,14 @@ export default function LineChartSet() {
           min={min}
           total={totalSubscribers}
         />
-        <HorizontalChart
+        <HorizontalBarChart
           title="Subscribers By Channel"
           label="Subscribers"
           category={subscriberCategories}
           value={subscriberValues}
         />
         <HorizontalLine />
-        <HorizontalChart
+        <HorizontalBarChart
           title="Notifications By Channel"
           label="Notifications"
           category={notificationCategories}
