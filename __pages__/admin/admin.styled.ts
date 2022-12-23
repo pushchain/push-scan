@@ -27,9 +27,14 @@ export const Input = styled.input`
 `;
 
 export const InputContainer = styled(ItemVV2)`
-  max-height: 450px;
-  // width: 50%;
+  max-height: 389px;
   overflow-y: auto;
+  @media (min-width: 310px) {
+    max-height: 550px;
+  }
+  @media (min-width: 768px) {
+    max-height: 389px;
+  }
 `;
 
 export const FormContainer = styled(ItemHV2)`
@@ -80,5 +85,3 @@ export const InfoContainer = styled(ItemVV2)`
     padding: 0px;
   }
 `;
-
-export const GraphContainer = styled.div``;

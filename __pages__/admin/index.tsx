@@ -9,9 +9,14 @@ import {
   InfoContent,
   Button,
   InfoContainer,
-  GraphContainer,
 } from './admin.styled';
 import useModal from '../../hooks/useModal';
+import {
+  GovernanceImprovementEditPanel,
+  PGPProposalsEditPanel,
+  PushGrantsEditPanel,
+  PushGrantsCategoriesEditPanel,
+} from './components/EditPanels';
 
 import PushStatistics from './components/GovernanceGraph';
 import { getGovernanceData } from '../../utils/api';
@@ -76,377 +81,47 @@ export default function AdminView() {
       </Text>
 
       <Grid container justifyContent="center">
-        <FormContainer>
-          <PushStatistics
-            data={data?.Governance?.PGP_Proposals}
-            title="Push Grants Proposals"
-            label="PGP Proposals"
-            colorSet={theme.graph.grantsProposals}
-          />
-          <InputContainer>
-            {showIndex === 1 ? (
-              <>
-                <Input
-                  placeholder="Approved"
-                  onChange={(e) =>
-                    setGrantProposalData({
-                      ...grantProposalData,
-                      ['approved']: parseInt(e.target.value),
-                    })
-                  }
-                />
-                <Input
-                  placeholder="Open"
-                  onChange={(e) =>
-                    setGrantProposalData({
-                      ...grantProposalData,
-                      ['open']: parseInt(e.target.value),
-                    })
-                  }
-                />
-                <Input
-                  placeholder="Closed"
-                  onChange={(e) =>
-                    setGrantProposalData({
-                      ...grantProposalData,
-                      ['closed']: parseInt(e.target.value),
-                    })
-                  }
-                />
+        <PGPProposalsEditPanel
+          GraphData={data?.Governance?.PGP_Proposals}
+          colorSet={theme.graph.grantsProposals}
+          showIndex={showIndex}
+          setShowIndex={setShowIndex}
+          grantProposalData={grantProposalData}
+          setGrantProposalData={setGrantProposalData}
+          updateGrantProposalData={updateGrantProposalData}
+        />
 
-                <Button
-                  margin="5px"
-                  onClick={() => {
-                    updateGrantProposalData(grantProposalData);
-                    setShowIndex(0);
-                  }}
-                >
-                  Save Push Grants Proposal Data
-                </Button>
-                <Button margin="5px" onClick={() => setShowIndex(0)}>
-                  Close
-                </Button>
-              </>
-            ) : (
-              <InfoContainer>
-                <InfoHeader>
-                  Data required to edit Push Grants Proposals Data
-                </InfoHeader>
-                <InfoContent>
-                  Approved: Number of proposals got approved
-                </InfoContent>
-                <InfoContent>
-                  Open: Number of proposals in open/inprogress state
-                </InfoContent>
-                <InfoContent>
-                  Closed: Number of proposal queries got closed
-                </InfoContent>
+        <PushGrantsEditPanel
+          GraphData={data?.Governance?.PGP_Amount}
+          GrantAmount={data?.Miscellaneous?.Push_Grants}
+          colorSet={theme.graph.grantsAndPIPColors}
+          showIndex={showIndex}
+          setShowIndex={setShowIndex}
+          grantsData={grantsData}
+          setGrantsData={setGrantsData}
+          updateGrantsData={updateGrantsData}
+        />
 
-                <ItemHV2>
-                  <ImageV2
-                    src="./static/edit-1.png"
-                    height="50px"
-                    width="50px"
-                    cursor="pointer"
-                    onClick={() => setShowIndex(1)}
-                  />
-                </ItemHV2>
-              </InfoContainer>
-            )}
-          </InputContainer>
-        </FormContainer>
-        <FormContainer>
-          <PushStatistics
-            data={data?.Governance?.PGP_Amount}
-            title="Push Grants ($PUSH)"
-            value={data?.Miscellaneous?.Push_Grants}
-            label="PGP_Amount"
-            colorSet={theme.graph.grantsAndPIPColors}
-          />
+        <GovernanceImprovementEditPanel
+          GraphData={data?.Governance?.PGIP}
+          colorSet={theme.graph.grantsAndPIPColors}
+          showIndex={showIndex}
+          setShowIndex={setShowIndex}
+          governaceImproventData={governaceImproventData}
+          setGovernanceImprovementData={setGovernanceImprovementData}
+          updateGovernanceImprovementData={updateGovernanceImprovementData}
+        />
 
-          <InputContainer>
-            {showIndex === 2 ? (
-              <>
-                <Input
-                  placeholder="Push Grants"
-                  onChange={(e) =>
-                    setGrantsData({
-                      ...grantsData,
-                      ['grants']: parseInt(e.target.value),
-                    })
-                  }
-                />
-                <Input
-                  placeholder="Approved"
-                  onChange={(e) =>
-                    setGrantsData({
-                      ...grantsData,
-                      ['approved']: parseInt(e.target.value),
-                    })
-                  }
-                />
-                <Input
-                  placeholder="Yet to be allocated"
-                  onChange={(e) =>
-                    setGrantsData({
-                      ...grantsData,
-                      ['yetToBeAllocated']: parseInt(e.target.value),
-                    })
-                  }
-                />
+        <PushGrantsCategoriesEditPanel
+          GraphData={data?.Governance?.PGP_Categories}
+          colorSet={theme.graph.pgpCategories}
+          showIndex={showIndex}
+          setShowIndex={setShowIndex}
+          categoryData={categoryData}
+          setCategoryData={setCategoryData}
+          updateGrantsCategoryData={updateGrantsCategoryData}
+        />
 
-                <Button
-                  margin="5px"
-                  onClick={() => {
-                    updateGrantsData(grantsData);
-                    setShowIndex(0);
-                  }}
-                >
-                  Save Push Grants Data
-                </Button>
-                <Button margin="5px" onClick={() => setShowIndex(0)}>
-                  Close
-                </Button>
-              </>
-            ) : (
-              <InfoContainer>
-                <InfoHeader>Data required to edit Push Grants Data</InfoHeader>
-                <InfoContent>
-                  Push Grants: Total amount of push grant
-                </InfoContent>
-                <InfoContent>
-                  Approved: Amount of grant got approved
-                </InfoContent>
-                <InfoContent>
-                  Yet to be allocated: Amount of grant yet to be allocated
-                </InfoContent>
-                <ItemHV2>
-                  <ImageV2
-                    src="./static/edit-1.png"
-                    height="50px"
-                    width="50px"
-                    cursor="pointer"
-                    onClick={() => setShowIndex(2)}
-                  />
-                </ItemHV2>
-              </InfoContainer>
-            )}
-          </InputContainer>
-        </FormContainer>
-        <FormContainer>
-          <PushStatistics
-            data={data?.Governance?.PGIP}
-            title="Push Governance Improvement Proposal"
-            label="PGIP"
-            colorSet={theme.graph.grantsAndPIPColors}
-          />
-
-          <InputContainer>
-            {showIndex === 3 ? (
-              <>
-                <Input
-                  placeholder="Approved"
-                  onChange={(e) =>
-                    setGovernanceImprovementData({
-                      ...governaceImproventData,
-                      ['approved']: parseInt(e.target.value),
-                    })
-                  }
-                />
-                <Input
-                  placeholder="Closed"
-                  onChange={(e) =>
-                    setGovernanceImprovementData({
-                      ...governaceImproventData,
-                      ['closed']: parseInt(e.target.value),
-                    })
-                  }
-                />
-
-                <Button
-                  margin="5px"
-                  onClick={() => {
-                    updateGovernanceImprovementData(governaceImproventData);
-                    setShowIndex(0);
-                  }}
-                >
-                  Save Push Governance Improvement Proposal Data
-                </Button>
-                <Button margin="5px" onClick={() => setShowIndex(0)}>
-                  Close
-                </Button>
-              </>
-            ) : (
-              <InfoContainer>
-                <InfoHeader>
-                  Data required to edit Push Governance Improvement Proposals
-                  Data
-                </InfoHeader>
-                <InfoContent>
-                  Approved: Number of Improvement proposals got approved
-                </InfoContent>
-                <InfoContent>
-                  Closed: Number of improvement proposals got closed/rejected
-                </InfoContent>
-                <ItemHV2>
-                  <ImageV2
-                    src="./static/edit-1.png"
-                    height="50px"
-                    width="50px"
-                    cursor="pointer"
-                    onClick={() => setShowIndex(3)}
-                  />
-                </ItemHV2>
-              </InfoContainer>
-            )}
-          </InputContainer>
-        </FormContainer>
-        <FormContainer>
-          <PushStatistics
-            data={data?.Governance?.PGP_Categories}
-            title="Push Grants Proposal Categories"
-            label="PGP Category"
-            colorSet={theme.graph.pgpCategories}
-          />
-
-          <InputContainer>
-            {showIndex === 4 ? (
-              <ItemHV2
-                justifyContent="space-around"
-                height="450px"
-                overflow="auto"
-              >
-                <Input
-                  placeholder="Defi"
-                  onChange={(e) =>
-                    setCategoryData({
-                      ...categoryData,
-                      ['defi']: parseInt(e.target.value),
-                    })
-                  }
-                />
-                <Input
-                  placeholder="NFT"
-                  onChange={(e) =>
-                    setCategoryData({
-                      ...categoryData,
-                      ['nft']: parseInt(e.target.value),
-                    })
-                  }
-                />
-                <Input
-                  placeholder="DAO"
-                  onChange={(e) =>
-                    setCategoryData({
-                      ...categoryData,
-                      ['dao']: parseInt(e.target.value),
-                    })
-                  }
-                />
-                <Input
-                  placeholder="Education"
-                  onChange={(e) =>
-                    setCategoryData({
-                      ...categoryData,
-                      ['education']: parseInt(e.target.value),
-                    })
-                  }
-                />
-                <Input
-                  placeholder="Marketing"
-                  onChange={(e) =>
-                    setCategoryData({
-                      ...categoryData,
-                      ['marketing']: parseInt(e.target.value),
-                    })
-                  }
-                />
-                <Input
-                  placeholder="Tooling"
-                  onChange={(e) =>
-                    setCategoryData({
-                      ...categoryData,
-                      ['tooling']: parseInt(e.target.value),
-                    })
-                  }
-                />
-                <Input
-                  placeholder="Gaming"
-                  onChange={(e) =>
-                    setCategoryData({
-                      ...categoryData,
-                      ['gaming']: parseInt(e.target.value),
-                    })
-                  }
-                />
-                <Input
-                  placeholder="Others"
-                  onChange={(e) =>
-                    setCategoryData({
-                      ...categoryData,
-                      ['others']: parseInt(e.target.value),
-                    })
-                  }
-                />
-                <ItemHV2>
-                  <Button
-                    margin="5px"
-                    onClick={() => {
-                      updateGrantsCategoryData(categoryData);
-                      setShowIndex(0);
-                    }}
-                  >
-                    Save Push Grants Proposal Categories Data
-                  </Button>
-                  <Button margin="5px" onClick={() => setShowIndex(0)}>
-                    Close
-                  </Button>
-                </ItemHV2>
-              </ItemHV2>
-            ) : (
-              <>
-                <InfoContainer>
-                  <InfoHeader>
-                    Data required to edit Push Grants Proposal Categories Data
-                  </InfoHeader>
-                  <InfoContent>
-                    Defi: Number of Proposals came from Defi Domain
-                  </InfoContent>
-                  <InfoContent>
-                    NFT: Number of Proposals came from NFT Domain
-                  </InfoContent>
-                  <InfoContent>
-                    DAO: Number of Proposals came from DAO Domain
-                  </InfoContent>
-                  <InfoContent>
-                    Education: Number of Proposals came from Education Domain
-                  </InfoContent>
-                  <InfoContent>
-                    Marketing: Number of Proposals came from Marketing Domain
-                  </InfoContent>
-                  <InfoContent>
-                    Tooling: Number of Proposals came from Tooling Domain
-                  </InfoContent>
-                  <InfoContent>
-                    Gaming: Number of Proposals came from Gaming Domain
-                  </InfoContent>
-                  <InfoContent>
-                    Others: Number of Proposals came from other minor domains
-                  </InfoContent>
-                  <ItemHV2>
-                    <ImageV2
-                      src="./static/edit-1.png"
-                      height="50px"
-                      width="50px"
-                      cursor="pointer"
-                      onClick={() => setShowIndex(4)}
-                    />
-                  </ItemHV2>
-                </InfoContainer>
-              </>
-            )}
-          </InputContainer>
-        </FormContainer>
         {/* <PushStatistics
           data={data?.Downloads}
           title="Application Usage Data"
@@ -458,7 +133,10 @@ export default function AdminView() {
             onChange={(e) => setPushIntegrationData(parseInt(e.target.value))}
           />
           <Button
-            onClick={() => updatePushIntegrationData(pushIntegrationData)}
+            onClick={() => {
+              updatePushIntegrationData(pushIntegrationData);
+              setPushIntegrationData(0);
+            }}
           >
             Save Push Integration Data
           </Button>

@@ -90,85 +90,75 @@ export default function useModal() {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    console.log('Entered Data', formData);
     const data = {
       Governance: {
         PGP_Amount: {
           Approved:
             formData.approvedgrant == 0
-              ? governanceData?.governance_data?.Governance?.PGP_Amount
-                  ?.Approved
+              ? governanceData?.Governance?.PGP_Amount?.Approved
               : formData.approvedgrant,
           'Yet To Be Allocated':
             formData.yettoallocategrant == 0
-              ? governanceData?.governance_data?.Governance[
-                  'Yet To Be Allocated'
-                ]
+              ? governanceData?.Governance?.PGP_Amount['Yet To Be Allocated']
               : formData.yettoallocategrant,
         },
         PGP_Proposals: {
           Approved:
             formData.approved == 0
-              ? governanceData?.governance_data?.Governance?.PGP_Proposals
-                  ?.Approved
+              ? governanceData?.Governance?.PGP_Proposals?.Approved
               : formData.approved,
           Open:
             formData.inprogress == 0
-              ? governanceData?.governance_data?.Governance?.PGP_Proposals?.Open
+              ? governanceData?.Governance?.PGP_Proposals?.Open
               : formData.inprogress,
           Closed:
             formData.rejected == 0
-              ? governanceData?.governance_data?.Governance?.PGP_Proposals
-                  ?.Closed
+              ? governanceData?.Governance?.PGP_Proposals?.Closed
               : formData.rejected,
         },
         PGP_Categories: {
           Defi:
             formData.defi == 0
-              ? governanceData?.governance_data?.Governance?.PGP_Categories
-                  ?.Defi
+              ? governanceData?.Governance?.PGP_Categories?.Defi
               : formData.defi,
           NFT:
             formData.nft == 0
-              ? governanceData?.governance_data?.Governance?.PGP_Categories?.NFT
+              ? governanceData?.Governance?.PGP_Categories?.NFT
               : formData.nft,
           DAO:
             formData.dao == 0
-              ? governanceData?.governance_data?.Governance?.PGP_Categories?.dao
+              ? governanceData?.Governance?.PGP_Categories?.dao
               : formData.dao,
           Education:
             formData.education == 0
-              ? governanceData?.governance_data?.Governance?.PGP_Categories
-                  ?.Education
+              ? governanceData?.Governance?.PGP_Categories?.Education
               : formData.education,
           Marketing:
             formData.marketing == 0
-              ? governanceData?.governance_data?.Governance?.PGP_Categories
-                  ?.Marketing
+              ? governanceData?.Governance?.PGP_Categories?.Marketing
               : formData.marketing,
           Tooling:
             formData.tooling == 0
-              ? governanceData?.governance_data?.Governance?.PGP_Categories
-                  ?.Tooling
+              ? governanceData?.Governance?.PGP_Categories?.Tooling
               : formData.tooling,
           Gaming:
             formData.gaming == 0
-              ? governanceData?.governance_data?.Governance?.PGP_Categories
-                  ?.Gaming
+              ? governanceData?.Governance?.PGP_Categories?.Gaming
               : formData.gaming,
           Other:
             formData.others == 0
-              ? governanceData?.governance_data?.Governance?.PGP_Categories
-                  ?.Other
+              ? governanceData?.Governance?.PGP_Categories?.Other
               : formData.others,
         },
         PGIP: {
           Approved:
             formData.approvedimprovement == 0
-              ? governanceData?.governance_data?.Governance?.PGIP?.Approved
+              ? governanceData?.Governance?.PGIP?.Approved
               : formData.approvedimprovement,
           Closed:
             formData.rejectedimprovement == 0
-              ? governanceData?.governance_data?.Governance?.PGIP?.Closed
+              ? governanceData?.Governance?.PGIP?.Closed
               : formData.rejectedimprovement,
         },
       },
@@ -181,13 +171,11 @@ export default function useModal() {
       Miscellaneous: {
         Push_Grants:
           formData.pushgrants == 0
-            ? governanceData?.governance_data?.Governance?.Miscellaneous
-                ?.Push_Grants
+            ? governanceData?.Miscellaneous?.Push_Grants
             : formData.pushgrants,
         Push_Integrations:
           formData.push_integrations == 0
-            ? governanceData?.governance_data?.Governance?.Miscellaneous
-                ?.Push_Integrations
+            ? governanceData?.Miscellaneous?.Push_Integrations
             : formData.push_integrations,
       },
     };
@@ -212,5 +200,6 @@ export default function useModal() {
     updateGrantsData,
     updateGovernanceImprovementData,
     updatePushIntegrationData,
+    governanceData,
   };
 }
