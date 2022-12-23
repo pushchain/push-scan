@@ -13,10 +13,9 @@ import { useData } from 'contexts/DataContext';
 import { HorizontalLine } from '../../dashboard.styled';
 
 export default function OverViewSet() {
-  const { token } = useData();
+  const { token, pushIntegrations } = useData();
   const [chatUsers, setChatUsers] = React.useState<number>(0);
   const [chatSent, setChatSent] = React.useState<number>(0);
-  const [pushIntegrations, setPushIntegrations] = React.useState<number>(0);
   const [notifiactionsSent, setNotificationsSent] = React.useState<number>(0);
 
   const overViewData = [
@@ -52,10 +51,6 @@ export default function OverViewSet() {
       const userResponse = await getUsers({ token });
       setChatUsers(userResponse?.totalUsers);
 
-      const governanceResponse = await getGovernanceData({ token });
-      setPushIntegrations(
-        governanceResponse?.governance_data?.Miscellaneous?.Push_Integrations
-      );
       const notificationResponse = await getNotifications({ token });
       const notifictionAnalyticsData =
         notificationResponse.notificationAnalytics;
