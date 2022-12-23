@@ -1,17 +1,17 @@
 import * as React from 'react';
-import { Grid, Box, useMediaQuery } from '@mui/material';
-import { Text, HorizontalLine } from '__pages__/dashboard/dashboard.styled';
+import { Grid, useMediaQuery } from '@mui/material';
+import { HorizontalLine } from '../../dashboard.styled';
 import Notifications from '../Notifications';
 import Subscribers from '../Subscribers';
 import ChatUsers from '../ChatUsers';
 import RequestSent from '../RequestSent';
 import Filters from '../Filters';
-import { useData } from 'contexts/DataContext';
-import useStatisticData from 'hooks/useStatisticData';
-import useStatisticCount from 'hooks/useStatisticCount';
-import useChannelList from 'hooks/useChannelList';
-import useChannelStatistics from 'hooks/useChannelStatistics';
-import getDatesArray from '/utils/helpers';
+import { useData } from '../../../../contexts/DataContext';
+import useStatisticData from '../../../../hooks/useStatisticData';
+import useStatisticCount from '../../../../hooks/useStatisticCount';
+import useChannelList from '../../../../hooks/useChannelList';
+import useChannelStatistics from '../../../../hooks/useChannelStatistics';
+import getDatesArray from '../../../../utils/helpers';
 import HorizontalBarChart from '../Charts/HorizontalBarChart';
 
 export default function LineChartSet() {

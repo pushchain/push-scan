@@ -20,19 +20,20 @@ export default function useChannelStatistics({ token }) {
     (async () => {
       const subscriberRes = await getSubscribers({ token });
       const notificationsRes = await getNotifications({ token });
-      const sortedSubscribers = subscriberRes?.subscriberAnalytics?.sort(
+      const sortedSubscribers: any[] = subscriberRes?.subscriberAnalytics?.sort(
         (a, b) => b?.subscriber - a?.subscriber
       );
-      const subscriberChannelLimit =
+      const subscriberChannelLimit: number =
         sortedSubscribers?.length > 10 ? 10 : sortedSubscribers?.length;
 
       for (let i = 0; i < subscriberChannelLimit; i++) {
         subscriberCategory.push(sortedSubscribers[i]?.name);
         subscriberValue.push(sortedSubscribers[i]?.subscriber);
       }
-      const sortedNotifications = notificationsRes?.notificationAnalytics?.sort(
-        (a, b) => b?.notification - a?.notification
-      );
+      const sortedNotifications: any[] =
+        notificationsRes?.notificationAnalytics?.sort(
+          (a, b) => b?.notification - a?.notification
+        );
 
       const notificationChannelLimit =
         sortedNotifications?.length > 10 ? 10 : sortedNotifications?.length;

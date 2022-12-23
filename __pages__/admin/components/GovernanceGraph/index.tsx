@@ -2,7 +2,7 @@ import React from 'react';
 import { Grid, Card, useMediaQuery } from '@mui/material';
 import ReactECharts from 'echarts-for-react';
 import styled, { useTheme } from 'styled-components';
-import { ItemHV2 } from 'theme/SharedStyling';
+import { ItemHV2 } from '../../../../theme/SharedStyling';
 import { Text } from '../../../dashboard/dashboard.styled';
 
 const GovernanceGraph = ({ data, title, label, value, colorSet }: any) => {

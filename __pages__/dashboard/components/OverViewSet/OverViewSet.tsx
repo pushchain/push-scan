@@ -7,10 +7,10 @@ import {
   getUsers,
   getGovernanceData,
   getNotifications,
-} from 'utils/api';
-import { useData } from 'contexts/DataContext';
+} from '../../../../utils/api';
+import { useData } from '../../../../contexts/DataContext';
 import { HorizontalLine } from '../../dashboard.styled';
-import { ItemHV2, ItemVV2, ImageV2 } from 'theme/SharedStyling';
+import { ItemHV2, ItemVV2, ImageV2 } from '../../../../theme/SharedStyling';
 import { useMediaQuery } from '@mui/material';
 
 export default function OverViewSet() {

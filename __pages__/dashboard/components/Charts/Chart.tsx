@@ -10,13 +10,13 @@ import {
 } from '@mui/material';
 import dynamic from 'next/dynamic';
 import styled, { useTheme } from 'styled-components';
-import BaseOptions from '../BaseOptions';
+import BaseOptions from './BaseOptions';
 import _ from 'lodash';
 import CircularProgress from '@mui/material/CircularProgress';
 const ReactApexChart = dynamic(() => import('react-apexcharts'), {
   ssr: false,
 });
-import { ItemVV2, ItemHV2 } from 'theme/SharedStyling';
+import { ItemVV2, ItemHV2 } from '../../../../theme/SharedStyling';
 import { Text } from '../../dashboard.styled';
 
 export default function Chart({

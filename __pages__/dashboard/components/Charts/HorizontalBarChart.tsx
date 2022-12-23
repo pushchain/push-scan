@@ -1,20 +1,14 @@
 import React from 'react';
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  Grid,
-  useMediaQuery,
-} from '@mui/material';
+import { CardContent, Grid, useMediaQuery } from '@mui/material';
 import dynamic from 'next/dynamic';
-import BaseOptions from '../BaseOptions';
-import { DAPP_LINKS } from 'utils/constants';
+import BaseOptions from './BaseOptions';
+import { DAPP_LINKS } from '../../../../utils/constants';
 import styled, { useTheme } from 'styled-components';
 import _ from 'lodash';
 const ReactApexChart = dynamic(() => import('react-apexcharts'), {
   ssr: false,
 });
-import { ItemVV2, ItemHV2 } from 'theme/SharedStyling';
+import { ItemVV2 } from '../../../../theme/SharedStyling';
 import { Text } from '../../dashboard.styled';
 
 export default function HorizontalBarChart({

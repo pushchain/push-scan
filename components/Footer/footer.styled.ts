@@ -1,4 +1,4 @@
-import { ItemHV2 } from 'theme/SharedStyling';
+import { ItemHV2 } from '../../theme/SharedStyling';
 import styled from 'styled-components';
 
 export const FooterContainer = styled.div`

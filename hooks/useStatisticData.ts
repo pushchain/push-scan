@@ -1,6 +1,6 @@
 import React from 'react';
 import getDatesArray from '../utils/helpers';
-import { getSubscribers, getNotifications } from 'utils/api';
+import { getSubscribers, getNotifications } from '../utils/api';
 
 export default function useStatisticData({
   setIsLoading,

@@ -1,9 +1,9 @@
-import { useData } from 'contexts/DataContext';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { toast } from 'react-toastify';
-import { ROUTES, CREDENTIALKEYS } from 'utils/constants';
-import { login } from 'utils/api';
+import { useData } from '../contexts/DataContext';
+import { ROUTES, CREDENTIALKEYS } from '../utils/constants';
+import { login } from '../utils/api';
 
 export default function useLogin() {
   const router = useRouter();

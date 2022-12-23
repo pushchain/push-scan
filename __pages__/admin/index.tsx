@@ -17,7 +17,6 @@ import {
   PushGrantsEditPanel,
   PushGrantsCategoriesEditPanel,
 } from './components/EditPanels';
-
 import PushStatistics from './components/GovernanceGraph';
 import { getGovernanceData } from '../../utils/api';
 import { useData } from '../../contexts/DataContext';

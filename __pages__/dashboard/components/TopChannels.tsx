@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { getLeaderBoard } from 'utils/api';
-import { useData } from 'contexts/DataContext';
+import { getLeaderBoard } from '../../../utils/api';
+import { useData } from '../../../contexts/DataContext';
 import LeaderBoard from './LeaderBoard/LeaderBoard';
 
 export default function TopChannels() {

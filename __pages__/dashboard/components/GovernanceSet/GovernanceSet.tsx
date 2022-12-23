@@ -1,9 +1,9 @@
 import React from 'react';
 import { Grid, Box, useMediaQuery } from '@mui/material';
-import GovernanceGraph from '__pages__/admin/components/GovernanceGraph';
-import { Text, HorizontalLine } from '__pages__/dashboard/dashboard.styled';
-import { getGovernanceData } from 'utils/api';
-import { useData } from 'contexts/DataContext';
+import GovernanceGraph from '../../../admin/components/GovernanceGraph';
+import { Text, HorizontalLine } from '../../dashboard.styled';
+import { getGovernanceData } from '../../../../utils/api';
+import { useData } from '../../../../contexts/DataContext';
 import { useTheme } from 'styled-components';
 
 export default function GovernanceSet() {

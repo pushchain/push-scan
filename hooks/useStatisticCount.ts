@@ -1,5 +1,5 @@
 import React from 'react';
-import { getSubscribers, getNotifications } from 'utils/api';
+import { getSubscribers, getNotifications } from '../utils/api';
 
 export default function useStatisticCount({
   token,

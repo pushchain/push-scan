@@ -8,8 +8,8 @@ import {
   TimeFilter,
 } from './LineChartSet/linchartset.styled';
 import styled from 'styled-components';
-import { useTheme } from 'contexts/ThemeContext';
-import { ItemHV2, ImageV2, SpanV2 } from 'theme/SharedStyling';
+import { useTheme } from '../../../contexts/ThemeContext';
+import { ItemHV2, ImageV2, SpanV2 } from '../../../theme/SharedStyling';
 
 export default function Filters({
   selectedChannel,
