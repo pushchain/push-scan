@@ -7,8 +7,8 @@ export const ROUTES = {
 };
 
 export const DAPP_LINKS = {
-  CHANNELS: 'https:staging.push.org/#/channels',
-  CHATS: 'https:staging.push.org/#/chat',
+  CHANNELS: 'https://staging.push.org/#/channels',
+  CHATS: 'https://staging.push.org/#/chat',
 };
 
 export const CREDENTIALKEYS = {

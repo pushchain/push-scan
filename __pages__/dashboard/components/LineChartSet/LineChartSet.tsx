@@ -263,6 +263,7 @@ export default function LineChartSet() {
           category={notificationCategories}
           value={notificationValues}
         />
+        <HorizontalLine />
       </Grid>
       {/* <Box
         sx={{ display: 'flex', width: '100%', justifyContent: 'flex-start' }}

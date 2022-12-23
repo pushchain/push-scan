@@ -1,5 +1,5 @@
 import React from 'react';
-import { getLeaderBoard } from 'utils/api';
+import { getLeaderBoard } from '../utils/api';
 
 export default function useChannelList({ token, selectedChain }) {
   const [channelList, setChannelList] = React.useState<any[]>([]);

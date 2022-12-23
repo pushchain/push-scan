@@ -1,16 +1,11 @@
 import React from 'react';
-import {
-  Grid,
-  Card,
-  CardHeader,
-  Box,
-  Typography,
-  useMediaQuery,
-} from '@mui/material';
+import { Grid, Card, useMediaQuery } from '@mui/material';
 import ReactECharts from 'echarts-for-react';
-import { useTheme } from '@mui/material/styles';
+import styled, { useTheme } from 'styled-components';
+import { ItemHV2 } from 'theme/SharedStyling';
+import { Text } from '../../../dashboard/dashboard.styled';
 
-const GovernanceGraph = ({ data, title, label, value }: any) => {
+const GovernanceGraph = ({ data, title, label, value, colorSet }: any) => {
   const theme = useTheme();
   // Checking whether screen is mobile screen
   const isMobile = useMediaQuery('(max-width:480px)');
@@ -36,9 +31,10 @@ const GovernanceGraph = ({ data, title, label, value }: any) => {
         theme: 'dark',
         trigger: 'item',
         valueFormatter: (value: number) => value,
-        backgroundColor: theme.palette.background.default,
+        backgroundColor: theme.default.tooltipBackground,
         textStyle: {
-          color: theme.palette.text.primary,
+          color: theme.default.color,
+          fontFamily: 'Strawford, Helvetica, sans-serif',
         },
         borderWidth: 0,
         borderRadius: 10,
@@ -49,8 +45,9 @@ const GovernanceGraph = ({ data, title, label, value }: any) => {
         left: 'left',
         top: value ? 30 : 0,
         textStyle: {
-          color: theme.palette.text.secondary,
+          color: theme.graph.legendText,
           fontSize: 12,
+          fontFamily: 'Strawford, Helvetica, sans-serif',
           fontWeight: 500,
         },
         itemWidth: 15,
@@ -60,22 +57,13 @@ const GovernanceGraph = ({ data, title, label, value }: any) => {
         },
         icon: 'roundRect',
       },
-      color: [
-        '#CF1C84',
-        '#F9BFE0',
-        '#E479CC',
-        '#AB7FEA',
-        '#C66BD3',
-        '#D874D7',
-        '#E479CC',
-        '#F16CB3',
-      ],
+      color: colorSet,
       series: [
         {
           name: label,
           type: 'pie',
-          radius: ['40%', '70%'],
-          center: isMobile ? ['50%', '50%'] : ['65%', '40%'],
+          radius: ['38%', '70%'],
+          center: isMobile ? ['50%', '50%'] : ['62%', '40%'],
           data: [...values],
           emphasis: {
             itemStyle: {
@@ -89,16 +77,20 @@ const GovernanceGraph = ({ data, title, label, value }: any) => {
             // formatter: (value) =>
             //   `{a|${value?.name}}\n {b|${value?.value}}\t\t\t\t\t`,'{b}\n {d}%',
             formatter: '{a|{b}}\n {b|{d}%}\t\t\t\t',
-            color: theme.palette.text.secondary,
+            color: theme.graph.primaryLabel,
             fontWeight: 500,
             rich: {
               a: {
-                lineHeight: 10,
-                color: theme.palette.text.secondary,
+                lineHeight: 15,
+                color: theme.graph.primaryLabel,
+                fontFamily: 'Strawford, Helvetica, sans-serif',
+                fontSize: '12px',
               },
               b: {
                 fontWeight: 500,
-                color: theme.palette.text.primary,
+                color: theme.graph.secondaryLabel,
+                fontFamily: 'Strawford, Helvetica, sans-serif',
+                fontSize: '14px',
                 lineHeight: 20,
               },
             },
@@ -110,7 +102,13 @@ const GovernanceGraph = ({ data, title, label, value }: any) => {
 
   return (
     <Grid
-      sx={{ height: '400px', position: 'relative' }}
+      sx={{
+        minHeight: '389px',
+        position: 'relative',
+        '@media(max-width:901px)': {
+          minWidth: '100%',
+        },
+      }}
       item
       xs={12}
       sm={12}
@@ -119,56 +117,54 @@ const GovernanceGraph = ({ data, title, label, value }: any) => {
     >
       <Card
         sx={{
-          height: '100%',
-          width: '100%',
-          backgroundColor: isMobile
-            ? 'transparent'
-            : theme.palette.background.card,
-          border: `1px solid ${theme.palette.outline}`,
-          padding: isMobile ? '35px 0px 0px' : '25px 30px',
+          minHeight: '100%',
+          minWidth: '100%',
+          backgroundColor: isMobile ? 'transparent' : theme.background.card,
+          border: `1px solid ${theme.background.border}`,
+          borderRadius: '28px',
+          padding: isMobile ? '35px 0px 0px' : '28px 30px',
+          boxShadow: 'none',
           '@media(max-width:480px)': {
             border: 'none',
           },
         }}
       >
-        <CardHeader
-          title={title}
-          style={{
-            padding: 0,
-            marginBottom: value ? '0px' : !isMobile ? '40px' : '0px',
-          }}
-        />
-        {value && (
-          <Typography
-            variant="subtitle1"
-            style={{ fontWeight: 600, fontSize: '28px' }}
-          >
-            ${value.toLocaleString()}
-          </Typography>
-        )}
-        <Box
-          sx={{
-            p: 0,
-            display: 'flex',
-            justifyContent: 'center',
-            height: '100%',
-            width: '100%',
-          }}
-          dir="ltr"
+        <Text
+          weight={500}
+          size="18px"
+          color={theme.text.primary}
+          marginBottom={value ? '5px' : isMobile ? '0px' : '45px'}
         >
+          {title}
+        </Text>
+        {value && (
+          <Text
+            weight={500}
+            size="28px"
+            color={theme.text.primary}
+            marginBottom={value ? '5px' : '0px'}
+          >
+            $ {value?.toLocaleString()}
+          </Text>
+        )}
+        <GraphContainer>
           <ReactECharts
             style={{
-              height: '100%',
-              width: '100%',
-              display: 'flex',
-              justifyContent: 'center',
+              minHeight: '100%',
+              minWidth: '100%',
             }}
             option={getDataPoints({ data, label })}
           />
-        </Box>
+        </GraphContainer>
       </Card>
     </Grid>
   );
 };
 
 export default GovernanceGraph;
+
+const GraphContainer = styled(ItemHV2)`
+  padding: 0px;
+  min-height: 100%;
+  min-width: 100%;
+`;

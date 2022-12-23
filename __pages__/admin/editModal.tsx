@@ -4,10 +4,10 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { StyledDialog } from '__pages__/admin/admin.styled';
 import useModal from 'hooks/useModal';
+import { useTheme } from 'styled-components';
 
 export default function FormDialog({
   open,
@@ -17,12 +17,26 @@ export default function FormDialog({
   handleClose: () => void;
 }) {
   const { handleChange, handleSubmit } = useModal();
+  const theme = useTheme();
 
   return (
     <StyledDialog open={open} onClose={handleClose}>
-      <DialogTitle variant="h3">Modify Governance Data</DialogTitle>
+      <DialogTitle
+        variant="h3"
+        sx={{
+          backgroundColor: theme.background.secondary,
+          color: theme.text.color,
+        }}
+      >
+        Modify Governance Data
+      </DialogTitle>
       <form onSubmit={handleSubmit}>
-        <DialogContent>
+        <DialogContent
+          sx={{
+            backgroundColor: theme.background.secondary,
+            color: theme.text.color,
+          }}
+        >
           <Typography variant="h6">Push Grant Proposals</Typography>
           <TextField
             autoFocus
@@ -230,7 +244,12 @@ export default function FormDialog({
           />
         </DialogContent>
 
-        <DialogActions>
+        <DialogActions
+          sx={{
+            backgroundColor: theme.background.secondary,
+            color: theme.text.color,
+          }}
+        >
           <Button type="submit" onClick={handleClose}>
             Upload
           </Button>

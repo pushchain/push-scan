@@ -9,11 +9,13 @@ import {
 import dynamic from 'next/dynamic';
 import BaseOptions from '../BaseOptions';
 import { DAPP_LINKS } from 'utils/constants';
-import { useTheme } from '@mui/material/styles';
+import styled, { useTheme } from 'styled-components';
 import _ from 'lodash';
 const ReactApexChart = dynamic(() => import('react-apexcharts'), {
   ssr: false,
 });
+import { ItemVV2, ItemHV2 } from 'theme/SharedStyling';
+import { Text } from '../../dashboard.styled';
 
 export default function HorizontalChart({
   title,
@@ -47,6 +49,7 @@ export default function HorizontalChart({
           window.open(DAPP_LINKS.CHANNELS, '_blank');
         },
       },
+      fontFamily: 'Strawford, Helvetica, sans-serif',
     },
     plotOptions: {
       bar: {
@@ -59,18 +62,7 @@ export default function HorizontalChart({
         },
       },
     },
-    colors: [
-      '#DF4FA3',
-      '#AB7FEA',
-      '#B477E4',
-      '#C66BD3',
-      '#C66BD3',
-      '#D874D7',
-      '#E479CC',
-      '#F16CB3',
-      '#F982AC',
-      '#FF95A7',
-    ],
+    colors: theme.graph.barchartColorSet,
 
     xaxis: {
       categories: category,
@@ -88,7 +80,8 @@ export default function HorizontalChart({
         },
         style: {
           fontSize: '12px',
-          colors: theme.palette.text.secondary,
+          fontFamily: 'Strawford, Helvetica, sans-serif',
+          colors: theme.graph.primaryLabel,
           cursor: 'pointer',
         },
       },
@@ -108,7 +101,8 @@ export default function HorizontalChart({
         },
         style: {
           fontSize: '12px',
-          colors: theme.palette.text.secondary,
+          fontFamily: 'Strawford, Helvetica, sans-serif',
+          colors: theme.graph.primaryLabel,
         },
       },
       axisBorder: {
@@ -138,21 +132,22 @@ export default function HorizontalChart({
 
   return (
     <Grid item xs={12} sm={12} md={6} lg={6}>
-      <Card
-        sx={{
-          height: 'auto',
-          backgroundColor: isMobile
-            ? 'transparent'
-            : theme.palette.background.card,
-          border: `1px solid ${theme.palette.outline}`,
-          padding: isMobile ? '35px 0px 0px' : '35px 40px',
-          '@media(max-width:480px)': {
-            border: 'none',
-          },
-        }}
+      <CardContainer
+        color={theme.text.primary}
+        alignItems="flex-start"
+        justifyContent="flex-start"
+        height="auto"
+        width="100%"
+        background={isMobile ? 'transparent' : theme.background.card}
+        border={`1px solid ${theme.background.border}`}
+        borderRadius="28px"
+        minHeight="384px"
+        padding={isMobile ? '35px 0px 0px' : '30px 30px 6px'}
       >
-        <CardHeader style={{ padding: 0 }} title={title} />
-        <CardContent style={{ padding: 0 }}>
+        <Text weight={500} size="18px" color={theme.text.primary}>
+          {title}
+        </Text>
+        <CardContent sx={{ width: '100%', padding: '0px' }}>
           <ReactApexChart
             type="bar"
             series={options.series}
@@ -160,7 +155,13 @@ export default function HorizontalChart({
             height={300}
           />
         </CardContent>
-      </Card>
+      </CardContainer>
     </Grid>
   );
 }
+
+const CardContainer = styled(ItemVV2)`
+  @media (max-width: 480px) {
+    border: none;
+  }
+`;

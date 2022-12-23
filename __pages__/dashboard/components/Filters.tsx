@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Box, useMediaQuery } from '@mui/material';
+import { Avatar, Box, useMediaQuery } from '@mui/material';
 import {
   Select,
   OptionList,
@@ -7,8 +7,9 @@ import {
   TimeFilterContainer,
   TimeFilter,
 } from './LineChartSet/linchartset.styled';
-import { useTheme } from '@mui/material/styles';
 import styled from 'styled-components';
+import { useTheme } from 'contexts/ThemeContext';
+import { ItemHV2, ImageV2, SpanV2 } from 'theme/SharedStyling';
 
 export default function Filters({
   selectedChannel,
@@ -26,11 +27,11 @@ export default function Filters({
   setSelectedFilter,
   handleTimeFilter,
 }) {
-  const { theme } = useTheme();
   const isMobile = useMediaQuery('(max-width:768px)');
+  const { isDarkMode } = useTheme();
   const [channels, setChannels] = React.useState<any[]>(channelList);
 
-  const handleChange = (event: any) => {
+  const handleSearch = (event: any) => {
     const text = event.target.value;
     const res = channelList.filter((obj) =>
       JSON.stringify(obj).toLowerCase().includes(text.toLowerCase())
@@ -44,21 +45,7 @@ export default function Filters({
 
   return (
     <>
-      <Box
-        display="flex"
-        sx={{
-          '@media(max-width:480px)': {
-            width: '100%',
-            justifyContent: 'space-between',
-            marginBottom: '10px',
-          },
-          '@media(max-width:768px)': {
-            width: '100%',
-            justifyContent: 'space-between',
-            marginBottom: '10px',
-          },
-        }}
-      >
+      <FirstFilterContainer>
         <Select
           background="#cf1c84"
           color="#fff"
@@ -75,14 +62,11 @@ export default function Filters({
             onClick={() => setShowChannel(!showChannel)}
           >
             {selectedChannel?.icon && (
-              <Box
-                component="img"
-                sx={{
-                  height: '33px',
-                  width: '33px',
-                  marginRight: '5px',
-                  borderRadius: '50%',
-                }}
+              <ImageV2
+                height="33px"
+                width="33px"
+                marginRight="5px"
+                borderRadius="50%"
                 alt=""
                 src={selectedChannel?.icon}
               />
@@ -101,12 +85,9 @@ export default function Filters({
               {selectedChannel?.name}
             </Box>
           </Box>
-          <Box
-            component="img"
-            sx={{
-              height: '20px',
-              width: '20px',
-            }}
+          <ImageV2
+            height="20px"
+            width="20px"
             alt=""
             src={'./static/caret-down-white.png'}
             onClick={() => setShowChannel(!showChannel)}
@@ -115,7 +96,7 @@ export default function Filters({
             <OptionList background="#cf1c84">
               <Searchbar
                 placeholder="Search for channel here..."
-                onChange={handleChange}
+                onChange={handleSearch}
               />
               <Box
                 sx={{
@@ -142,14 +123,11 @@ export default function Filters({
                     }}
                   >
                     {channel?.icon && (
-                      <Box
-                        component="img"
-                        sx={{
-                          height: '33px',
-                          width: '33px',
-                          marginRight: '5px',
-                          borderRadius: '50%',
-                        }}
+                      <ImageV2
+                        height="33px"
+                        width="33px"
+                        borderRadius="33px"
+                        marginRight="5px"
                         alt=""
                         src={channel?.icon}
                       />
@@ -162,7 +140,7 @@ export default function Filters({
                         whiteSpace: 'nowrap',
                         overflow: 'hidden',
                         textOverflow: 'ellipsis',
-                        paddingLeft: !channel?.icon ? '10px' : null,
+                        margin: !channel?.icon ? '5px auto' : null,
                       }}
                     >
                       {channel?.name}
@@ -175,26 +153,20 @@ export default function Filters({
         </Select>
         <Select
           background="transparent"
-          color="#657795"
+          color={!isDarkMode ? '#657795' : '#B6BCD6'}
           border="#657795"
           width="80px"
           marginRight={isMobile ? '0px' : '10px'}
         >
-          <Box
-            sx={{
-              display: 'flex',
-              justifyContent: 'flex-start',
-              alignItems: 'center',
-            }}
+          <ItemHV2
+            justifyContent="flex-start"
             onClick={() => setShowChain(!showChain)}
           >
-            <Box
-              component="img"
-              sx={{
-                height: '33px',
-                width: '33px',
-                marginRight: '5px',
-              }}
+            <ImageV2
+              height="33px"
+              width="33px"
+              marginRight="5px"
+              borderRadius="50%"
               alt=""
               src={selectedChain?.image}
             />
@@ -207,13 +179,10 @@ export default function Filters({
             >
               {selectedChain?.chain}
             </Box>
-          </Box>
-          <Box
-            component="img"
-            sx={{
-              height: '20px',
-              width: '20px',
-            }}
+          </ItemHV2>
+          <ImageV2
+            height="20px"
+            width="20px"
             alt=""
             src={'./static/caret-down-black.png'}
             onClick={() => setShowChain(!showChain)}
@@ -222,13 +191,11 @@ export default function Filters({
             <OptionList>
               {chainList.map((chain, index) => (
                 <Option key={index} onClick={() => handleChainChange(chain)}>
-                  <Box
-                    component="img"
-                    sx={{
-                      height: '33px',
-                      width: '33px',
-                      marginRight: '5px',
-                    }}
+                  <ImageV2
+                    height="33px"
+                    width="33px"
+                    marginRight="5px"
+                    borderRadius="50%"
                     alt=""
                     src={chain.image}
                     onClick={() => setShowChain(!showChain)}
@@ -247,7 +214,7 @@ export default function Filters({
             </OptionList>
           )}
         </Select>
-      </Box>
+      </FirstFilterContainer>
       <TimeFilterContainer>
         {TimeFilterOptions?.map((time, index) => (
           <TimeFilter
@@ -260,6 +227,7 @@ export default function Filters({
               index + 1 === selectedFilter ? '#cf1c84' : 'transparent'
             }
             color={index + 1 === selectedFilter ? '#fff' : '#657795'}
+            fontWeight={index + 1 === selectedFilter ? '700' : '500'}
           >
             {time?.time}
           </TimeFilter>
@@ -277,4 +245,18 @@ const Searchbar = styled.input`
   background-color: transaparent;
   border-radius: 16px;
   font-size: 15px;
+`;
+
+const FirstFilterContainer = styled(ItemHV2)`
+justify-content:flex-start;
+@media(max-width:480px){
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 10px;
+};
+@media(max-width:768px) {
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 10px;
+},
 `;
