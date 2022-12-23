@@ -2,6 +2,10 @@ import axios from 'axios';
 import { ROUTES, CREDENTIALKEYS } from 'utils/constants';
 
 const API_BASE = 'https://backend-dev.epns.io/apis/v1';
+// After moving all api to staging remove 'stagingToken' and uncomment token part in getGovernance,updateGovernance, getChats, getUsers
+
+const stagingToken =
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoicHVzaF9zdGFnaW5nX3VzZXIiLCJpYXQiOjE2NzE4MTM4MTIsImV4cCI6MTY3MTkwMDIxMn0.xLrRThQ3fKn0aA1L37KRRgUe02_Z1I6CRkP4oenvRtc';
 
 export const login = async ({ user, pass }) => {
   try {
@@ -109,9 +113,10 @@ export const getGovernanceData = async ({ token }) => {
       `https://backend-staging.epns.io/apis/v1/analytics/governance_data/`,
       {
         headers: {
-          'x-access-token': String(
-            sessionStorage.getItem(CREDENTIALKEYS.TOKEN)
-          ),
+          'x-access-token': stagingToken,
+          // String(
+          //   sessionStorage.getItem(CREDENTIALKEYS.TOKEN)
+          // ),
         },
       }
     );
@@ -131,9 +136,10 @@ export const updateGovernanceData = async ({ data, token }) => {
       },
       {
         headers: {
-          'x-access-token': String(
-            sessionStorage.getItem(CREDENTIALKEYS.TOKEN)
-          ),
+          'x-access-token': stagingToken,
+          // String(
+          //   sessionStorage.getItem(CREDENTIALKEYS.TOKEN)
+          // ),
         },
       }
     );
@@ -154,9 +160,10 @@ export const getChats = async ({ token }) => {
         //   endDate: '2022-11-01',
         // },
         headers: {
-          'x-access-token': String(
-            sessionStorage.getItem(CREDENTIALKEYS.TOKEN)
-          ),
+          'x-access-token': stagingToken,
+          // String(
+          //   sessionStorage.getItem(CREDENTIALKEYS.TOKEN)
+          // ),
         },
       }
     );
@@ -174,9 +181,9 @@ export const getUsers = async ({ token }) => {
       `https://backend-staging.epns.io/apis/v1/analytics/chat/users`,
       {
         headers: {
-          'x-access-token': String(
-            sessionStorage.getItem(CREDENTIALKEYS.TOKEN)
-          ),
+          'x-access-token': stagingToken,
+          //   String(
+          //     sessionStorage.getItem(CREDENTIALKEYS.TOKEN) ),
         },
       }
     );

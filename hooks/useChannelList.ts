@@ -13,13 +13,16 @@ export default function useChannelList({ token, selectedChain }) {
         channel: 'All',
       };
       try {
-        const res = await getLeaderBoard({
+        const leaderboardResponse = await getLeaderBoard({
           token: token,
           limit: 30,
           sort: 'subscribers',
           order: 'desc',
         });
-        setChannelList([allChannels, ...res.leaderboardAnalytics]);
+        setChannelList([
+          allChannels,
+          ...leaderboardResponse.leaderboardAnalytics,
+        ]);
       } catch (e) {
         console.log('Error occured', e);
       }

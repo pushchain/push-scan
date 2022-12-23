@@ -12,7 +12,7 @@ const DashBoardView = () => {
   const isMobile = useMediaQuery('(max-width:480px)');
   return (
     <DashBoardContainer maxWidth="xl" marginTop={isMobile ? '90px ' : '100px'}>
-      {/* <OverViewSet /> */}
+      <OverViewSet />
       <Grid container spacing={!isMobile ? 3 : 0} justifyContent="center">
         <Trending />
         <HorizontalLine />
@@ -21,7 +21,7 @@ const DashBoardView = () => {
         <TopChannels />
       </Grid>
       <LineChartSet />
-      {/* <GovernanceSet /> */}
+      <GovernanceSet />
     </DashBoardContainer>
   );
 };

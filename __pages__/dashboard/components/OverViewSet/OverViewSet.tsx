@@ -45,18 +45,31 @@ export default function OverViewSet() {
 
   React.useEffect(() => {
     (async () => {
-      const chatRes = await getChats({ token });
-      setChatSent(chatRes?.totalMessages);
-      // console.log('chat', chatRes?.totalMessages);
-      const userRes = await getUsers({ token });
-      setChatUsers(userRes?.totalUsers);
-      // console.log('user', userRes?.totalUsers);
-      const govRes = await getGovernanceData({ token });
+      let total = 0;
+      const chatResponse = await getChats({ token });
+      setChatSent(chatResponse?.totalMessages);
+
+      const userResponse = await getUsers({ token });
+      setChatUsers(userResponse?.totalUsers);
+
+      const governanceResponse = await getGovernanceData({ token });
       setPushIntegrations(
-        govRes?.governance_data?.Miscellaneous?.Push_Integrations
+        governanceResponse?.governance_data?.Miscellaneous?.Push_Integrations
       );
-      const notifRes = await getNotifications({ token });
-      setNotificationsSent(notifRes?.totalNotification);
+      const notificationResponse = await getNotifications({ token });
+      const notifictionAnalyticsData =
+        notificationResponse.notificationAnalytics;
+
+      for (let i = 0; i < notifictionAnalyticsData.length; i++) {
+        for (let key in notifictionAnalyticsData[i]) {
+          if (key === 'date') {
+            continue;
+          } else {
+            total += notifictionAnalyticsData[i][key].notification;
+          }
+        }
+      }
+      setNotificationsSent(total);
     })();
   }, []);
 

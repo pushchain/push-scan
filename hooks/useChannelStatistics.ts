@@ -24,12 +24,15 @@ export default function useChannelStatistics({ token, selectedChain }) {
     });
 
     (async () => {
-      const subscriberRes = await getSubscribers({ token, selectedChain });
-      const notificationsRes = await getNotifications({ token, selectedChain });
+      const subscriberResponse = await getSubscribers({ token, selectedChain });
+      const notificationsResponse = await getNotifications({
+        token,
+        selectedChain,
+      });
 
       // Retrieving and formatting Subscriber data
-      const subscriberAnalytics = subscriberRes.subscriberAnalytics;
-      const channelSubscriberDetails = subscriberRes.channelDetails;
+      const subscriberAnalytics = subscriberResponse.subscriberAnalytics;
+      const channelSubscriberDetails = subscriberResponse.channelDetails;
       let channelSubscriberData = {};
       let subscriberData: any[] = [];
 
@@ -77,8 +80,9 @@ export default function useChannelStatistics({ token, selectedChain }) {
       // Retrieving and formatting notification data
       let channeNotificationData = {};
       let notificationData: any[] = [];
-      const notificationAnalytics = notificationsRes.notificationAnalytics;
-      const channelNotificationDetails = notificationsRes.channelDetails;
+
+      const notificationAnalytics = notificationsResponse.notificationAnalytics;
+      const channelNotificationDetails = notificationsResponse.channelDetails;
       for (let i = 0; i < notificationAnalytics.length; i++) {
         for (let key in notificationAnalytics[i]) {
           if (key === 'date') {

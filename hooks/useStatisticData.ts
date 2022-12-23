@@ -36,7 +36,7 @@ export default function useStatisticData({
         interval: 1,
       });
 
-      const subscriberRes = await getSubscribers({
+      const subscriberResponse = await getSubscribers({
         token: token,
         startDate: startDate,
         endDate: endDate,
@@ -44,8 +44,7 @@ export default function useStatisticData({
         chain: selectedChain?.value,
       });
 
-      const subscriberAnalyticsData = subscriberRes.subscriberAnalytics;
-      const channelDetails = subscriberRes.channelDetails;
+      const subscriberAnalyticsData = subscriberResponse.subscriberAnalytics;
 
       let subscriberArray: any[] = [];
       for (let i = 0; i < subscriberAnalyticsData.length; i++) {
@@ -82,7 +81,7 @@ export default function useStatisticData({
         }
       }
 
-      const notificationRes = await getNotifications({
+      const notificationResponse = await getNotifications({
         token: token,
         startDate: startDate,
         endDate: endDate,
@@ -90,7 +89,7 @@ export default function useStatisticData({
         chain: selectedChain.value,
       });
 
-      const analyticsData = notificationRes.notificationAnalytics;
+      const analyticsData = notificationResponse.notificationAnalytics;
       let notificationsArray: any[] = [];
       for (let i = 0; i < analyticsData.length; i++) {
         let total = 0,
