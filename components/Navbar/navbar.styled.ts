@@ -1,4 +1,7 @@
+// External Library imports
 import styled from 'styled-components';
+
+// Internal Components imports
 import { ItemHV2, ItemVV2 } from '../../theme/SharedStyling';
 
 export const NavbarContainer = styled(ItemHV2)`

@@ -1,5 +1,11 @@
+// React, NextJS imports
 import React from 'react';
-import { Avatar, Box, useMediaQuery } from '@mui/material';
+
+// External Library imports
+import { Box, useMediaQuery } from '@mui/material';
+import styled from 'styled-components';
+
+// Internal Components imports
 import {
   Select,
   OptionList,
@@ -7,7 +13,6 @@ import {
   TimeFilterContainer,
   TimeFilter,
 } from './LineChartSet/linchartset.styled';
-import styled from 'styled-components';
 import { useTheme } from '../../../contexts/ThemeContext';
 import { ItemHV2, ImageV2, SpanV2 } from '../../../theme/SharedStyling';
 

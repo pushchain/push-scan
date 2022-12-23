@@ -1,4 +1,7 @@
+// External Library imports
 import axios from 'axios';
+
+// Internal Components imports
 import { ROUTES, CREDENTIALKEYS } from './constants';
 
 const API_BASE = 'https://backend-staging.epns.io/apis/v1';

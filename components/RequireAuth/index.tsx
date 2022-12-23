@@ -1,6 +1,9 @@
-import { useData } from '../../contexts/DataContext';
+// React, NextJS imports
+import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
+
+// Internal Components imports
+import { useData } from '../../contexts/DataContext';
 import { ROUTES } from '../../utils/constants';
 
 const RequiresAuth = ({ children }: { children: any }) => {

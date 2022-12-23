@@ -1,3 +1,4 @@
+// Internal Components imports
 import { GovernanceImprovementEditPanel } from './GovernanceImprovementEditPanel';
 import { PGPProposalsEditPanel } from './PGPProposalsEditPanel';
 import { PushGrantsEditPanel } from './PushGrantsEditPanel';

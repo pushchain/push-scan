@@ -1,5 +1,10 @@
+// React, NextJS imports
 import { useState, useEffect } from 'react';
+
+// External Library imports
 import { toast } from 'react-toastify';
+
+// Internal Components imports
 import { updateGovernanceData, getGovernanceData } from '../utils/api';
 import { useData } from '../contexts/DataContext';
 
@@ -44,43 +49,43 @@ export default function useModal() {
     setFormData({ ...formData, [prop]: parseInt(event.target.value) });
   };
 
-  const updateGrantProposalData = (d) => {
+  const updateGrantProposalData = (inputData) => {
     setFormData({
       ...formData,
-      ['approved']: d.approved,
-      ['inprogress']: d.open,
-      ['rejected']: d.closed,
+      ['approved']: inputData.approved,
+      ['inprogress']: inputData.open,
+      ['rejected']: inputData.closed,
     });
   };
 
-  const updateGrantsData = (d) => {
+  const updateGrantsData = (inputData) => {
     setFormData({
       ...formData,
-      ['pushgrants']: d.grants,
-      ['approvedgrant']: d.approved,
-      ['yettoallocategrant']: d.yetToBeAllocated,
+      ['pushgrants']: inputData.grants,
+      ['approvedgrant']: inputData.approved,
+      ['yettoallocategrant']: inputData.yetToBeAllocated,
     });
   };
 
-  const updateGovernanceImprovementData = (d) => {
+  const updateGovernanceImprovementData = (inputData) => {
     setFormData({
       ...formData,
-      ['approvedimprovement']: d.approved,
-      ['rejectedimprovement']: d.closed,
+      ['approvedimprovement']: inputData.approved,
+      ['rejectedimprovement']: inputData.closed,
     });
   };
 
-  const updateGrantsCategoryData = (d) => {
+  const updateGrantsCategoryData = (inputData) => {
     setFormData({
       ...formData,
-      ['defi']: d.defi,
-      ['nft']: d.nft,
-      ['dao']: d.dao,
-      ['education']: d.education,
-      ['marketing']: d.marketing,
-      ['tooling']: d.tooling,
-      ['gaming']: d.gaming,
-      ['others']: d.others,
+      ['defi']: inputData.defi,
+      ['nft']: inputData.nft,
+      ['dao']: inputData.dao,
+      ['education']: inputData.education,
+      ['marketing']: inputData.marketing,
+      ['tooling']: inputData.tooling,
+      ['gaming']: inputData.gaming,
+      ['others']: inputData.others,
     });
   };
 

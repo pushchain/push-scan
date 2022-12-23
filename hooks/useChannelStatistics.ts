@@ -1,4 +1,7 @@
+// React, NextJS imports
 import React from 'react';
+
+// Internal Components imports
 import { getSubscribers, getNotifications } from '../utils/api';
 
 export default function useChannelStatistics({ token }) {
@@ -18,11 +21,12 @@ export default function useChannelStatistics({ token }) {
       notificationValue = [];
 
     (async () => {
-      const subscriberRes = await getSubscribers({ token });
-      const notificationsRes = await getNotifications({ token });
-      const sortedSubscribers: any[] = subscriberRes?.subscriberAnalytics?.sort(
-        (a, b) => b?.subscriber - a?.subscriber
-      );
+      const subscriberResponse = await getSubscribers({ token });
+      const notificationsResponse = await getNotifications({ token });
+      const sortedSubscribers: any[] =
+        subscriberResponse?.subscriberAnalytics?.sort(
+          (a, b) => b?.subscriber - a?.subscriber
+        );
       const subscriberChannelLimit: number =
         sortedSubscribers?.length > 10 ? 10 : sortedSubscribers?.length;
 
@@ -31,7 +35,7 @@ export default function useChannelStatistics({ token }) {
         subscriberValue.push(sortedSubscribers[i]?.subscriber);
       }
       const sortedNotifications: any[] =
-        notificationsRes?.notificationAnalytics?.sort(
+        notificationsResponse?.notificationAnalytics?.sort(
           (a, b) => b?.notification - a?.notification
         );
 

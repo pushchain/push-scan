@@ -1,9 +1,14 @@
+// React, NextJS imports
 import React from 'react';
-import { DarkModeSwitch } from 'react-toggle-dark-mode';
 import { useRouter } from 'next/router';
+
+// External Library imports
+import { DarkModeSwitch } from 'react-toggle-dark-mode';
 import { Box, Button, useMediaQuery } from '@mui/material';
-import Logo from '../Logo';
 import { useTheme } from 'styled-components';
+
+// Internal Components imports
+import Logo from '../Logo';
 import { useTheme as Theme } from '../../contexts/ThemeContext';
 import { useData } from '../../contexts/DataContext';
 import { ROUTES, CREDENTIALKEYS } from '../../utils/constants';

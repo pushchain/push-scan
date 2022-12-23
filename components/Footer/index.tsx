@@ -1,4 +1,11 @@
+// React, NextJS imports
 import React from 'react';
+
+// External Library imports
+import { Box } from '@mui/material';
+import { useTheme } from 'styled-components';
+
+// Internal Components imports
 import {
   FooterContainer,
   LinkContainer,
@@ -6,9 +13,7 @@ import {
   RightContainer,
 } from './footer.styled';
 import { useTheme as Theme } from '../../contexts/ThemeContext';
-import { Box } from '@mui/material';
 import { Text } from '../../__pages__/dashboard/dashboard.styled';
-import { useTheme } from 'styled-components';
 
 export default function Footer() {
   const { isDarkMode } = Theme();

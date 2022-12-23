@@ -1,4 +1,7 @@
-import * as React from 'react';
+// React, NextJS imports
+import React from 'react';
+
+// Internal Components imports
 import LeaderBoard from './LeaderBoard/LeaderBoard';
 import { getSubscribers } from '../../../utils/api';
 import { useData } from '../../../contexts/DataContext';

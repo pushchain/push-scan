@@ -1,4 +1,7 @@
+// React, NextJS imports
 import React from 'react';
+
+// External Library imports
 import {
   Avatar,
   Grid,
@@ -9,16 +12,19 @@ import {
   TableCell,
   useMediaQuery,
 } from '@mui/material';
+import { tableCellClasses } from '@mui/material/TableCell';
+import styled, { useTheme } from 'styled-components';
+
+// Internal Components imports
 import { DAPP_LINKS } from '../../../../utils/constants';
 import { useTheme as getTheme } from '../../../../contexts/ThemeContext';
-import { tableCellClasses } from '@mui/material/TableCell';
 import {
   ItemVV2,
   ItemHV2,
   ImageV2,
   SpanV2,
 } from '../../../../theme/SharedStyling';
-import styled, { useTheme } from 'styled-components';
+
 import { Text } from '../../dashboard.styled';
 
 export default function LeaderBoard({

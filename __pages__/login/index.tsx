@@ -1,8 +1,13 @@
+// React, NextJS imports
 import React from 'react';
+
+// External Library imports
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import useLogin from '../../hooks/useLogin';
 import { useTheme } from 'styled-components';
+
+// Internal Components imports
+import useLogin from '../../hooks/useLogin';
 import { ItemHV2, ItemVV2, ButtonV2 } from '../../theme/SharedStyling';
 import { Text } from '../dashboard/dashboard.styled';
 import { Input, InputContainer } from './login.styled';

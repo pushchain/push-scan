@@ -1,4 +1,7 @@
+// React, NextJS imports
 import { useEffect, useState } from 'react';
+
+// Internal Components imports
 import { getLeaderBoard } from '../../../utils/api';
 import { useData } from '../../../contexts/DataContext';
 import LeaderBoard from './LeaderBoard/LeaderBoard';

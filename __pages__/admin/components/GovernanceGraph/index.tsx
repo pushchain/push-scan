@@ -1,7 +1,12 @@
+// React, NextJS imports
 import React from 'react';
+
+// External Library imports
 import { Grid, Card, useMediaQuery } from '@mui/material';
 import ReactECharts from 'echarts-for-react';
 import styled, { useTheme } from 'styled-components';
+
+// Internal Components imports
 import { ItemHV2 } from '../../../../theme/SharedStyling';
 import { Text } from '../../../dashboard/dashboard.styled';
 

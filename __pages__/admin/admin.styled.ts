@@ -1,7 +1,7 @@
+// External Library imports
 import styled from 'styled-components';
-import EditIcon from '@mui/icons-material/Edit';
-import { Dialog } from '@mui/material';
-import { Container } from '@mui/system';
+
+// Internal Components imports
 import { ItemHV2, ItemVV2, SpanV2 } from '../../theme/SharedStyling';
 
 export const AdminContainer = styled(ItemVV2)`

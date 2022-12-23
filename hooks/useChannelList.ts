@@ -1,4 +1,6 @@
+// React, NextJS imports
 import React from 'react';
+// Internal Components imports
 import { getLeaderBoard } from '../utils/api';
 
 export default function useChannelList({ token, selectedChain }) {
@@ -13,13 +15,16 @@ export default function useChannelList({ token, selectedChain }) {
         channel: 'All',
       };
       try {
-        const res = await getLeaderBoard({
+        const leaderBoardResponse = await getLeaderBoard({
           token: token,
           limit: 30,
           sort: 'subscribers',
           order: 'desc',
         });
-        setChannelList([allChannels, ...res.leaderboardAnalytics]);
+        setChannelList([
+          allChannels,
+          ...leaderBoardResponse.leaderboardAnalytics,
+        ]);
       } catch (e) {
         console.log('Error occured', e);
       }

@@ -1,6 +1,11 @@
+// React, NextJS imports
 import React from 'react';
 import Head from 'next/head';
+
+// External Library imports
 import { Grid } from '@mui/material';
+
+// Internal Components imports
 import Navbar from '../../components/Navbar';
 import RequiresAuth from '../../components/RequireAuth';
 import DashBoardView from '../../__pages__/dashboard';

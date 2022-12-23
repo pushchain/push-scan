@@ -1,12 +1,17 @@
-import '../styles/globals.css';
+// React, NextJS imports
 import React from 'react';
-import { ToastContainer } from 'react-toastify';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
+
+// External Library imports
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+// Internal Components imports
+import '../styles/globals.css';
 import Theme from '../theme/Theme';
 import { ThemeProvider as GlobalThemeProvider } from '../contexts/ThemeContext';
 import { DataProvider } from '../contexts/DataContext';
-import 'react-toastify/dist/ReactToastify.css';
 
 export default function App({ Component, pageProps }: AppProps) {
   return (

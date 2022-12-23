@@ -1,4 +1,4 @@
-// External Packages
+// External Library imports
 import styled from 'styled-components';
 
 // Internal Configs

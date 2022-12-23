@@ -1,5 +1,8 @@
+// External Library imports
 import { useTheme } from 'styled-components';
-import { useTheme as Theme } from 'contexts/ThemeContext';
+
+// Internal Components imports
+import { useTheme as Theme } from '../../../../contexts/ThemeContext';
 
 export default function BaseOptions() {
   const theme = useTheme();

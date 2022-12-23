@@ -1,13 +1,18 @@
+// React, NextJS imports
 import React from 'react';
-import { CardContent, Grid, useMediaQuery } from '@mui/material';
 import dynamic from 'next/dynamic';
-import BaseOptions from './BaseOptions';
-import { DAPP_LINKS } from '../../../../utils/constants';
+
+// External Library imports
+import { CardContent, Grid, useMediaQuery } from '@mui/material';
 import styled, { useTheme } from 'styled-components';
 import _ from 'lodash';
 const ReactApexChart = dynamic(() => import('react-apexcharts'), {
   ssr: false,
 });
+
+// Internal Components imports
+import BaseOptions from './BaseOptions';
+import { DAPP_LINKS } from '../../../../utils/constants';
 import { ItemVV2 } from '../../../../theme/SharedStyling';
 import { Text } from '../../dashboard.styled';
 

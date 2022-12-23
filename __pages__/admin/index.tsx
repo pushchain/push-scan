@@ -1,5 +1,11 @@
+// React, NextJS imports
 import React from 'react';
+
+// External Library imports
 import { Grid, Typography } from '@mui/material';
+import { useTheme } from 'styled-components';
+
+// Internal Components imports
 import {
   AdminContainer,
   Input,
@@ -20,7 +26,7 @@ import {
 import PushStatistics from './components/GovernanceGraph';
 import { getGovernanceData } from '../../utils/api';
 import { useData } from '../../contexts/DataContext';
-import { useTheme } from 'styled-components';
+
 import { ItemHV2, ItemVV2, ImageV2 } from '../../theme/SharedStyling';
 import { Text } from '../dashboard/dashboard.styled';
 

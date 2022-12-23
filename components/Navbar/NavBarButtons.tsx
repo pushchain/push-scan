@@ -1,8 +1,13 @@
+// React, NextJS imports
 import React from 'react';
-import { ROUTES } from '../../utils/constants';
 import { useRouter } from 'next/router';
-import { ItemHV2, ButtonV2 } from '../../theme/SharedStyling';
+
+// External Library imports
 import styled from 'styled-components';
+
+// Internal Components imports
+import { ROUTES } from '../../utils/constants';
+import { ItemHV2, ButtonV2 } from '../../theme/SharedStyling';
 
 export const NavBarButtons = ({ logout, isLoggedIn }) => {
   const router = useRouter();

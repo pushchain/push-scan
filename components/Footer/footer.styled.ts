@@ -1,5 +1,8 @@
-import { ItemHV2 } from '../../theme/SharedStyling';
+// External Library imports
 import styled from 'styled-components';
+
+// Internal Components imports
+import { ItemHV2 } from '../../theme/SharedStyling';
 
 export const FooterContainer = styled.div`
   width: 100%;

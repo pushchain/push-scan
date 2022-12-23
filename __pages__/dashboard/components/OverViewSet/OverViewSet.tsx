@@ -1,5 +1,11 @@
+// React, NextJS imports
 import React from 'react';
+
+// External Library imports
 import { useTheme } from 'styled-components';
+import { useMediaQuery } from '@mui/material';
+
+// Internal Components imports
 import { OverviewItem } from './overview.styled';
 import { Text } from '../../dashboard.styled';
 import {
@@ -11,7 +17,6 @@ import {
 import { useData } from '../../../../contexts/DataContext';
 import { HorizontalLine } from '../../dashboard.styled';
 import { ItemHV2, ItemVV2, ImageV2 } from '../../../../theme/SharedStyling';
-import { useMediaQuery } from '@mui/material';
 
 export default function OverViewSet() {
   const { token } = useData();

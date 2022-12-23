@@ -1,3 +1,4 @@
+// External Library imports
 import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyles = createGlobalStyle`

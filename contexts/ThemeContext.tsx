@@ -1,3 +1,4 @@
+// React, NextJS imports
 import React, { useEffect, useState, useContext, createContext } from 'react';
 
 const defaultTheme: any = {

@@ -1,5 +1,8 @@
+// React, NextJS imports
 import React from 'react';
 import Head from 'next/head';
+
+// Internal Components imports
 import LoginView from '../../__pages__/login';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';

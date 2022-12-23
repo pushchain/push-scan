@@ -1,10 +1,15 @@
+// React, NextJS imports
 import React from 'react';
+
+// External Library imports
 import { Grid, Box, useMediaQuery } from '@mui/material';
+import { useTheme } from 'styled-components';
+
+// Internal Components imports
 import GovernanceGraph from '../../../admin/components/GovernanceGraph';
 import { Text, HorizontalLine } from '../../dashboard.styled';
 import { getGovernanceData } from '../../../../utils/api';
 import { useData } from '../../../../contexts/DataContext';
-import { useTheme } from 'styled-components';
 
 export default function GovernanceSet() {
   const isMobile = useMediaQuery('(max-width:480px)');

@@ -1,4 +1,4 @@
-// import LineChart from "./LineChart";
+// Internal Components imports
 import Chart from './Charts/Chart';
 
 export default function Notifications({ data, min, max, total, isLoading }) {

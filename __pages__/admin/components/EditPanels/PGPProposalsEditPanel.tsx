@@ -1,4 +1,7 @@
+// React, NextJS imports
 import React from 'react';
+
+// Internal Components imports
 import {
   Input,
   FormContainer,

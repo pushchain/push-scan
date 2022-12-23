@@ -1,5 +1,8 @@
+// React, NextJS imports
 import React from 'react';
 import Head from 'next/head';
+
+// Internal Components imports
 import RequiresAuth from '../../components/RequireAuth';
 import AdminView from '../../__pages__/admin';
 import Navbar from '../../components/Navbar';

@@ -1,5 +1,10 @@
+// React, NextJS imports
 import * as React from 'react';
+
+// External Library imports
 import { Grid, useMediaQuery } from '@mui/material';
+
+// Internal Components imports
 import { HorizontalLine } from '../../dashboard.styled';
 import Notifications from '../Notifications';
 import Subscribers from '../Subscribers';

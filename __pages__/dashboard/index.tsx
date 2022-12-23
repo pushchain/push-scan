@@ -1,5 +1,10 @@
-import * as React from 'react';
+// React, NextJS imports
+import React from 'react';
+
+// External Library imports
 import { Grid, Box, useMediaQuery } from '@mui/material';
+
+// Internal Components imports
 import { HorizontalLine, DashBoardContainer } from './dashboard.styled';
 import Trending from './components/Trending';
 import RecentlyAdded from './components/RecentlyAdded';

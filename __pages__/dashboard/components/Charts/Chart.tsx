@@ -1,21 +1,18 @@
-import React, { useState } from 'react';
-import {
-  Card,
-  Box,
-  CardContent,
-  CardHeader,
-  Grid,
-  Typography,
-  useMediaQuery,
-} from '@mui/material';
+// React, NextJS imports
+import React from 'react';
 import dynamic from 'next/dynamic';
-import styled, { useTheme } from 'styled-components';
-import BaseOptions from './BaseOptions';
-import _ from 'lodash';
+
+// External Library imports
+import { CardContent, Grid, useMediaQuery } from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
+import _ from 'lodash';
+import styled, { useTheme } from 'styled-components';
 const ReactApexChart = dynamic(() => import('react-apexcharts'), {
   ssr: false,
 });
+
+// Internal Components imports
+import BaseOptions from './BaseOptions';
 import { ItemVV2, ItemHV2 } from '../../../../theme/SharedStyling';
 import { Text } from '../../dashboard.styled';
 
