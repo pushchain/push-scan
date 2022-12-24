@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import LeaderBoard from './LeaderBoard/LeaderBoard';
 import { getSubscribers } from '../../../utils/api';
 import { useData } from '../../../contexts/DataContext';
