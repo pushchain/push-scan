@@ -1,5 +1,8 @@
+// React, NextJS imports
 import React from 'react';
-import { getSubscribers, getNotifications } from 'utils/api';
+
+// Internal Components imports
+import { getSubscribers, getNotifications } from '../utils/api';
 
 export default function useStatisticCount({
   token,

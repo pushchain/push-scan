@@ -1,10 +1,15 @@
+// React, NextJS imports
 import React from 'react';
 import Head from 'next/head';
-import Navbar from 'components/Navbar';
-import RequiresAuth from 'components/RequireAuth';
-import DashBoardView from '__pages__/dashboard';
+
+// External Library imports
 import { Grid } from '@mui/material';
-import Footer from 'components/Footer';
+
+// Internal Components imports
+import Navbar from '../../components/Navbar';
+import RequiresAuth from '../../components/RequireAuth';
+import DashBoardView from '../../__pages__/dashboard';
+import Footer from '../../components/Footer';
 
 export default function Dashboard() {
   return (
@@ -12,7 +17,7 @@ export default function Dashboard() {
       <Head>
         <title>Push Analytics DashBoard</title>
       </Head>
-      <Grid>
+      <Grid width="100%">
         <Navbar />
         <DashBoardView />
         <Footer />

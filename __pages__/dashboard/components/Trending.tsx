@@ -1,7 +1,7 @@
 import * as React from 'react';
 import LeaderBoard from './LeaderBoard/LeaderBoard';
-import { getLeaderBoard, getSubscribers } from 'utils/api';
-import { useData } from 'contexts/DataContext';
+import { getSubscribers } from '../../../utils/api';
+import { useData } from '../../../contexts/DataContext';
 
 export default function Trending() {
   const { token } = useData();

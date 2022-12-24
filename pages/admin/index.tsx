@@ -1,9 +1,12 @@
-import React from "react";
-import RequiresAuth from "components/RequireAuth";
-import AdminView from "__pages__/admin";
-import Head from "next/head";
-import Navbar from "components/Navbar";
-import Footer from "components/Footer";
+// React, NextJS imports
+import React from 'react';
+import Head from 'next/head';
+
+// Internal Components imports
+import RequiresAuth from '../../components/RequireAuth';
+import AdminView from '../../__pages__/admin';
+import Navbar from '../../components/Navbar';
+import Footer from '../../components/Footer';
 
 export default function Admin() {
   return (

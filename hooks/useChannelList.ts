@@ -1,5 +1,7 @@
+// React, NextJS imports
 import React from 'react';
-import { getLeaderBoard } from 'utils/api';
+// Internal Components imports
+import { getLeaderBoard } from '../utils/api';
 
 export default function useChannelList({ token, selectedChain }) {
   const [channelList, setChannelList] = React.useState<any[]>([]);

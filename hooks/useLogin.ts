@@ -1,9 +1,14 @@
-import { useData } from 'contexts/DataContext';
-import { useRouter } from 'next/router';
+// React, NextJS imports
 import React from 'react';
+import { useRouter } from 'next/router';
+
+// External Library imports
 import { toast } from 'react-toastify';
-import { ROUTES, CREDENTIALKEYS } from 'utils/constants';
-import { login } from 'utils/api';
+
+// Internal Components imports
+import { useData } from '../contexts/DataContext';
+import { ROUTES, CREDENTIALKEYS } from '../utils/constants';
+import { login } from '../utils/api';
 
 export default function useLogin() {
   const router = useRouter();

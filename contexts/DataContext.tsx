@@ -1,5 +1,8 @@
+// React, NextJS imports
 import React, { useState, useContext, createContext, useEffect } from 'react';
-import { CREDENTIALKEYS } from 'utils/constants';
+
+// Internal Components imports
+import { CREDENTIALKEYS } from '../utils/constants';
 
 const DataContext = createContext<any>({});
 

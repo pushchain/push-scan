@@ -1,6 +1,9 @@
+// React, NextJS imports
 import React, { useEffect, useState } from 'react';
-import { getLeaderBoard } from 'utils/api';
-import { useData } from 'contexts/DataContext';
+
+// Internal Components imports
+import { getLeaderBoard } from '../../../utils/api';
+import { useData } from '../../../contexts/DataContext';
 import LeaderBoard from './LeaderBoard/LeaderBoard';
 
 export default function RecentlyAdded() {

@@ -1,4 +1,5 @@
-import styled from '@emotion/styled';
+// External Library imports
+import styled from 'styled-components';
 
 export const Select = styled.div`
   position: relative;
@@ -12,7 +13,8 @@ export const Select = styled.div`
   align-items: center;
   padding: 0 15px 0 8px;
   color: ${(props) => props?.color || '#fff'};
-  font-size: 18px;
+  font-size: 15px;
+  font-weight: 400;
   margin-right: ${(props) => props?.marginRight || '10px'};
   &:hover {
     cursor: pointer;
@@ -29,9 +31,7 @@ export const OptionList = styled.div(
   top: 50px;
   left: 0px;
   border-radius: 20px;
-  background-color: ${
-    background ? background : theme.palette.background.default
-  };
+  background-color: ${background ? background : theme.background.default};
   border: 1px solid grey;
   width: inherit;
   overflow-x:hidden;
@@ -57,16 +57,13 @@ export const Option = styled.div`
   &:hover {
     opacity: 0.8;
   }
-  // @media (max-width: 480px) {
-  //   justify-content: center;
-  // }
 `;
 
 export const TimeFilterContainer = styled.div(
   ({ theme }) => `
   display:flex;
   height:42px;
-  background-color:${theme.palette.background.paper};
+  background-color:${theme.background.secondary};
   border-radius:16px;
   padding:5px;
   align-items:center;
@@ -84,7 +81,7 @@ export const TimeFilter = styled.button`
   border: none;
   background-color: ${(props) => props.background || '#cf1c84'};
   color: ${(props) => props.color || '#657795'};
-  font-weight: 550;
+  font-weight: ${(props) => props.fontWeight || '500'};
   font-size: 15px;
   border-radius: 12px;
   min-width: 40px;

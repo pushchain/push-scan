@@ -1,5 +1,8 @@
+// External Library imports
 import axios from 'axios';
-import { ROUTES, CREDENTIALKEYS } from 'utils/constants';
+
+// Internal Components imports
+import { ROUTES, CREDENTIALKEYS } from './constants';
 
 const API_BASE = 'https://backend-dev.epns.io/apis/v1';
 // After moving all api to staging remove 'stagingToken' and uncomment token part in getGovernance,updateGovernance, getChats, getUsers

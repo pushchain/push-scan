@@ -1,14 +1,16 @@
-import { useData } from 'contexts/DataContext';
+// React, NextJS imports
+import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
-import { ROUTES } from 'utils/constants';
+
+// Internal Components imports
+import { useData } from '../../contexts/DataContext';
+import { ROUTES } from '../../utils/constants';
 
 const RequiresAuth = ({ children }: { children: any }) => {
   const { isLoggedIn } = useData();
 
   const router = useRouter();
   useEffect(() => {
-    // console.log({isLoggedIn});
     if (!isLoggedIn) {
       router.push(ROUTES.LOGIN);
     }

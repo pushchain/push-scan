@@ -1,18 +1,23 @@
+// React, NextJS imports
 import * as React from 'react';
-import { Grid, Box, useMediaQuery } from '@mui/material';
-import { Text, HorizontalLine } from '__pages__/dashboard/dashboard.styled';
+
+// External Library imports
+import { Grid, useMediaQuery } from '@mui/material';
+
+// Internal Components imports
+import { HorizontalLine } from '../../dashboard.styled';
 import Notifications from '../Notifications';
 import Subscribers from '../Subscribers';
 import ChatUsers from '../ChatUsers';
 import RequestSent from '../RequestSent';
 import Filters from '../Filters';
-import { useData } from 'contexts/DataContext';
-import useStatisticData from 'hooks/useStatisticData';
-import useStatisticCount from 'hooks/useStatisticCount';
-import useChannelList from 'hooks/useChannelList';
-import useChannelStatistics from 'hooks/useChannelStatistics';
-import getDatesArray from '/utils/helpers';
-import HorizontalChart from '../Charts/HorizontalChart';
+import { useData } from '../../../../contexts/DataContext';
+import useStatisticData from '../../../../hooks/useStatisticData';
+import useStatisticCount from '../../../../hooks/useStatisticCount';
+import useChannelList from '../../../../hooks/useChannelList';
+import useChannelStatistics from '../../../../hooks/useChannelStatistics';
+import getDatesArray from '../../../../utils/helpers';
+import HorizontalBarChart from '../Charts/HorizontalBarChart';
 
 export default function LineChartSet() {
   const isMobile = useMediaQuery('(max-width:480px)');
@@ -35,6 +40,7 @@ export default function LineChartSet() {
   );
   const [min, setMin] = React.useState<any>(new Date('2022-01-01').getTime());
   const [max, setMax] = React.useState<any>(new Date().getTime());
+  const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const [interval, setInterval] = React.useState(
     Math.ceil(
       Math.ceil(
@@ -49,6 +55,7 @@ export default function LineChartSet() {
     totalNotifications,
     totalSubscribers,
   } = useStatisticData({
+    setIsLoading,
     selectedChannel,
     selectedChain,
     startDate,
@@ -241,6 +248,7 @@ export default function LineChartSet() {
       </Box> */}
       <Grid container spacing={isMobile ? 0 : 3} justifyContent="center" mt={0}>
         <Notifications
+          isLoading={isLoading}
           data={notificationData}
           max={max}
           min={min}
@@ -248,24 +256,26 @@ export default function LineChartSet() {
         />
         <HorizontalLine />
         <Subscribers
+          isLoading={isLoading}
           data={subscriberData}
           max={max}
           min={min}
           total={totalSubscribers}
         />
-        <HorizontalChart
+        <HorizontalBarChart
           title="Subscribers By Channel"
           label="Subscribers"
           category={subscriberCategories}
           value={subscriberValues}
         />
         <HorizontalLine />
-        <HorizontalChart
+        <HorizontalBarChart
           title="Notifications By Channel"
           label="Notifications"
           category={notificationCategories}
           value={notificationValues}
         />
+        <HorizontalLine />
       </Grid>
       {/* <Box
         sx={{ display: 'flex', width: '100%', justifyContent: 'flex-start' }}
