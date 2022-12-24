@@ -9,6 +9,7 @@ const DataContext = createContext<any>({});
 const DataProvider = ({ children }: { children: any }) => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(true);
   const [token, setToken] = useState<string>('');
+  const [pushIntegrations, setPushIntegrations] = useState<number>(0);
 
   const [updateTracker, setUpdateTracker] = useState<boolean>(false);
   const timeFilterOptions = [
@@ -55,6 +56,8 @@ const DataProvider = ({ children }: { children: any }) => {
         chainList,
         updateTracker,
         setUpdateTracker,
+        pushIntegrations,
+        setPushIntegrations,
       }}
     >
       {children}

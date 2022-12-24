@@ -1,5 +1,5 @@
 // React, NextJS imports
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 // Internal Components imports
 import { getLeaderBoard } from '../../../utils/api';
@@ -19,6 +19,7 @@ export default function RecentlyAdded() {
           sort: 'created',
           order: 'desc',
         });
+
         setData(res.leaderboardAnalytics);
       } catch (e) {
         console.log('Error occured', e);

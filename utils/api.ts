@@ -4,7 +4,11 @@ import axios from 'axios';
 // Internal Components imports
 import { ROUTES, CREDENTIALKEYS } from './constants';
 
-const API_BASE = 'https://backend-staging.epns.io/apis/v1';
+const API_BASE = 'https://backend-dev.epns.io/apis/v1';
+// After moving all api to staging remove 'stagingToken' and uncomment token part in getGovernance,updateGovernance, getChats, getUsers
+
+const stagingToken =
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoicHVzaF9zdGFnaW5nX3VzZXIiLCJpYXQiOjE2NzE4MTM4MTIsImV4cCI6MTY3MTkwMDIxMn0.xLrRThQ3fKn0aA1L37KRRgUe02_Z1I6CRkP4oenvRtc';
 
 export const login = async ({ user, pass }) => {
   try {
@@ -112,9 +116,10 @@ export const getGovernanceData = async ({ token }) => {
       `https://backend-staging.epns.io/apis/v1/analytics/governance_data/`,
       {
         headers: {
-          'x-access-token': String(
-            sessionStorage.getItem(CREDENTIALKEYS.TOKEN)
-          ),
+          'x-access-token': stagingToken,
+          // String(
+          //   sessionStorage.getItem(CREDENTIALKEYS.TOKEN)
+          // ),
         },
       }
     );
@@ -125,40 +130,6 @@ export const getGovernanceData = async ({ token }) => {
   }
 };
 
-// const data = {
-//   Governance: {
-//     PGP_Amount: {
-//       'Yet To Be Allocated': 80,
-//       Approved: 20,
-//     },
-//     PGP_Proposals: {
-//       Approved: 4,
-//       Open: 7,
-//       Closed: 11,
-//     },
-//     PGP_Categories: {
-//       Defi: 6,
-//       NFT: 3,
-//       DAO: 4,
-//       Tooling: 11,
-//       Marketing: 2,
-//       Educational: 6,
-//       Gaming: 2,
-//       Other: 2,
-//     },
-//     PGIP: {
-//       Closed: 4,
-//       Approved: 8,
-//     },
-//   },
-//   Downloads: {
-//     DApp: 40,
-//     'Chrome Extension': 10,
-//     'Mobile-iOS': 25,
-//     'Mobile-Android': 25,
-//   },
-// };
-
 export const updateGovernanceData = async ({ data, token }) => {
   try {
     const res = await axios.post(
@@ -168,9 +139,10 @@ export const updateGovernanceData = async ({ data, token }) => {
       },
       {
         headers: {
-          'x-access-token': String(
-            sessionStorage.getItem(CREDENTIALKEYS.TOKEN)
-          ),
+          'x-access-token': stagingToken,
+          // String(
+          //   sessionStorage.getItem(CREDENTIALKEYS.TOKEN)
+          // ),
         },
       }
     );
@@ -191,9 +163,10 @@ export const getChats = async ({ token }) => {
         //   endDate: '2022-11-01',
         // },
         headers: {
-          'x-access-token': String(
-            sessionStorage.getItem(CREDENTIALKEYS.TOKEN)
-          ),
+          'x-access-token': stagingToken,
+          // String(
+          //   sessionStorage.getItem(CREDENTIALKEYS.TOKEN)
+          // ),
         },
       }
     );
@@ -211,9 +184,9 @@ export const getUsers = async ({ token }) => {
       `https://backend-staging.epns.io/apis/v1/analytics/chat/users`,
       {
         headers: {
-          'x-access-token': String(
-            sessionStorage.getItem(CREDENTIALKEYS.TOKEN)
-          ),
+          'x-access-token': stagingToken,
+          //   String(
+          //     sessionStorage.getItem(CREDENTIALKEYS.TOKEN) ),
         },
       }
     );

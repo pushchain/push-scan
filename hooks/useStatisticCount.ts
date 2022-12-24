@@ -18,22 +18,22 @@ export default function useStatisticCount({
     (async () => {
       setTotalSubscribers(0);
       setTotalNotifications(0);
-      const totalSubsc = await getSubscribers({
+      const subscribersResponse = await getSubscribers({
         token,
         startDate,
         endDate,
         channel: selectedChannel.channel,
         chain: selectedChain.value,
       });
-      setTotalSubscribers(totalSubsc?.totalSubscribers);
-      const totalNotifi = await getNotifications({
+      setTotalSubscribers(subscribersResponse?.totalSubscribers);
+      const notificationsResponse = await getNotifications({
         token,
         startDate,
         endDate,
         channel: selectedChannel?.channel,
         chain: selectedChain?.value,
       });
-      setTotalNotifications(totalNotifi?.totalNotification);
+      setTotalNotifications(notificationsResponse?.totalNotification);
     })();
     return () => {
       setTotalSubscribers(0);

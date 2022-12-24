@@ -15,7 +15,7 @@ export default function useChannelList({ token, selectedChain }) {
         channel: 'All',
       };
       try {
-        const leaderBoardResponse = await getLeaderBoard({
+        const leaderboardResponse = await getLeaderBoard({
           token: token,
           limit: 30,
           sort: 'subscribers',
@@ -23,7 +23,7 @@ export default function useChannelList({ token, selectedChain }) {
         });
         setChannelList([
           allChannels,
-          ...leaderBoardResponse.leaderboardAnalytics,
+          ...leaderboardResponse.leaderboardAnalytics,
         ]);
       } catch (e) {
         console.log('Error occured', e);

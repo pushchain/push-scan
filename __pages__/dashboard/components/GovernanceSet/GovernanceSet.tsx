@@ -14,13 +14,16 @@ import { useData } from '../../../../contexts/DataContext';
 export default function GovernanceSet() {
   const isMobile = useMediaQuery('(max-width:480px)');
   const [data, setData] = React.useState();
-  const { token } = useData();
+  const { token, setPushIntegrations } = useData();
   const theme = useTheme();
 
   React.useEffect(() => {
     (async () => {
-      const res = await getGovernanceData({ token });
-      setData(res?.governance_data);
+      const governanceResponse = await getGovernanceData({ token });
+      setData(governanceResponse?.governance_data);
+      setPushIntegrations(
+        governanceResponse?.governance_data?.Miscellaneous?.Push_Integrations
+      );
     })();
   }, []);
 
