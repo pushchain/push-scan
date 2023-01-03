@@ -8,7 +8,7 @@ const API_BASE = 'https://backend-dev.epns.io/apis/v1';
 // After moving all api to staging remove 'stagingToken' and uncomment token part in getGovernance,updateGovernance, getChats, getUsers
 
 const stagingToken =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoicHVzaF9zdGFnaW5nX3VzZXIiLCJpYXQiOjE2NzE4ODAwNDQsImV4cCI6MTY3MTk2NjQ0NH0.I3akII4f3C1fmzdab3rAm2pFYIHGfQ4ejoTyuKItP5M';
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoicHVzaF9zdGFnaW5nX3VzZXIiLCJpYXQiOjE2NzI3NDAwNjYsImV4cCI6MTY3MjgyNjQ2Nn0.a14sp5mg02N5mRM0OJbtd_EVa4B0OwNqY1KOXcbsYUc';
 
 export const login = async ({ user, pass }) => {
   try {
