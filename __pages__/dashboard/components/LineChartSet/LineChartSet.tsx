@@ -21,7 +21,7 @@ import HorizontalBarChart from '../Charts/HorizontalBarChart';
 
 export default function LineChartSet() {
   const isMobile = useMediaQuery('(max-width:480px)');
-  const { token, chainList, timeFilterOptions } = useData();
+  const { chainList, timeFilterOptions } = useData();
   const [selectedChannel, setSelectedChannel] = React.useState({
     name: 'All Channels',
     channel: 'All',
@@ -34,10 +34,8 @@ export default function LineChartSet() {
   });
   const [showChain, setShowChain] = React.useState(false);
   const [selectedFilter, setSelectedFilter] = React.useState(6);
-  const [startDate, setStartDate] = React.useState('2022-01-01');
-  const [endDate, setEndDate] = React.useState(
-    new Date(Date.now()).toISOString().split('T')[0]
-  );
+  const [startDate, setStartDate] = React.useState(new Date('2022-01-01'));
+  const [endDate, setEndDate] = React.useState(new Date());
   const [min, setMin] = React.useState<any>(new Date('2022-01-01').getTime());
   const [max, setMax] = React.useState<any>(new Date().getTime());
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
@@ -49,6 +47,7 @@ export default function LineChartSet() {
       ) / 12
     )
   );
+
   const {
     subscriberData,
     notificationData,
@@ -60,26 +59,21 @@ export default function LineChartSet() {
     selectedChain,
     startDate,
     endDate,
-    // interval,
-    token,
+    // interval
   });
 
-  // const { totalNotifications, totalSubscribers } = useStatisticCount({
-  //   token,
-  //   startDate,
-  //   endDate,
-  //   selectedChannel,
-  //   selectedChain,
-  // });
-
-  // const channelList = useChannelList({ token, selectedChain });
   const {
     subscriberCategories,
     subscriberValues,
     notificationCategories,
     notificationValues,
     channelList,
-  } = useChannelStatistics({ token, selectedChain });
+  } = useChannelStatistics({
+    startDate,
+    endDate,
+    selectedChannel,
+    selectedChain,
+  });
 
   React.useEffect(() => {
     const dateArray = getDatesArray({
@@ -112,25 +106,19 @@ export default function LineChartSet() {
 
   const handle1Day = () => {
     setMin(Date.now() - 2 * 86400000);
-    setStartDate(
-      new Date(Date.now() - 2 * 86400000).toISOString().split('T')[0]
-    );
+    setStartDate(new Date(Date.now() - 2 * 86400000));
     setInterval(1);
   };
 
   const handle7Day = () => {
     setMin(Date.now() - 7 * 86400000);
-    setStartDate(
-      new Date(Date.now() - 7 * 86400000).toISOString().split('T')[0]
-    );
+    setStartDate(new Date(Date.now() - 7 * 86400000));
     setInterval(1);
   };
 
   const handle30Day = () => {
     setMin(Date.now() - 30 * 86400000);
-    setStartDate(
-      new Date(Date.now() - 30 * 86400000).toISOString().split('T')[0]
-    );
+    setStartDate(new Date(Date.now() - 30 * 86400000));
     setInterval(4);
   };
 
@@ -139,12 +127,10 @@ export default function LineChartSet() {
     //   (year % 4 == 0 && year % 100 != 0) || year % 400 == 0 ? 366 : 355;
     if (new Date(Date.now() - 365 * 86400000) < new Date('2022-01-01')) {
       setMin(new Date('2022-01-01').getTime());
-      setStartDate('2022-01-01');
+      setStartDate(new Date('2022-01-01'));
     } else {
       setMin(Date.now() - 365 * 86400000);
-      setStartDate(
-        new Date(Date.now() - 365 * 86400000).toISOString().split('T')[0]
-      );
+      setStartDate(new Date(Date.now() - 365 * 86400000));
     }
     setInterval(30);
   };
@@ -153,7 +139,7 @@ export default function LineChartSet() {
     const currentYear = new Date().getFullYear();
     const currentMonth = new Date().getMonth();
     setMin(new Date(`${currentYear}-01-01`).getTime());
-    setStartDate(`${currentYear}-01-01`);
+    setStartDate(new Date(`${currentYear}-01-01`));
     if (currentMonth <= 2) {
       setInterval(1);
     } else {
@@ -171,7 +157,7 @@ export default function LineChartSet() {
 
   const handleTillDate = () => {
     setMin(new Date('2022-01-01').getTime());
-    setStartDate('2022-01-01');
+    setStartDate(new Date('2022-01-01'));
     setMax(Date.now());
     const interval = Math.ceil(
       Math.ceil(

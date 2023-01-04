@@ -8,18 +8,17 @@ import { useMediaQuery } from '@mui/material';
 // Internal Components imports
 import { OverviewItem } from './overview.styled';
 import { Text } from '../../dashboard.styled';
-import {
-  getChats,
-  getUsers,
-  getGovernanceData,
-  getNotifications,
-} from '../../../../utils/api';
+import { getChats, getUsers, getNotifications } from '../../../../utils/api';
 import { useData } from '../../../../contexts/DataContext';
 import { HorizontalLine } from '../../dashboard.styled';
-import { ItemHV2, ItemVV2, ImageV2 } from '../../../../theme/SharedStyling';
+import {
+  ItemHV2,
+  ItemVV2,
+  ImageV2,
+} from '../../../../components/SharedStyling';
 
 export default function OverViewSet() {
-  const { token, pushIntegrations } = useData();
+  const { pushIntegrations } = useData();
   const isMobile = useMediaQuery('(max-width:480px)');
   const [chatUsers, setChatUsers] = React.useState<number>(0);
   const [chatSent, setChatSent] = React.useState<number>(0);
@@ -56,22 +55,27 @@ export default function OverViewSet() {
   React.useEffect(() => {
     (async () => {
       let total = 0;
-      const chatResponse = await getChats({ token });
+      const chatResponse = await getChats();
       setChatSent(chatResponse?.totalMessages);
 
-      const userResponse = await getUsers({ token });
+      const userResponse = await getUsers();
       setChatUsers(userResponse?.totalUsers);
 
-      const notificationResponse = await getNotifications({ token });
+      const notificationResponse = await getNotifications({
+        startDate: new Date('2022-01-01'),
+        endDate: new Date(),
+        channel: 'All',
+        chain: 'ETH_TEST_GOERLI',
+      });
       const notifictionAnalyticsData =
-        notificationResponse.notificationAnalytics;
+        notificationResponse?.notificationAnalytics;
 
-      for (let i = 0; i < notifictionAnalyticsData.length; i++) {
+      for (let i = 0; i < notifictionAnalyticsData?.length; i++) {
         for (let key in notifictionAnalyticsData[i]) {
           if (key === 'date') {
             continue;
           } else {
-            total += notifictionAnalyticsData[i][key].notification;
+            total += notifictionAnalyticsData[i][key]?.notification;
           }
         }
       }

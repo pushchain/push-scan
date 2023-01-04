@@ -13,7 +13,7 @@ const ReactApexChart = dynamic(() => import('react-apexcharts'), {
 
 // Internal Components imports
 import BaseOptions from './BaseOptions';
-import { ItemVV2, ItemHV2 } from '../../../../theme/SharedStyling';
+import { ItemVV2, ItemHV2 } from '../../../../components/SharedStyling';
 import { Text } from '../../dashboard.styled';
 
 export default function Chart({
@@ -31,7 +31,7 @@ export default function Chart({
   max: any;
   min: any;
   data: any;
-  isLoading: boolean;
+  isLoading?: boolean;
 }) {
   const theme = useTheme();
   const isMobile = useMediaQuery('(max-width:480px)');
@@ -76,7 +76,7 @@ export default function Chart({
       // max: max,
       labels: {
         show: true,
-        rotate: -45,
+        //rotate: -45,
         hideOverlappingLabels: true,
         style: {
           fontSize: '12px',
@@ -113,12 +113,12 @@ export default function Chart({
     },
   });
 
-  // color={theme.default.color}
+  // color={theme.text.primary}
   // alignItems="flex-start"
   // height="auto"
   // width="100%"
-  // background={isMobile ? 'transparent' : theme.default.cardBg}
-  // border={`1px solid ${theme.default.border}`}
+  // background={isMobile ? 'transparent' : theme.background.card}
+  // border={`1px solid ${theme.background.border}`}
   // borderRadius="28px"
   // padding={isMobile ? '35px 0px 0px' : '35px 40px'}
   return (

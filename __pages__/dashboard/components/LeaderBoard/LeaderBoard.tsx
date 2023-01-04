@@ -23,7 +23,7 @@ import {
   ItemHV2,
   ImageV2,
   SpanV2,
-} from '../../../../theme/SharedStyling';
+} from '../../../../components/SharedStyling';
 import { Text } from '../../dashboard.styled';
 
 export default function LeaderBoard({

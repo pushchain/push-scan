@@ -2,7 +2,7 @@
 import styled from 'styled-components';
 
 // Internal Components imports
-import { ItemHV2, ItemVV2, SpanV2 } from '../../theme/SharedStyling';
+import { ItemHV2, ItemVV2, SpanV2 } from '../../components/SharedStyling';
 
 export const AdminContainer = styled(ItemVV2)`
   width: 100%;

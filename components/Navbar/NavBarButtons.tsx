@@ -7,7 +7,7 @@ import styled from 'styled-components';
 
 // Internal Components imports
 import { ROUTES } from '../../utils/constants';
-import { ItemHV2, ButtonV2 } from '../../theme/SharedStyling';
+import { ItemHV2, ButtonV2 } from '../../components/SharedStyling';
 
 export const NavBarButtons = ({ logout, isLoggedIn }) => {
   const router = useRouter();

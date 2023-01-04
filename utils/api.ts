@@ -4,11 +4,7 @@ import axios from 'axios';
 // Internal Components imports
 import { ROUTES, CREDENTIALKEYS } from './constants';
 
-const API_BASE = 'https://backend-dev.epns.io/apis/v1';
-// After moving all api to staging remove 'stagingToken' and uncomment token part in getGovernance,updateGovernance, getChats, getUsers
-
-const stagingToken =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoicHVzaF9zdGFnaW5nX3VzZXIiLCJpYXQiOjE2NzI3NDAwNjYsImV4cCI6MTY3MjgyNjQ2Nn0.a14sp5mg02N5mRM0OJbtd_EVa4B0OwNqY1KOXcbsYUc';
+const API_BASE = 'https://backend-staging.epns.io/apis/v1';
 
 export const login = async ({ user, pass }) => {
   try {
@@ -24,7 +20,6 @@ export const login = async ({ user, pass }) => {
 };
 
 export const getNotifications = async ({
-  token,
   startDate,
   endDate,
   channel,
@@ -51,7 +46,6 @@ export const getNotifications = async ({
 };
 
 export const getSubscribers = async ({
-  token,
   startDate,
   endDate,
   channel,
@@ -76,7 +70,7 @@ export const getSubscribers = async ({
   }
 };
 
-export const getChannels = async ({ token }) => {
+export const getChannels = async () => {
   try {
     const res = await axios.get(`${API_BASE}/analytics/channel`, {
       params: {
@@ -95,7 +89,7 @@ export const getChannels = async ({ token }) => {
   }
 };
 
-export const getLeaderBoard = async ({ token, limit, sort, order }) => {
+export const getLeaderBoard = async ({ limit, sort, order }) => {
   try {
     const res = await axios.get(`${API_BASE}/analytics/leaderboard/`, {
       params: { limit, sort, order },
@@ -110,19 +104,13 @@ export const getLeaderBoard = async ({ token, limit, sort, order }) => {
   }
 };
 
-export const getGovernanceData = async ({ token }) => {
+export const getGovernanceData = async () => {
   try {
-    const res = await axios.get(
-      `https://backend-staging.epns.io/apis/v1/analytics/governance_data/`,
-      {
-        headers: {
-          'x-access-token': stagingToken,
-          // String(
-          //   sessionStorage.getItem(CREDENTIALKEYS.TOKEN)
-          // ),
-        },
-      }
-    );
+    const res = await axios.get(`${API_BASE}/analytics/governance_data/`, {
+      headers: {
+        'x-access-token': String(sessionStorage.getItem(CREDENTIALKEYS.TOKEN)),
+      },
+    });
     // console.log('get data', res.data);
     return res.data;
   } catch (e) {
@@ -130,19 +118,18 @@ export const getGovernanceData = async ({ token }) => {
   }
 };
 
-export const updateGovernanceData = async ({ data, token }) => {
+export const updateGovernanceData = async ({ data }) => {
   try {
     const res = await axios.post(
-      `https://backend-staging.epns.io/apis/v1/analytics/governance_data/`,
+      `${API_BASE}/analytics/governance_data/`,
       {
         governance_data: data,
       },
       {
         headers: {
-          'x-access-token': stagingToken,
-          // String(
-          //   sessionStorage.getItem(CREDENTIALKEYS.TOKEN)
-          // ),
+          'x-access-token': String(
+            sessionStorage.getItem(CREDENTIALKEYS.TOKEN)
+          ),
         },
       }
     );
@@ -153,23 +140,17 @@ export const updateGovernanceData = async ({ data, token }) => {
   }
 };
 
-export const getChats = async ({ token }) => {
+export const getChats = async () => {
   try {
-    const res = await axios.get(
-      `https://backend-staging.epns.io/apis/v1/analytics/chat/chats`,
-      {
-        // params: {
-        //   startDate: '2022-01-01',
-        //   endDate: '2022-11-01',
-        // },
-        headers: {
-          'x-access-token': stagingToken,
-          // String(
-          //   sessionStorage.getItem(CREDENTIALKEYS.TOKEN)
-          // ),
-        },
-      }
-    );
+    const res = await axios.get(`${API_BASE}/analytics/chat/chats`, {
+      // params: {
+      //   startDate: '2022-01-01',
+      //   endDate: '2022-11-01',
+      // },
+      headers: {
+        'x-access-token': String(sessionStorage.getItem(CREDENTIALKEYS.TOKEN)),
+      },
+    });
 
     // console.log('chats res', res.data);
     return res.data;
@@ -178,18 +159,13 @@ export const getChats = async ({ token }) => {
   }
 };
 
-export const getUsers = async ({ token }) => {
+export const getUsers = async () => {
   try {
-    const res = await axios.get(
-      `https://backend-staging.epns.io/apis/v1/analytics/chat/users`,
-      {
-        headers: {
-          'x-access-token': stagingToken,
-          //   String(
-          //     sessionStorage.getItem(CREDENTIALKEYS.TOKEN) ),
-        },
-      }
-    );
+    const res = await axios.get(`${API_BASE}/analytics/chat/users`, {
+      headers: {
+        'x-access-token': String(sessionStorage.getItem(CREDENTIALKEYS.TOKEN)),
+      },
+    });
 
     // console.log('user res', res.data);
     return res.data;

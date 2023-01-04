@@ -3,7 +3,7 @@ import React from 'react';
 // Internal Components imports
 import { getLeaderBoard } from '../utils/api';
 
-export default function useChannelList({ token, selectedChain }) {
+export default function useChannelList({ selectedChain }) {
   const [channelList, setChannelList] = React.useState<any[]>([]);
 
   React.useEffect(() => {
@@ -16,7 +16,6 @@ export default function useChannelList({ token, selectedChain }) {
       };
       try {
         const leaderboardResponse = await getLeaderBoard({
-          token: token,
           limit: 30,
           sort: 'subscribers',
           order: 'desc',

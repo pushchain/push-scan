@@ -43,7 +43,6 @@ const DataProvider = ({ children }: { children: any }) => {
       setToken('');
     }
   }, []);
-  // console.log({ token });
 
   return (
     <DataContext.Provider

@@ -8,7 +8,6 @@ export default function useStatisticData({
   startDate,
   endDate,
   // interval,
-  token,
   setIsLoading,
 }) {
   const [subscriberData, setSubscriberData] = React.useState<any[]>([]);
@@ -38,8 +37,52 @@ export default function useStatisticData({
         interval: 1,
       });
 
+      let notificationResponse = await getNotifications({
+        startDate: startDate,
+        endDate: endDate,
+        channel: selectedChannel?.channel,
+        chain: selectedChain?.value,
+      });
+
+      const notificationAnalyticsData =
+        notificationResponse.notificationAnalytics;
+      let notificationsArray: any[] = [];
+      for (let i = 0; i < notificationAnalyticsData.length; i++) {
+        let total = 0,
+          dat = '';
+
+        for (let key in notificationAnalyticsData[i]) {
+          if (key === 'date') {
+            dat = notificationAnalyticsData[i][key];
+          } else {
+            total += notificationAnalyticsData[i][key].notification;
+          }
+        }
+        notificationsArray.push({ date: dat, notifications: total });
+      }
+
+      for (let i = 0; i < dateArray.length; i++) {
+        let isFound = false;
+        for (let j = 0; j < notificationsArray.length; j++) {
+          if (
+            new Date(notificationsArray[j].date).toDateString() ===
+            new Date(dateArray[i]).toDateString()
+          ) {
+            isFound = true;
+            localNotificationData.push([
+              notificationsArray[j].date,
+              notificationsArray[j].notifications,
+            ]);
+            totalNotifications += notificationsArray[j].notifications;
+            break;
+          }
+        }
+        if (!isFound) {
+          localNotificationData.push([dateArray[i], 0]);
+        }
+      }
+
       const subscriberResponse = await getSubscribers({
-        token: token,
         startDate: startDate,
         endDate: endDate,
         channel: selectedChannel?.channel,
@@ -80,51 +123,6 @@ export default function useStatisticData({
         }
         if (!isFound) {
           localSubscriberData.push([dateArray[i], 0]);
-        }
-      }
-
-      const notificationResponse = await getNotifications({
-        token: token,
-        startDate: startDate,
-        endDate: endDate,
-        channel: selectedChannel?.channel,
-        chain: selectedChain.value,
-      });
-
-      const analyticsData = notificationResponse.notificationAnalytics;
-      let notificationsArray: any[] = [];
-      for (let i = 0; i < analyticsData.length; i++) {
-        let total = 0,
-          dat = '';
-
-        for (let key in analyticsData[i]) {
-          if (key === 'date') {
-            dat = analyticsData[i][key];
-          } else {
-            total += analyticsData[i][key].notification;
-          }
-        }
-        notificationsArray.push({ date: dat, notifications: total });
-      }
-
-      for (let i = 0; i < dateArray.length; i++) {
-        let isFound = false;
-        for (let j = 0; j < notificationsArray.length; j++) {
-          if (
-            new Date(notificationsArray[j].date).toDateString() ===
-            new Date(dateArray[i]).toDateString()
-          ) {
-            isFound = true;
-            localNotificationData.push([
-              notificationsArray[j].date,
-              notificationsArray[j].notifications,
-            ]);
-            totalNotifications += notificationsArray[j].notifications;
-            break;
-          }
-        }
-        if (!isFound) {
-          localNotificationData.push([dateArray[i], 0]);
         }
       }
 

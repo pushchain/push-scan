@@ -2,7 +2,7 @@
 import styled from 'styled-components';
 
 // Internal Components imports
-import { ItemHV2, ItemVV2 } from '../../theme/SharedStyling';
+import { ItemHV2, ItemVV2 } from '../../components/SharedStyling';
 
 export const NavbarContainer = styled(ItemHV2)`
   width: 100%;
@@ -15,9 +15,6 @@ export const NavbarContainer = styled(ItemHV2)`
   z-index: 10;
   @media (min-width: 310px) {
     padding: 0px 24px;
-  }
-  @media (min-width: 768px) {
-    padding: 0px 50px;
   }
   @media (min-width: 1024px) {
     padding: 0px 50px;

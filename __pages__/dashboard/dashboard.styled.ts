@@ -1,9 +1,8 @@
 // External Library imports
 import styled from 'styled-components';
-import { Container } from '@mui/system';
 
 // Internal Components imports
-import { ItemVV2 } from '../../theme/SharedStyling';
+import { ItemVV2 } from '../../components/SharedStyling';
 
 export const DashBoardContainer = styled(ItemVV2)`
   width: 100%;

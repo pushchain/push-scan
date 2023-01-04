@@ -8,7 +8,7 @@ import { useTheme } from 'styled-components';
 
 // Internal Components imports
 import useLogin from '../../hooks/useLogin';
-import { ItemHV2, ItemVV2, ButtonV2 } from '../../theme/SharedStyling';
+import { ItemHV2, ItemVV2, ButtonV2 } from '../../components/SharedStyling';
 import { Text } from '../dashboard/dashboard.styled';
 import { Input, InputContainer } from './login.styled';
 

@@ -2,7 +2,7 @@
 import styled from 'styled-components';
 
 // Internal Components imports
-import { ItemHV2 } from '../../theme/SharedStyling';
+import { ItemHV2 } from '../../components/SharedStyling';
 
 export const Input = styled.input`
   outline: none;

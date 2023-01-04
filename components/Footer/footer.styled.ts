@@ -2,7 +2,7 @@
 import styled from 'styled-components';
 
 // Internal Components imports
-import { ItemHV2 } from '../../theme/SharedStyling';
+import { ItemHV2 } from '../../components/SharedStyling';
 
 export const FooterContainer = styled.div`
   width: 100%;
@@ -19,7 +19,7 @@ export const FooterContainer = styled.div`
     gap: 30px;
   }
   @media (min-width: 768px) {
-    padding: 47px 50px 35px;
+    padding: 47px 24px 35px;
   }
   @media (min-width: 1024px) {
     padding: 47px 50px 35px;

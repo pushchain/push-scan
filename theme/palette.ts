@@ -2,21 +2,6 @@
 export const themeLight = {
   scheme: 'light',
 
-  // Default Theme
-  default: {
-    bg: '#FFFFFF',
-    secondaryBg: '#F4F5FA',
-    border: '#BAC4D6',
-    color: '#000000',
-    leaderBoardHeader: '#657795',
-    secondaryColor: '#657795',
-    lineGraph: '#DF4FA3',
-    footerLinkText: '#9C9CBE',
-    tooltipBackground: '#E5E8F6',
-    timeFilterBg: '#F4F5FA',
-    cardBg: '#FFFFFF',
-  },
-
   // Default Background Theme
   defaultBG: '#FFFFFF',
 
@@ -77,21 +62,6 @@ export const themeLight = {
 
 export const themeDark = {
   scheme: 'dark',
-
-  // Default Theme
-  default: {
-    bg: '#2F3137',
-    secondaryBg: '#404650',
-    border: '#4A4F67',
-    color: '#FFFFFF',
-    leaderBoardHeader: '#787E99',
-    secondaryColor: '#B6BCD6',
-    lineGraph: '#DF4FA3',
-    footerLinkText: '#B6BCD6',
-    tooltipBackground: '#2F3137',
-    timeFilterBg: '#404650',
-    cardBg: '#404650',
-  },
 
   // Default Background Theme
   defaultBG: '#2F3137',

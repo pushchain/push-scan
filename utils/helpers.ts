@@ -46,8 +46,8 @@ export default function getDatesArray({
   end,
   interval,
 }: {
-  start: string;
-  end: string;
+  start: Date;
+  end: Date;
   interval: number;
 }) {
   for (

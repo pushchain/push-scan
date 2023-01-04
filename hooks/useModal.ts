@@ -9,7 +9,7 @@ import { updateGovernanceData, getGovernanceData } from '../utils/api';
 import { useData } from '../contexts/DataContext';
 
 export default function useModal() {
-  const { updateTracker, setUpdateTracker, token } = useData();
+  const { updateTracker, setUpdateTracker } = useData();
   const [open, setOpen] = useState<boolean>(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -40,7 +40,7 @@ export default function useModal() {
 
   useEffect(() => {
     (async () => {
-      const res = await getGovernanceData({ token });
+      const res = await getGovernanceData();
       setGovernanceData(res?.governance_data);
     })();
   }, []);
@@ -95,7 +95,6 @@ export default function useModal() {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    console.log('Entered Data', formData);
     const data = {
       Governance: {
         PGP_Amount: {
@@ -184,7 +183,7 @@ export default function useModal() {
             : formData.push_integrations,
       },
     };
-    const result = await updateGovernanceData({ data, token });
+    const result = await updateGovernanceData({ data });
     if (result.success === 1) {
       toast.success('Data uploaded successfully');
     } else {

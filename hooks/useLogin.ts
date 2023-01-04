@@ -12,7 +12,7 @@ import { login } from '../utils/api';
 
 export default function useLogin() {
   const router = useRouter();
-  const { setIsLoggedIn, setToken } = useData();
+  const { setIsLoggedIn } = useData();
   const [values, setValues] = React.useState({
     username: '',
     password: '',

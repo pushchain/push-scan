@@ -13,7 +13,7 @@ import { useTheme as Theme } from '../../contexts/ThemeContext';
 import { useData } from '../../contexts/DataContext';
 import { ROUTES, CREDENTIALKEYS } from '../../utils/constants';
 import { Text } from '../../__pages__/dashboard/dashboard.styled';
-import { ItemHV2, ItemVV2 } from '../../theme/SharedStyling';
+import { ItemHV2, ItemVV2 } from '../../components/SharedStyling';
 import { NavBarButtons } from './NavBarButtons';
 import {
   NavbarContainer,

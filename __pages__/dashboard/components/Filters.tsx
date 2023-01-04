@@ -14,7 +14,7 @@ import {
   TimeFilter,
 } from './LineChartSet/linchartset.styled';
 import { useTheme } from '../../../contexts/ThemeContext';
-import { ItemHV2, ImageV2, SpanV2 } from '../../../theme/SharedStyling';
+import { ItemHV2, ImageV2, SpanV2 } from '../../../components/SharedStyling';
 
 export default function Filters({
   selectedChannel,
@@ -34,15 +34,20 @@ export default function Filters({
 }) {
   const isMobile = useMediaQuery('(max-width:768px)');
   const { isDarkMode } = useTheme();
-  const [channels, setChannels] = React.useState<any[]>(channelList);
+  const [channels, setChannels] = React.useState<any[]>();
+
+  React.useEffect(() => {
+    setChannels(channelList);
+  }, []);
 
   const handleSearch = (event: any) => {
+    event.preventDefault();
     const text = event.target.value;
-    const res = channelList.filter((obj) =>
+    const searchResult = channelList.filter((obj) =>
       JSON.stringify(obj).toLowerCase().includes(text.toLowerCase())
     );
-    if (res.length > 0) {
-      setChannels(res);
+    if (searchResult.length > 0) {
+      setChannels(searchResult);
     } else {
       setChannels(channelList);
     }
@@ -101,7 +106,7 @@ export default function Filters({
             <OptionList background="#cf1c84">
               <Searchbar
                 placeholder="Search for channel here..."
-                onChange={handleSearch}
+                onChange={(e) => handleSearch(e)}
               />
               <Box
                 sx={{
@@ -119,7 +124,7 @@ export default function Filters({
                   },
                 }}
               >
-                {channels.map((channel, index) => (
+                {channels?.map((channel, index) => (
                   <Option
                     key={index}
                     onClick={() => {
@@ -177,6 +182,7 @@ export default function Filters({
             />
             <Box
               sx={{
+                color: !isDarkMode ? '#657795' : '#B6BCD6',
                 '@media(max-width:480px)': {
                   display: 'none',
                 },

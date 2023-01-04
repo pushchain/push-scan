@@ -5,7 +5,6 @@ import React from 'react';
 import { getSubscribers, getNotifications } from '../utils/api';
 
 export default function useStatisticCount({
-  token,
   startDate,
   endDate,
   selectedChain,
@@ -19,7 +18,6 @@ export default function useStatisticCount({
       setTotalSubscribers(0);
       setTotalNotifications(0);
       const subscribersResponse = await getSubscribers({
-        token,
         startDate,
         endDate,
         channel: selectedChannel.channel,
@@ -27,7 +25,6 @@ export default function useStatisticCount({
       });
       setTotalSubscribers(subscribersResponse?.totalSubscribers);
       const notificationsResponse = await getNotifications({
-        token,
         startDate,
         endDate,
         channel: selectedChannel?.channel,

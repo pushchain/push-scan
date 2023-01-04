@@ -12,7 +12,7 @@ import {
   InfoContainer,
 } from '../../admin.styled';
 import PushStatistics from '../GovernanceGraph';
-import { ItemHV2, ImageV2 } from '../../../../theme/SharedStyling';
+import { ItemHV2, ImageV2 } from '../../../../components/SharedStyling';
 
 export const GovernanceImprovementEditPanel = ({
   GraphData,

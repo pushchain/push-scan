@@ -27,7 +27,7 @@ import PushStatistics from './components/GovernanceGraph';
 import { getGovernanceData } from '../../utils/api';
 import { useData } from '../../contexts/DataContext';
 
-import { ItemHV2, ItemVV2, ImageV2 } from '../../theme/SharedStyling';
+import { ItemHV2, ItemVV2, ImageV2 } from '../../components/SharedStyling';
 import { Text } from '../dashboard/dashboard.styled';
 
 export default function AdminView() {
@@ -39,7 +39,7 @@ export default function AdminView() {
     updateGrantsCategoryData,
     updatePushIntegrationData,
   } = useModal();
-  const { updateTracker, token } = useData();
+  const { updateTracker } = useData();
   const [data, setData] = React.useState();
   const [showIndex, setShowIndex] = React.useState<number>(0);
   const [grantProposalData, setGrantProposalData] = React.useState({
@@ -74,7 +74,7 @@ export default function AdminView() {
 
   React.useEffect(() => {
     (async () => {
-      const res = await getGovernanceData({ token });
+      const res = await getGovernanceData();
       setData(res?.governance_data);
     })();
   }, [updateTracker]);

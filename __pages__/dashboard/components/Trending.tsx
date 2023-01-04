@@ -1,10 +1,8 @@
 import React from 'react';
 import LeaderBoard from './LeaderBoard/LeaderBoard';
 import { getSubscribers } from '../../../utils/api';
-import { useData } from '../../../contexts/DataContext';
 
 export default function Trending() {
-  const { token } = useData();
   const [leaderBoard, setLeaderBoard] = React.useState<any[]>([]);
 
   React.useEffect(() => {
@@ -20,7 +18,6 @@ export default function Trending() {
       const startDate = new Date('2022-01-01');
 
       const currentRes = await getSubscribers({
-        token,
         startDate,
         endDate: firstEndDate,
         channel: 'All',
@@ -28,7 +25,6 @@ export default function Trending() {
       });
 
       const weekRes = await getSubscribers({
-        token,
         startDate,
         endDate: secondEndDate,
         channel: 'All',

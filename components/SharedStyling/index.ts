@@ -2,7 +2,7 @@
 import styled from 'styled-components';
 
 // Internal Configs
-import { themeLight } from './palette';
+import { themeLight } from '../../theme/palette';
 
 // Section covers the entire width and height
 export const SectionV2 = styled.section`
@@ -71,7 +71,7 @@ export const ItemHV2 = styled.div`
   z-index: ${(props) => props.zIndex || 'auto'};
   gap: ${(props) => props.gap || '0px'};
   font-size: ${(props) => props.fontSize || '14px'};
-  color: ${(props) => props.color || themeLight.default.primary};
+  color: ${(props) => props.color || themeLight.text.primary};
   cursor: ${(props) => props.cursor || 'auto'};
 
   &:hover & {
@@ -99,7 +99,7 @@ export const ItemVV2 = styled(ItemHV2)`
 `;
 
 export const H2V2 = styled.h2`
-  color: ${(props) => props.color || themeLight.default.color};
+  color: ${(props) => props.color || themeLight.text.primary};
   font-family: ${(props) =>
     props.family || "'Strawford', Helvetica, sans-serif"};
   font-size: ${(props) => props.fontSize || 'initial'};
@@ -117,7 +117,7 @@ export const ButtonV2 = styled.button`
   background: ${(props) => props.background || 'tranparent'};
   border: ${(props) => props.border || 'initial'};
   border-radius: ${(props) => props.borderRadius || '0px'};
-  color: ${(props) => props.color || themeLight.default.color};
+  color: ${(props) => props.color || themeLight.text.primary};
   cursor: ${(props) => props.cursor || 'pointer'};
   display: ${(props) => props.display || 'flex'};
   flex: ${(props) => props.flex || '1'};

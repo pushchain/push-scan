@@ -1,7 +1,12 @@
 import React from 'react';
 import { getSubscribers, getNotifications } from '../utils/api';
 
-export default function useChannelStatistics({ token, selectedChain }) {
+export default function useChannelStatistics({
+  startDate,
+  endDate,
+  selectedChannel,
+  selectedChain,
+}) {
   const [subscriberCategories, setSubscriberCategories] = React.useState<any[]>(
     []
   );
@@ -24,10 +29,17 @@ export default function useChannelStatistics({ token, selectedChain }) {
     });
 
     (async () => {
-      const subscriberResponse = await getSubscribers({ token, selectedChain });
+      const subscriberResponse = await getSubscribers({
+        startDate: startDate,
+        endDate: endDate,
+        channel: selectedChannel?.channel,
+        chain: selectedChain?.value,
+      });
       const notificationsResponse = await getNotifications({
-        token,
-        selectedChain,
+        startDate: startDate,
+        endDate: endDate,
+        channel: selectedChannel?.channel,
+        chain: selectedChain?.value,
       });
 
       // Retrieving and formatting Subscriber data

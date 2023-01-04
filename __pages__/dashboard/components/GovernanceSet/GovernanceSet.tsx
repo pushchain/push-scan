@@ -14,15 +14,19 @@ import { useData } from '../../../../contexts/DataContext';
 export default function GovernanceSet() {
   const isMobile = useMediaQuery('(max-width:480px)');
   const [data, setData] = React.useState();
-  const { token, setPushIntegrations } = useData();
+  const [pushGrants, setPushGrants] = React.useState<number>(0);
+  const { setPushIntegrations } = useData();
   const theme = useTheme();
 
   React.useEffect(() => {
     (async () => {
-      const governanceResponse = await getGovernanceData({ token });
+      const governanceResponse = await getGovernanceData();
       setData(governanceResponse?.governance_data);
       setPushIntegrations(
         governanceResponse?.governance_data?.Miscellaneous?.Push_Integrations
+      );
+      setPushGrants(
+        governanceResponse?.governance_data?.Miscellaneous?.Push_Grants
       );
     })();
   }, []);
@@ -44,7 +48,7 @@ export default function GovernanceSet() {
           data={data?.Governance?.PGP_Amount}
           title="Push Grants ($PUSH)"
           label="PGP_Amount"
-          value={data?.Miscellaneous?.Push_Grants}
+          value={pushGrants}
           colorSet={theme.graph.grantsAndPIPColors}
         />
         <HorizontalLine />

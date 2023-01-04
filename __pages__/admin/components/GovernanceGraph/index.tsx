@@ -7,7 +7,7 @@ import ReactECharts from 'echarts-for-react';
 import styled, { useTheme } from 'styled-components';
 
 // Internal Components imports
-import { ItemHV2 } from '../../../../theme/SharedStyling';
+import { ItemHV2 } from '../../../../components/SharedStyling';
 import { Text } from '../../../dashboard/dashboard.styled';
 
 const GovernanceGraph = ({ data, title, label, value, colorSet }: any) => {
@@ -36,9 +36,9 @@ const GovernanceGraph = ({ data, title, label, value, colorSet }: any) => {
         theme: 'dark',
         trigger: 'item',
         valueFormatter: (value: number) => value,
-        backgroundColor: theme.default.tooltipBackground,
+        backgroundColor: theme.background.tooltip,
         textStyle: {
-          color: theme.default.color,
+          color: theme.text.primary,
           fontFamily: 'Strawford, Helvetica, sans-serif',
         },
         borderWidth: 0,
