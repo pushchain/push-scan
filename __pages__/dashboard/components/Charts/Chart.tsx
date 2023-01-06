@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic';
 
 // External Library imports
 import { CardContent, Grid, useMediaQuery } from '@mui/material';
-import CircularProgress from '@mui/material/CircularProgress';
+import { RotatingLines } from 'react-loader-spinner';
 import _ from 'lodash';
 import styled, { useTheme } from 'styled-components';
 const ReactApexChart = dynamic(() => import('react-apexcharts'), {
@@ -151,7 +151,13 @@ export default function Chart({
         >
           {isLoading ? (
             <ItemHV2 height="265px" width="100%">
-              <CircularProgress />
+              <RotatingLines
+                strokeColor="#CF1C84"
+                strokeWidth="4"
+                animationDuration="1.9"
+                width="50"
+                visible={true}
+              />
             </ItemHV2>
           ) : (
             <ReactApexChart
