@@ -14,6 +14,7 @@ import {
 } from '@mui/material';
 import { tableCellClasses } from '@mui/material/TableCell';
 import styled, { useTheme } from 'styled-components';
+import { RotatingLines } from 'react-loader-spinner';
 
 // Internal Components imports
 import { DAPP_LINKS } from '../../../../utils/constants';
@@ -30,10 +31,12 @@ export default function LeaderBoard({
   title,
   data,
   isTrending,
+  isLoading,
 }: {
   title: string;
   data: any;
   isTrending?: boolean;
+  isLoading?: boolean;
 }) {
   const theme = useTheme();
   const isMobile = useMediaQuery('(max-width:480px)');
@@ -49,108 +52,120 @@ export default function LeaderBoard({
           {title}
         </Text>
         <ItemHV2>
-          <Table
-            sx={{
-              width: '100%',
-              [`& .${tableCellClasses.root}`]: {
-                borderBottom: 'none',
-                // fontSize: "14px",
-                fontFamily: 'Strawford, sans-serif',
-                fontWeight: 500,
-                padding: '0px',
-                paddingTop: '18px',
-                // paddingBottom: '9px',
-              },
-            }}
-          >
-            <TableHead>
-              <TableRow
-                sx={{
-                  '& th': {
-                    color: theme.text.leaderboardHeader,
-                    fontSize: '12px',
-                  },
-                }}
-              >
-                <TableCell>Name</TableCell>
-                <TableCell align="right">Subscribers</TableCell>
-                {isTrending && <TableCell align="right">7D%</TableCell>}
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {data.map((channel) => (
+          {isLoading && isTrending ? (
+            <ItemHV2 minHeight="262px" minWidth="300px">
+              <RotatingLines
+                strokeColor="#CF1C84"
+                strokeWidth="4"
+                animationDuration="1.9"
+                width="50"
+                visible={true}
+              />
+            </ItemHV2>
+          ) : (
+            <Table
+              sx={{
+                width: '100%',
+                [`& .${tableCellClasses.root}`]: {
+                  borderBottom: 'none',
+                  // fontSize: "14px",
+                  fontFamily: 'Strawford, sans-serif',
+                  fontWeight: 500,
+                  padding: '0px',
+                  paddingTop: '18px',
+                  // paddingBottom: '9px',
+                },
+              }}
+            >
+              <TableHead>
                 <TableRow
-                  key={channel.name}
                   sx={{
-                    '&:last-child td, &:last-child th': {
-                      border: 'none',
+                    '& th': {
+                      color: theme.text.leaderboardHeader,
+                      fontSize: '12px',
                     },
                   }}
                 >
-                  <TableCell component="th" scope="row">
-                    <a
-                      href={DAPP_LINKS.CHANNELS}
-                      target={'_blank'}
-                      rel={'noreferrer'}
-                    >
-                      <ItemHV2
-                        justifyContent="flex-start"
-                        color={theme.text.leaderboardText}
-                      >
-                        <Avatar
-                          src={channel.icon}
-                          sx={{ width: 26, height: 26, marginRight: 1 }}
-                        />
-
-                        <TextContainer>
-                          {' '}
-                          {isMobile && isTrending
-                            ? channel.name.length < 15
-                              ? channel.name
-                              : channel.name.substr(0, 15) + '...'
-                            : channel.name.length < 15
-                            ? channel.name
-                            : channel.name.substr(0, 15) + '...'}
-                        </TextContainer>
-                      </ItemHV2>
-                    </a>
-                  </TableCell>
-
-                  <TableCell
-                    align="right"
+                  <TableCell>Name</TableCell>
+                  <TableCell align="right">Subscribers</TableCell>
+                  {isTrending && <TableCell align="right">7D%</TableCell>}
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {data.map((channel) => (
+                  <TableRow
+                    key={channel.name}
                     sx={{
-                      color: theme.text.leaderboardText,
+                      '&:last-child td, &:last-child th': {
+                        border: 'none',
+                      },
                     }}
                   >
-                    {channel?.subscriber?.toLocaleString()}
-                  </TableCell>
-                  {isTrending && (
-                    <TableCell align="right">
-                      <ItemHV2
-                        alignItems="center"
-                        justifyContent="flex-end"
-                        color={channel?.trend >= 0 ? '#30CC8B' : '#E93636'}
-                        padding="0px 0px 0px 30px"
+                    <TableCell component="th" scope="row">
+                      <a
+                        href={DAPP_LINKS.CHANNELS}
+                        target={'_blank'}
+                        rel={'noreferrer'}
                       >
-                        <ImageV2
-                          height="6.67px"
-                          width="10px"
-                          marginRight="4px"
-                          alt="Trend."
-                          src={
-                            channel?.trend >= 0
-                              ? './static/increase.png'
-                              : './static/decrease.png'
-                          }
-                        />
-                        {channel?.trend}%
-                      </ItemHV2>
+                        <ItemHV2
+                          justifyContent="flex-start"
+                          color={theme.text.leaderboardText}
+                        >
+                          <Avatar
+                            src={channel.icon}
+                            sx={{ width: 26, height: 26, marginRight: 1 }}
+                          />
+
+                          <TextContainer>
+                            {' '}
+                            {isMobile && isTrending
+                              ? channel.name.length < 15
+                                ? channel.name
+                                : channel.name.substr(0, 15) + '...'
+                              : channel.name.length < 15
+                              ? channel.name
+                              : channel.name.substr(0, 15) + '...'}
+                          </TextContainer>
+                        </ItemHV2>
+                      </a>
                     </TableCell>
-                  )}
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+
+                    <TableCell
+                      align="right"
+                      sx={{
+                        color: theme.text.leaderboardText,
+                      }}
+                    >
+                      {channel?.subscriber?.toLocaleString()}
+                    </TableCell>
+                    {isTrending && (
+                      <TableCell align="right">
+                        <ItemHV2
+                          alignItems="center"
+                          justifyContent="flex-end"
+                          color={channel?.trend >= 0 ? '#30CC8B' : '#E93636'}
+                          padding="0px 0px 0px 30px"
+                        >
+                          <ImageV2
+                            height="6.67px"
+                            width="10px"
+                            marginRight="4px"
+                            alt="Trend."
+                            src={
+                              channel?.trend >= 0
+                                ? './static/increase.png'
+                                : './static/decrease.png'
+                            }
+                          />
+                          {channel?.trend}%
+                        </ItemHV2>
+                      </TableCell>
+                    )}
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          )}
         </ItemHV2>
       </CardContainer>
     </Grid>

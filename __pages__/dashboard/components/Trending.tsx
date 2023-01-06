@@ -4,9 +4,11 @@ import { getSubscribers } from '../../../utils/api';
 
 export default function Trending() {
   const [leaderBoard, setLeaderBoard] = React.useState<any[]>([]);
+  const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
   React.useEffect(() => {
     (async () => {
+      setIsLoading(true);
       let trendingChannelData: any[] = [];
       let currentSubscriberData = {};
       let weekBackSubscriberData = {};
@@ -89,8 +91,16 @@ export default function Trending() {
       );
 
       setLeaderBoard(sorted.slice(0, 5));
+      setIsLoading(false);
     })();
   }, []);
 
-  return <LeaderBoard title="Trending" data={leaderBoard} isTrending={true} />;
+  return (
+    <LeaderBoard
+      title="Trending"
+      data={leaderBoard}
+      isTrending={true}
+      isLoading={isLoading}
+    />
+  );
 }
