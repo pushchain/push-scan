@@ -4,6 +4,7 @@ import dynamic from 'next/dynamic';
 
 // External Library imports
 import { CardContent, Grid, useMediaQuery } from '@mui/material';
+import CircularProgress from '@mui/material/CircularProgress';
 import styled, { useTheme } from 'styled-components';
 import _ from 'lodash';
 const ReactApexChart = dynamic(() => import('react-apexcharts'), {
@@ -13,7 +14,7 @@ const ReactApexChart = dynamic(() => import('react-apexcharts'), {
 // Internal Components imports
 import BaseOptions from './BaseOptions';
 import { DAPP_LINKS } from '../../../../utils/constants';
-import { ItemVV2 } from '../../../../components/SharedStyling';
+import { ItemVV2, ItemHV2 } from '../../../../components/SharedStyling';
 import { Text } from '../../dashboard.styled';
 
 export default function HorizontalBarChart({
@@ -21,11 +22,13 @@ export default function HorizontalBarChart({
   label,
   category,
   value,
+  isLoading,
 }: {
   title: string;
   label: string;
   category: string[];
   value: number[];
+  isLoading: boolean;
 }) {
   const theme = useTheme();
   const isMobile = useMediaQuery('(max-width:480px)');
@@ -147,12 +150,18 @@ export default function HorizontalBarChart({
           {title}
         </Text>
         <CardContent sx={{ width: '100%', padding: '0px' }}>
-          <ReactApexChart
-            type="bar"
-            series={options.series}
-            options={options}
-            height={300}
-          />
+          {isLoading ? (
+            <ItemHV2 height="265px" width="100%">
+              <CircularProgress />
+            </ItemHV2>
+          ) : (
+            <ReactApexChart
+              type="bar"
+              series={options.series}
+              options={options}
+              height={300}
+            />
+          )}
         </CardContent>
       </CardContainer>
     </Grid>

@@ -38,7 +38,10 @@ export default function LineChartSet() {
   const [endDate, setEndDate] = React.useState(new Date());
   const [min, setMin] = React.useState<any>(new Date('2022-01-01').getTime());
   const [max, setMax] = React.useState<any>(new Date().getTime());
-  const [isLoading, setIsLoading] = React.useState<boolean>(false);
+  const [isStatisticDataLoading, setStatisticDataLoading] =
+    React.useState<boolean>(false);
+  const [isChannelDataLoading, setChannelDataLoading] =
+    React.useState<boolean>(false);
   const [interval, setInterval] = React.useState(
     Math.ceil(
       Math.ceil(
@@ -54,7 +57,7 @@ export default function LineChartSet() {
     totalNotifications,
     totalSubscribers,
   } = useStatisticData({
-    setIsLoading,
+    setStatisticDataLoading,
     selectedChannel,
     selectedChain,
     startDate,
@@ -73,6 +76,7 @@ export default function LineChartSet() {
     endDate,
     selectedChannel,
     selectedChain,
+    setChannelDataLoading,
   });
 
   React.useEffect(() => {
@@ -234,7 +238,7 @@ export default function LineChartSet() {
       </Box> */}
       <Grid container spacing={isMobile ? 0 : 3} justifyContent="center" mt={0}>
         <Notifications
-          isLoading={isLoading}
+          isLoading={isStatisticDataLoading}
           data={notificationData}
           max={max}
           min={min}
@@ -242,7 +246,7 @@ export default function LineChartSet() {
         />
         <HorizontalLine />
         <Subscribers
-          isLoading={isLoading}
+          isLoading={isStatisticDataLoading}
           data={subscriberData}
           max={max}
           min={min}
@@ -253,6 +257,7 @@ export default function LineChartSet() {
           label="Subscribers"
           category={subscriberCategories}
           value={subscriberValues}
+          isLoading={isChannelDataLoading}
         />
         <HorizontalLine />
         <HorizontalBarChart
@@ -260,6 +265,7 @@ export default function LineChartSet() {
           label="Notifications"
           category={notificationCategories}
           value={notificationValues}
+          isLoading={isChannelDataLoading}
         />
         <HorizontalLine />
       </Grid>

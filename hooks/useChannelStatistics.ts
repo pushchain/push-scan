@@ -6,6 +6,7 @@ export default function useChannelStatistics({
   endDate,
   selectedChannel,
   selectedChain,
+  setChannelDataLoading,
 }) {
   const [subscriberCategories, setSubscriberCategories] = React.useState<any[]>(
     []
@@ -29,6 +30,7 @@ export default function useChannelStatistics({
     });
 
     (async () => {
+      setChannelDataLoading(true);
       const subscriberResponse = await getSubscribers({
         startDate: startDate,
         endDate: endDate,
@@ -133,6 +135,7 @@ export default function useChannelStatistics({
       setNotificationCategories(notificationCategory);
       setNotificationValues(notificationValue);
       setChannelList(channels);
+      setChannelDataLoading(false);
     })();
   }, [selectedChain]);
 

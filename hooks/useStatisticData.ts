@@ -8,7 +8,7 @@ export default function useStatisticData({
   startDate,
   endDate,
   // interval,
-  setIsLoading,
+  setStatisticDataLoading,
 }) {
   const [subscriberData, setSubscriberData] = React.useState<any[]>([]);
   const [notificationData, setNotificationData] = React.useState<any[]>([]);
@@ -18,7 +18,7 @@ export default function useStatisticData({
 
   React.useEffect(() => {
     (async () => {
-      setIsLoading(true);
+      setStatisticDataLoading(true);
       setSubscriberData([]);
       setNotificationData([]);
       let localNotificationData: any[] = [];
@@ -131,7 +131,7 @@ export default function useStatisticData({
       setSubscriberData(localSubscriberData);
       setNotificationData(localNotificationData);
       setChannelList(channels);
-      setIsLoading(false);
+      setStatisticDataLoading(false);
     })();
 
     return () => {
