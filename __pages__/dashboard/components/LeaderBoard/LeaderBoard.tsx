@@ -52,7 +52,7 @@ export default function LeaderBoard({
           {title}
         </Text>
         <ItemHV2>
-          {isLoading && isTrending ? (
+          {isLoading ? (
             <ItemHV2 minHeight="262px" minWidth="300px">
               <RotatingLines
                 strokeColor="#CF1C84"

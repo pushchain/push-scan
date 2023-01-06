@@ -7,9 +7,11 @@ import LeaderBoard from './LeaderBoard/LeaderBoard';
 
 export default function TopChannels() {
   const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
   useEffect(() => {
     (async () => {
+      setIsLoading(true);
       try {
         const res = await getLeaderBoard({
           limit: 5,
@@ -21,8 +23,15 @@ export default function TopChannels() {
       } catch (e) {
         console.log('Error occured', e);
       }
+      setIsLoading(false);
     })();
   }, []);
 
-  return <LeaderBoard title="Top channels by subscriber count" data={data} />;
+  return (
+    <LeaderBoard
+      title="Top channels by subscriber count"
+      data={data}
+      isLoading={isLoading}
+    />
+  );
 }

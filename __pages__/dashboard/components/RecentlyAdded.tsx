@@ -7,9 +7,11 @@ import LeaderBoard from './LeaderBoard/LeaderBoard';
 
 export default function RecentlyAdded() {
   const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
   useEffect(() => {
     (async () => {
+      setIsLoading(true);
       try {
         const res = await getLeaderBoard({
           limit: 5,
@@ -21,8 +23,11 @@ export default function RecentlyAdded() {
       } catch (e) {
         console.log('Error occured', e);
       }
+      setIsLoading(false);
     })();
   }, []);
 
-  return <LeaderBoard title="Recently Added " data={data} />;
+  return (
+    <LeaderBoard title="Recently Added " data={data} isLoading={isLoading} />
+  );
 }
