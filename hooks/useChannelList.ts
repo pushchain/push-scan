@@ -1,7 +1,9 @@
+// React, NextJS imports
 import React from 'react';
-import { getLeaderBoard } from 'utils/api';
+// Internal Components imports
+import { getLeaderBoard } from '../utils/api';
 
-export default function useChannelList({ token, selectedChain }) {
+export default function useChannelList({ selectedChain }) {
   const [channelList, setChannelList] = React.useState<any[]>([]);
 
   React.useEffect(() => {
@@ -13,13 +15,15 @@ export default function useChannelList({ token, selectedChain }) {
         channel: 'All',
       };
       try {
-        const res = await getLeaderBoard({
-          token: token,
+        const leaderboardResponse = await getLeaderBoard({
           limit: 30,
           sort: 'subscribers',
           order: 'desc',
         });
-        setChannelList([allChannels, ...res.leaderboardAnalytics]);
+        setChannelList([
+          allChannels,
+          ...leaderboardResponse.leaderboardAnalytics,
+        ]);
       } catch (e) {
         console.log('Error occured', e);
       }

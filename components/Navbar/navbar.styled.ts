@@ -1,27 +1,50 @@
-import { styled } from '@mui/material';
-import { AppBar, Toolbar } from '@mui/material';
+// External Library imports
+import styled from 'styled-components';
 
-const DRAWER_WIDTH = 100;
-const APPBAR_MOBILE = 64;
-const APPBAR_DESKTOP = 92;
+// Internal Components imports
+import { ItemHV2, ItemVV2 } from '../../components/SharedStyling';
 
-export const RootStyle = styled(AppBar)(({ theme }) => ({
-  boxShadow: 'none',
-  backdropFilter: 'blur(6px)',
-  WebkitBackdropFilter: 'blur(6px)', // Fix on Mobile
-  backgroundColor: theme.palette.background.default,
-}));
+export const NavbarContainer = styled(ItemHV2)`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0px 50px;
+  height: 100px;
+  position: static;
+  z-index: 10;
+  @media (min-width: 310px) {
+    padding: 0px 24px;
+  }
+  @media (min-width: 1024px) {
+    padding: 0px 50px;
+  }
+`;
+export const HamburgerLine = styled.div`
+  height: 1px;
+  width: 30px;
+  border-bottom: 3px solid ${(props) => props.theme.text.primary};
+  border-radius: 3px;
+  margin: 5px 0px;
+`;
 
-export const ToolbarStyle = styled(Toolbar)(({ theme }) => ({
-  minHeight: APPBAR_MOBILE,
-  display: 'flex',
-  justifyContent: 'space-between',
-  [theme.breakpoints.up('lg')]: {
-    minHeight: APPBAR_DESKTOP,
-    padding: theme.spacing(0, 6),
-  },
-  [theme.breakpoints.up('md')]: {
-    minHeight: APPBAR_DESKTOP,
-    padding: theme.spacing(0, 6),
-  },
-}));
+export const SidebarContainer = styled(ItemVV2)`
+  z-index: 10;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 250px;
+  height: auto;
+  position: absolute;
+  top: 95px;
+  border: 1px solid ${(props) => props.theme.background.border};
+  border-radius: 28px;
+  color: ${(props) => props.theme.text.secondary};
+  background-color: ${(props) => props.theme.background.secondary};
+  padding: 30px;
+  @media (min-width: 310px) {
+    right: 24px;
+  }
+  @media (min-width: 768px) {
+    right: 50px;
+  }
+`;

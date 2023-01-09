@@ -1,106 +1,82 @@
+// React, NextJS imports
 import React from 'react';
-import {
-  Box,
-  Paper,
-  Grid,
-  TextField,
-  IconButton,
-  InputAdornment,
-  OutlinedInput,
-  InputLabel,
-  FormControl,
-  Button,
-  Typography,
-} from '@mui/material';
+
+// External Library imports
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import useLogin from 'hooks/useLogin';
+import { useTheme } from 'styled-components';
+
+// Internal Components imports
+import useLogin from '../../hooks/useLogin';
+import { ItemHV2, ItemVV2, ButtonV2 } from '../../components/SharedStyling';
+import { Text } from '../dashboard/dashboard.styled';
+import { Input, InputContainer } from './login.styled';
 
 export default function LoginView() {
-  const {
-    Login,
-    handleChange,
-    handleClickShowPassword,
-    handleMouseDownPassword,
-    values,
-  } = useLogin();
+  const { Login, handleChange, values } = useLogin();
+  const theme = useTheme();
+  const [showPassword, setShowPassword] = React.useState(false);
 
   return (
-    <>
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          height: '80vh',
-        }}
+    <ItemHV2 minHeight="80vh">
+      <ItemVV2
+        maxWidth="300px"
+        height="350px"
+        background={theme.background.secondary}
+        margin="100px 0px 0px"
+        borderRadius="10px"
       >
-        <Paper style={{ marginTop: '150px' }}>
-          <Typography variant="h4" textAlign={'center'} mt={3}>
-            Admin Sign In
-          </Typography>
-          <form onSubmit={Login}>
-            <Grid
-              container
-              spacing={2}
-              direction={'column'}
-              alignItems={'center'}
-              padding={5}
-            >
-              <Grid item xs={12} lg={6} md={6}>
-                <TextField
-                  id="outlined-basic"
-                  name="username"
-                  value={values.username}
-                  onChange={handleChange('username')}
-                  label="Username"
-                  variant="outlined"
-                  autoComplete="off"
-                  style={{ width: 257 }}
-                />
-              </Grid>
-              <Grid item xs={12} lg={6} md={6} sx={{ width: '100%' }}>
-                <FormControl sx={{ width: 257 }} variant="outlined">
-                  <InputLabel htmlFor="outlined-adornment-password">
-                    Password
-                  </InputLabel>
+        <Text size="24px" weight="400" marginBottom="25px">
+          Admin Login
+        </Text>
+        <form onSubmit={Login}>
+          <ItemVV2 height="100%" justifyContent="space-around">
+            <InputContainer>
+              <Input
+                type="text"
+                name="username"
+                onChange={handleChange('username')}
+                autoComplete="off"
+                placeholder="Username"
+              />
+            </InputContainer>
 
-                  <OutlinedInput
-                    id="outlined-adornment-password"
-                    name="password"
-                    type={values.showPassword ? 'text' : 'password'}
-                    value={values.password}
-                    autoComplete="off"
-                    onChange={handleChange('password')}
-                    endAdornment={
-                      <InputAdornment position="end">
-                        <IconButton
-                          aria-label="toggle password visibility"
-                          onClick={handleClickShowPassword}
-                          onMouseDown={handleMouseDownPassword}
-                          edge="end"
-                        >
-                          {values.showPassword ? (
-                            <Visibility />
-                          ) : (
-                            <VisibilityOff />
-                          )}
-                        </IconButton>
-                      </InputAdornment>
-                    }
-                    label="Password"
-                  />
-                </FormControl>
-              </Grid>
-              <Grid item xs={12} lg={6} md={6}>
-                <Button variant="outlined" type="submit">
-                  Sign In
-                </Button>
-              </Grid>
-            </Grid>
-          </form>
-        </Paper>
-      </Box>
-    </>
+            <InputContainer>
+              <Input
+                type={showPassword ? 'text' : 'password'}
+                name="password"
+                autoComplete="off"
+                placeholder="Password"
+                onChange={handleChange('password')}
+              />
+              {showPassword ? (
+                <Visibility
+                  onClick={() => setShowPassword(false)}
+                  style={{ color: theme.text.secondary }}
+                />
+              ) : (
+                <VisibilityOff
+                  onClick={() => setShowPassword(true)}
+                  style={{ color: theme.text.secondary }}
+                />
+              )}
+            </InputContainer>
+
+            <ButtonV2
+              fontSize="16px"
+              fontWeight="600"
+              borderRadius="10px"
+              padding="15px 10px"
+              type="submit"
+              background="transparent"
+              border="1px solid #DF4FA3"
+              color={theme.text.primary}
+            >
+              Sign In
+            </ButtonV2>
+          </ItemVV2>
+        </form>
+      </ItemVV2>
+    </ItemHV2>
   );
 }

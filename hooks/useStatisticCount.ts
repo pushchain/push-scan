@@ -1,8 +1,10 @@
+// React, NextJS imports
 import React from 'react';
-import { getSubscribers, getNotifications } from 'utils/api';
+
+// Internal Components imports
+import { getSubscribers, getNotifications } from '../utils/api';
 
 export default function useStatisticCount({
-  token,
   startDate,
   endDate,
   selectedChain,
@@ -15,22 +17,20 @@ export default function useStatisticCount({
     (async () => {
       setTotalSubscribers(0);
       setTotalNotifications(0);
-      const totalSubsc = await getSubscribers({
-        token,
+      const subscribersResponse = await getSubscribers({
         startDate,
         endDate,
         channel: selectedChannel.channel,
         chain: selectedChain.value,
       });
-      setTotalSubscribers(totalSubsc?.totalSubscribers);
-      const totalNotifi = await getNotifications({
-        token,
+      setTotalSubscribers(subscribersResponse?.totalSubscribers);
+      const notificationsResponse = await getNotifications({
         startDate,
         endDate,
         channel: selectedChannel?.channel,
         chain: selectedChain?.value,
       });
-      setTotalNotifications(totalNotifi?.totalNotification);
+      setTotalNotifications(notificationsResponse?.totalNotification);
     })();
     return () => {
       setTotalSubscribers(0);

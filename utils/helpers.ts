@@ -1,3 +1,4 @@
+// External Library imports
 import { format, formatDistanceToNow } from 'date-fns';
 import { replace } from 'lodash';
 import numeral from 'numeral';
@@ -45,8 +46,8 @@ export default function getDatesArray({
   end,
   interval,
 }: {
-  start: string;
-  end: string;
+  start: Date;
+  end: Date;
   interval: number;
 }) {
   for (

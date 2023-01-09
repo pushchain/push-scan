@@ -1,7 +1,10 @@
-// import LineChart from "./LineChart";
+// React, NextJS imports
+import React from 'react';
+
+// Internal Components imports
 import Chart from './Charts/Chart';
 
-export default function Notifications({ data, min, max, total }) {
+export default function Notifications({ data, min, max, total, isLoading }) {
   return (
     <Chart
       title="Notifications Sent"
@@ -10,6 +13,7 @@ export default function Notifications({ data, min, max, total }) {
       min={min}
       max={max}
       data={data}
+      isLoading={isLoading}
     />
   );
 }

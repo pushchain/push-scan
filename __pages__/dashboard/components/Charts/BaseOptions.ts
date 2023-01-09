@@ -1,5 +1,8 @@
-import { useTheme } from '@mui/material/styles';
-import { useTheme as Theme } from 'contexts/ThemeContext';
+// External Library imports
+import { useTheme } from 'styled-components';
+
+// Internal Components imports
+import { useTheme as Theme } from '../../../../contexts/ThemeContext';
 
 export default function BaseOptions() {
   const theme = useTheme();
@@ -31,6 +34,7 @@ export default function BaseOptions() {
 
     // Chart
     chart: {
+      width: '100%',
       toolbar: {
         show: false,
         tools: {
@@ -53,8 +57,8 @@ export default function BaseOptions() {
       },
 
       // animations: { enabled: false },
-      foreColor: theme.palette.text.disabled,
-      fontFamily: theme.typography.fontFamily,
+      foreColor: theme.graph.divider,
+      //fontFamily: theme.typography.fontFamily,
     },
 
     // States
@@ -97,7 +101,7 @@ export default function BaseOptions() {
     // Grid
     grid: {
       strokeDashArray: 3,
-      borderColor: theme.palette.divider,
+      borderColor: theme.graph.axis,
     },
 
     // Xaxis
@@ -114,11 +118,14 @@ export default function BaseOptions() {
     // Markers
     markers: {
       size: 0,
-      strokeColors: theme.palette.background.paper,
+      strokeColors: theme.graph.axis,
     },
 
     // Tooltip
     tooltip: {
+      style: {
+        fontFamily: 'Strawford, Helvetica, sans-serif',
+      },
       theme: isDarkMode ? 'dark' : 'light',
       x: {
         show: true,
@@ -139,7 +146,7 @@ export default function BaseOptions() {
       fontWeight: 500,
       itemMargin: { horizontal: 12 },
       labels: {
-        colors: theme.palette.text.primary,
+        colors: theme.text.primary,
       },
     },
 
@@ -175,33 +182,34 @@ export default function BaseOptions() {
       radar: {
         polygons: {
           fill: { colors: ['transparent'] },
-          strokeColors: theme.palette.divider,
-          connectorColors: theme.palette.divider,
+          strokeColors: theme.graph.axis, // check
+          connectorColors: theme.graph.axis, //check
         },
       },
       // polarArea
       polarArea: {
         rings: {
-          strokeColor: theme.palette.divider,
+          strokeColor: theme.graph.axis, //check
         },
         spokes: {
-          connectorColors: theme.palette.divider,
+          connectorColors: theme.graph.axisr, //check
         },
       },
     },
 
-    // Responsive
+    //Responsive
+    // theme.breakpoints.values.sm,
     responsive: [
       {
         // sm
-        breakpoint: theme.breakpoints.values.sm,
+        breakpoint: '768px',
         options: {
           plotOptions: { bar: { columnWidth: '40%' } },
         },
       },
       {
         // md
-        breakpoint: theme.breakpoints.values.md,
+        breakpoint: '1024px',
         options: {
           plotOptions: { bar: { columnWidth: '32%' } },
         },

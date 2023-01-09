@@ -1,7 +1,8 @@
+// React, NextJS imports
 import React, { useEffect, useState, useContext, createContext } from 'react';
 
 const defaultTheme: any = {
-  isDarkMode: true,
+  isDarkMode: false,
   darkModeToggle: () => {
     alert('clicked');
   },
@@ -10,7 +11,7 @@ const defaultTheme: any = {
 const ThemeContext = createContext(defaultTheme);
 
 const ThemeProvider = ({ children }: { children: any }) => {
-  const [isDarkMode, setDarkMode] = useState(true);
+  const [isDarkMode, setDarkMode] = useState(false);
 
   const darkModeToggle = () => {
     if (isDarkMode) {

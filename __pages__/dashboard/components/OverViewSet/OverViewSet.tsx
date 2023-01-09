@@ -1,22 +1,27 @@
+// React, NextJS imports
 import React from 'react';
-import { Grid, Box, Typography, useMediaQuery } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
+
+// External Library imports
+import { useTheme } from 'styled-components';
+import { useMediaQuery } from '@mui/material';
+
+// Internal Components imports
 import { OverviewItem } from './overview.styled';
 import { Text } from '../../dashboard.styled';
-import {
-  getChats,
-  getUsers,
-  getGovernanceData,
-  getNotifications,
-} from 'utils/api';
-import { useData } from 'contexts/DataContext';
+import { getChats, getUsers, getNotifications } from '../../../../utils/api';
+import { useData } from '../../../../contexts/DataContext';
 import { HorizontalLine } from '../../dashboard.styled';
+import {
+  ItemHV2,
+  ItemVV2,
+  ImageV2,
+} from '../../../../components/SharedStyling';
 
 export default function OverViewSet() {
-  const { token } = useData();
+  const { pushIntegrations } = useData();
+  const isMobile = useMediaQuery('(max-width:480px)');
   const [chatUsers, setChatUsers] = React.useState<number>(0);
   const [chatSent, setChatSent] = React.useState<number>(0);
-  const [pushIntegrations, setPushIntegrations] = React.useState<number>(0);
   const [notifiactionsSent, setNotificationsSent] = React.useState<number>(0);
 
   const overViewData = [
@@ -24,92 +29,99 @@ export default function OverViewSet() {
       image: './static/push-integration.svg',
       title: 'Push Integrations',
       value: pushIntegrations,
+      size: 60,
     },
     {
       image: './static/chat-sent.svg',
       title: 'Chat Sent',
       value: chatSent,
+      size: 51,
     },
     {
       image: './static/chat-user.svg',
       title: 'Chat Users',
       value: chatUsers,
+      size: 65,
     },
     {
       image: './static/notifications.svg',
       title: 'Notifications Sent',
       value: notifiactionsSent,
+      size: 41,
     },
   ];
   const theme = useTheme();
 
   React.useEffect(() => {
     (async () => {
-      const chatRes = await getChats({ token });
-      setChatSent(chatRes?.totalMessages);
-      // console.log('chat', chatRes?.totalMessages);
-      const userRes = await getUsers({ token });
-      setChatUsers(userRes?.totalUsers);
-      // console.log('user', userRes?.totalUsers);
-      const govRes = await getGovernanceData({ token });
-      setPushIntegrations(
-        govRes?.governance_data?.Miscellaneous?.Push_Integrations
-      );
-      const notifRes = await getNotifications({ token });
-      setNotificationsSent(notifRes?.totalNotification);
+      let total = 0;
+      const chatResponse = await getChats();
+      setChatSent(chatResponse?.totalMessages);
+
+      const userResponse = await getUsers();
+      setChatUsers(userResponse?.totalUsers);
+
+      const notificationResponse = await getNotifications({
+        startDate: new Date('2022-01-01'),
+        endDate: new Date(),
+        channel: 'All',
+        chain: 'ETH_TEST_GOERLI',
+      });
+      const notifictionAnalyticsData =
+        notificationResponse?.notificationAnalytics;
+
+      for (let i = 0; i < notifictionAnalyticsData?.length; i++) {
+        for (let key in notifictionAnalyticsData[i]) {
+          if (key === 'date') {
+            continue;
+          } else {
+            total += notifictionAnalyticsData[i][key]?.notification;
+          }
+        }
+      }
+      setNotificationsSent(total);
     })();
   }, []);
 
   return (
     <>
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          flex: 1,
-          width: '100%',
-        }}
-        mt={5}
-        mb={3}
+      <ItemVV2
+        width="100%"
+        margin={isMobile ? '25px 0px 30px' : '50px 0px 30px'}
+        alignItems="flex-start"
       >
-        <Text size="18px" weight={400}>
+        <Text size="18px" weight={400} marginBottom="20px">
           Overview
         </Text>
-        <Grid
-          container
+        <ItemHV2
           width="100%"
-          gap={3}
+          gap="23px"
           justifyContent="space-between"
-          mt={2}
+          marginTop="20px"
         >
           {overViewData.map((data) => (
             <OverviewItem
               key={data.title}
               style={{
-                backgroundColor: theme.palette.background.card,
-                border: `1px solid ${theme.palette.outline}`,
+                backgroundColor: theme.background.card,
+                border: `1px solid ${theme.background.border}`,
+                height: '114px',
               }}
             >
-              <Box
-                sx={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  height: '100%',
-                  justifyContent: 'space-between',
-                }}
-              >
-                <Text size="18px">{data.title}</Text>
-                <Text size="36px">{data.value?.toLocaleString()}</Text>
-              </Box>
-              <Box
-                component="img"
-                src={data.image}
-                sx={{ width: '60px', height: '60px' }}
-              />
+              <ItemVV2 alignItems="flex-start" justifyContent="center">
+                <Text size="18px" weight={500}>
+                  {data.title}
+                </Text>
+
+                <Text size="36px" weight={500}>
+                  {data.value?.toLocaleString()}
+                </Text>
+              </ItemVV2>
+              <ImageV2 src={data.image} width={data.size} height={data.size} />
             </OverviewItem>
           ))}
-        </Grid>
-      </Box>
+        </ItemHV2>
+      </ItemVV2>
       <HorizontalLine />
     </>
   );

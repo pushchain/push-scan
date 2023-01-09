@@ -1,10 +1,13 @@
-import Link from "next/link";
-import { Box } from "@mui/material";
+// React, NextJS imports
+import Link from 'next/link';
+
+// External Library imports
+import { Box } from '@mui/material';
 
 export default function Logo({
   sx,
   disabledLink = false,
-  src = "/static/push.svg",
+  src = '/static/push.svg',
 }: {
   sx: any;
   disabledLink?: boolean;

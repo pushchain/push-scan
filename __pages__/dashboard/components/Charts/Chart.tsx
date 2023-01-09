@@ -1,20 +1,20 @@
-import React, { useState } from 'react';
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  Grid,
-  Typography,
-  useMediaQuery,
-} from '@mui/material';
+// React, NextJS imports
+import React from 'react';
 import dynamic from 'next/dynamic';
-import styled from '@emotion/styled';
-import { useTheme } from '@mui/material/styles';
-import BaseOptions from '../BaseOptions';
+
+// External Library imports
+import { CardContent, Grid, useMediaQuery } from '@mui/material';
+import { RotatingLines } from 'react-loader-spinner';
 import _ from 'lodash';
+import styled, { useTheme } from 'styled-components';
 const ReactApexChart = dynamic(() => import('react-apexcharts'), {
   ssr: false,
 });
+
+// Internal Components imports
+import BaseOptions from './BaseOptions';
+import { ItemVV2, ItemHV2 } from '../../../../components/SharedStyling';
+import { Text } from '../../dashboard.styled';
 
 export default function Chart({
   title,
@@ -23,6 +23,7 @@ export default function Chart({
   max,
   min,
   data,
+  isLoading,
 }: {
   title: string;
   value: number;
@@ -30,6 +31,7 @@ export default function Chart({
   max: any;
   min: any;
   data: any;
+  isLoading?: boolean;
 }) {
   const theme = useTheme();
   const isMobile = useMediaQuery('(max-width:480px)');
@@ -51,6 +53,7 @@ export default function Chart({
         // autoScaleYaxis: true,
       },
       offsetX: -10,
+      fontFamily: 'Strawford, Helvetica, sans-serif',
     },
     yaxis: {
       axisTicks: {
@@ -62,27 +65,42 @@ export default function Chart({
       labels: {
         style: {
           fontSize: '12px',
-          colors: theme.palette.text.secondary,
+          fontFamily: 'Strawford, Helvetica, sans-serif',
+          colors: theme.graph.primaryLabel,
         },
       },
     },
     xaxis: {
       type: 'datetime',
-      min: min,
-      max: max,
+      //min: min,
+      // max: max,
       labels: {
         show: true,
+        //rotate: -45,
+        hideOverlappingLabels: true,
         style: {
           fontSize: '12px',
-          colors: theme.palette.text.secondary,
+          fontFamily: 'Strawford, Helvetica, sans-serif',
+          colors: theme.graph.primaryLabel,
         },
+        datetimeFormatter: {
+          year: 'yyyy',
+          month: 'MMM',
+          day: 'dd MMM',
+          hour: 'HH:mm',
+        },
+        // formatter: (value) => {
+        //   //const d = new Date(new Date(value)).toISOString();
+        //   const d = moment(new Date(value)).format('DD-MMM-YY');
+        //   return d;
+        // },
       },
       // labels: {
       //   formatter: function (value) {
       //     return new Date(value);
       //   },
       // },
-      // tickAmount: 5,
+      // tickAmount: 7,
     },
     fill: {
       type: 'gradient',
@@ -95,40 +113,68 @@ export default function Chart({
     },
   });
 
+  // color={theme.text.primary}
+  // alignItems="flex-start"
+  // height="auto"
+  // width="100%"
+  // background={isMobile ? 'transparent' : theme.background.card}
+  // border={`1px solid ${theme.background.border}`}
+  // borderRadius="28px"
+  // padding={isMobile ? '35px 0px 0px' : '35px 40px'}
   return (
     <Grid item xs={12} md={6} lg={6}>
-      <Card
-        sx={{
-          color: theme.palette.text.primary,
-          height: 'auto',
-          backgroundColor: isMobile
-            ? 'transparent'
-            : theme.palette.background.card,
-          border: `1px solid ${theme.palette.outline}`,
-          padding: isMobile ? '35px 0px 0px' : '35px 40px',
-          '@media(max-width:480px)': {
-            border: 'none',
-          },
-        }}
+      <CardContainer
+        color={theme.text.primary}
+        alignItems="flex-start"
+        justifyContent="flex-start"
+        height="auto"
+        width="100%"
+        background={isMobile ? 'transparent' : theme.background.card}
+        border={`1px solid ${theme.background.border}`}
+        borderRadius="28px"
+        minHeight="364px"
+        padding={isMobile ? '35px 0px 0px' : '30px 30px 6px'}
       >
-        <CardHeader style={{ padding: 0 }} title={title} />
-        <Typography
-          variant="subtitle1"
-          ml={0}
-          style={{ fontWeight: 400, fontSize: '28px' }}
-        >
+        <Text weight={500} size="18px" color={theme.text.primary}>
+          {title}
+        </Text>
+        <Text weight={500} size="28px" color={theme.text.primary}>
           {value?.toLocaleString()}
-        </Typography>
+        </Text>
 
-        <CardContent style={{ padding: 0 }}>
-          <ReactApexChart
-            type="area"
-            series={options?.series}
-            options={options}
-            height={250}
-          />
+        <CardContent
+          sx={{
+            width: '100%',
+            height: '100%',
+            padding: '0px',
+          }}
+        >
+          {isLoading ? (
+            <ItemHV2 height="265px" width="100%">
+              <RotatingLines
+                strokeColor="#CF1C84"
+                strokeWidth="4"
+                animationDuration="1.9"
+                width="50"
+                visible={true}
+              />
+            </ItemHV2>
+          ) : (
+            <ReactApexChart
+              type="area"
+              series={options?.series}
+              options={options}
+              height={250}
+            />
+          )}
         </CardContent>
-      </Card>
+      </CardContainer>
     </Grid>
   );
 }
+
+const CardContainer = styled(ItemVV2)`
+  @media (max-width: 480px) {
+    border: none;
+  }
+`;

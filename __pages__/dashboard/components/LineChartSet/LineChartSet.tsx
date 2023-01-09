@@ -1,22 +1,27 @@
+// React, NextJS imports
 import * as React from 'react';
-import { Grid, Box, useMediaQuery } from '@mui/material';
-import { Text, HorizontalLine } from '__pages__/dashboard/dashboard.styled';
+
+// External Library imports
+import { Grid, useMediaQuery } from '@mui/material';
+
+// Internal Components imports
+import { HorizontalLine } from '../../dashboard.styled';
 import Notifications from '../Notifications';
 import Subscribers from '../Subscribers';
 import ChatUsers from '../ChatUsers';
 import RequestSent from '../RequestSent';
 import Filters from '../Filters';
-import { useData } from 'contexts/DataContext';
-import useStatisticData from 'hooks/useStatisticData';
-import useStatisticCount from 'hooks/useStatisticCount';
-import useChannelList from 'hooks/useChannelList';
-import useChannelStatistics from 'hooks/useChannelStatistics';
-import getDatesArray from '/utils/helpers';
-import HorizontalChart from '../Charts/HorizontalChart';
+import { useData } from '../../../../contexts/DataContext';
+import useStatisticData from '../../../../hooks/useStatisticData';
+import useStatisticCount from '../../../../hooks/useStatisticCount';
+import useChannelList from '../../../../hooks/useChannelList';
+import useChannelStatistics from '../../../../hooks/useChannelStatistics';
+import getDatesArray from '../../../../utils/helpers';
+import HorizontalBarChart from '../Charts/HorizontalBarChart';
 
 export default function LineChartSet() {
   const isMobile = useMediaQuery('(max-width:480px)');
-  const { token, chainList, timeFilterOptions } = useData();
+  const { chainList, timeFilterOptions } = useData();
   const [selectedChannel, setSelectedChannel] = React.useState({
     name: 'All Channels',
     channel: 'All',
@@ -29,12 +34,14 @@ export default function LineChartSet() {
   });
   const [showChain, setShowChain] = React.useState(false);
   const [selectedFilter, setSelectedFilter] = React.useState(6);
-  const [startDate, setStartDate] = React.useState('2022-01-01');
-  const [endDate, setEndDate] = React.useState(
-    new Date(Date.now()).toISOString().split('T')[0]
-  );
+  const [startDate, setStartDate] = React.useState(new Date('2022-01-01'));
+  const [endDate, setEndDate] = React.useState(new Date());
   const [min, setMin] = React.useState<any>(new Date('2022-01-01').getTime());
   const [max, setMax] = React.useState<any>(new Date().getTime());
+  const [isStatisticDataLoading, setStatisticDataLoading] =
+    React.useState<boolean>(false);
+  const [isChannelDataLoading, setChannelDataLoading] =
+    React.useState<boolean>(false);
   const [interval, setInterval] = React.useState(
     Math.ceil(
       Math.ceil(
@@ -43,29 +50,34 @@ export default function LineChartSet() {
       ) / 12
     )
   );
-  const { subscriberData, notificationData } = useStatisticData({
+
+  const {
+    subscriberData,
+    notificationData,
+    totalNotifications,
+    totalSubscribers,
+  } = useStatisticData({
+    setStatisticDataLoading,
     selectedChannel,
     selectedChain,
     startDate,
     endDate,
-    interval,
-    token,
-  });
-  const { totalNotifications, totalSubscribers } = useStatisticCount({
-    token,
-    startDate,
-    endDate,
-    selectedChannel,
-    selectedChain,
+    // interval
   });
 
-  const channelList = useChannelList({ token, selectedChain });
   const {
     subscriberCategories,
     subscriberValues,
     notificationCategories,
     notificationValues,
-  } = useChannelStatistics({ token });
+    channelList,
+  } = useChannelStatistics({
+    startDate,
+    endDate,
+    selectedChannel,
+    selectedChain,
+    setChannelDataLoading,
+  });
 
   React.useEffect(() => {
     const dateArray = getDatesArray({
@@ -98,25 +110,19 @@ export default function LineChartSet() {
 
   const handle1Day = () => {
     setMin(Date.now() - 2 * 86400000);
-    setStartDate(
-      new Date(Date.now() - 2 * 86400000).toISOString().split('T')[0]
-    );
+    setStartDate(new Date(Date.now() - 2 * 86400000));
     setInterval(1);
   };
 
   const handle7Day = () => {
     setMin(Date.now() - 7 * 86400000);
-    setStartDate(
-      new Date(Date.now() - 7 * 86400000).toISOString().split('T')[0]
-    );
+    setStartDate(new Date(Date.now() - 7 * 86400000));
     setInterval(1);
   };
 
   const handle30Day = () => {
     setMin(Date.now() - 30 * 86400000);
-    setStartDate(
-      new Date(Date.now() - 30 * 86400000).toISOString().split('T')[0]
-    );
+    setStartDate(new Date(Date.now() - 30 * 86400000));
     setInterval(4);
   };
 
@@ -125,12 +131,10 @@ export default function LineChartSet() {
     //   (year % 4 == 0 && year % 100 != 0) || year % 400 == 0 ? 366 : 355;
     if (new Date(Date.now() - 365 * 86400000) < new Date('2022-01-01')) {
       setMin(new Date('2022-01-01').getTime());
-      setStartDate('2022-01-01');
+      setStartDate(new Date('2022-01-01'));
     } else {
       setMin(Date.now() - 365 * 86400000);
-      setStartDate(
-        new Date(Date.now() - 365 * 86400000).toISOString().split('T')[0]
-      );
+      setStartDate(new Date(Date.now() - 365 * 86400000));
     }
     setInterval(30);
   };
@@ -139,7 +143,7 @@ export default function LineChartSet() {
     const currentYear = new Date().getFullYear();
     const currentMonth = new Date().getMonth();
     setMin(new Date(`${currentYear}-01-01`).getTime());
-    setStartDate(`${currentYear}-01-01`);
+    setStartDate(new Date(`${currentYear}-01-01`));
     if (currentMonth <= 2) {
       setInterval(1);
     } else {
@@ -157,7 +161,7 @@ export default function LineChartSet() {
 
   const handleTillDate = () => {
     setMin(new Date('2022-01-01').getTime());
-    setStartDate('2022-01-01');
+    setStartDate(new Date('2022-01-01'));
     setMax(Date.now());
     const interval = Math.ceil(
       Math.ceil(
@@ -234,6 +238,7 @@ export default function LineChartSet() {
       </Box> */}
       <Grid container spacing={isMobile ? 0 : 3} justifyContent="center" mt={0}>
         <Notifications
+          isLoading={isStatisticDataLoading}
           data={notificationData}
           max={max}
           min={min}
@@ -241,24 +246,28 @@ export default function LineChartSet() {
         />
         <HorizontalLine />
         <Subscribers
+          isLoading={isStatisticDataLoading}
           data={subscriberData}
           max={max}
           min={min}
           total={totalSubscribers}
         />
-        <HorizontalChart
+        <HorizontalBarChart
           title="Subscribers By Channel"
           label="Subscribers"
           category={subscriberCategories}
           value={subscriberValues}
+          isLoading={isChannelDataLoading}
         />
         <HorizontalLine />
-        <HorizontalChart
+        <HorizontalBarChart
           title="Notifications By Channel"
           label="Notifications"
           category={notificationCategories}
           value={notificationValues}
+          isLoading={isChannelDataLoading}
         />
+        <HorizontalLine />
       </Grid>
       {/* <Box
         sx={{ display: 'flex', width: '100%', justifyContent: 'flex-start' }}
