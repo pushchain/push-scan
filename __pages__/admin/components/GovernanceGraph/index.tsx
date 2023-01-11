@@ -48,6 +48,7 @@ const GovernanceGraph = ({ data, title, label, value, colorSet }: any) => {
         show: isMobile ? false : true,
         orient: 'vertical',
         left: 'left',
+        selectedMode: false,
         top: value ? 30 : 0,
         textStyle: {
           color: theme.graph.legendText,
@@ -72,7 +73,7 @@ const GovernanceGraph = ({ data, title, label, value, colorSet }: any) => {
           data: [...values],
           emphasis: {
             itemStyle: {
-              shadowBlur: 10,
+              shadowBlur: 0,
               shadowOffsetX: 0,
               shadowColor: 'rgba(0, 0, 0, 0.5)',
             },

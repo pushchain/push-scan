@@ -82,9 +82,10 @@ export const TimeFilter = styled.button`
   background-color: ${(props) => props.background || '#cf1c84'};
   color: ${(props) => props.color || '#657795'};
   font-weight: ${(props) => props.fontWeight || '500'};
+  font-family: 'Strawford', Helvetica, sans-serif;
   font-size: 15px;
   border-radius: 12px;
-  min-width: 40px;
+  min-width: 41px;
   height: 32px;
   padding: 5px;
   display: flex;

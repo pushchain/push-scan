@@ -82,7 +82,7 @@ export default function LeaderBoard({
                   sx={{
                     '& th': {
                       color: theme.text.leaderboardHeader,
-                      fontSize: '12px',
+                      fontSize: '13px',
                     },
                   }}
                 >
@@ -134,6 +134,7 @@ export default function LeaderBoard({
                       align="right"
                       sx={{
                         color: theme.text.leaderboardText,
+                        fontSize: '15px',
                       }}
                     >
                       {channel?.subscriber?.toLocaleString()}
@@ -145,6 +146,7 @@ export default function LeaderBoard({
                           justifyContent="flex-end"
                           color={channel?.trend >= 0 ? '#30CC8B' : '#E93636'}
                           padding="0px 0px 0px 30px"
+                          fontSize="15px"
                         >
                           <ImageV2
                             height="6.67px"
