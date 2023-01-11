@@ -13,7 +13,7 @@ export const DashBoardContainer = styled(ItemVV2)`
     padding: 0px 24px !important;
   }
   @media (min-width: 1024px) {
-    padding: 0px 50px !important;
+    padding: 0px 70px !important;
   }
 `;
 
