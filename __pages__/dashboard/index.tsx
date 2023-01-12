@@ -18,7 +18,12 @@ const DashBoardView = () => {
   return (
     <DashBoardContainer>
       <OverViewSet />
-      <Grid container spacing={!isMobile ? 3 : 0} justifyContent="center">
+      <Grid
+        container
+        spacing={!isMobile ? 3 : 0}
+        justifyContent="center"
+        mt={isMobile ? 2.5 : 0}
+      >
         <Trending />
         <HorizontalLine />
         <RecentlyAdded />

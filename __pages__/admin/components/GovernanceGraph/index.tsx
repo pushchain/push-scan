@@ -128,7 +128,11 @@ const GovernanceGraph = ({ data, title, label, value, colorSet }: any) => {
           backgroundColor: isMobile ? 'transparent' : theme.background.card,
           border: `1px solid ${theme.background.border}`,
           borderRadius: '28px',
-          padding: isMobile ? '35px 0px 0px' : '28px 30px',
+          padding: isMobile
+            ? value
+              ? '30px 0px 0px'
+              : '50px 0px 0px'
+            : '28px 30px',
           boxShadow: 'none',
           '@media(max-width:480px)': {
             border: 'none',

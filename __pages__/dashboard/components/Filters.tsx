@@ -32,7 +32,7 @@ export default function Filters({
   setSelectedFilter,
   handleTimeFilter,
 }) {
-  const isMobile = useMediaQuery('(max-width:768px)');
+  const isSmall = useMediaQuery('(max-width:768px)');
   const { isDarkMode } = useTheme();
   const [channels, setChannels] = React.useState<any[]>();
 
@@ -59,7 +59,7 @@ export default function Filters({
         <Select
           background="#cf1c84"
           color="#fff"
-          marginRight={isMobile ? '0px' : '10px'}
+          marginRight={isSmall ? '0px' : '10px'}
         >
           <Box
             sx={{
@@ -174,7 +174,7 @@ export default function Filters({
           background={isDarkMode ? '#282A2E' : 'transparent'}
           color={!isDarkMode ? '#657795' : '#B6BCD6'}
           width="80px"
-          marginRight={isMobile ? '0px' : '10px'}
+          marginRight={isSmall ? '0px' : '10px'}
         >
           <ItemHV2
             justifyContent="flex-start"
@@ -287,6 +287,7 @@ justify-content:flex-start;
   width: 100%;
   justify-content: space-between;
   margin-bottom: 10px;
+  margin-top:25px;
 };
 @media(max-width:768px) {
   width: 100%;

@@ -267,7 +267,6 @@ export default function LineChartSet() {
           value={notificationValues}
           isLoading={isChannelDataLoading}
         />
-        <HorizontalLine />
       </Grid>
       {/* <Box
         sx={{ display: 'flex', width: '100%', justifyContent: 'flex-start' }}
