@@ -22,7 +22,7 @@ const DashBoardView = () => {
         container
         spacing={!isMobile ? 3 : 0}
         justifyContent="center"
-        mt={isMobile ? 2.5 : 0}
+        mt={isMobile ? 1 : -3.5}
       >
         <Trending />
         <HorizontalLine />

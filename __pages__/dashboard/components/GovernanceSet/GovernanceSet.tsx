@@ -38,7 +38,7 @@ export default function GovernanceSet() {
         flexDirection: 'column',
         flex: 1,
       }}
-      mt={isMobile ? 2 : 5}
+      mt={isMobile ? 2 : 1.5}
     >
       <Text size="18px" marginTop={isMobile ? '0px' : '40px'}>
         Push Governance

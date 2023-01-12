@@ -69,7 +69,7 @@ export default function LeaderBoard({
                 [`& .${tableCellClasses.root}`]: {
                   borderBottom: 'none',
                   // fontSize: "14px",
-                  fontFamily: 'Strawford, sans-serif',
+                  fontFamily: 'Strawford, Helvetica, sans-serif',
                   fontWeight: 500,
                   padding: '0px',
                   paddingTop: '18px',

@@ -3,7 +3,7 @@ import React from 'react';
 
 // External Library imports
 import { Box, useMediaQuery } from '@mui/material';
-import styled from 'styled-components';
+import styled, { useTheme } from 'styled-components';
 
 // Internal Components imports
 import {
@@ -13,7 +13,7 @@ import {
   TimeFilterContainer,
   TimeFilter,
 } from './LineChartSet/linchartset.styled';
-import { useTheme } from '../../../contexts/ThemeContext';
+import { useTheme as useMode } from '../../../contexts/ThemeContext';
 import { ItemHV2, ImageV2, SpanV2 } from '../../../components/SharedStyling';
 
 export default function Filters({
@@ -33,7 +33,8 @@ export default function Filters({
   handleTimeFilter,
 }) {
   const isSmall = useMediaQuery('(max-width:768px)');
-  const { isDarkMode } = useTheme();
+  const { isDarkMode } = useMode();
+  const theme = useTheme();
   const [channels, setChannels] = React.useState<any[]>();
 
   React.useEffect(() => {
@@ -174,6 +175,7 @@ export default function Filters({
           background={isDarkMode ? '#282A2E' : 'transparent'}
           color={!isDarkMode ? '#657795' : '#B6BCD6'}
           width="80px"
+          border={`1px solid ${theme.background.border}`}
           marginRight={isSmall ? '0px' : '10px'}
         >
           <ItemHV2

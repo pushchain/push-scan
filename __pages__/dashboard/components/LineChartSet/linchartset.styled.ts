@@ -6,7 +6,7 @@ export const Select = styled.div`
   height: 48px;
   width: 237px;
   background-color: ${(props) => props?.background || '#cf1c84'};
-  border: 1px solid ${({ theme }) => theme.background.border};
+  border: ${(props) => props.border || 'none'};
   border-radius: 33px;
   display: flex;
   justify-content: space-between;
