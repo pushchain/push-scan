@@ -15,6 +15,7 @@ export const themeLight = {
     card: '#FFFFFF',
     border: '#BAC4D6',
     headerIcon: '#FFFFFF',
+    optionlist: '#FFFFFF',
   },
 
   text: {
@@ -76,6 +77,7 @@ export const themeDark = {
     card: '#404650',
     border: '#4A4F67',
     headerIcon: '#282A2E',
+    optionlist: '#282A2E',
   },
 
   text: {

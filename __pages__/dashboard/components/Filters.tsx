@@ -59,7 +59,6 @@ export default function Filters({
         <Select
           background="#cf1c84"
           color="#fff"
-          border="transparent"
           marginRight={isMobile ? '0px' : '10px'}
         >
           <Box
@@ -68,6 +67,7 @@ export default function Filters({
               justifyContent: 'flex-start',
               alignItems: 'center',
               width: '100%',
+              cursor: 'pointer',
             }}
             onClick={() => setShowChannel(!showChannel)}
           >
@@ -77,7 +77,8 @@ export default function Filters({
                 width="33px"
                 marginRight="5px"
                 borderRadius="50%"
-                alt=""
+                cursor="pointer"
+                alt="Channel Icon"
                 src={selectedChannel?.icon}
               />
             )}
@@ -98,20 +99,28 @@ export default function Filters({
           <ImageV2
             height="20px"
             width="20px"
-            alt=""
+            cursor="pointer"
+            alt="Dropdown icon"
             src={'./static/caret-down-white.png'}
             onClick={() => setShowChannel(!showChannel)}
           />
           {showChannel && (
             <OptionList background="#cf1c84">
-              <Searchbar
-                placeholder="Search for channel here..."
-                onChange={(e) => handleSearch(e)}
-              />
+              <SearchbarContainer>
+                <ImageV2
+                  src={'./static/search.png'}
+                  width="16px"
+                  height="16px"
+                />
+                <Searchbar
+                  placeholder="Search Channels"
+                  onChange={(e) => handleSearch(e)}
+                />
+              </SearchbarContainer>
               <Box
                 sx={{
                   width: '100%',
-                  maxHeight: '200px',
+                  maxHeight: '140px',
                   overflowY: 'auto',
                   '::-webkit-scrollbar': {
                     width: '5px',
@@ -119,7 +128,7 @@ export default function Filters({
                     borderRadius: '5px',
                   },
                   '::-webkit-scrollbar-thumb': {
-                    backgroundColor: 'white',
+                    backgroundColor: '#CF1C84',
                     borderRadius: '5px',
                   },
                 }}
@@ -134,12 +143,12 @@ export default function Filters({
                   >
                     {channel?.icon && (
                       <ImageV2
+                        src={channel?.icon}
                         height="33px"
                         width="33px"
                         borderRadius="33px"
                         marginRight="5px"
-                        alt=""
-                        src={channel?.icon}
+                        alt="Channel Icon"
                       />
                     )}
 
@@ -162,22 +171,23 @@ export default function Filters({
           )}
         </Select>
         <Select
-          background="transparent"
+          background={isDarkMode ? '#282A2E' : 'transparent'}
           color={!isDarkMode ? '#657795' : '#B6BCD6'}
-          border="#657795"
           width="80px"
           marginRight={isMobile ? '0px' : '10px'}
         >
           <ItemHV2
             justifyContent="flex-start"
             onClick={() => setShowChain(!showChain)}
+            cursor="pointer"
           >
             <ImageV2
               height="33px"
               width="33px"
               marginRight="5px"
               borderRadius="50%"
-              alt=""
+              cursor="pointer"
+              alt="Chain Icon"
               src={selectedChain?.image}
             />
             <Box
@@ -194,7 +204,8 @@ export default function Filters({
           <ImageV2
             height="20px"
             width="20px"
-            alt=""
+            alt="Dropdown icon"
+            cursor="pointer"
             src={'./static/caret-down-black.png'}
             onClick={() => setShowChain(!showChain)}
           />
@@ -210,6 +221,7 @@ export default function Filters({
                     alt=""
                     src={chain.image}
                     onClick={() => setShowChain(!showChain)}
+                    cursor="pointer"
                   />
                   <Box
                     sx={{
@@ -248,14 +260,25 @@ export default function Filters({
   );
 }
 
-const Searchbar = styled.input`
-  border: none;
-  outline: none;
+const SearchbarContainer = styled(ItemHV2)`
   width: 100%;
-  padding: 10px;
+  height: 45px;
+  border: 1px solid ${({ theme }) => theme.background.border};
+  border-radius: 12px;
   background-color: transaparent;
-  border-radius: 16px;
+  padding: 10px;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 8px;
+`;
+
+const Searchbar = styled.input`
+  width: 85%;
+  outline: none;
+  border: none;
+  background-color: transaparent;
   font-size: 15px;
+  margin-left: 8px;
 `;
 
 const FirstFilterContainer = styled(ItemHV2)`

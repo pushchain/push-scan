@@ -113,7 +113,12 @@ export default function LeaderBoard({
                         >
                           <Avatar
                             src={channel.icon}
-                            sx={{ width: 26, height: 26, marginRight: 1 }}
+                            sx={{
+                              width: 26,
+                              height: 26,
+                              marginRight: 1,
+                              cursor: 'pointer',
+                            }}
                           />
 
                           <TextContainer>
@@ -188,4 +193,5 @@ const TextContainer = styled(SpanV2)`
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  cursor: pointer;
 `;
