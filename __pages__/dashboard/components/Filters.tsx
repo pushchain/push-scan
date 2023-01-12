@@ -2,7 +2,7 @@
 import React from 'react';
 
 // External Library imports
-import { Box, useMediaQuery } from '@mui/material';
+import { Box, useMediaQuery, Avatar } from '@mui/material';
 import styled, { useTheme } from 'styled-components';
 
 // Internal Components imports
@@ -39,7 +39,9 @@ export default function Filters({
 
   React.useEffect(() => {
     setChannels(channelList);
-  }, []);
+  }, [channelList]);
+
+  console.log('ChannelList', channelList);
 
   const handleSearch = (event: any) => {
     event.preventDefault();
@@ -73,14 +75,14 @@ export default function Filters({
             onClick={() => setShowChannel(!showChannel)}
           >
             {selectedChannel?.icon && (
-              <ImageV2
-                height="33px"
-                width="33px"
-                marginRight="5px"
-                borderRadius="50%"
-                cursor="pointer"
-                alt="Channel Icon"
+              <Avatar
                 src={selectedChannel?.icon}
+                sx={{
+                  width: 33,
+                  height: 33,
+                  marginRight: 0.5,
+                  cursor: 'pointer',
+                }}
               />
             )}
 
@@ -147,13 +149,14 @@ export default function Filters({
                     }}
                   >
                     {channel?.icon && (
-                      <ImageV2
-                        src={channel?.icon}
-                        height="33px"
-                        width="33px"
-                        borderRadius="33px"
-                        marginRight="5px"
-                        alt="Channel Icon"
+                      <Avatar
+                        src={channel.icon}
+                        sx={{
+                          width: 33,
+                          height: 33,
+                          marginRight: 0.5,
+                          cursor: 'pointer',
+                        }}
                       />
                     )}
 
@@ -187,14 +190,14 @@ export default function Filters({
             onClick={() => setShowChain(!showChain)}
             cursor="pointer"
           >
-            <ImageV2
-              height="33px"
-              width="33px"
-              marginRight="5px"
-              borderRadius="50%"
-              cursor="pointer"
-              alt="Chain Icon"
-              src={selectedChain?.image}
+            <Avatar
+              src={selectedChain.image}
+              sx={{
+                width: 33,
+                height: 33,
+                marginRight: 0.5,
+                cursor: 'pointer',
+              }}
             />
             <Box
               sx={{
@@ -219,15 +222,14 @@ export default function Filters({
             <OptionList>
               {chainList.map((chain, index) => (
                 <Option key={index} onClick={() => handleChainChange(chain)}>
-                  <ImageV2
-                    height="33px"
-                    width="33px"
-                    marginRight="5px"
-                    borderRadius="50%"
-                    alt=""
+                  <Avatar
                     src={chain.image}
-                    onClick={() => setShowChain(!showChain)}
-                    cursor="pointer"
+                    sx={{
+                      width: 33,
+                      height: 33,
+                      marginRight: 0.5,
+                      cursor: 'pointer',
+                    }}
                   />
                   <Box
                     sx={{
