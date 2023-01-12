@@ -109,7 +109,11 @@ export default function Filters({
             <OptionList background="#cf1c84">
               <SearchbarContainer>
                 <ImageV2
-                  src={'./static/search.png'}
+                  src={
+                    isDarkMode
+                      ? './static/search-dark.png'
+                      : './static/search.png'
+                  }
                   width="16px"
                   height="16px"
                 />
@@ -267,7 +271,6 @@ const SearchbarContainer = styled(ItemHV2)`
   height: 45px;
   border: 1px solid ${({ theme }) => theme.background.border};
   border-radius: 12px;
-  background-color: transaparent;
   padding: 10px;
   justify-content: flex-start;
   align-items: center;
@@ -278,9 +281,17 @@ const Searchbar = styled.input`
   width: 85%;
   outline: none;
   border: none;
-  background-color: transaparent;
+  background-color: ${({ theme }) => theme.background.optionlist};
+  color: ${({ theme }) => theme.text.secondary};
   font-size: 15px;
   margin-left: 8px;
+  ::placeholder,
+  ::-webkit-input-placeholder {
+    color: ${({ theme }) => theme.text.secondary};
+  }
+  :-ms-input-placeholder {
+    color: ${({ theme }) => theme.text.secondary};
+  }
 `;
 
 const FirstFilterContainer = styled(ItemHV2)`
