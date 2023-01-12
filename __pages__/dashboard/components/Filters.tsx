@@ -4,6 +4,7 @@ import React from 'react';
 // External Library imports
 import { Box, useMediaQuery, Avatar } from '@mui/material';
 import styled, { useTheme } from 'styled-components';
+import { RotatingLines } from 'react-loader-spinner';
 
 // Internal Components imports
 import {
@@ -31,6 +32,7 @@ export default function Filters({
   selectedFilter,
   setSelectedFilter,
   handleTimeFilter,
+  channelDataLoading,
 }) {
   const isSmall = useMediaQuery('(max-width:768px)');
   const { isDarkMode } = useMode();
@@ -39,9 +41,7 @@ export default function Filters({
 
   React.useEffect(() => {
     setChannels(channelList);
-  }, [channelList]);
-
-  console.log('ChannelList', channelList);
+  }, [channelList, selectedChannel]);
 
   const handleSearch = (event: any) => {
     event.preventDefault();
@@ -96,7 +96,9 @@ export default function Filters({
                 paddingLeft: !selectedChannel?.icon ? '15px' : null,
               }}
             >
-              {selectedChannel?.name}
+              {selectedChannel?.name?.length > 20
+                ? selectedChannel?.name.slice(0, 20) + '...'
+                : selectedChannel?.name}
             </Box>
           </Box>
           <ImageV2
@@ -124,57 +126,68 @@ export default function Filters({
                   onChange={(e) => handleSearch(e)}
                 />
               </SearchbarContainer>
-              <Box
-                sx={{
-                  width: '100%',
-                  maxHeight: '140px',
-                  overflowY: 'auto',
-                  '::-webkit-scrollbar': {
-                    width: '5px',
-                    backgroundColor: 'transparent',
-                    borderRadius: '5px',
-                  },
-                  '::-webkit-scrollbar-thumb': {
-                    backgroundColor: '#CF1C84',
-                    borderRadius: '5px',
-                  },
-                }}
-              >
-                {channels?.map((channel, index) => (
-                  <Option
-                    key={index}
-                    onClick={() => {
-                      handleChannelChange(channel);
-                      setShowChain(!showChain);
-                    }}
-                  >
-                    {channel?.icon && (
-                      <Avatar
-                        src={channel.icon}
-                        sx={{
-                          width: 33,
-                          height: 33,
-                          marginRight: 0.5,
-                          cursor: 'pointer',
-                        }}
-                      />
-                    )}
-
-                    <Box
-                      sx={{
-                        display: 'block',
-                        maxWidth: '160px',
-                        whiteSpace: 'nowrap',
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis',
-                        margin: !channel?.icon ? '5px auto' : null,
-                      }}
+              {channelDataLoading ? (
+                <ItemHV2 height="140px" width="100%">
+                  <RotatingLines
+                    strokeColor="#CF1C84"
+                    strokeWidth="4"
+                    animationDuration="1.9"
+                    width="50"
+                    visible={true}
+                  />
+                </ItemHV2>
+              ) : (
+                <Box
+                  sx={{
+                    width: '100%',
+                    maxHeight: '140px',
+                    overflowY: 'auto',
+                    '::-webkit-scrollbar': {
+                      width: '5px',
+                      backgroundColor: 'transparent',
+                      borderRadius: '5px',
+                    },
+                    '::-webkit-scrollbar-thumb': {
+                      backgroundColor: '#CF1C84',
+                      borderRadius: '5px',
+                    },
+                  }}
+                >
+                  {channels?.map((channel, index) => (
+                    <Option
+                      key={index}
+                      onClick={() => handleChannelChange(channel)}
                     >
-                      {channel?.name}
-                    </Box>
-                  </Option>
-                ))}
-              </Box>
+                      {channel?.icon && (
+                        <Avatar
+                          src={channel.icon}
+                          sx={{
+                            width: 33,
+                            height: 33,
+                            marginRight: 0.5,
+                            cursor: 'pointer',
+                          }}
+                        />
+                      )}
+
+                      <Box
+                        sx={{
+                          display: 'block',
+                          maxWidth: '160px',
+                          whiteSpace: 'nowrap',
+                          overflow: 'hidden',
+                          textOverflow: 'ellipsis',
+                          margin: !channel?.icon ? '5px auto' : null,
+                        }}
+                      >
+                        {channel?.name?.length > 20
+                          ? channel?.name.slice(0, 20) + '...'
+                          : channel?.name}
+                      </Box>
+                    </Option>
+                  ))}
+                </Box>
+              )}
             </OptionList>
           )}
         </Select>

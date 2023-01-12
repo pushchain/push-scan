@@ -95,7 +95,8 @@ export default function LineChartSet() {
     name: string;
     channel: string;
   }) => {
-    setShowChannel(!showChannel);
+    setShowChannel(false);
+    setShowChain(false);
     setSelectedChannel(channel);
   };
 
@@ -104,7 +105,8 @@ export default function LineChartSet() {
     chain: string;
     value: string;
   }) => {
-    setShowChain(!showChain);
+    setShowChain(false);
+    setShowChannel(false);
     setSelectedChain(chain);
   };
 
@@ -227,6 +229,7 @@ export default function LineChartSet() {
           selectedFilter={selectedFilter}
           setSelectedFilter={setSelectedFilter}
           handleTimeFilter={handleTimeFilter}
+          channelDataLoading={isChannelDataLoading}
         />
       </Grid>
       {/* <Box

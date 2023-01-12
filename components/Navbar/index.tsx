@@ -20,7 +20,6 @@ import {
   HamburgerLine,
   SidebarContainer,
 } from './navbar.styled';
-import { getNotifications } from '../../utils/api';
 
 export default function Navbar() {
   const { isDarkMode, darkModeToggle } = Theme();
@@ -66,18 +65,6 @@ export default function Navbar() {
         {asPath !== '/dashboard' && !isSmall && (
           <NavBarButtons logout={logout} isLoggedIn={isLoggedIn} />
         )}
-        <button
-          onClick={() =>
-            getNotifications({
-              startDate: new Date('2022-01-01'),
-              endDate: new Date(),
-              channel: 'eip155:5:0x0000000000000000000000000000000000000000',
-              chain: 'ETH_TEST_GOERLI',
-            })
-          }
-        >
-          Check
-        </button>
         <Box
           sx={{
             border: '1px solid #BAC4D6',
