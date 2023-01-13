@@ -38,7 +38,7 @@ export const getNotifications = async ({
         'x-access-token': String(sessionStorage.getItem(CREDENTIALKEYS.TOKEN)),
       },
     });
-    console.log('notifications', res.data);
+    // console.log('notifications', res.data);
     return res.data;
   } catch (e) {
     console.log('Error occured in notification', e);
