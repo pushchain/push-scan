@@ -11,7 +11,7 @@ export const Select = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 15px 0 8px;
+  padding: ${(props) => `0px 21px 0px ${props.paddingLeft}`};
   color: ${(props) => props?.color || '#fff'};
   font-size: 15px;
   font-weight: 400;

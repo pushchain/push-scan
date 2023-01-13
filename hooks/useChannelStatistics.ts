@@ -25,6 +25,7 @@ export default function useChannelStatistics({
       notificationValue: any[] = [],
       channels: any[] = [];
     channels.push({
+      icon: './static/allchannels.svg',
       name: 'All Channels',
       channel: 'All',
     });
