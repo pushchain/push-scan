@@ -149,7 +149,15 @@ export default function HorizontalBarChart({
         <Text weight={500} size="18px" color={theme.text.primary}>
           {title}
         </Text>
-        <CardContent sx={{ width: '100%', padding: '0px' }}>
+        <CardContent
+          sx={{
+            width: '100%',
+            padding: '0px',
+            '&:last-child': {
+              paddingBottom: 0,
+            },
+          }}
+        >
           {isLoading ? (
             <ItemHV2 height="265px" width="100%">
               <RotatingLines

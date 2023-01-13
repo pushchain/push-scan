@@ -9,7 +9,7 @@ export const OverviewItem = styled.div`
   justify-content: space-between;
   align-items: center;
   height: 114px;
-  min-width: 294px;
+  min-width: 285px;
   @media (max-width: 480px) {
     margin-bottom: 0px;
     width: 100%;

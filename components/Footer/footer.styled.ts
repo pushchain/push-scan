@@ -22,7 +22,7 @@ export const FooterContainer = styled.div`
     padding: 47px 24px 35px;
   }
   @media (min-width: 1024px) {
-    padding: 47px 50px 35px;
+    padding: 47px 70px 35px;
   }
 `;
 

@@ -2,8 +2,9 @@
 import React from 'react';
 
 // External Library imports
-import { Box, useMediaQuery } from '@mui/material';
-import styled from 'styled-components';
+import { Box, useMediaQuery, Avatar } from '@mui/material';
+import styled, { useTheme } from 'styled-components';
+import { RotatingLines } from 'react-loader-spinner';
 
 // Internal Components imports
 import {
@@ -13,7 +14,7 @@ import {
   TimeFilterContainer,
   TimeFilter,
 } from './LineChartSet/linchartset.styled';
-import { useTheme } from '../../../contexts/ThemeContext';
+import { useTheme as useMode } from '../../../contexts/ThemeContext';
 import { ItemHV2, ImageV2, SpanV2 } from '../../../components/SharedStyling';
 
 export default function Filters({
@@ -31,14 +32,16 @@ export default function Filters({
   selectedFilter,
   setSelectedFilter,
   handleTimeFilter,
+  channelDataLoading,
 }) {
-  const isMobile = useMediaQuery('(max-width:768px)');
-  const { isDarkMode } = useTheme();
+  const isSmall = useMediaQuery('(max-width:768px)');
+  const { isDarkMode } = useMode();
+  const theme = useTheme();
   const [channels, setChannels] = React.useState<any[]>();
 
   React.useEffect(() => {
     setChannels(channelList);
-  }, []);
+  }, [channelList, selectedChannel]);
 
   const handleSearch = (event: any) => {
     event.preventDefault();
@@ -59,8 +62,7 @@ export default function Filters({
         <Select
           background="#cf1c84"
           color="#fff"
-          border="transparent"
-          marginRight={isMobile ? '0px' : '10px'}
+          marginRight={isSmall ? '0px' : '10px'}
         >
           <Box
             sx={{
@@ -68,17 +70,19 @@ export default function Filters({
               justifyContent: 'flex-start',
               alignItems: 'center',
               width: '100%',
+              cursor: 'pointer',
             }}
             onClick={() => setShowChannel(!showChannel)}
           >
             {selectedChannel?.icon && (
-              <ImageV2
-                height="33px"
-                width="33px"
-                marginRight="5px"
-                borderRadius="50%"
-                alt=""
+              <Avatar
                 src={selectedChannel?.icon}
+                sx={{
+                  width: 33,
+                  height: 33,
+                  marginRight: 0.5,
+                  cursor: 'pointer',
+                }}
               />
             )}
 
@@ -92,93 +96,121 @@ export default function Filters({
                 paddingLeft: !selectedChannel?.icon ? '15px' : null,
               }}
             >
-              {selectedChannel?.name}
+              {selectedChannel?.name?.length > 20
+                ? selectedChannel?.name.slice(0, 20) + '...'
+                : selectedChannel?.name}
             </Box>
           </Box>
           <ImageV2
             height="20px"
             width="20px"
-            alt=""
+            cursor="pointer"
+            alt="Dropdown icon"
             src={'./static/caret-down-white.png'}
             onClick={() => setShowChannel(!showChannel)}
           />
           {showChannel && (
             <OptionList background="#cf1c84">
-              <Searchbar
-                placeholder="Search for channel here..."
-                onChange={(e) => handleSearch(e)}
-              />
-              <Box
-                sx={{
-                  width: '100%',
-                  maxHeight: '200px',
-                  overflowY: 'auto',
-                  '::-webkit-scrollbar': {
-                    width: '5px',
-                    backgroundColor: 'transparent',
-                    borderRadius: '5px',
-                  },
-                  '::-webkit-scrollbar-thumb': {
-                    backgroundColor: 'white',
-                    borderRadius: '5px',
-                  },
-                }}
-              >
-                {channels?.map((channel, index) => (
-                  <Option
-                    key={index}
-                    onClick={() => {
-                      handleChannelChange(channel);
-                      setShowChain(!showChain);
-                    }}
-                  >
-                    {channel?.icon && (
-                      <ImageV2
-                        height="33px"
-                        width="33px"
-                        borderRadius="33px"
-                        marginRight="5px"
-                        alt=""
-                        src={channel?.icon}
-                      />
-                    )}
-
-                    <Box
-                      sx={{
-                        display: 'block',
-                        maxWidth: '160px',
-                        whiteSpace: 'nowrap',
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis',
-                        margin: !channel?.icon ? '5px auto' : null,
-                      }}
+              <SearchbarContainer>
+                <ImageV2
+                  src={
+                    isDarkMode
+                      ? './static/search-dark.png'
+                      : './static/search.png'
+                  }
+                  width="16px"
+                  height="16px"
+                />
+                <Searchbar
+                  placeholder="Search Channels"
+                  onChange={(e) => handleSearch(e)}
+                />
+              </SearchbarContainer>
+              {channelDataLoading ? (
+                <ItemHV2 height="140px" width="100%">
+                  <RotatingLines
+                    strokeColor="#CF1C84"
+                    strokeWidth="4"
+                    animationDuration="1.9"
+                    width="50"
+                    visible={true}
+                  />
+                </ItemHV2>
+              ) : (
+                <Box
+                  sx={{
+                    width: '100%',
+                    maxHeight: '140px',
+                    overflowY: 'auto',
+                    '::-webkit-scrollbar': {
+                      width: '5px',
+                      backgroundColor: 'transparent',
+                      borderRadius: '5px',
+                    },
+                    '::-webkit-scrollbar-thumb': {
+                      backgroundColor: '#CF1C84',
+                      borderRadius: '5px',
+                    },
+                  }}
+                >
+                  {channels?.map((channel, index) => (
+                    <Option
+                      key={index}
+                      onClick={() => handleChannelChange(channel)}
                     >
-                      {channel?.name}
-                    </Box>
-                  </Option>
-                ))}
-              </Box>
+                      {channel?.icon && (
+                        <Avatar
+                          src={channel.icon}
+                          sx={{
+                            width: 33,
+                            height: 33,
+                            marginRight: 0.5,
+                            cursor: 'pointer',
+                          }}
+                        />
+                      )}
+
+                      <Box
+                        sx={{
+                          display: 'block',
+                          maxWidth: '160px',
+                          whiteSpace: 'nowrap',
+                          overflow: 'hidden',
+                          textOverflow: 'ellipsis',
+                          margin: !channel?.icon ? '5px auto' : null,
+                        }}
+                      >
+                        {channel?.name?.length > 20
+                          ? channel?.name.slice(0, 20) + '...'
+                          : channel?.name}
+                      </Box>
+                    </Option>
+                  ))}
+                </Box>
+              )}
             </OptionList>
           )}
         </Select>
         <Select
-          background="transparent"
+          background={isDarkMode ? '#282A2E' : 'transparent'}
           color={!isDarkMode ? '#657795' : '#B6BCD6'}
-          border="#657795"
           width="80px"
-          marginRight={isMobile ? '0px' : '10px'}
+          border={`1px solid ${theme.background.border}`}
+          marginRight={isSmall ? '0px' : '10px'}
         >
           <ItemHV2
             justifyContent="flex-start"
             onClick={() => setShowChain(!showChain)}
+            cursor="pointer"
           >
-            <ImageV2
-              height="33px"
-              width="33px"
-              marginRight="5px"
-              borderRadius="50%"
-              alt=""
-              src={selectedChain?.image}
+            <Avatar
+              src={selectedChain.image}
+              sx={{
+                width: 33,
+                height: 33,
+                marginRight: 0.5,
+                cursor: 'pointer',
+              }}
             />
             <Box
               sx={{
@@ -194,7 +226,8 @@ export default function Filters({
           <ImageV2
             height="20px"
             width="20px"
-            alt=""
+            alt="Dropdown icon"
+            cursor="pointer"
             src={'./static/caret-down-black.png'}
             onClick={() => setShowChain(!showChain)}
           />
@@ -202,14 +235,14 @@ export default function Filters({
             <OptionList>
               {chainList.map((chain, index) => (
                 <Option key={index} onClick={() => handleChainChange(chain)}>
-                  <ImageV2
-                    height="33px"
-                    width="33px"
-                    marginRight="5px"
-                    borderRadius="50%"
-                    alt=""
+                  <Avatar
                     src={chain.image}
-                    onClick={() => setShowChain(!showChain)}
+                    sx={{
+                      width: 33,
+                      height: 33,
+                      marginRight: 0.5,
+                      cursor: 'pointer',
+                    }}
                   />
                   <Box
                     sx={{
@@ -248,14 +281,32 @@ export default function Filters({
   );
 }
 
-const Searchbar = styled.input`
-  border: none;
-  outline: none;
+const SearchbarContainer = styled(ItemHV2)`
   width: 100%;
+  height: 45px;
+  border: 1px solid ${({ theme }) => theme.background.border};
+  border-radius: 12px;
   padding: 10px;
-  background-color: transaparent;
-  border-radius: 16px;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 8px;
+`;
+
+const Searchbar = styled.input`
+  width: 85%;
+  outline: none;
+  border: none;
+  background-color: ${({ theme }) => theme.background.optionlist};
+  color: ${({ theme }) => theme.text.secondary};
   font-size: 15px;
+  margin-left: 8px;
+  ::placeholder,
+  ::-webkit-input-placeholder {
+    color: ${({ theme }) => theme.text.secondary};
+  }
+  :-ms-input-placeholder {
+    color: ${({ theme }) => theme.text.secondary};
+  }
 `;
 
 const FirstFilterContainer = styled(ItemHV2)`
@@ -264,6 +315,7 @@ justify-content:flex-start;
   width: 100%;
   justify-content: space-between;
   margin-bottom: 10px;
+  margin-top:25px;
 };
 @media(max-width:768px) {
   width: 100%;

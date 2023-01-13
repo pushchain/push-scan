@@ -48,6 +48,7 @@ const GovernanceGraph = ({ data, title, label, value, colorSet }: any) => {
         show: isMobile ? false : true,
         orient: 'vertical',
         left: 'left',
+        selectedMode: false,
         top: value ? 30 : 0,
         textStyle: {
           color: theme.graph.legendText,
@@ -72,7 +73,7 @@ const GovernanceGraph = ({ data, title, label, value, colorSet }: any) => {
           data: [...values],
           emphasis: {
             itemStyle: {
-              shadowBlur: 10,
+              shadowBlur: 0,
               shadowOffsetX: 0,
               shadowColor: 'rgba(0, 0, 0, 0.5)',
             },
@@ -127,7 +128,11 @@ const GovernanceGraph = ({ data, title, label, value, colorSet }: any) => {
           backgroundColor: isMobile ? 'transparent' : theme.background.card,
           border: `1px solid ${theme.background.border}`,
           borderRadius: '28px',
-          padding: isMobile ? '35px 0px 0px' : '28px 30px',
+          padding: isMobile
+            ? value
+              ? '30px 0px 0px'
+              : '50px 0px 0px'
+            : '28px 30px',
           boxShadow: 'none',
           '@media(max-width:480px)': {
             border: 'none',

@@ -69,7 +69,7 @@ export default function LeaderBoard({
                 [`& .${tableCellClasses.root}`]: {
                   borderBottom: 'none',
                   // fontSize: "14px",
-                  fontFamily: 'Strawford, sans-serif',
+                  fontFamily: 'Strawford, Helvetica, sans-serif',
                   fontWeight: 500,
                   padding: '0px',
                   paddingTop: '18px',
@@ -82,7 +82,7 @@ export default function LeaderBoard({
                   sx={{
                     '& th': {
                       color: theme.text.leaderboardHeader,
-                      fontSize: '12px',
+                      fontSize: '13px',
                     },
                   }}
                 >
@@ -113,7 +113,12 @@ export default function LeaderBoard({
                         >
                           <Avatar
                             src={channel.icon}
-                            sx={{ width: 26, height: 26, marginRight: 1 }}
+                            sx={{
+                              width: 26,
+                              height: 26,
+                              marginRight: 1,
+                              cursor: 'pointer',
+                            }}
                           />
 
                           <TextContainer>
@@ -134,6 +139,7 @@ export default function LeaderBoard({
                       align="right"
                       sx={{
                         color: theme.text.leaderboardText,
+                        fontSize: '15px',
                       }}
                     >
                       {channel?.subscriber?.toLocaleString()}
@@ -145,6 +151,7 @@ export default function LeaderBoard({
                           justifyContent="flex-end"
                           color={channel?.trend >= 0 ? '#30CC8B' : '#E93636'}
                           padding="0px 0px 0px 30px"
+                          fontSize="15px"
                         >
                           <ImageV2
                             height="6.67px"
@@ -186,4 +193,5 @@ const TextContainer = styled(SpanV2)`
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  cursor: pointer;
 `;

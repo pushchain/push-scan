@@ -17,7 +17,7 @@ export const NavbarContainer = styled(ItemHV2)`
     padding: 0px 24px;
   }
   @media (min-width: 1024px) {
-    padding: 0px 50px;
+    padding: 0px 70px;
   }
 `;
 export const HamburgerLine = styled.div`

@@ -10,7 +10,6 @@ import { OverviewItem } from './overview.styled';
 import { Text } from '../../dashboard.styled';
 import { getChats, getUsers, getNotifications } from '../../../../utils/api';
 import { useData } from '../../../../contexts/DataContext';
-import { HorizontalLine } from '../../dashboard.styled';
 import {
   ItemHV2,
   ItemVV2,
@@ -84,45 +83,42 @@ export default function OverViewSet() {
   }, []);
 
   return (
-    <>
-      <ItemVV2
+    <ItemVV2
+      width="100%"
+      margin={isMobile ? '25px 0px 30px' : '50px 0px 30px'}
+      alignItems="flex-start"
+    >
+      <Text size="18px" weight={400} marginBottom="20px">
+        Overview
+      </Text>
+      <ItemHV2
         width="100%"
-        margin={isMobile ? '25px 0px 30px' : '50px 0px 30px'}
-        alignItems="flex-start"
+        gap="23px"
+        justifyContent="space-between"
+        marginTop="20px"
       >
-        <Text size="18px" weight={400} marginBottom="20px">
-          Overview
-        </Text>
-        <ItemHV2
-          width="100%"
-          gap="23px"
-          justifyContent="space-between"
-          marginTop="20px"
-        >
-          {overViewData.map((data) => (
-            <OverviewItem
-              key={data.title}
-              style={{
-                backgroundColor: theme.background.card,
-                border: `1px solid ${theme.background.border}`,
-                height: '114px',
-              }}
-            >
-              <ItemVV2 alignItems="flex-start" justifyContent="center">
-                <Text size="18px" weight={500}>
-                  {data.title}
-                </Text>
+        {overViewData.map((data) => (
+          <OverviewItem
+            key={data.title}
+            style={{
+              backgroundColor: theme.background.card,
+              border: `1px solid ${theme.background.border}`,
+              height: '114px',
+            }}
+          >
+            <ItemVV2 alignItems="flex-start" justifyContent="center">
+              <Text size="18px" weight={500}>
+                {data.title}
+              </Text>
 
-                <Text size="36px" weight={500}>
-                  {data.value?.toLocaleString()}
-                </Text>
-              </ItemVV2>
-              <ImageV2 src={data.image} width={data.size} height={data.size} />
-            </OverviewItem>
-          ))}
-        </ItemHV2>
-      </ItemVV2>
-      <HorizontalLine />
-    </>
+              <Text size="36px" weight={500}>
+                {data.value?.toLocaleString()}
+              </Text>
+            </ItemVV2>
+            <ImageV2 src={data.image} width={data.size} height={data.size} />
+          </OverviewItem>
+        ))}
+      </ItemHV2>
+    </ItemVV2>
   );
 }

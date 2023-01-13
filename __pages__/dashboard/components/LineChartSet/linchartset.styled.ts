@@ -6,7 +6,7 @@ export const Select = styled.div`
   height: 48px;
   width: 237px;
   background-color: ${(props) => props?.background || '#cf1c84'};
-  border: 1px solid ${(props) => props?.border || '#657795'};
+  border: ${(props) => props.border || 'none'};
   border-radius: 33px;
   display: flex;
   justify-content: space-between;
@@ -25,37 +25,44 @@ export const Select = styled.div`
   }
 `;
 
-export const OptionList = styled.div(
-  ({ theme, background }) => `
+export const OptionList = styled.div`
   position: absolute;
   top: 50px;
   left: 0px;
   border-radius: 20px;
-  background-color: ${background ? background : theme.background.default};
-  border: 1px solid grey;
-  width: inherit;
-  overflow-x:hidden;
+  background-color: ${({ theme }) => theme.background.optionlist};
+  border: 1px solid ${({ theme }) => theme.background.border};
+  width: 261px;
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
   z-index: 5;
-  padding: 10px;
-  &::-webkit-scrollbar{
-    display:none;
+  padding: 16px;
+  &::-webkit-scrollbar {
+    display: none;
   }
-  `
-);
+  @media (max-width: 480px) {
+    width: inherit;
+  }
+`;
 
 export const Option = styled.div`
-  width: inherit;
+  width: 100%;
   background-color: transparent;
+  color: ${({ theme }) => theme.text.secondary};
+  font-family: 'Strawford', Helvetica, sans-serif;
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding: 5px 0px;
+  padding: 8px;
   &:hover {
-    opacity: 0.8;
+    background-color: ${({ theme }) => theme.background.timeFilter};
+    border-radius: 12px;
+  }
+  @media (max-width: 480px) {
+    width: inherit;
   }
 `;
 
@@ -82,9 +89,10 @@ export const TimeFilter = styled.button`
   background-color: ${(props) => props.background || '#cf1c84'};
   color: ${(props) => props.color || '#657795'};
   font-weight: ${(props) => props.fontWeight || '500'};
+  font-family: 'Strawford', Helvetica, sans-serif;
   font-size: 15px;
   border-radius: 12px;
-  min-width: 40px;
+  min-width: 41px;
   height: 32px;
   padding: 5px;
   display: flex;
