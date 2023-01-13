@@ -44,7 +44,8 @@ export const OptionList = styled.div`
     display: none;
   }
   @media (max-width: 480px) {
-    width: inherit;
+    left: ${(props) => props.left || 'auto'};
+    right: 0px;
   }
 `;
 

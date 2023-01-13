@@ -110,7 +110,7 @@ export default function Filters({
             onClick={openChannelList}
           />
           {showChannel && (
-            <OptionList background="#cf1c84">
+            <OptionList left="0px">
               <SearchbarContainer>
                 <ImageV2
                   src={
@@ -140,7 +140,7 @@ export default function Filters({
                 <Box
                   sx={{
                     width: '100%',
-                    maxHeight: '140px',
+                    maxHeight: '120px',
                     overflowY: 'auto',
                     '::-webkit-scrollbar': {
                       width: '5px',
@@ -246,15 +246,7 @@ export default function Filters({
                       cursor: 'pointer',
                     }}
                   />
-                  <Box
-                    sx={{
-                      '@media(max-width:480px)': {
-                        display: 'none',
-                      },
-                    }}
-                  >
-                    {chain?.chain}
-                  </Box>
+                  {chain?.chain}
                 </Option>
               ))}
             </OptionList>
