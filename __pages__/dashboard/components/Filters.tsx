@@ -16,6 +16,7 @@ import {
 } from './LineChartSet/linchartset.styled';
 import { useTheme as useMode } from '../../../contexts/ThemeContext';
 import { ItemHV2, ImageV2, SpanV2 } from '../../../components/SharedStyling';
+import { Text } from '../dashboard.styled';
 
 export default function Filters({
   selectedChannel,
@@ -56,12 +57,23 @@ export default function Filters({
     }
   };
 
+  const openChannelList = () => {
+    setShowChannel(!showChannel);
+    setShowChain(false);
+  };
+
+  const openChainList = () => {
+    setShowChain(!showChain);
+    setShowChannel(false);
+  };
+
   return (
     <>
       <FirstFilterContainer>
         <Select
           background="#cf1c84"
           color="#fff"
+          paddingLeft="23px"
           marginRight={isSmall ? '0px' : '10px'}
         >
           <Box
@@ -72,20 +84,8 @@ export default function Filters({
               width: '100%',
               cursor: 'pointer',
             }}
-            onClick={() => setShowChannel(!showChannel)}
+            onClick={openChannelList}
           >
-            {selectedChannel?.icon && (
-              <Avatar
-                src={selectedChannel?.icon}
-                sx={{
-                  width: 33,
-                  height: 33,
-                  marginRight: 0.5,
-                  cursor: 'pointer',
-                }}
-              />
-            )}
-
             <Box
               sx={{
                 display: 'block',
@@ -107,10 +107,10 @@ export default function Filters({
             cursor="pointer"
             alt="Dropdown icon"
             src={'./static/caret-down-white.png'}
-            onClick={() => setShowChannel(!showChannel)}
+            onClick={openChannelList}
           />
           {showChannel && (
-            <OptionList background="#cf1c84">
+            <OptionList left="0px">
               <SearchbarContainer>
                 <ImageV2
                   src={
@@ -140,7 +140,7 @@ export default function Filters({
                 <Box
                   sx={{
                     width: '100%',
-                    maxHeight: '140px',
+                    maxHeight: '120px',
                     overflowY: 'auto',
                     '::-webkit-scrollbar': {
                       width: '5px',
@@ -158,17 +158,15 @@ export default function Filters({
                       key={index}
                       onClick={() => handleChannelChange(channel)}
                     >
-                      {channel?.icon && (
-                        <Avatar
-                          src={channel.icon}
-                          sx={{
-                            width: 33,
-                            height: 33,
-                            marginRight: 0.5,
-                            cursor: 'pointer',
-                          }}
-                        />
-                      )}
+                      <Avatar
+                        src={channel.icon}
+                        sx={{
+                          width: 24,
+                          height: 24,
+                          marginRight: '8px',
+                          cursor: 'pointer',
+                        }}
+                      />
 
                       <Box
                         sx={{
@@ -195,20 +193,21 @@ export default function Filters({
           background={isDarkMode ? '#282A2E' : 'transparent'}
           color={!isDarkMode ? '#657795' : '#B6BCD6'}
           width="80px"
+          paddingLeft="8px"
           border={`1px solid ${theme.background.border}`}
           marginRight={isSmall ? '0px' : '10px'}
         >
           <ItemHV2
             justifyContent="flex-start"
-            onClick={() => setShowChain(!showChain)}
+            onClick={openChainList}
             cursor="pointer"
           >
             <Avatar
               src={selectedChain.image}
               sx={{
-                width: 33,
-                height: 33,
-                marginRight: 0.5,
+                width: 32,
+                height: 32,
+                marginRight: '8px',
                 cursor: 'pointer',
               }}
             />
@@ -229,30 +228,25 @@ export default function Filters({
             alt="Dropdown icon"
             cursor="pointer"
             src={'./static/caret-down-black.png'}
-            onClick={() => setShowChain(!showChain)}
+            onClick={openChainList}
           />
           {showChain && (
             <OptionList>
+              <Text size="15px" weight={400} color={theme.text.secondary}>
+                Select Network
+              </Text>
               {chainList.map((chain, index) => (
                 <Option key={index} onClick={() => handleChainChange(chain)}>
                   <Avatar
                     src={chain.image}
                     sx={{
-                      width: 33,
-                      height: 33,
-                      marginRight: 0.5,
+                      width: 24,
+                      height: 24,
+                      marginRight: '8px',
                       cursor: 'pointer',
                     }}
                   />
-                  <Box
-                    sx={{
-                      '@media(max-width:480px)': {
-                        display: 'none',
-                      },
-                    }}
-                  >
-                    {chain?.chain}
-                  </Box>
+                  {chain?.chain}
                 </Option>
               ))}
             </OptionList>

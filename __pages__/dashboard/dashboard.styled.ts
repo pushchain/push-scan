@@ -24,6 +24,7 @@ export const Text = styled.p`
   color: ${(props) => props.color || props.theme.text.primary};
   margin-top: ${(props) => props.marginTop || '0px'};
   margin-bottom: ${(props) => props.marginBottom || '0px'};
+  margin-left: ${(props) => props.marginLeft || '0px'};
 `;
 
 export const HorizontalLine = styled.div(
