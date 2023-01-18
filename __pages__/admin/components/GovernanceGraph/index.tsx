@@ -14,6 +14,8 @@ const GovernanceGraph = ({ data, title, label, value, colorSet }: any) => {
   const theme = useTheme();
   // Checking whether screen is mobile screen
   const isMobile = useMediaQuery('(max-width:480px)');
+  const isBigger = useMediaQuery('(min-width:1500px');
+  // isMobile ? ['50%', '50%'] :
 
   // Constructing data for chart
   const getTotal = (data: any) => {
@@ -69,7 +71,7 @@ const GovernanceGraph = ({ data, title, label, value, colorSet }: any) => {
           name: label,
           type: 'pie',
           radius: ['38%', '70%'],
-          center: isMobile ? ['50%', '50%'] : ['62%', '40%'],
+          center: ['62%', '40%'],
           data: [...values],
           emphasis: {
             itemStyle: {
