@@ -30,6 +30,7 @@ export const PGPProposalsEditPanel = ({
         title="Push Grants Proposals"
         label="PGP Proposals"
         colorSet={colorSet}
+        show={true}
       />
       <InputContainer>
         {showIndex === 1 ? (

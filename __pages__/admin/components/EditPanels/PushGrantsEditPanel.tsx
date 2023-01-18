@@ -32,6 +32,7 @@ export const PushGrantsEditPanel = ({
         value={GrantAmount}
         label="PGP_Amount"
         colorSet={colorSet}
+        show={true}
       />
 
       <InputContainer>

@@ -10,7 +10,14 @@ import styled, { useTheme } from 'styled-components';
 import { ItemHV2 } from '../../../../components/SharedStyling';
 import { Text } from '../../../dashboard/dashboard.styled';
 
-const GovernanceGraph = ({ data, title, label, value, colorSet }: any) => {
+const GovernanceGraph = ({
+  data,
+  title,
+  label,
+  value,
+  colorSet,
+  show,
+}: any) => {
   const theme = useTheme();
   // Checking whether screen is mobile screen
   const isMobile = useMediaQuery('(max-width:480px)');
@@ -107,67 +114,71 @@ const GovernanceGraph = ({ data, title, label, value, colorSet }: any) => {
   };
 
   return (
-    <Grid
-      sx={{
-        minHeight: '389px',
-        position: 'relative',
-        '@media(max-width:901px)': {
-          minWidth: '100%',
-        },
-      }}
-      item
-      xs={12}
-      sm={12}
-      md={6}
-      lg={6}
-    >
-      <Card
-        sx={{
-          minHeight: '100%',
-          minWidth: '100%',
-          backgroundColor: isMobile ? 'transparent' : theme.background.card,
-          border: `1px solid ${theme.background.border}`,
-          borderRadius: '28px',
-          padding: isMobile
-            ? value
-              ? '30px 0px 0px'
-              : '50px 0px 0px'
-            : '28px 30px',
-          boxShadow: 'none',
-          '@media(max-width:480px)': {
-            border: 'none',
-          },
-        }}
-      >
-        <Text
-          weight={500}
-          size="18px"
-          color={theme.text.primary}
-          marginBottom={value ? '5px' : isMobile ? '0px' : '45px'}
+    <>
+      {show ? (
+        <Grid
+          sx={{
+            minHeight: '389px',
+            position: 'relative',
+            '@media(max-width:901px)': {
+              minWidth: '100%',
+            },
+          }}
+          item
+          xs={12}
+          sm={12}
+          md={6}
+          lg={6}
         >
-          {title}
-        </Text>
-        {value && (
-          <Text
-            weight={500}
-            size="28px"
-            color={theme.text.primary}
-            marginBottom={value ? '5px' : '0px'}
-          >
-            $ {value?.toLocaleString()}
-          </Text>
-        )}
-        <GraphContainer>
-          <ReactECharts
-            style={{
+          <Card
+            sx={{
               minHeight: '100%',
               minWidth: '100%',
+              backgroundColor: isMobile ? 'transparent' : theme.background.card,
+              border: `1px solid ${theme.background.border}`,
+              borderRadius: '28px',
+              padding: isMobile
+                ? value
+                  ? '30px 0px 0px'
+                  : '50px 0px 0px'
+                : '28px 30px',
+              boxShadow: 'none',
+              '@media(max-width:480px)': {
+                border: 'none',
+              },
             }}
-            option={getDataPoints({ data, label })}
-          />
-        </GraphContainer>
-      </Card>
-    </Grid>
+          >
+            <Text
+              weight={500}
+              size="18px"
+              color={theme.text.primary}
+              marginBottom={value ? '5px' : isMobile ? '0px' : '45px'}
+            >
+              {title}
+            </Text>
+            {value && (
+              <Text
+                weight={500}
+                size="28px"
+                color={theme.text.primary}
+                marginBottom={value ? '5px' : '0px'}
+              >
+                $ {value?.toLocaleString()}
+              </Text>
+            )}
+            <GraphContainer>
+              <ReactECharts
+                style={{
+                  minHeight: '100%',
+                  minWidth: '100%',
+                }}
+                option={getDataPoints({ data, label })}
+              />
+            </GraphContainer>
+          </Card>
+        </Grid>
+      ) : null}
+    </>
   );
 };
 

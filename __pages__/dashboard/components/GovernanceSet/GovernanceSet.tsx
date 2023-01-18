@@ -50,6 +50,7 @@ export default function GovernanceSet() {
           label="PGP_Amount"
           value={pushGrants}
           colorSet={theme.graph.grantsAndPIPColors}
+          show={false}
         />
         <GovernanceGraph
           data={data?.Governance?.PGP_Amount}
@@ -57,6 +58,7 @@ export default function GovernanceSet() {
           label="PGP_Amount"
           value={pushGrants}
           colorSet={theme.graph.grantsAndPIPColors}
+          show={true}
         />
         <HorizontalLine />
         <GovernanceGraph
@@ -64,6 +66,7 @@ export default function GovernanceSet() {
           title="Push Governance Improvement Proposals"
           label="PGIP"
           colorSet={theme.graph.grantsAndPIPColors}
+          show={true}
         />
         <HorizontalLine />
         <GovernanceGraph
@@ -71,6 +74,7 @@ export default function GovernanceSet() {
           title="Push Grants Proposals"
           label="PGP Proposals"
           colorSet={theme.graph.grantsProposals}
+          show={true}
         />
         <HorizontalLine />
         <GovernanceGraph
@@ -78,6 +82,7 @@ export default function GovernanceSet() {
           title="Push Grants Proposal Categories"
           label="PGP Category"
           colorSet={theme.graph.pgpCategories}
+          show={true}
         />
         <HorizontalLine />
         {/* <GovernanceGraph
