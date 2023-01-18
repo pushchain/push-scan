@@ -30,7 +30,6 @@ export const PushGrantsCategoriesEditPanel = ({
         title="Push Grants Proposal Categories"
         label="PGP Category"
         colorSet={colorSet}
-        show={true}
       />
 
       <InputContainer>

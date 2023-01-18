@@ -30,7 +30,6 @@ export const GovernanceImprovementEditPanel = ({
         title="Push Governance Improvement Proposal"
         label="PGIP"
         colorSet={colorSet}
-        show={true}
       />
 
       <InputContainer>
