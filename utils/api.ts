@@ -4,7 +4,7 @@ import axios from 'axios';
 // Internal Components imports
 import { ROUTES, CREDENTIALKEYS } from './constants';
 
-const API_BASE = 'https://backend.epns.io/apis/v1';
+const API_BASE = 'https://backend-dev.epns.io/apis/v1';
 
 export const login = async ({ user, pass }) => {
   try {
@@ -34,9 +34,6 @@ export const getNotifications = async ({
         source: chain,
         spam: true,
       },
-      headers: {
-        'x-access-token': String(sessionStorage.getItem(CREDENTIALKEYS.TOKEN)),
-      },
     });
     // console.log('notifications', res.data);
     return res.data;
@@ -59,9 +56,6 @@ export const getSubscribers = async ({
         channel,
         source: chain,
       },
-      headers: {
-        'x-access-token': String(sessionStorage.getItem(CREDENTIALKEYS.TOKEN)),
-      },
     });
     // console.log('subscribers', res.data);
     return res.data;
@@ -78,9 +72,6 @@ export const getChannels = async () => {
         endDate: '2022-11-01',
         source: 'ETH_TEST_GOERLI',
       },
-      headers: {
-        'x-access-token': String(sessionStorage.getItem(CREDENTIALKEYS.TOKEN)),
-      },
     });
     // console.log('channels', res.data);
     return res.data;
@@ -93,9 +84,6 @@ export const getLeaderBoard = async ({ limit, sort, order }) => {
   try {
     const res = await axios.get(`${API_BASE}/analytics/leaderboard/`, {
       params: { limit, sort, order },
-      headers: {
-        'x-access-token': String(sessionStorage.getItem(CREDENTIALKEYS.TOKEN)),
-      },
     });
     // console.log('leaderboard', res.data);
     return res.data;
@@ -106,11 +94,7 @@ export const getLeaderBoard = async ({ limit, sort, order }) => {
 
 export const getGovernanceData = async () => {
   try {
-    const res = await axios.get(`${API_BASE}/analytics/governance_data/`, {
-      headers: {
-        'x-access-token': String(sessionStorage.getItem(CREDENTIALKEYS.TOKEN)),
-      },
-    });
+    const res = await axios.get(`${API_BASE}/analytics/governance_data/`);
     // console.log('get data', res.data);
     return res.data;
   } catch (e) {
@@ -133,7 +117,7 @@ export const updateGovernanceData = async ({ data }) => {
         },
       }
     );
-    // console.log('updated data', res.data);
+    console.log('updated data', res.data);
     return res.data;
   } catch (e) {
     console.log('Error occured in updating governance data', e);
@@ -142,15 +126,7 @@ export const updateGovernanceData = async ({ data }) => {
 
 export const getChats = async () => {
   try {
-    const res = await axios.get(`${API_BASE}/analytics/chat/chats`, {
-      // params: {
-      //   startDate: '2022-01-01',
-      //   endDate: '2022-11-01',
-      // },
-      headers: {
-        'x-access-token': String(sessionStorage.getItem(CREDENTIALKEYS.TOKEN)),
-      },
-    });
+    const res = await axios.get(`${API_BASE}/analytics/chat/chats`);
 
     // console.log('chats res', res.data);
     return res.data;
@@ -161,11 +137,7 @@ export const getChats = async () => {
 
 export const getUsers = async () => {
   try {
-    const res = await axios.get(`${API_BASE}/analytics/chat/users`, {
-      headers: {
-        'x-access-token': String(sessionStorage.getItem(CREDENTIALKEYS.TOKEN)),
-      },
-    });
+    const res = await axios.get(`${API_BASE}/analytics/chat/users`);
 
     // console.log('user res', res.data);
     return res.data;
