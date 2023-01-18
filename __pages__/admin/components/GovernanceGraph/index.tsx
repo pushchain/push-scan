@@ -69,7 +69,7 @@ const GovernanceGraph = ({ data, title, label, value, colorSet }: any) => {
           name: label,
           type: 'pie',
           radius: ['38%', '70%'],
-          // center: isMobile ? ['50%', '50%'] : ['62%', '40%'],
+          center: isMobile ? ['50%', '50%'] : ['62%', '40%'],
           data: [...values],
           emphasis: {
             itemStyle: {
@@ -128,11 +128,11 @@ const GovernanceGraph = ({ data, title, label, value, colorSet }: any) => {
           backgroundColor: isMobile ? 'transparent' : theme.background.card,
           border: `1px solid ${theme.background.border}`,
           borderRadius: '28px',
-          // padding: isMobile
-          //   ? value
-          //     ? '30px 0px 0px'
-          //     : '50px 0px 0px'
-          //   : '28px 30px',
+          padding: isMobile
+            ? value
+              ? '30px 0px 0px'
+              : '50px 0px 0px'
+            : '28px 30px',
           boxShadow: 'none',
           '@media(max-width:480px)': {
             border: 'none',
