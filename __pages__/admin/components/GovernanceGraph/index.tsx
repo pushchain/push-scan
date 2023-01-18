@@ -147,7 +147,7 @@ const GovernanceGraph = ({ data, title, label, value, colorSet }: any) => {
         >
           {title}
         </Text>
-        {value && (
+        {/* {value && (
           <Text
             weight={500}
             size="28px"
@@ -156,7 +156,7 @@ const GovernanceGraph = ({ data, title, label, value, colorSet }: any) => {
           >
             $ {value?.toLocaleString()}
           </Text>
-        )}
+        )} */}
         <GraphContainer>
           <ReactECharts
             style={{
