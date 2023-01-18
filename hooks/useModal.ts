@@ -99,69 +99,69 @@ export default function useModal() {
       Governance: {
         PGP_Amount: {
           Approved:
-            formData.approvedgrant == 0
+            formData.approvedgrant == -1
               ? governanceData?.Governance?.PGP_Amount?.Approved
               : formData.approvedgrant,
           'Yet To Be Allocated':
-            formData.yettoallocategrant == 0
+            formData.yettoallocategrant == -1
               ? governanceData?.Governance?.PGP_Amount['Yet To Be Allocated']
               : formData.yettoallocategrant,
         },
         PGP_Proposals: {
           Approved:
-            formData.approved == 0
+            formData.approved == -1
               ? governanceData?.Governance?.PGP_Proposals?.Approved
               : formData.approved,
           Open:
-            formData.inprogress == 0
+            formData.inprogress == -1
               ? governanceData?.Governance?.PGP_Proposals?.Open
               : formData.inprogress,
           Closed:
-            formData.rejected == 0
+            formData.rejected == -1
               ? governanceData?.Governance?.PGP_Proposals?.Closed
               : formData.rejected,
         },
         PGP_Categories: {
           Defi:
-            formData.defi == 0
+            formData.defi == -1
               ? governanceData?.Governance?.PGP_Categories?.Defi
               : formData.defi,
           NFT:
-            formData.nft == 0
+            formData.nft == -1
               ? governanceData?.Governance?.PGP_Categories?.NFT
               : formData.nft,
           DAO:
-            formData.dao == 0
+            formData.dao == -1
               ? governanceData?.Governance?.PGP_Categories?.dao
               : formData.dao,
           Education:
-            formData.education == 0
+            formData.education == -1
               ? governanceData?.Governance?.PGP_Categories?.Education
               : formData.education,
           Marketing:
-            formData.marketing == 0
+            formData.marketing == -1
               ? governanceData?.Governance?.PGP_Categories?.Marketing
               : formData.marketing,
           Tooling:
-            formData.tooling == 0
+            formData.tooling == -1
               ? governanceData?.Governance?.PGP_Categories?.Tooling
               : formData.tooling,
           Gaming:
-            formData.gaming == 0
+            formData.gaming == -1
               ? governanceData?.Governance?.PGP_Categories?.Gaming
               : formData.gaming,
           Other:
-            formData.others == 0
+            formData.others == -1
               ? governanceData?.Governance?.PGP_Categories?.Other
               : formData.others,
         },
         PGIP: {
           Approved:
-            formData.approvedimprovement == 0
+            formData.approvedimprovement == -1
               ? governanceData?.Governance?.PGIP?.Approved
               : formData.approvedimprovement,
           Closed:
-            formData.rejectedimprovement == 0
+            formData.rejectedimprovement == -1
               ? governanceData?.Governance?.PGIP?.Closed
               : formData.rejectedimprovement,
         },
@@ -174,11 +174,11 @@ export default function useModal() {
       // },
       Miscellaneous: {
         Push_Grants:
-          formData.pushgrants == 0
+          formData.pushgrants == -1
             ? governanceData?.Miscellaneous?.Push_Grants
             : formData.pushgrants,
         Push_Integrations:
-          formData.push_integrations == 0
+          formData.push_integrations == -1
             ? governanceData?.Miscellaneous?.Push_Integrations
             : formData.push_integrations,
       },

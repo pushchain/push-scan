@@ -27,11 +27,7 @@ export default function LineChartSet() {
     channel: 'All',
   });
   const [showChannel, setShowChannel] = React.useState(false);
-  const [selectedChain, setSelectedChain] = React.useState({
-    image: './static/ethereum.svg',
-    chain: 'Ethereum Network',
-    value: 'ETH_TEST_GOERLI',
-  });
+  const [selectedChain, setSelectedChain] = React.useState(chainList[0]);
   const [showChain, setShowChain] = React.useState(false);
   const [selectedFilter, setSelectedFilter] = React.useState(6);
   const [startDate, setStartDate] = React.useState(new Date('2022-01-01'));

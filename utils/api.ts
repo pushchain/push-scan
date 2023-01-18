@@ -64,22 +64,6 @@ export const getSubscribers = async ({
   }
 };
 
-export const getChannels = async () => {
-  try {
-    const res = await axios.get(`${API_BASE}/analytics/channel`, {
-      params: {
-        startDate: '2022-01-01',
-        endDate: '2022-11-01',
-        source: 'ETH_TEST_GOERLI',
-      },
-    });
-    // console.log('channels', res.data);
-    return res.data;
-  } catch (e) {
-    console.log('Error occured in channels', e);
-  }
-};
-
 export const getLeaderBoard = async ({ limit, sort, order }) => {
   try {
     const res = await axios.get(`${API_BASE}/analytics/leaderboard/`, {
