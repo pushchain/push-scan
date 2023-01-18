@@ -44,17 +44,18 @@ export default function GovernanceSet() {
         Push Governance
       </Text>
       <Grid container spacing={isMobile ? 0 : 3} justifyContent="center" mt={0}>
-        {/* <GovernanceGraph
+        <GovernanceGraph
           data={data?.Governance?.PGP_Amount}
           title="Push Grants ($PUSH)"
           label="PGP_Amount"
           value={pushGrants}
           colorSet={theme.graph.grantsAndPIPColors}
-        /> */}
+        />
         <GovernanceGraph
-          data={data?.Governance?.PGIP}
-          title="Push Governance Improvement Proposals"
-          label="PGIP"
+          data={data?.Governance?.PGP_Amount}
+          title="Push Grants ($PUSH)"
+          label="PGP_Amount"
+          value={pushGrants}
           colorSet={theme.graph.grantsAndPIPColors}
         />
         <HorizontalLine />

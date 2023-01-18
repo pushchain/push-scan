@@ -117,7 +117,7 @@ export const updateGovernanceData = async ({ data }) => {
         },
       }
     );
-    console.log('updated data', res.data);
+    // console.log('updated data', res.data);
     return res.data;
   } catch (e) {
     console.log('Error occured in updating governance data', e);
