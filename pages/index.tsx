@@ -8,6 +8,6 @@ import { ROUTES } from '../utils/constants';
 export default function Home() {
   const router = useRouter();
   useEffect(() => {
-    router.push(ROUTES.LOGIN, undefined, { shallow: true });
+    router.push(ROUTES.DASHBOARD, undefined, { shallow: true });
   });
 }

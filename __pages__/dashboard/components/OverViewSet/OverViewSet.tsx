@@ -17,7 +17,7 @@ import {
 } from '../../../../components/SharedStyling';
 
 export default function OverViewSet() {
-  const { pushIntegrations } = useData();
+  const { pushIntegrations, chainList } = useData();
   const isMobile = useMediaQuery('(max-width:480px)');
   const [chatUsers, setChatUsers] = React.useState<number>(0);
   const [chatSent, setChatSent] = React.useState<number>(0);
@@ -64,7 +64,7 @@ export default function OverViewSet() {
         startDate: new Date('2022-01-01'),
         endDate: new Date(),
         channel: 'All',
-        chain: 'ETH_MAINNET',
+        chain: chainList[0].value,
       });
       const notifictionAnalyticsData =
         notificationResponse?.notificationAnalytics;

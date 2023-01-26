@@ -43,30 +43,30 @@ export default function AdminView() {
   const [data, setData] = React.useState();
   const [showIndex, setShowIndex] = React.useState<number>(0);
   const [grantProposalData, setGrantProposalData] = React.useState({
-    approved: 0,
-    open: 0,
-    closed: 0,
+    approved: -1,
+    open: -1,
+    closed: -1,
   });
   const [grantsData, setGrantsData] = React.useState({
-    grants: 0,
-    approved: 0,
-    yetToBeAllocated: 0,
+    grants: -1,
+    approved: -1,
+    yetToBeAllocated: -1,
   });
   const [governaceImproventData, setGovernanceImprovementData] = React.useState(
     {
-      approved: 0,
-      closed: 0,
+      approved: -1,
+      closed: -1,
     }
   );
   const [categoryData, setCategoryData] = React.useState({
-    defi: 0,
-    nft: 0,
-    dao: 0,
-    education: 0,
-    marketing: 0,
-    tooling: 0,
-    gaming: 0,
-    others: 0,
+    defi: -1,
+    nft: -1,
+    dao: -1,
+    education: -1,
+    marketing: -1,
+    tooling: -1,
+    gaming: -1,
+    others: -1,
   });
   const [pushIntegrationData, setPushIntegrationData] =
     React.useState<number>(0);
