@@ -97,7 +97,7 @@ export default function OverViewSet() {
         justifyContent="space-between"
         marginTop="20px"
       >
-        {overViewData.map((data) => (
+        {overViewData.map((data, index) => (
           <OverviewItem
             key={data.title}
             style={{
@@ -113,6 +113,7 @@ export default function OverViewSet() {
 
               <Text size="36px" weight={500}>
                 {data.value?.toLocaleString()}
+                {index == 0 ? '+' : null}
               </Text>
             </ItemVV2>
             <ImageV2 src={data.image} width={data.size} height={data.size} />
