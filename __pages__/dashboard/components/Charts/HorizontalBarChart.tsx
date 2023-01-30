@@ -44,9 +44,6 @@ export default function HorizontalBarChart({
       type: 'bar',
       height: 380,
       events: {
-        // dataPointMouseEnter: function (event) {
-        //   event.path[0].style.cursor = 'pointer';
-        // },
         xAxisLabelClick: function () {
           window.open(DAPP_LINKS.CHANNELS, '_blank');
         },
@@ -97,7 +94,7 @@ export default function HorizontalBarChart({
               ? value.substr(0, 6) + '...'
               : value
             : value.length > 15
-            ? value.substr(0, 12) + '...'
+            ? value.substr(0, 11) + '...'
             : value;
           return editedValue;
         },
