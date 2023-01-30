@@ -10,6 +10,7 @@ import { OverviewItem } from './overview.styled';
 import { Text } from '../../dashboard.styled';
 import { getChats, getUsers, getNotifications } from '../../../../utils/api';
 import { useData } from '../../../../contexts/DataContext';
+import { useTheme as getTheme } from '../../../../contexts/ThemeContext';
 import {
   ItemHV2,
   ItemVV2,
@@ -18,6 +19,7 @@ import {
 
 export default function OverViewSet() {
   const { pushIntegrations, chainList } = useData();
+  const { isDarkMode } = getTheme();
   const isMobile = useMediaQuery('(max-width:480px)');
   const [chatUsers, setChatUsers] = React.useState<number>(0);
   const [chatSent, setChatSent] = React.useState<number>(0);
@@ -25,25 +27,33 @@ export default function OverViewSet() {
 
   const overViewData = [
     {
-      image: './static/push-integration.svg',
+      image: !isDarkMode
+        ? './static/push-integration.svg'
+        : './static/push-integration-dark.svg',
       title: 'Push Integrations',
       value: pushIntegrations,
       size: 60,
     },
     {
-      image: './static/chat-sent.svg',
+      image: !isDarkMode
+        ? './static/chat-sent.svg'
+        : './static/chat-sent-dark.svg',
       title: 'Chats Sent',
       value: chatSent,
       size: 51,
     },
     {
-      image: './static/chat-user.svg',
+      image: !isDarkMode
+        ? './static/chat-user.svg'
+        : './static/chat-user-dark.svg',
       title: 'Chat Users',
       value: chatUsers,
       size: 65,
     },
     {
-      image: './static/notifications.svg',
+      image: !isDarkMode
+        ? './static/notifications.svg'
+        : './static/notifications-dark.svg',
       title: 'Notifications Sent',
       value: notifiactionsSent,
       size: 41,

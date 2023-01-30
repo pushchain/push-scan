@@ -59,21 +59,36 @@ export default function Footer() {
           target={'_blank'}
           rel={'noreferrer'}
         >
-          <Box component="img" src="./static/twitter.svg" />
+          <Box
+            component="img"
+            src={
+              isDarkMode ? './static/twitter.svg' : './static/twitter-dark.svg'
+            }
+          />
         </a>
         <a
           href="https://github.com/ethereum-push-notification-service/"
           target={'_blank'}
           rel={'noreferrer'}
         >
-          <Box component="img" src="./static/github.svg" />
+          <Box
+            component="img"
+            src={
+              isDarkMode ? './static/github.svg' : './static/github-dark.svg'
+            }
+          />
         </a>
         <a
           href="https://discord.com/invite/pushprotocol"
           target={'_blank'}
           rel={'noreferrer'}
         >
-          <Box component="img" src="./static/discord.svg" />
+          <Box
+            component="img"
+            src={
+              isDarkMode ? './static/discord.svg' : './static/discord-dark.svg'
+            }
+          />
         </a>
       </RightContainer>
     </FooterContainer>
