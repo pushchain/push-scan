@@ -32,7 +32,7 @@ export default function OverViewSet() {
     },
     {
       image: './static/chat-sent.svg',
-      title: 'Chat Sent',
+      title: 'Chats Sent',
       value: chatSent,
       size: 51,
     },

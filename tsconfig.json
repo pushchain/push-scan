@@ -31,5 +31,5 @@
      "**/*.ts", 
      "**/*.tsx", 
      "components/**/*"
-  ]
+, "pages/_document.js"  ]
 }
