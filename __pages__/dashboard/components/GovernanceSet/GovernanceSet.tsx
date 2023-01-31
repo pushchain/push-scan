@@ -1,12 +1,19 @@
 // React, NextJS imports
 import React from 'react';
+import dynamic from 'next/dynamic';
 
 // External Library imports
 import { Grid, Box, useMediaQuery } from '@mui/material';
 import { useTheme } from 'styled-components';
 
 // Internal Components imports
-import GovernanceGraph from '../../../admin/components/GovernanceGraph';
+const GovernanceGraph = dynamic(
+  () => import('../../../admin/components/GovernanceGraph'),
+  {
+    ssr: false,
+  }
+);
+//import GovernanceGraph from '../../../admin/components/GovernanceGraph';
 import { Text, HorizontalLine } from '../../dashboard.styled';
 import { getGovernanceData } from '../../../../utils/api';
 import { useData } from '../../../../contexts/DataContext';
