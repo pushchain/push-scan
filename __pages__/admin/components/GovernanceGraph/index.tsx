@@ -162,8 +162,8 @@ const GovernanceGraph = ({ data, title, label, value, colorSet }: any) => {
             style={{
               minHeight: '100%',
               minWidth: '100%',
-              display: "flex",
-              justifyContent:"center"
+              display: 'flex',
+              justifyContent: 'space-between',
             }}
             option={getDataPoints({ data, label })}
           />
