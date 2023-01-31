@@ -4,10 +4,7 @@ import dynamic from 'next/dynamic';
 
 // External Library imports
 import { Grid, Card, useMediaQuery } from '@mui/material';
-const ReactECharts = dynamic(() => import('echarts-for-react'), {
-  ssr: false,
-});
-//import ReactECharts from 'echarts-for-react';
+import ReactECharts from 'echarts-for-react';
 import styled, { useTheme } from 'styled-components';
 
 // Internal Components imports

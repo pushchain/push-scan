@@ -7,13 +7,7 @@ import { Grid, Box, useMediaQuery } from '@mui/material';
 import { useTheme } from 'styled-components';
 
 // Internal Components imports
-const GovernanceGraph = dynamic(
-  () => import('../../../admin/components/GovernanceGraph'),
-  {
-    ssr: false,
-  }
-);
-//import GovernanceGraph from '../../../admin/components/GovernanceGraph';
+import GovernanceGraph from '../../../admin/components/GovernanceGraph';
 import { Text, HorizontalLine } from '../../dashboard.styled';
 import { getGovernanceData } from '../../../../utils/api';
 import { useData } from '../../../../contexts/DataContext';
