@@ -17,6 +17,7 @@ import {
 import { useTheme as useMode } from '../../../contexts/ThemeContext';
 import { ItemHV2, ImageV2, SpanV2 } from '../../../components/SharedStyling';
 import { Text } from '../dashboard.styled';
+import { useClickAway } from 'react-use';
 
 export default function Filters({
   selectedChannel,
@@ -39,6 +40,13 @@ export default function Filters({
   const { isDarkMode } = useMode();
   const theme = useTheme();
   const [channels, setChannels] = React.useState<any[]>();
+
+  const dropdownRef = React.useRef(null);
+
+  useClickAway(dropdownRef, () => {
+    setShowChannel(false);
+    setShowChain(false);
+  });
 
   React.useEffect(() => {
     setChannels(channelList);
@@ -75,6 +83,7 @@ export default function Filters({
           color="#fff"
           paddingLeft="23px"
           marginRight={isSmall ? '0px' : '10px'}
+          ref={dropdownRef}
         >
           <Box
             sx={{
@@ -196,6 +205,7 @@ export default function Filters({
           paddingLeft="8px"
           border={`1px solid ${theme.background.border}`}
           marginRight={isSmall ? '0px' : '10px'}
+          ref={dropdownRef}
         >
           <ItemHV2
             justifyContent="flex-start"
@@ -264,7 +274,11 @@ export default function Filters({
             background={
               index + 1 === selectedFilter ? '#cf1c84' : 'transparent'
             }
-            color={index + 1 === selectedFilter ? '#fff' : '#657795'}
+            color={
+              index + 1 === selectedFilter
+                ? '#fff'
+                : theme.text.leaderboardHeader
+            }
             fontWeight={index + 1 === selectedFilter ? '700' : '500'}
           >
             {time?.time}

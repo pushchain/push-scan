@@ -1,3 +1,22 @@
+@font-face {
+  font-family: 'Strawford';
+  src: url('../public/static/fonts/Strawford-Regular.woff2') format('woff2'),
+    url('../public/static/fonts/Strawford-Regular.woff') format('woff'),
+    url('../public/static/fonts/Strawford-Regular.eot') format('eot'),
+    url('../public/static/fonts/Strawford-Regular.ttf') format('ttf');
+  font-weight: 400;
+  font-style: regular;
+}
+
+@font-face {
+  font-family: 'Strawford';
+  src: url('../public/static/fonts/Strawford-Medium.woff2') format('woff2'),
+    url('../public/static/fonts/Strawford-Medium.otf') format('otf'),
+    url('../public/static/fonts/Strawford-Medium.ttf') format('ttf');
+  font-weight: 500 600 700;
+  font-style: medium;
+}
+
 html,
 body {
   padding: 0;
