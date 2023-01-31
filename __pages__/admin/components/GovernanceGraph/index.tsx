@@ -164,6 +164,7 @@ const GovernanceGraph = ({ data, title, label, value, colorSet }: any) => {
               minWidth: '100%',
             }}
             option={getDataPoints({ data, label })}
+            opts={{ renderer: 'svg' }}
           />
         </GraphContainer>
       </Card>
