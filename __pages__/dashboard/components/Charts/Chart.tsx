@@ -7,7 +7,9 @@ import { CardContent, Grid, useMediaQuery } from '@mui/material';
 import { RotatingLines } from 'react-loader-spinner';
 import _ from 'lodash';
 import styled, { useTheme } from 'styled-components';
-import ReactApexChart from 'react-apexcharts';
+const ReactApexChart = dynamic(() => import('react-apexcharts'), {
+  ssr: false,
+});
 
 // Internal Components imports
 import BaseOptions from './BaseOptions';
