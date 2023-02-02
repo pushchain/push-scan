@@ -161,11 +161,15 @@ const GovernanceGraph = ({ data, title, label, value, colorSet }: any) => {
         <GraphContainer>
           <ReactECharts
             style={{
-              minHeight: '100%',
-              minWidth: '100%',
-              display: 'flex',
-              justifyContent: 'center',
+              height: '100%',
+              width: '100%',
             }}
+            // style={{
+            //   minHeight: '100%',
+            //   minWidth: '100%',
+            //   display: 'flex',
+            //   justifyContent: 'center',
+            // }}
             option={getDataPoints({ data, label })}
           />
         </GraphContainer>
