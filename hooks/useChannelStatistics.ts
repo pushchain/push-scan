@@ -138,7 +138,7 @@ export default function useChannelStatistics({
       setChannelList(channels);
       setChannelDataLoading(false);
     })();
-  }, [selectedChain]);
+  }, [selectedChain, startDate]);
 
   return {
     subscriberCategories,

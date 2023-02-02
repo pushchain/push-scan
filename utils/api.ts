@@ -32,7 +32,6 @@ export const getNotifications = async ({
         endDate,
         channel,
         source: chain,
-        spam: true,
       },
     });
     // console.log('notifications', res.data);

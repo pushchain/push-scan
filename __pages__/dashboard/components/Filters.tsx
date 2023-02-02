@@ -83,7 +83,6 @@ export default function Filters({
           color="#fff"
           paddingLeft="23px"
           marginRight={isSmall ? '0px' : '10px'}
-          ref={dropdownRef}
         >
           <Box
             sx={{
@@ -119,7 +118,7 @@ export default function Filters({
             onClick={openChannelList}
           />
           {showChannel && (
-            <OptionList left="0px">
+            <OptionList left="0px" ref={dropdownRef}>
               <SearchbarContainer>
                 <ImageV2
                   src={
@@ -133,6 +132,7 @@ export default function Filters({
                 <Searchbar
                   placeholder="Search Channels"
                   onChange={(e) => handleSearch(e)}
+                  autoFocus
                 />
               </SearchbarContainer>
               {channelDataLoading ? (
@@ -205,7 +205,6 @@ export default function Filters({
           paddingLeft="8px"
           border={`1px solid ${theme.background.border}`}
           marginRight={isSmall ? '0px' : '10px'}
-          ref={dropdownRef}
         >
           <ItemHV2
             justifyContent="flex-start"
@@ -241,7 +240,7 @@ export default function Filters({
             onClick={openChainList}
           />
           {showChain && (
-            <OptionList>
+            <OptionList ref={dropdownRef}>
               <Text size="15px" weight={400} color={theme.text.secondary}>
                 Select Network
               </Text>
