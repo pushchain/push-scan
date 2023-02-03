@@ -69,7 +69,7 @@ const GovernanceGraph = ({ data, title, label, value, colorSet }: any) => {
           name: label,
           type: 'pie',
           radius: ['38%', '70%'],
-          center: isMobile ? ['50%', '50%'] : ['62%', '40%'],
+          center: isMobile ? ['50%', '50%'] : ['62%', '46%'],
           data: [...values],
           emphasis: {
             itemStyle: {
