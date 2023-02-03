@@ -158,7 +158,7 @@ const GovernanceGraph = ({ data, title, label, value, colorSet }: any) => {
             $ {value?.toLocaleString()}
           </Text>
         )}
-        <ItemHV2>
+        <GraphContainer>
           <ReactECharts
             style={{
               minHeight: '100%',
@@ -168,7 +168,7 @@ const GovernanceGraph = ({ data, title, label, value, colorSet }: any) => {
             }}
             option={getDataPoints({ data, label })}
           />
-        </ItemHV2>
+        </GraphContainer>
       </Card>
     </Grid>
   );
