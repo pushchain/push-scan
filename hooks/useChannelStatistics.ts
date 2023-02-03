@@ -4,7 +4,6 @@ import { getSubscribers, getNotifications } from '../utils/api';
 export default function useChannelStatistics({
   startDate,
   endDate,
-  selectedChannel,
   selectedChain,
   setChannelDataLoading,
 }) {
@@ -35,13 +34,13 @@ export default function useChannelStatistics({
       const subscriberResponse = await getSubscribers({
         startDate: startDate,
         endDate: endDate,
-        channel: selectedChannel?.channel,
+        channel: 'All',
         chain: selectedChain?.value,
       });
       const notificationsResponse = await getNotifications({
         startDate: startDate,
         endDate: endDate,
-        channel: selectedChannel?.channel,
+        channel: 'All',
         chain: selectedChain?.value,
       });
 
