@@ -70,7 +70,6 @@ export default function LineChartSet() {
   } = useChannelStatistics({
     startDate,
     endDate,
-    selectedChannel,
     selectedChain,
     setChannelDataLoading,
   });
