@@ -69,16 +69,17 @@ export default function useStatisticData({
             new Date(dateArray[i]).toDateString()
           ) {
             isFound = true;
+            totalNotifications += notificationsArray[j].notifications;
             localNotificationData.push([
               notificationsArray[j].date,
-              notificationsArray[j].notifications,
+              totalNotifications,
             ]);
-            totalNotifications += notificationsArray[j].notifications;
+
             break;
           }
         }
         if (!isFound) {
-          localNotificationData.push([dateArray[i], 0]);
+          localNotificationData.push([dateArray[i], totalNotifications]);
         }
       }
 
@@ -113,16 +114,16 @@ export default function useStatisticData({
             new Date(dateArray[i]).toDateString()
           ) {
             isFound = true;
+            totalSubscribers += subscriberArray[j].subscribers;
             localSubscriberData.push([
               subscriberArray[j].date,
-              subscriberArray[j].subscribers,
+              totalSubscribers,
             ]);
-            totalSubscribers += subscriberArray[j].subscribers;
             break;
           }
         }
         if (!isFound) {
-          localSubscriberData.push([dateArray[i], 0]);
+          localSubscriberData.push([dateArray[i], totalSubscribers]);
         }
       }
 
