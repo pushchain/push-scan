@@ -127,9 +127,9 @@ export default function LeaderBoard({
                               ? channel.name.length < 15
                                 ? channel.name
                                 : channel.name.substr(0, 15) + '...'
-                              : channel.name.length < 15
+                              : channel.name.length < 14
                               ? channel.name
-                              : channel.name.substr(0, 15) + '...'}
+                              : channel.name.substr(0, 14) + '...'}
                           </TextContainer>
                         </ItemHV2>
                       </a>
