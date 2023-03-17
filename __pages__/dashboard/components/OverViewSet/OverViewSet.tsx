@@ -1,5 +1,6 @@
 // React, NextJS imports
 import React from 'react';
+import Image from 'next/image';
 
 // External Library imports
 import { useTheme } from 'styled-components';
@@ -11,11 +12,7 @@ import { Text } from '../../dashboard.styled';
 import { getChats, getUsers, getNotifications } from '../../../../utils/api';
 import { useData } from '../../../../contexts/DataContext';
 import { useTheme as getTheme } from '../../../../contexts/ThemeContext';
-import {
-  ItemHV2,
-  ItemVV2,
-  ImageV2,
-} from '../../../../components/SharedStyling';
+import { ItemHV2, ItemVV2 } from '../../../../components/SharedStyling';
 
 export default function OverViewSet() {
   const { pushIntegrations, chainList } = useData();
@@ -28,32 +25,32 @@ export default function OverViewSet() {
   const overViewData = [
     {
       image: !isDarkMode
-        ? './static/push-integration.svg'
-        : './static/push-integration-dark.svg',
+        ? '/static/push-integration.svg'
+        : '/static/push-integration-dark.svg',
       title: 'Push Integrations',
       value: pushIntegrations,
       size: 60,
     },
     {
       image: !isDarkMode
-        ? './static/chat-sent.svg'
-        : './static/chat-sent-dark.svg',
+        ? '/static/chat-sent.svg'
+        : '/static/chat-sent-dark.svg',
       title: 'Chats Sent',
       value: chatSent,
       size: 51,
     },
     {
       image: !isDarkMode
-        ? './static/chat-user.svg'
-        : './static/chat-user-dark.svg',
+        ? '/static/chat-user.svg'
+        : '/static/chat-user-dark.svg',
       title: 'Chat Users',
       value: chatUsers,
       size: 65,
     },
     {
       image: !isDarkMode
-        ? './static/notifications.svg'
-        : './static/notifications-dark.svg',
+        ? '/static/notifications.svg'
+        : '/static/notifications-dark.svg',
       title: 'Notifications Sent',
       value: notifiactionsSent,
       size: 41,
@@ -126,7 +123,12 @@ export default function OverViewSet() {
                 {index == 0 ? '+' : null}
               </Text>
             </ItemVV2>
-            <ImageV2 src={data.image} width={data.size} height={data.size} />
+            <Image
+              src={data.image}
+              width={data.size}
+              height={data.size}
+              alt="Overview"
+            />
           </OverviewItem>
         ))}
       </ItemHV2>

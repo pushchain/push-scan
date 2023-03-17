@@ -1,12 +1,13 @@
 // React, NextJS imports
 import React from 'react';
 import Head from 'next/head';
+import dynamic from 'next/dynamic';
 
 // Internal Components imports
-import RequiresAuth from '../../components/RequireAuth';
-import AdminView from '../../__pages__/admin';
-import Navbar from '../../components/Navbar';
-import Footer from '../../components/Footer';
+const RequiresAuth = dynamic(() => import('../../components/RequireAuth'));
+const AdminView = dynamic(() => import('../../__pages__/admin'));
+const Navbar = dynamic(() => import('../../components/Navbar'));
+const Footer = dynamic(() => import('../../components/Footer'));
 
 export default function Admin() {
   return (

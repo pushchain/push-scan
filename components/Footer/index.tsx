@@ -1,5 +1,6 @@
 // React, NextJS imports
 import React from 'react';
+import Image from 'next/image';
 
 // External Library imports
 import { Box } from '@mui/material';
@@ -22,14 +23,12 @@ export default function Footer() {
     <FooterContainer>
       <LeftContainer>
         <a href="https://www.push.org" target={'_blank'} rel={'noreferrer'}>
-          <Box
-            component="img"
-            width="125px"
-            height="48px"
+          <Image
+            alt="Push Logo"
+            width={125}
+            height={48}
             src={
-              isDarkMode
-                ? './static/push-logo-1.svg'
-                : './static/push-logo-2.svg'
+              isDarkMode ? '/static/push-logo-1.svg' : '/static/push-logo-2.svg'
             }
           />
         </a>
@@ -59,10 +58,12 @@ export default function Footer() {
           target={'_blank'}
           rel={'noreferrer'}
         >
-          <Box
-            component="img"
+          <Image
+            alt="Twitter"
+            height={24}
+            width={30}
             src={
-              isDarkMode ? './static/twitter.svg' : './static/twitter-dark.svg'
+              isDarkMode ? '/static/twitter.svg' : '/static/twitter-dark.svg'
             }
           />
         </a>
@@ -71,11 +72,11 @@ export default function Footer() {
           target={'_blank'}
           rel={'noreferrer'}
         >
-          <Box
-            component="img"
-            src={
-              isDarkMode ? './static/github.svg' : './static/github-dark.svg'
-            }
+          <Image
+            alt="Github"
+            height={26}
+            width={26}
+            src={isDarkMode ? '/static/github.svg' : '/static/github-dark.svg'}
           />
         </a>
         <a
@@ -83,10 +84,12 @@ export default function Footer() {
           target={'_blank'}
           rel={'noreferrer'}
         >
-          <Box
-            component="img"
+          <Image
+            alt="Discord"
+            height={23}
+            width={32}
             src={
-              isDarkMode ? './static/discord.svg' : './static/discord-dark.svg'
+              isDarkMode ? '/static/discord.svg' : '/static/discord-dark.svg'
             }
           />
         </a>

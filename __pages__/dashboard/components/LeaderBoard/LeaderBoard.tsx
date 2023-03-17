@@ -113,6 +113,7 @@ export default function LeaderBoard({
                         >
                           <Avatar
                             src={channel.icon}
+                            alt={channel.name}
                             sx={{
                               width: 26,
                               height: 26,
@@ -157,7 +158,7 @@ export default function LeaderBoard({
                             height="6.67px"
                             width="10px"
                             marginRight="4px"
-                            alt="Trend."
+                            alt="Trend"
                             src={
                               channel?.trend >= 0
                                 ? './static/increase.png'
