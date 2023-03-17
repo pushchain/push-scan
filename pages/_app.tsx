@@ -59,18 +59,6 @@ export default function App({ Component, pageProps }: AppProps) {
               name="viewport"
               content="width=device-width, initial-scale=1.0"
             />
-            <link
-              rel="preload"
-              href="../../public/static/fonts/Strawford-Regular.woff2"
-              type="font/woff2"
-              as="font"
-            />
-            <link
-              rel="preload"
-              href="../../public/static/fonts/Strawford-Medium.woff2"
-              type="font/woff2"
-              as="font"
-            />
           </Head>
           <Component {...pageProps} />
         </DataProvider>
