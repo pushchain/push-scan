@@ -72,8 +72,14 @@ export default function HorizontalBarChart({
       labels: {
         formatter: (value) => {
           if (value > 1000) {
-            let dividend = parseInt(value / 1000);
-            return dividend + 'K';
+            let dividend = 0;
+            if (value > 1000000) {
+              dividend = parseInt(value / 1000000);
+              return dividend + 'M';
+            } else {
+              dividend = parseInt(value / 1000);
+              return dividend + 'K';
+            }
           }
           return value;
         },

@@ -1,21 +1,21 @@
 import React from 'react';
 import { getSubscribers, getNotifications } from '../utils/api';
+import { DATA_KEYS } from '../utils/constants';
+import { useData } from '../contexts/DataContext';
 
 export default function useChannelStatistics({
   startDate,
   endDate,
   selectedChain,
-  setChannelDataLoading,
 }) {
-  const [subscriberCategories, setSubscriberCategories] = React.useState<any[]>(
-    []
-  );
-  const [subscriberValues, setSubscriberValues] = React.useState<any[]>([]);
-  const [notificationCategories, setNotificationCategories] = React.useState<
-    any[]
-  >([]);
-  const [notificationValues, setNotificationValues] = React.useState<any[]>([]);
-  const [channelList, setChannelList] = React.useState<any[]>([]);
+  const {
+    setSubscriberCategories,
+    setSubscriberValues,
+    setNotificationCategories,
+    setNotificationValues,
+    setChannelList,
+    setChannelDataLoading,
+  } = useData();
 
   React.useEffect(() => {
     let subscriberCategory: any[] = [],
@@ -130,20 +130,30 @@ export default function useChannelStatistics({
         notificationCategory.push(sortedNotifications[i].name);
         notificationValue.push(sortedNotifications[i].notifications);
       }
+
       setSubscriberCategories(subscriberCategory);
+      sessionStorage.setItem(
+        DATA_KEYS.SUBSCRIBER_CATEGORIES,
+        JSON.stringify(subscriberCategory)
+      );
       setSubscriberValues(subscriberValue);
+      sessionStorage.setItem(
+        DATA_KEYS.SUBSCRIBER_VALUES,
+        JSON.stringify(subscriberValue)
+      );
       setNotificationCategories(notificationCategory);
+      sessionStorage.setItem(
+        DATA_KEYS.NOTIFICATION_CATEGORIES,
+        JSON.stringify(notificationCategory)
+      );
       setNotificationValues(notificationValue);
+      sessionStorage.setItem(
+        DATA_KEYS.NOTIFICATION_VALUES,
+        JSON.stringify(notificationValue)
+      );
       setChannelList(channels);
+      sessionStorage.setItem(DATA_KEYS.CHANNEL_LIST, JSON.stringify(channels));
       setChannelDataLoading(false);
     })();
   }, [selectedChain, startDate]);
-
-  return {
-    subscriberCategories,
-    subscriberValues,
-    notificationCategories,
-    notificationValues,
-    channelList,
-  };
 }

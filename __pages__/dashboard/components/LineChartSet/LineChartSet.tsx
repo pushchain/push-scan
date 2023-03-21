@@ -13,31 +13,38 @@ import RequestSent from '../RequestSent';
 import Filters from '../Filters';
 import { useData } from '../../../../contexts/DataContext';
 import useStatisticData from '../../../../hooks/useStatisticData';
-import useStatisticCount from '../../../../hooks/useStatisticCount';
-import useChannelList from '../../../../hooks/useChannelList';
 import useChannelStatistics from '../../../../hooks/useChannelStatistics';
 import getDatesArray from '../../../../utils/helpers';
 import HorizontalBarChart from '../Charts/HorizontalBarChart';
+import { CHAIN_LIST, DATA_KEYS } from '../../../../utils/constants';
 
 export default function LineChartSet() {
   const isMobile = useMediaQuery('(max-width:480px)');
-  const { chainList, timeFilterOptions } = useData();
-  const [selectedChannel, setSelectedChannel] = React.useState({
-    name: 'All Channels',
-    channel: 'All',
-  });
+  const {
+    timeFilterOptions,
+    subscriberData,
+    notificationData,
+    totalNotifications,
+    totalSubscribers,
+    subscriberCategories,
+    notificationCategories,
+    notificationValues,
+    subscriberValues,
+    channelList,
+    isChannelDataLoading,
+    isStatisticDataLoading,
+    selectedChain,
+    selectedChannel,
+    setSelectedChain,
+    setSelectedChannel,
+  } = useData();
   const [showChannel, setShowChannel] = React.useState(false);
-  const [selectedChain, setSelectedChain] = React.useState(chainList[0]);
   const [showChain, setShowChain] = React.useState(false);
   const [selectedFilter, setSelectedFilter] = React.useState(6);
   const [startDate, setStartDate] = React.useState(new Date('2022-01-01'));
   const [endDate, setEndDate] = React.useState(new Date());
   const [min, setMin] = React.useState<any>(new Date('2022-01-01').getTime());
   const [max, setMax] = React.useState<any>(new Date().getTime());
-  const [isStatisticDataLoading, setStatisticDataLoading] =
-    React.useState<boolean>(false);
-  const [isChannelDataLoading, setChannelDataLoading] =
-    React.useState<boolean>(false);
   const [interval, setInterval] = React.useState(
     Math.ceil(
       Math.ceil(
@@ -47,13 +54,7 @@ export default function LineChartSet() {
     )
   );
 
-  const {
-    subscriberData,
-    notificationData,
-    totalNotifications,
-    totalSubscribers,
-  } = useStatisticData({
-    setStatisticDataLoading,
+  useStatisticData({
     selectedChannel,
     selectedChain,
     startDate,
@@ -61,17 +62,10 @@ export default function LineChartSet() {
     // interval
   });
 
-  const {
-    subscriberCategories,
-    subscriberValues,
-    notificationCategories,
-    notificationValues,
-    channelList,
-  } = useChannelStatistics({
+  useChannelStatistics({
     startDate,
     endDate,
     selectedChain,
-    setChannelDataLoading,
   });
 
   React.useEffect(() => {
@@ -213,7 +207,7 @@ export default function LineChartSet() {
           selectedChannel={selectedChannel}
           selectedChain={selectedChain}
           channelList={channelList}
-          chainList={chainList}
+          chainList={CHAIN_LIST}
           handleChainChange={handleChainChange}
           handleChannelChange={handleChannelChange}
           showChannel={showChannel}

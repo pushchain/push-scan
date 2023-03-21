@@ -56,7 +56,7 @@ export const getSubscribers = async ({
         source: chain,
       },
     });
-    // console.log('subscribers', res.data);
+    console.log('subscribers on chain', chain, res.data);
     return res.data;
   } catch (e) {
     console.log('Error occured in subscribers', e);

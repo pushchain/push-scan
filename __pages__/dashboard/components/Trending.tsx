@@ -1,10 +1,9 @@
 import React from 'react';
 import LeaderBoard from './LeaderBoard/LeaderBoard';
 import { getSubscribers } from '../../../utils/api';
-import { useData } from '../../../contexts/DataContext';
+import { CHAIN_LIST } from '../../../utils/constants';
 
 export default function Trending() {
-  const { chainList } = useData();
   const [leaderBoard, setLeaderBoard] = React.useState<any[]>([]);
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
@@ -25,14 +24,14 @@ export default function Trending() {
         startDate,
         endDate: firstEndDate,
         channel: 'All',
-        chain: chainList[0].value,
+        chain: CHAIN_LIST[0].value,
       });
 
       const weekRes = await getSubscribers({
         startDate,
         endDate: secondEndDate,
         channel: 'All',
-        chain: chainList[0].value,
+        chain: CHAIN_LIST[0].value,
       });
 
       const weekChannelDataResponse = weekRes?.subscriberAnalytics;

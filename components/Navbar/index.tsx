@@ -20,6 +20,7 @@ import {
   HamburgerLine,
   SidebarContainer,
 } from './navbar.styled';
+import { getSubscribers } from '../../utils/api';
 
 export default function Navbar() {
   const { isDarkMode, darkModeToggle } = Theme();
@@ -60,7 +61,18 @@ export default function Navbar() {
           )}
         </ItemVV2>
       </ItemHV2>
-
+      {/* <button
+        onClick={() =>
+          getSubscribers({
+            startDate: '2022-01-01',
+            endDate: '2023-03-20',
+            channel: 'All',
+            chain: 'All',
+          })
+        }
+      >
+        All Data
+      </button> */}
       <ItemHV2 justifyContent="flex-end" alignItems="center">
         {asPath !== '/dashboard' && !isSmall && (
           <NavBarButtons logout={logout} isLoggedIn={isLoggedIn} />

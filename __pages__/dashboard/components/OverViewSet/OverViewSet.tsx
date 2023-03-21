@@ -13,14 +13,23 @@ import { getChats, getUsers, getNotifications } from '../../../../utils/api';
 import { useData } from '../../../../contexts/DataContext';
 import { useTheme as getTheme } from '../../../../contexts/ThemeContext';
 import { ItemHV2, ItemVV2 } from '../../../../components/SharedStyling';
+import { DATA_KEYS, CHAIN_LIST } from '../../../../utils/constants';
 
 export default function OverViewSet() {
-  const { pushIntegrations, chainList } = useData();
+  const {
+    pushIntegrations,
+    setChatSent,
+    setChatUsers,
+    setNotificationsSent,
+    chatUsers,
+    chatSent,
+    notifiactionsSent,
+  } = useData();
   const { isDarkMode } = getTheme();
   const isMobile = useMediaQuery('(max-width:480px)');
-  const [chatUsers, setChatUsers] = React.useState<number>(0);
-  const [chatSent, setChatSent] = React.useState<number>(0);
-  const [notifiactionsSent, setNotificationsSent] = React.useState<number>(0);
+  // const [chatUsers, setChatUsers] = React.useState<number>(0);
+  // const [chatSent, setChatSent] = React.useState<number>(0);
+  // const [notifiactionsSent, setNotificationsSent] = React.useState<number>(0);
 
   const overViewData = [
     {
@@ -62,16 +71,24 @@ export default function OverViewSet() {
     (async () => {
       let total = 0;
       const chatResponse = await getChats();
+      sessionStorage.setItem(
+        DATA_KEYS.CHAT_SENT,
+        JSON.stringify(chatResponse?.totalMessages)
+      );
       setChatSent(chatResponse?.totalMessages);
 
       const userResponse = await getUsers();
+      sessionStorage.setItem(
+        DATA_KEYS.CHAT_USERS,
+        JSON.stringify(userResponse?.totalUsers)
+      );
       setChatUsers(userResponse?.totalUsers);
 
       const notificationResponse = await getNotifications({
         startDate: new Date('2022-01-01'),
         endDate: new Date(),
         channel: 'All',
-        chain: chainList[0].value,
+        chain: CHAIN_LIST[0].value,
       });
       const notifictionAnalyticsData =
         notificationResponse?.notificationAnalytics;
@@ -85,6 +102,10 @@ export default function OverViewSet() {
           }
         }
       }
+      sessionStorage.setItem(
+        DATA_KEYS.NOTIFICATIONS_SENT,
+        JSON.stringify(total)
+      );
       setNotificationsSent(total);
     })();
   }, []);
