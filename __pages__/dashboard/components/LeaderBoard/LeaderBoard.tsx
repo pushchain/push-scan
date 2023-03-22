@@ -18,7 +18,6 @@ import { RotatingLines } from 'react-loader-spinner';
 
 // Internal Components imports
 import { DAPP_LINKS } from '../../../../utils/constants';
-import { useTheme as getTheme } from '../../../../contexts/ThemeContext';
 import {
   ItemVV2,
   ItemHV2,
@@ -40,9 +39,25 @@ export default function LeaderBoard({
 }) {
   const theme = useTheme();
   const isMobile = useMediaQuery('(max-width:480px)');
-  const { isDarkMode } = getTheme();
+  const isSmall = useMediaQuery('(max-width:1280px)');
+  const getChannelName = (name: string) => {
+    const trimmedName =
+      isMobile && isTrending
+        ? name.length < 15
+          ? name
+          : name.substr(0, 15) + '...'
+        : isSmall && isTrending
+        ? name.length < 10
+          ? name
+          : name.substr(0, 10)+'...'
+        : name.length < 14
+        ? name
+        : name.substr(0, 14) + '...';
+    return trimmedName;
+  };
+
   return (
-    <Grid item xs={12} md={4} lg={4} mb={isMobile ? 2 : 0}>
+    <Grid item xs={12} md={12} lg={4} mb={isMobile ? 2 : 0}>
       <CardContainer
         padding={isMobile ? '30px 5px 0px' : '30px'}
         background={isMobile ? 'transparent' : theme.background.card}
@@ -123,14 +138,14 @@ export default function LeaderBoard({
                           />
 
                           <TextContainer>
-                            {' '}
-                            {isMobile && isTrending
+                            {/* {isMobile && isTrending
                               ? channel.name.length < 15
                                 ? channel.name
                                 : channel.name.substr(0, 15) + '...'
                               : channel.name.length < 14
                               ? channel.name
-                              : channel.name.substr(0, 14) + '...'}
+                              : channel.name.substr(0, 14) + '...'} */}
+                            {getChannelName(channel?.name)}
                           </TextContainer>
                         </ItemHV2>
                       </a>

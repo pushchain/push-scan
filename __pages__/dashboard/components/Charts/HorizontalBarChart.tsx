@@ -72,12 +72,16 @@ export default function HorizontalBarChart({
       labels: {
         formatter: (value) => {
           if (value > 1000) {
-            let dividend = 0;
-            if (value > 1000000) {
-              dividend = parseInt(value / 1000000);
+            let dividend: any = 0;
+            if (value >= 1000000) {
+              dividend = Number.isInteger(value / 1000000)
+                ? value / 1000000
+                : (value / 1000000).toFixed(1);
               return dividend + 'M';
             } else {
-              dividend = parseInt(value / 1000);
+              dividend = Number.isInteger(value / 1000)
+                ? value / 1000
+                : (value / 1000).toFixed(1);
               return dividend + 'K';
             }
           }

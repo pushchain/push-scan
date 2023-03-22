@@ -28,7 +28,7 @@ const DataProvider = ({ children }: { children: any }) => {
     name: 'All Channels',
     channel: 'All',
   });
-  const [selectedChain, setSelectedChain] = React.useState(CHAIN_LIST[0]);
+  const [selectedChain, setSelectedChain] = React.useState(CHAIN_LIST[1]);
   const [updateTracker, setUpdateTracker] = useState<boolean>(false);
   const [isStatisticDataLoading, setStatisticDataLoading] =
     useState<boolean>(false);

@@ -24,14 +24,14 @@ export default function Trending() {
         startDate,
         endDate: firstEndDate,
         channel: 'All',
-        chain: CHAIN_LIST[0].value,
+        chain: CHAIN_LIST[1].value,
       });
 
       const weekRes = await getSubscribers({
         startDate,
         endDate: secondEndDate,
         channel: 'All',
-        chain: CHAIN_LIST[0].value,
+        chain: CHAIN_LIST[1].value,
       });
 
       const weekChannelDataResponse = weekRes?.subscriberAnalytics;

@@ -16,7 +16,7 @@ import useStatisticData from '../../../../hooks/useStatisticData';
 import useChannelStatistics from '../../../../hooks/useChannelStatistics';
 import getDatesArray from '../../../../utils/helpers';
 import HorizontalBarChart from '../Charts/HorizontalBarChart';
-import { CHAIN_LIST, DATA_KEYS } from '../../../../utils/constants';
+import { CHAIN_LIST } from '../../../../utils/constants';
 
 export default function LineChartSet() {
   const isMobile = useMediaQuery('(max-width:480px)');

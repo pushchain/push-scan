@@ -13,23 +13,22 @@ export const DAPP_LINKS = {
 
 export const CHAIN_LIST = [
   {
+    image: "/static/allchain.svg",
+    chain: 'All Network',
+    value: 'All',
+  },
+  {
     image: '/static/ethereum.svg',
     chain: 'Ethereum Network',
-    // value: 'ETH_TEST_GOERLI',
-    value: 'ETH_MAINNET',
+    value: 'ETH_TEST_GOERLI',
+    //value: 'ETH_MAINNET',
   },
   {
     image: '/static/polygon.svg',
     chain: 'Polygon Network',
-    // value: 'POLYGON_TEST_MUMBAI',
-    value: 'POLYGON_MAINNET',
-  },
-  // {
-  //   image: '/static/polygon.svg',
-  //   chain: 'All Chains',
-  //   // value: 'POLYGON_TEST_MUMBAI',
-  //   value: 'All',
-  // },
+    value: 'POLYGON_TEST_MUMBAI',
+    //value: 'POLYGON_MAINNET',
+  }
 ];
 
 export const CREDENTIALKEYS = {

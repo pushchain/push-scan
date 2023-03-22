@@ -27,9 +27,6 @@ export default function OverViewSet() {
   } = useData();
   const { isDarkMode } = getTheme();
   const isMobile = useMediaQuery('(max-width:480px)');
-  // const [chatUsers, setChatUsers] = React.useState<number>(0);
-  // const [chatSent, setChatSent] = React.useState<number>(0);
-  // const [notifiactionsSent, setNotificationsSent] = React.useState<number>(0);
 
   const overViewData = [
     {
