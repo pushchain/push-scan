@@ -211,7 +211,7 @@ const Tooltip = styled.div`
   z-index: 1;
   position: absolute;
   min-width: 140px;
-  top: -20px;
+  top: -25px;
   left: 95%;
   display: none;
   border-radius: 10px 10px 10px 0px;
