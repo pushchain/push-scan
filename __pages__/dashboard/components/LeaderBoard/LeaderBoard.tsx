@@ -49,7 +49,7 @@ export default function LeaderBoard({
         : isSmall && isTrending
         ? name.length < 10
           ? name
-          : name.substr(0, 10)+'...'
+          : name.substr(0, 10) + '...'
         : name.length < 14
         ? name
         : name.substr(0, 14) + '...';
@@ -136,17 +136,12 @@ export default function LeaderBoard({
                               cursor: 'pointer',
                             }}
                           />
-
-                          <TextContainer>
-                            {/* {isMobile && isTrending
-                              ? channel.name.length < 15
-                                ? channel.name
-                                : channel.name.substr(0, 15) + '...'
-                              : channel.name.length < 14
-                              ? channel.name
-                              : channel.name.substr(0, 14) + '...'} */}
-                            {getChannelName(channel?.name)}
-                          </TextContainer>
+                          <TooltipContainer>
+                            <TextContainer>
+                              {getChannelName(channel?.name)}
+                            </TextContainer>
+                            <Tooltip>{channel?.name}</Tooltip>
+                          </TooltipContainer>
                         </ItemHV2>
                       </a>
                     </TableCell>
@@ -210,4 +205,24 @@ const TextContainer = styled(SpanV2)`
   justify-content: flex-start;
   align-items: center;
   cursor: pointer;
+`;
+
+const Tooltip = styled.div`
+  z-index: 1;
+  position: absolute;
+  min-width: 140px;
+  top: -20px;
+  left: 95%;
+  display: none;
+  border-radius: 10px 10px 10px 0px;
+  border: 1px solid ${(props) => props.theme.background.border};
+  padding: 5px 10px;
+  background: ${(props) => props.theme.background.tooltip};
+`;
+
+const TooltipContainer = styled.div`
+  position: relative;
+  & ${TextContainer}:hover + ${Tooltip} {
+    display: flex;
+  }
 `;
