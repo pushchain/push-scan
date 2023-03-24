@@ -8,9 +8,10 @@ import { toast } from 'react-toastify';
 import { updateGovernanceData, getGovernanceData } from '../utils/api';
 import { useData } from '../contexts/DataContext';
 import { GovernanceType } from '../types/governance';
+import { DataContextType } from '../types/context';
 
 export default function useModal() {
-  const { updateTracker, setUpdateTracker } = useData();
+  const { updateTracker, setUpdateTracker }: DataContextType = useData();
   const [open, setOpen] = useState<boolean>(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);

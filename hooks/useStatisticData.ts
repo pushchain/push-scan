@@ -7,14 +7,22 @@ import { getSubscribers, getNotifications } from '../utils/api';
 import { DATA_KEYS } from '../utils/constants';
 import { useData } from '../contexts/DataContext';
 import { DataContextType } from '../types/context';
+import { ChainType, ChannelType } from '../types/context';
+
+interface useStatisticDataPropsType {
+  selectedChannel: ChannelType;
+  selectedChain: ChainType;
+  startDate: string | Date;
+  endDate: string | Date;
+}
 
 export default function useStatisticData({
   selectedChannel,
   selectedChain,
   startDate,
   endDate,
-  // interval,
-}) {
+}: // interval,
+useStatisticDataPropsType) {
   const {
     setSubscriberData,
     setNotificationData,

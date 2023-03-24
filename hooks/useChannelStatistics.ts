@@ -5,12 +5,19 @@ import React from 'react';
 import { getSubscribers, getNotifications } from '../utils/api';
 import { DATA_KEYS } from '../utils/constants';
 import { useData } from '../contexts/DataContext';
+import { ChainType } from '../types/context';
+
+interface useChannelStatisticsPropsType {
+  startDate: string | Date;
+  endDate: string | Date;
+  selectedChain: ChainType;
+}
 
 export default function useChannelStatistics({
   startDate,
   endDate,
   selectedChain,
-}) {
+}: useChannelStatisticsPropsType) {
   const {
     setSubscriberCategories,
     setSubscriberValues,

@@ -69,57 +69,59 @@ const DataProvider = ({ children }: { children: any }) => {
     setStatisticDataLoading(true);
     setChannelDataLoading(true);
     setSubscriberData(
-      JSON.parse(sessionStorage.getItem(DATA_KEYS.SUBSCRIBER_DATA)) || []
+      JSON.parse(sessionStorage.getItem(DATA_KEYS.SUBSCRIBER_DATA)!) || []
     );
     setTotalNotifications(
-      JSON.parse(sessionStorage.getItem(DATA_KEYS.TOTAL_NOTIFICATIONS)) || 0
+      JSON.parse(sessionStorage.getItem(DATA_KEYS.TOTAL_NOTIFICATIONS)!) || 0
     );
     setTotalSubscribers(
-      JSON.parse(sessionStorage.getItem(DATA_KEYS.TOTAL_SUBSCRIBERS)) || 0
+      JSON.parse(sessionStorage.getItem(DATA_KEYS.TOTAL_SUBSCRIBERS)!) || 0
     );
     setNotificationData(
-      JSON.parse(sessionStorage.getItem(DATA_KEYS.NOTIFICATION_DATA)) || []
+      JSON.parse(sessionStorage.getItem(DATA_KEYS.NOTIFICATION_DATA)!) || []
     );
     setSubscriberCategories(
-      JSON.parse(sessionStorage.getItem(DATA_KEYS.SUBSCRIBER_CATEGORIES)) || []
+      JSON.parse(sessionStorage.getItem(DATA_KEYS.SUBSCRIBER_CATEGORIES)!) || []
     );
     setNotificationCategories(
-      JSON.parse(sessionStorage.getItem(DATA_KEYS.NOTIFICATION_CATEGORIES)) ||
+      JSON.parse(sessionStorage.getItem(DATA_KEYS.NOTIFICATION_CATEGORIES)!) ||
         []
     );
     setSubscriberValues(
-      JSON.parse(sessionStorage.getItem(DATA_KEYS.SUBSCRIBER_VALUES)) || []
+      JSON.parse(sessionStorage.getItem(DATA_KEYS.SUBSCRIBER_VALUES)!) || []
     );
     setNotificationValues(
-      JSON.parse(sessionStorage.getItem(DATA_KEYS.NOTIFICATION_VALUES)) || []
+      JSON.parse(sessionStorage.getItem(DATA_KEYS.NOTIFICATION_VALUES)!) || []
     );
     setChannelList(
-      JSON.parse(sessionStorage.getItem(DATA_KEYS.CHANNEL_LIST)) || []
+      JSON.parse(sessionStorage.getItem(DATA_KEYS.CHANNEL_LIST)!) || []
     );
-    setChatSent(JSON.parse(sessionStorage.getItem(DATA_KEYS.CHAT_SENT)) || 0);
-    setChatUsers(JSON.parse(sessionStorage.getItem(DATA_KEYS.CHAT_USERS)) || 0);
+    setChatSent(JSON.parse(sessionStorage.getItem(DATA_KEYS.CHAT_SENT)!) || 0);
+    setChatUsers(
+      JSON.parse(sessionStorage.getItem(DATA_KEYS.CHAT_USERS)!) || 0
+    );
     setNotificationsSent(
-      JSON.parse(sessionStorage.getItem(DATA_KEYS.NOTIFICATIONS_SENT)) || 0
+      JSON.parse(sessionStorage.getItem(DATA_KEYS.NOTIFICATIONS_SENT)!) || 0
     );
     setGovernanceData(
-      JSON.parse(sessionStorage.getItem(DATA_KEYS.GOVERNANCE_DATA)) || {}
+      JSON.parse(sessionStorage.getItem(DATA_KEYS.GOVERNANCE_DATA)!) || {}
     );
     setPushIntegrations(
-      JSON.parse(sessionStorage.getItem(DATA_KEYS.PUSH_INTEGRATIONS)) || 0
+      JSON.parse(sessionStorage.getItem(DATA_KEYS.PUSH_INTEGRATIONS)!) || 0
     );
     setPushGrants(
-      JSON.parse(sessionStorage.getItem(DATA_KEYS.PUSH_GRANTS)) || 0
+      JSON.parse(sessionStorage.getItem(DATA_KEYS.PUSH_GRANTS)!) || 0
     );
     if (
-      JSON.parse(sessionStorage.getItem(DATA_KEYS.SUBSCRIBER_DATA)) !== null &&
-      JSON.parse(sessionStorage.getItem(DATA_KEYS.NOTIFICATION_DATA)) !== null
+      JSON.parse(sessionStorage.getItem(DATA_KEYS.SUBSCRIBER_DATA)!) !== null &&
+      JSON.parse(sessionStorage.getItem(DATA_KEYS.NOTIFICATION_DATA)!) !== null
     ) {
       setStatisticDataLoading(false);
     }
     if (
-      JSON.parse(sessionStorage.getItem(DATA_KEYS.SUBSCRIBER_CATEGORIES)) !==
+      JSON.parse(sessionStorage.getItem(DATA_KEYS.SUBSCRIBER_CATEGORIES)!) !==
         null &&
-      JSON.parse(sessionStorage.getItem(DATA_KEYS.NOTIFICATION_CATEGORIES)) !==
+      JSON.parse(sessionStorage.getItem(DATA_KEYS.NOTIFICATION_CATEGORIES)!) !==
         null
     ) {
       setChannelDataLoading(false);

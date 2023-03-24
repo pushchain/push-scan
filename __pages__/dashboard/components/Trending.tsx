@@ -5,15 +5,16 @@ import React from 'react';
 import LeaderBoard from './LeaderBoard/LeaderBoard';
 import { getSubscribers } from '../../../utils/api';
 import { CHAIN_LIST } from '../../../utils/constants';
+import { LeaderboardType } from '../../../types/otherTypes';
 
 export default function Trending() {
-  const [leaderBoard, setLeaderBoard] = React.useState<any[]>([]);
+  const [leaderBoard, setLeaderBoard] = React.useState<LeaderboardType[]>([]);
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
   React.useEffect(() => {
     (async () => {
       setIsLoading(true);
-      let trendingChannelData: any[] = [];
+      let trendingChannelData: LeaderboardType[] = [];
       let currentSubscriberData = {};
       let weekBackSubscriberData = {};
 
@@ -93,7 +94,6 @@ export default function Trending() {
       const sorted = trendingChannelData?.sort(
         (a, b) => parseFloat(b?.trend) - parseFloat(a?.trend)
       );
-
       setLeaderBoard(sorted.slice(0, 5));
       setIsLoading(false);
     })();

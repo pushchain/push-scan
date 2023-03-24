@@ -65,7 +65,7 @@ export type DataContextType = {
   governanceData?: GovernanceType;
   setGovernanceData?: (data: GovernanceType) => void;
   pushGrants?: number;
-  setPushGrants: (grants: number) => void;
+  setPushGrants?: (grants: number) => void;
 };
 
 export type ThemeContextType = {

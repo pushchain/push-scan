@@ -42,7 +42,7 @@ export default function GovernanceSet() {
           governanceResponse?.governance_data?.Miscellaneous?.Push_Integrations
         )
       );
-      setPushGrants(
+      setPushGrants?.(
         governanceResponse?.governance_data?.Miscellaneous?.Push_Grants
       );
       sessionStorage.setItem(
