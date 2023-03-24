@@ -14,6 +14,7 @@ import { useData } from '../../../../contexts/DataContext';
 import { useTheme as getTheme } from '../../../../contexts/ThemeContext';
 import { ItemHV2, ItemVV2 } from '../../../../components/SharedStyling';
 import { DATA_KEYS, CHAIN_LIST } from '../../../../utils/constants';
+import { ThemeType } from '../../../../types/theme';
 
 export default function OverViewSet() {
   const {
@@ -62,7 +63,7 @@ export default function OverViewSet() {
       size: 41,
     },
   ];
-  const theme = useTheme();
+  const theme = useTheme() as ThemeType;
 
   React.useEffect(() => {
     (async () => {

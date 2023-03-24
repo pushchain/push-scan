@@ -1,4 +1,7 @@
+// React, NextJS imports
 import React from 'react';
+
+// Internal Components imports
 import LeaderBoard from './LeaderBoard/LeaderBoard';
 import { getSubscribers } from '../../../utils/api';
 import { CHAIN_LIST } from '../../../utils/constants';
@@ -38,34 +41,34 @@ export default function Trending() {
       const currentChannelDataResponse = currentRes?.subscriberAnalytics;
       const channelDetails = weekRes?.channelDetails;
 
-      for (let i = 0; i < currentChannelDataResponse.length; i++) {
+      for (let i = 0; i < currentChannelDataResponse?.length; i++) {
         for (let key in currentChannelDataResponse[i]) {
           if (key === 'date') {
             continue;
           } else {
             if (currentSubscriberData[key]) {
               currentSubscriberData[key] +=
-                currentChannelDataResponse[i][key].subscriber;
+                currentChannelDataResponse[i][key]?.subscriber;
             } else {
               currentSubscriberData[key] = 0;
               currentSubscriberData[key] +=
-                currentChannelDataResponse[i][key].subscriber;
+                currentChannelDataResponse[i][key]?.subscriber;
             }
           }
         }
       }
-      for (let i = 0; i < weekChannelDataResponse.length; i++) {
+      for (let i = 0; i < weekChannelDataResponse?.length; i++) {
         for (let key in weekChannelDataResponse[i]) {
           if (key === 'date') {
             continue;
           } else {
             if (weekBackSubscriberData[key]) {
               weekBackSubscriberData[key] +=
-                weekChannelDataResponse[i][key].subscriber;
+                weekChannelDataResponse[i][key]?.subscriber;
             } else {
               weekBackSubscriberData[key] = 0;
               weekBackSubscriberData[key] +=
-                weekChannelDataResponse[i][key].subscriber;
+                weekChannelDataResponse[i][key]?.subscriber;
             }
           }
         }
@@ -81,13 +84,13 @@ export default function Trending() {
         trendingChannelData.push({
           channel: key,
           subscriber: currentSubscriberData[key],
-          name: channelDetails[key].name,
-          icon: channelDetails[key].icon,
+          name: channelDetails[key]?.name,
+          icon: channelDetails[key]?.icon,
           trend: trend,
         });
       }
 
-      const sorted = trendingChannelData.sort(
+      const sorted = trendingChannelData?.sort(
         (a, b) => parseFloat(b?.trend) - parseFloat(a?.trend)
       );
 

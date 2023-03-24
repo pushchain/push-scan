@@ -1,7 +1,14 @@
 // External Library imports
 import styled from 'styled-components';
 
-export const Select = styled.div`
+// Internal Components
+import {
+  TimeFilterType,
+  OptionListType,
+  SelectType,
+} from '../../../../types/otherStyled';
+
+export const Select = styled.div<SelectType>`
   position: relative;
   height: 48px;
   width: 237px;
@@ -25,7 +32,7 @@ export const Select = styled.div`
   }
 `;
 
-export const OptionList = styled.div`
+export const OptionList = styled.div<OptionListType>`
   position: absolute;
   top: 50px;
   left: 0px;
@@ -67,25 +74,23 @@ export const Option = styled.div`
   }
 `;
 
-export const TimeFilterContainer = styled.div(
-  ({ theme }) => `
-  display:flex;
-  height:42px;
-  background-color:${theme.background.secondary};
-  border-radius:16px;
-  padding:5px;
-  align-items:center;
-  justify-content:space-between;
+export const TimeFilterContainer = styled.div`
+  display: flex;
+  height: 42px;
+  background-color: ${({ theme }) => theme.background.secondary};
+  border-radius: 16px;
+  padding: 5px;
+  align-items: center;
+  justify-content: space-between;
   @media (max-width: 480px) {
     width: 100%;
   }
   @media (max-width: 768px) {
     width: 100%;
   }
-  `
-);
+`;
 
-export const TimeFilter = styled.button`
+export const TimeFilter = styled.button<TimeFilterType>`
   border: none;
   background-color: ${(props) => props.background || '#cf1c84'};
   color: ${(props) => props.color || '#657795'};

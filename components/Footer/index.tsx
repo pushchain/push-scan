@@ -15,10 +15,11 @@ import {
 } from './footer.styled';
 import { useTheme as Theme } from '../../contexts/ThemeContext';
 import { Text } from '../../__pages__/dashboard/dashboard.styled';
+import { ThemeType } from '../../types/theme';
 
 export default function Footer() {
   const { isDarkMode } = Theme();
-  const theme = useTheme();
+  const theme = useTheme() as ThemeType;
   return (
     <FooterContainer>
       <LeftContainer>

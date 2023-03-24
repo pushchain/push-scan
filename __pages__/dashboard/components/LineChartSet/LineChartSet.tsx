@@ -16,12 +16,12 @@ import useStatisticData from '../../../../hooks/useStatisticData';
 import useChannelStatistics from '../../../../hooks/useChannelStatistics';
 import getDatesArray from '../../../../utils/helpers';
 import HorizontalBarChart from '../Charts/HorizontalBarChart';
-import { CHAIN_LIST } from '../../../../utils/constants';
+import { CHAIN_LIST, TIME_FILTERS } from '../../../../utils/constants';
+import { DataContextType } from '../../../../types/context';
 
 export default function LineChartSet() {
   const isMobile = useMediaQuery('(max-width:480px)');
   const {
-    timeFilterOptions,
     subscriberData,
     notificationData,
     totalNotifications,
@@ -37,7 +37,7 @@ export default function LineChartSet() {
     selectedChannel,
     setSelectedChain,
     setSelectedChannel,
-  } = useData();
+  }: DataContextType = useData();
   const [showChannel, setShowChannel] = React.useState(false);
   const [showChain, setShowChain] = React.useState(false);
   const [selectedFilter, setSelectedFilter] = React.useState(6);
@@ -86,7 +86,7 @@ export default function LineChartSet() {
   }) => {
     setShowChannel(false);
     setShowChain(false);
-    setSelectedChannel(channel);
+    setSelectedChannel?.(channel);
   };
 
   const handleChainChange = (chain: {
@@ -96,7 +96,7 @@ export default function LineChartSet() {
   }) => {
     setShowChain(false);
     setShowChannel(false);
-    setSelectedChain(chain);
+    setSelectedChain?.(chain);
   };
 
   const handle1Day = () => {
@@ -214,7 +214,7 @@ export default function LineChartSet() {
           setShowChannel={setShowChannel}
           showChain={showChain}
           setShowChain={setShowChain}
-          TimeFilterOptions={timeFilterOptions}
+          TimeFilterOptions={TIME_FILTERS}
           selectedFilter={selectedFilter}
           setSelectedFilter={setSelectedFilter}
           handleTimeFilter={handleTimeFilter}

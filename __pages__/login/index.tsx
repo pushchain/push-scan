@@ -11,10 +11,11 @@ import useLogin from '../../hooks/useLogin';
 import { ItemHV2, ItemVV2, ButtonV2 } from '../../components/SharedStyling';
 import { Text } from '../dashboard/dashboard.styled';
 import { Input, InputContainer } from './login.styled';
+import { ThemeType } from '../../types/theme';
 
 export default function LoginView() {
   const { Login, handleChange, values } = useLogin();
-  const theme = useTheme();
+  const theme = useTheme() as ThemeType;
   const [showPassword, setShowPassword] = React.useState(false);
 
   return (

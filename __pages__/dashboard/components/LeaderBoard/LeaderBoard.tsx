@@ -25,6 +25,7 @@ import {
   SpanV2,
 } from '../../../../components/SharedStyling';
 import { Text } from '../../dashboard.styled';
+import { ThemeType } from '../../../../types/theme';
 
 export default function LeaderBoard({
   title,
@@ -37,7 +38,7 @@ export default function LeaderBoard({
   isTrending?: boolean;
   isLoading?: boolean;
 }) {
-  const theme = useTheme();
+  const theme = useTheme() as ThemeType;
   const isMobile = useMediaQuery('(max-width:480px)');
   const isSmall = useMediaQuery('(max-width:1280px)');
   const getChannelName = (name: string) => {

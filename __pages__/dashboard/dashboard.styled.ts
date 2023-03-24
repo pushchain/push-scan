@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 // Internal Components imports
 import { ItemVV2 } from '../../components/SharedStyling';
+import { TextType } from '../../types/otherStyled';
 
 export const DashBoardContainer = styled(ItemVV2)`
   width: 100%;
@@ -17,7 +18,7 @@ export const DashBoardContainer = styled(ItemVV2)`
   }
 `;
 
-export const Text = styled.p`
+export const Text = styled.p<TextType>`
   font-size: ${(props) => props.size || '15px'};
   font-weight: ${(props) => props.weight || 400};
   font-family: 'Strawford', Helvetica, sans-serif;

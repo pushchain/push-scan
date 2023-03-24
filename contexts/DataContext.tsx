@@ -2,46 +2,60 @@
 import React, { useState, useContext, createContext, useEffect } from 'react';
 
 // Internal Components imports
-import { CREDENTIALKEYS, DATA_KEYS, CHAIN_LIST } from '../utils/constants';
+import {
+  CREDENTIALKEYS,
+  DATA_KEYS,
+  CHAIN_LIST,
+  TIME_FILTERS,
+} from '../utils/constants';
+import {
+  SubscriberType,
+  NotificationType,
+  ChannelType,
+  ChainType,
+  DataContextType,
+} from '../types/context';
+import { GovernanceType } from '../types/governance';
 
-const DataContext = createContext<any>({});
+const DataContext = createContext<DataContextType>({});
 
 const DataProvider = ({ children }: { children: any }) => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(true);
   const [token, setToken] = useState<string>('');
   const [pushIntegrations, setPushIntegrations] = useState<number>(0);
-  const [subscriberData, setSubscriberData] = useState<any[]>([]);
-  const [notificationData, setNotificationData] = useState<any[]>([]);
-  const [subscriberCategories, setSubscriberCategories] = useState<any[]>([]);
-  const [subscriberValues, setSubscriberValues] = useState<any[]>([]);
-  const [notificationCategories, setNotificationCategories] = useState<any[]>(
+  const [subscriberData, setSubscriberData] = useState<SubscriberType[]>([]);
+  const [notificationData, setNotificationData] = useState<NotificationType[]>(
     []
   );
-  const [notificationValues, setNotificationValues] = useState<any[]>([]);
-  const [channelList, setChannelList] = useState<any[]>([]);
+  const [subscriberCategories, setSubscriberCategories] = useState<
+    Array<string>
+  >([]);
+  const [subscriberValues, setSubscriberValues] = useState<Array<number>>([]);
+  const [notificationCategories, setNotificationCategories] = useState<
+    Array<string>
+  >([]);
+  const [notificationValues, setNotificationValues] = useState<Array<number>>(
+    []
+  );
+  const [channelList, setChannelList] = useState<ChannelType[]>([]);
   const [totalNotifications, setTotalNotifications] = useState(0);
   const [totalSubscribers, setTotalSubscribers] = useState(0);
   const [chatUsers, setChatUsers] = React.useState<number>(0);
   const [chatSent, setChatSent] = React.useState<number>(0);
   const [notifiactionsSent, setNotificationsSent] = React.useState<number>(0);
-  const [selectedChannel, setSelectedChannel] = React.useState({
+  const [selectedChannel, setSelectedChannel] = React.useState<ChannelType>({
     name: 'All Channels',
     channel: 'All',
   });
-  const [selectedChain, setSelectedChain] = React.useState(CHAIN_LIST[1]);
+  const [selectedChain, setSelectedChain] = React.useState<ChainType>(
+    CHAIN_LIST[1]
+  );
   const [updateTracker, setUpdateTracker] = useState<boolean>(false);
+  const [governanceData, setGovernanceData] = useState<GovernanceType>();
   const [isStatisticDataLoading, setStatisticDataLoading] =
     useState<boolean>(false);
   const [isChannelDataLoading, setChannelDataLoading] =
     useState<boolean>(false);
-  const timeFilterOptions = [
-    { time: '1D' },
-    { time: '7D' },
-    { time: '1M' },
-    { time: '1Y' },
-    { time: 'YTD' },
-    { time: 'ALL' },
-  ];
 
   useEffect(() => {
     if (Boolean(sessionStorage.getItem(CREDENTIALKEYS.LOGINCHECK))) {
@@ -86,6 +100,9 @@ const DataProvider = ({ children }: { children: any }) => {
     setNotificationsSent(
       JSON.parse(sessionStorage.getItem(DATA_KEYS.NOTIFICATIONS_SENT)) || 0
     );
+    setGovernanceData(
+      JSON.parse(sessionStorage.getItem(DATA_KEYS.GOVERNANCE_DATA)) || {}
+    );
     if (
       JSON.parse(sessionStorage.getItem(DATA_KEYS.SUBSCRIBER_DATA)) !== null &&
       JSON.parse(sessionStorage.getItem(DATA_KEYS.NOTIFICATION_DATA)) !== null
@@ -109,8 +126,7 @@ const DataProvider = ({ children }: { children: any }) => {
         setIsLoggedIn,
         token,
         setToken,
-        timeFilterOptions,
-        //chainList,
+        TIME_FILTERS,
         updateTracker,
         setUpdateTracker,
         pushIntegrations,
@@ -147,6 +163,8 @@ const DataProvider = ({ children }: { children: any }) => {
         setSelectedChannel,
         selectedChain,
         setSelectedChain,
+        governanceData,
+        setGovernanceData,
       }}
     >
       {children}
@@ -154,6 +172,6 @@ const DataProvider = ({ children }: { children: any }) => {
   );
 };
 
-const useData = () => useContext(DataContext);
+const useData = () => useContext<DataContextType>(DataContext);
 
 export { DataProvider, useData };

@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { Box, useMediaQuery, Avatar } from '@mui/material';
 import styled, { useTheme } from 'styled-components';
 import { RotatingLines } from 'react-loader-spinner';
+import { useClickAway } from 'react-use';
 
 // Internal Components imports
 import {
@@ -16,9 +17,9 @@ import {
   TimeFilter,
 } from './LineChartSet/linchartset.styled';
 import { useTheme as useMode } from '../../../contexts/ThemeContext';
-import { ItemHV2, ImageV2, SpanV2 } from '../../../components/SharedStyling';
+import { ItemHV2 } from '../../../components/SharedStyling';
 import { Text } from '../dashboard.styled';
-import { useClickAway } from 'react-use';
+import { ThemeType } from '../../../types/theme';
 
 export default function Filters({
   selectedChannel,
@@ -39,7 +40,7 @@ export default function Filters({
 }) {
   const isSmall = useMediaQuery('(max-width:768px)');
   const { isDarkMode } = useMode();
-  const theme = useTheme();
+  const theme = useTheme() as ThemeType;
   const [channels, setChannels] = React.useState<any[]>();
 
   const dropdownRef = React.useRef(null);

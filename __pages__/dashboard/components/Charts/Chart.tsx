@@ -15,6 +15,7 @@ const ReactApexChart = dynamic(() => import('react-apexcharts'), {
 import BaseOptions from './BaseOptions';
 import { ItemVV2, ItemHV2 } from '../../../../components/SharedStyling';
 import { Text } from '../../dashboard.styled';
+import { ThemeType } from '../../../../types/theme';
 
 export default function Chart({
   title,
@@ -33,7 +34,7 @@ export default function Chart({
   data: any;
   isLoading?: boolean;
 }) {
-  const theme = useTheme();
+  const theme = useTheme() as ThemeType;
   const isMobile = useMediaQuery('(max-width:480px)');
 
   const options = _.merge(BaseOptions(), {

@@ -16,6 +16,7 @@ import BaseOptions from './BaseOptions';
 import { DAPP_LINKS } from '../../../../utils/constants';
 import { ItemVV2, ItemHV2 } from '../../../../components/SharedStyling';
 import { Text } from '../../dashboard.styled';
+import { ThemeType } from '../../../../types/theme';
 
 export default function HorizontalBarChart({
   title,
@@ -26,11 +27,11 @@ export default function HorizontalBarChart({
 }: {
   title: string;
   label: string;
-  category: string[];
-  value: number[];
-  isLoading: boolean;
+  category?: Array<string>;
+  value?: Array<number>;
+  isLoading?: boolean;
 }) {
-  const theme = useTheme();
+  const theme = useTheme() as ThemeType;
   const isMobile = useMediaQuery('(max-width:480px)');
 
   const options = _.merge(BaseOptions(), {
@@ -178,7 +179,7 @@ export default function HorizontalBarChart({
           ) : (
             <ReactApexChart
               type="bar"
-              series={options.series}
+              series={options?.series}
               options={options}
               height={300}
             />

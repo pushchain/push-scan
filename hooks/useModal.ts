@@ -7,13 +7,14 @@ import { toast } from 'react-toastify';
 // Internal Components imports
 import { updateGovernanceData, getGovernanceData } from '../utils/api';
 import { useData } from '../contexts/DataContext';
+import { GovernanceType } from '../types/governance';
 
 export default function useModal() {
   const { updateTracker, setUpdateTracker } = useData();
   const [open, setOpen] = useState<boolean>(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const [governanceData, setGovernanceData] = useState();
+  const [governanceData, setGovernanceData] = useState<GovernanceType>();
   const [formData, setFormData] = useState({
     inprogress: 0,
     approved: 0,
@@ -132,7 +133,7 @@ export default function useModal() {
               : formData.nft,
           DAO:
             formData.dao == -1
-              ? governanceData?.Governance?.PGP_Categories?.dao
+              ? governanceData?.Governance?.PGP_Categories?.DAO
               : formData.dao,
           Education:
             formData.education == -1
@@ -189,7 +190,7 @@ export default function useModal() {
     } else {
       toast.error('Data upload failed');
     }
-    setUpdateTracker(!updateTracker);
+    setUpdateTracker?.(!updateTracker);
   };
 
   return {

@@ -1,4 +1,7 @@
+// React, NextJS imports
 import React from 'react';
+
+// Internal Components imports
 import { getSubscribers, getNotifications } from '../utils/api';
 import { DATA_KEYS } from '../utils/constants';
 import { useData } from '../contexts/DataContext';
@@ -30,7 +33,7 @@ export default function useChannelStatistics({
     });
 
     (async () => {
-      setChannelDataLoading(true);
+      setChannelDataLoading?.(true);
       const subscriberResponse = await getSubscribers({
         startDate: startDate,
         endDate: endDate,
@@ -45,29 +48,29 @@ export default function useChannelStatistics({
       });
 
       // Retrieving and formatting Subscriber data
-      const subscriberAnalytics = subscriberResponse.subscriberAnalytics;
-      const channelSubscriberDetails = subscriberResponse.channelDetails;
+      const subscriberAnalytics = subscriberResponse?.subscriberAnalytics;
+      const channelSubscriberDetails = subscriberResponse?.channelDetails;
       let channelSubscriberData = {};
       let subscriberData: any[] = [];
 
-      for (let i = 0; i < subscriberAnalytics.length; i++) {
+      for (let i = 0; i < subscriberAnalytics?.length; i++) {
         for (let key in subscriberAnalytics[i]) {
           if (key === 'date') {
             continue;
           } else {
             if (channelSubscriberData[key]) {
               channelSubscriberData[key] +=
-                subscriberAnalytics[i][key].subscriber;
+                subscriberAnalytics[i][key]?.subscriber;
             } else {
               channelSubscriberData[key] = 0;
               channelSubscriberData[key] +=
-                subscriberAnalytics[i][key].subscriber;
+                subscriberAnalytics[i][key]?.subscriber;
             }
           }
         }
       }
       for (let key in channelSubscriberData) {
-        let name = channelSubscriberDetails[key].name;
+        let name = channelSubscriberDetails[key]?.name;
         subscriberData.push({
           name: name,
           subscribers: channelSubscriberData[key],
@@ -75,7 +78,7 @@ export default function useChannelStatistics({
         channels.push({
           name: name,
           channel: key,
-          icon: channelSubscriberDetails[key].icon,
+          icon: channelSubscriberDetails[key]?.icon,
         });
       }
 
@@ -95,26 +98,27 @@ export default function useChannelStatistics({
       let channeNotificationData = {};
       let notificationData: any[] = [];
 
-      const notificationAnalytics = notificationsResponse.notificationAnalytics;
-      const channelNotificationDetails = notificationsResponse.channelDetails;
-      for (let i = 0; i < notificationAnalytics.length; i++) {
+      const notificationAnalytics =
+        notificationsResponse?.notificationAnalytics;
+      const channelNotificationDetails = notificationsResponse?.channelDetails;
+      for (let i = 0; i < notificationAnalytics?.length; i++) {
         for (let key in notificationAnalytics[i]) {
           if (key === 'date') {
             continue;
           } else {
             if (channeNotificationData[key]) {
               channeNotificationData[key] +=
-                notificationAnalytics[i][key].notification;
+                notificationAnalytics[i][key]?.notification;
             } else {
               channeNotificationData[key] = 0;
               channeNotificationData[key] +=
-                notificationAnalytics[i][key].notification;
+                notificationAnalytics[i][key]?.notification;
             }
           }
         }
       }
       for (let key in channeNotificationData) {
-        let name = channelNotificationDetails[key].name;
+        let name = channelNotificationDetails[key]?.name;
         notificationData.push({
           name: name,
           notifications: channeNotificationData[key],
@@ -127,33 +131,33 @@ export default function useChannelStatistics({
         sortedNotifications?.length > 10 ? 10 : sortedNotifications?.length;
 
       for (let i = 0; i < notificationChannelLimit; i++) {
-        notificationCategory.push(sortedNotifications[i].name);
-        notificationValue.push(sortedNotifications[i].notifications);
+        notificationCategory.push(sortedNotifications[i]?.name);
+        notificationValue.push(sortedNotifications[i]?.notifications);
       }
 
-      setSubscriberCategories(subscriberCategory);
+      setSubscriberCategories?.(subscriberCategory);
       sessionStorage.setItem(
         DATA_KEYS.SUBSCRIBER_CATEGORIES,
         JSON.stringify(subscriberCategory)
       );
-      setSubscriberValues(subscriberValue);
+      setSubscriberValues?.(subscriberValue);
       sessionStorage.setItem(
         DATA_KEYS.SUBSCRIBER_VALUES,
         JSON.stringify(subscriberValue)
       );
-      setNotificationCategories(notificationCategory);
+      setNotificationCategories?.(notificationCategory);
       sessionStorage.setItem(
         DATA_KEYS.NOTIFICATION_CATEGORIES,
         JSON.stringify(notificationCategory)
       );
-      setNotificationValues(notificationValue);
+      setNotificationValues?.(notificationValue);
       sessionStorage.setItem(
         DATA_KEYS.NOTIFICATION_VALUES,
         JSON.stringify(notificationValue)
       );
-      setChannelList(channels);
+      setChannelList?.(channels);
       sessionStorage.setItem(DATA_KEYS.CHANNEL_LIST, JSON.stringify(channels));
-      setChannelDataLoading(false);
+      setChannelDataLoading?.(false);
     })();
   }, [selectedChain, startDate]);
 }

@@ -3,9 +3,10 @@ import { useTheme } from 'styled-components';
 
 // Internal Components imports
 import { useTheme as Theme } from '../../../../contexts/ThemeContext';
+import { ThemeType } from '../../../../types/theme';
 
 export default function BaseOptions() {
-  const theme = useTheme();
+  const theme = useTheme() as ThemeType;
   const { isDarkMode } = Theme();
 
   // const LABEL_TOTAL = {
@@ -192,7 +193,7 @@ export default function BaseOptions() {
           strokeColor: theme.graph.axis, //check
         },
         spokes: {
-          connectorColors: theme.graph.axisr, //check
+          connectorColors: theme.graph.axis, //check
         },
       },
     },

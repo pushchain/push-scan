@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 // Internal Components imports
 import { ItemHV2, ItemVV2, SpanV2 } from '../../components/SharedStyling';
+import { ButtonType } from '../../types/otherStyled';
 
 export const AdminContainer = styled(ItemVV2)`
   width: 100%;
@@ -49,7 +50,7 @@ export const FormContainer = styled(ItemHV2)`
   }
 `;
 
-export const Button = styled.button`
+export const Button = styled.button<ButtonType>`
   padding: ${(props) => props.padding || '8px 15px'};
   font-size: ${(props) => props.fontSize || '15px'};
   border: 1px solid ${(props) => props.theme.background.border};

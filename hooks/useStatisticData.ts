@@ -1,8 +1,12 @@
+// React, NextJS imports
 import React from 'react';
+
+// Internal Components imports
 import getDatesArray from '../utils/helpers';
 import { getSubscribers, getNotifications } from '../utils/api';
 import { DATA_KEYS } from '../utils/constants';
 import { useData } from '../contexts/DataContext';
+import { DataContextType } from '../types/context';
 
 export default function useStatisticData({
   selectedChannel,
@@ -17,13 +21,13 @@ export default function useStatisticData({
     setTotalNotifications,
     setTotalSubscribers,
     setStatisticDataLoading,
-  } = useData();
+  }: DataContextType = useData();
 
   React.useEffect(() => {
     (async () => {
-      setStatisticDataLoading(true);
-      setSubscriberData([]);
-      setNotificationData([]);
+      setStatisticDataLoading?.(true);
+      setSubscriberData?.([]);
+      setNotificationData?.([]);
       let localNotificationData: any[] = [];
       let localSubscriberData: any[] = [];
       let totalNotifications = 0;
@@ -130,32 +134,32 @@ export default function useStatisticData({
         }
       }
 
-      setTotalNotifications(totalNotifications);
+      setTotalNotifications?.(totalNotifications);
       sessionStorage.setItem(
         DATA_KEYS.TOTAL_NOTIFICATIONS,
         JSON.stringify(totalNotifications)
       );
-      setTotalSubscribers(totalSubscribers);
+      setTotalSubscribers?.(totalSubscribers);
       sessionStorage.setItem(
         DATA_KEYS.TOTAL_SUBSCRIBERS,
         JSON.stringify(totalSubscribers)
       );
-      setSubscriberData(localSubscriberData);
+      setSubscriberData?.(localSubscriberData);
       sessionStorage.setItem(
         DATA_KEYS.SUBSCRIBER_DATA,
         JSON.stringify(localSubscriberData)
       );
-      setNotificationData(localNotificationData);
+      setNotificationData?.(localNotificationData);
       sessionStorage.setItem(
         DATA_KEYS.NOTIFICATION_DATA,
         JSON.stringify(localNotificationData)
       );
-      setStatisticDataLoading(false);
+      setStatisticDataLoading?.(false);
     })();
 
     return () => {
-      setSubscriberData([]);
-      setNotificationData([]);
+      setSubscriberData?.([]);
+      setNotificationData?.([]);
     };
   }, [selectedChain, selectedChannel, startDate]);
 }

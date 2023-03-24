@@ -2,20 +2,11 @@
 import React from 'react';
 
 // External Library imports
-import { Grid, Typography } from '@mui/material';
+import { Grid } from '@mui/material';
 import { useTheme } from 'styled-components';
 
 // Internal Components imports
-import {
-  AdminContainer,
-  Input,
-  FormContainer,
-  InputContainer,
-  InfoHeader,
-  InfoContent,
-  Button,
-  InfoContainer,
-} from './admin.styled';
+import { AdminContainer, Input, Button } from './admin.styled';
 import useModal from '../../hooks/useModal';
 import {
   GovernanceImprovementEditPanel,
@@ -23,12 +14,11 @@ import {
   PushGrantsEditPanel,
   PushGrantsCategoriesEditPanel,
 } from './components/EditPanels';
-import PushStatistics from './components/GovernanceGraph';
 import { getGovernanceData } from '../../utils/api';
 import { useData } from '../../contexts/DataContext';
-
-import { ItemHV2, ItemVV2, ImageV2 } from '../../components/SharedStyling';
+import { ItemVV2 } from '../../components/SharedStyling';
 import { Text } from '../dashboard/dashboard.styled';
+import { ThemeType } from '../../types/theme';
 
 export default function AdminView() {
   const {
@@ -70,7 +60,7 @@ export default function AdminView() {
   });
   const [pushIntegrationData, setPushIntegrationData] =
     React.useState<number>(0);
-  const theme = useTheme();
+  const theme = useTheme() as ThemeType;
 
   React.useEffect(() => {
     (async () => {

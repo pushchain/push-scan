@@ -9,9 +9,10 @@ import styled, { useTheme } from 'styled-components';
 // Internal Components imports
 import { ItemHV2 } from '../../../../components/SharedStyling';
 import { Text } from '../../../dashboard/dashboard.styled';
+import { ThemeType } from '../../../../types/theme';
 
 const GovernanceGraph = ({ data, title, label, value, colorSet }: any) => {
-  const theme = useTheme();
+  const theme = useTheme() as ThemeType;
   // Checking whether screen is mobile screen
   const isMobile = useMediaQuery('(max-width:480px)');
 
@@ -24,7 +25,7 @@ const GovernanceGraph = ({ data, title, label, value, colorSet }: any) => {
     return total;
   };
   const getDataPoints = ({ data, label }: any) => {
-    let values = [];
+    let values: any[] = [];
     // const sum = getTotal(data);
     // ((data[key] / sum) * 100).toFixed(2)
     for (let key in data) {
