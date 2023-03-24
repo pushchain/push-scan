@@ -50,6 +50,7 @@ const DataProvider = ({ children }: { children: any }) => {
   const [selectedChain, setSelectedChain] = React.useState<ChainType>(
     CHAIN_LIST[1]
   );
+  const [pushGrants, setPushGrants] = React.useState<number>(0);
   const [updateTracker, setUpdateTracker] = useState<boolean>(false);
   const [governanceData, setGovernanceData] = useState<GovernanceType>();
   const [isStatisticDataLoading, setStatisticDataLoading] =
@@ -102,6 +103,12 @@ const DataProvider = ({ children }: { children: any }) => {
     );
     setGovernanceData(
       JSON.parse(sessionStorage.getItem(DATA_KEYS.GOVERNANCE_DATA)) || {}
+    );
+    setPushIntegrations(
+      JSON.parse(sessionStorage.getItem(DATA_KEYS.PUSH_INTEGRATIONS)) || 0
+    );
+    setPushGrants(
+      JSON.parse(sessionStorage.getItem(DATA_KEYS.PUSH_GRANTS)) || 0
     );
     if (
       JSON.parse(sessionStorage.getItem(DATA_KEYS.SUBSCRIBER_DATA)) !== null &&
@@ -165,6 +172,8 @@ const DataProvider = ({ children }: { children: any }) => {
         setSelectedChain,
         governanceData,
         setGovernanceData,
+        pushGrants,
+        setPushGrants,
       }}
     >
       {children}

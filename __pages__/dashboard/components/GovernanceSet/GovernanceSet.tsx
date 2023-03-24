@@ -16,12 +16,12 @@ import { DATA_KEYS } from '../../../../utils/constants';
 
 export default function GovernanceSet() {
   const isMobile = useMediaQuery('(max-width:480px)');
-  //const [data, setData] = React.useState<GovernanceType>();
-  const [pushGrants, setPushGrants] = React.useState<number>(0);
   const {
     setPushIntegrations,
     setGovernanceData,
     governanceData,
+    pushGrants,
+    setPushGrants,
   }: DataContextType = useData();
   const theme = useTheme() as ThemeType;
 
@@ -36,8 +36,20 @@ export default function GovernanceSet() {
       setPushIntegrations?.(
         governanceResponse?.governance_data?.Miscellaneous?.Push_Integrations
       );
+      sessionStorage.setItem(
+        DATA_KEYS.PUSH_INTEGRATIONS,
+        JSON.stringify(
+          governanceResponse?.governance_data?.Miscellaneous?.Push_Integrations
+        )
+      );
       setPushGrants(
         governanceResponse?.governance_data?.Miscellaneous?.Push_Grants
+      );
+      sessionStorage.setItem(
+        DATA_KEYS.PUSH_GRANTS,
+        JSON.stringify(
+          governanceResponse?.governance_data?.Miscellaneous?.Push_Grants
+        )
       );
     })();
   }, []);

@@ -49,7 +49,9 @@ export const DATA_KEYS = {
   NOTIFICATIONS_SENT: 'notificationsSent',
   CHAT_USERS: 'chatUsers',
   CHAT_SENT: 'chatSent',
+  PUSH_INTEGRATIONS: 'pushIntegrations',
   GOVERNANCE_DATA: 'governanceData',
+  PUSH_GRANTS: 'pushGrants',
 };
 
 export const TIME_FILTERS = [
