@@ -10,23 +10,46 @@ import GovernanceGraph from '../../../admin/components/GovernanceGraph';
 import { Text, HorizontalLine } from '../../dashboard.styled';
 import { getGovernanceData } from '../../../../utils/api';
 import { useData } from '../../../../contexts/DataContext';
+import { DataContextType } from '../../../../types/context';
+import { ThemeType } from '../../../../types/theme';
+import { DATA_KEYS } from '../../../../utils/constants';
 
 export default function GovernanceSet() {
   const isMobile = useMediaQuery('(max-width:480px)');
-  const [data, setData] = React.useState();
-  const [pushGrants, setPushGrants] = React.useState<number>(0);
-  const { setPushIntegrations } = useData();
-  const theme = useTheme();
+  const {
+    setPushIntegrations,
+    setGovernanceData,
+    governanceData,
+    pushGrants,
+    setPushGrants,
+  }: DataContextType = useData();
+  const theme = useTheme() as ThemeType;
 
   React.useEffect(() => {
     (async () => {
       const governanceResponse = await getGovernanceData();
-      setData(governanceResponse?.governance_data);
-      setPushIntegrations(
+      setGovernanceData?.(governanceResponse?.governance_data);
+      sessionStorage.setItem(
+        DATA_KEYS.GOVERNANCE_DATA,
+        JSON.stringify(governanceResponse?.governance_data)
+      );
+      setPushIntegrations?.(
         governanceResponse?.governance_data?.Miscellaneous?.Push_Integrations
       );
-      setPushGrants(
+      sessionStorage.setItem(
+        DATA_KEYS.PUSH_INTEGRATIONS,
+        JSON.stringify(
+          governanceResponse?.governance_data?.Miscellaneous?.Push_Integrations
+        )
+      );
+      setPushGrants?.(
         governanceResponse?.governance_data?.Miscellaneous?.Push_Grants
+      );
+      sessionStorage.setItem(
+        DATA_KEYS.PUSH_GRANTS,
+        JSON.stringify(
+          governanceResponse?.governance_data?.Miscellaneous?.Push_Grants
+        )
       );
     })();
   }, []);
@@ -45,7 +68,7 @@ export default function GovernanceSet() {
       </Text>
       <Grid container spacing={isMobile ? 0 : 3} justifyContent="center" mt={0}>
         <GovernanceGraph
-          data={data?.Governance?.PGP_Amount}
+          data={governanceData?.Governance?.PGP_Amount}
           title="Push Grants ($PUSH)"
           label="PGP_Amount"
           value={pushGrants}
@@ -53,21 +76,21 @@ export default function GovernanceSet() {
         />
         <HorizontalLine />
         <GovernanceGraph
-          data={data?.Governance?.PGIP}
+          data={governanceData?.Governance?.PGIP}
           title="Push Governance Improvement Proposals"
           label="PGIP"
           colorSet={theme.graph.grantsAndPIPColors}
         />
         <HorizontalLine />
         <GovernanceGraph
-          data={data?.Governance?.PGP_Proposals}
+          data={governanceData?.Governance?.PGP_Proposals}
           title="Push Grants Proposals"
           label="PGP Proposals"
           colorSet={theme.graph.grantsProposals}
         />
         <HorizontalLine />
         <GovernanceGraph
-          data={data?.Governance?.PGP_Categories}
+          data={governanceData?.Governance?.PGP_Categories}
           title="Push Grants Proposal Categories"
           label="PGP Category"
           colorSet={theme.graph.pgpCategories}

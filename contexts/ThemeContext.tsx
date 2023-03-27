@@ -1,6 +1,9 @@
 // React, NextJS imports
 import React, { useEffect, useState, useContext, createContext } from 'react';
 
+// Internal Components
+import { ThemeContextType } from '../types/context';
+
 const defaultTheme: any = {
   isDarkMode: false,
   darkModeToggle: () => {
@@ -8,10 +11,10 @@ const defaultTheme: any = {
   },
 };
 
-const ThemeContext = createContext(defaultTheme);
+const ThemeContext = createContext<ThemeContextType>(defaultTheme);
 
 const ThemeProvider = ({ children }: { children: any }) => {
-  const [isDarkMode, setDarkMode] = useState(false);
+  const [isDarkMode, setDarkMode] = useState<boolean>(false);
 
   const darkModeToggle = () => {
     if (isDarkMode) {
@@ -40,6 +43,6 @@ const ThemeProvider = ({ children }: { children: any }) => {
   );
 };
 
-const useTheme = () => useContext(ThemeContext);
+const useTheme = () => useContext<ThemeContextType>(ThemeContext);
 
 export { useTheme, ThemeProvider };

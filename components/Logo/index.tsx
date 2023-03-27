@@ -1,4 +1,5 @@
 // React, NextJS imports
+import React from 'react';
 import Link from 'next/link';
 
 // External Library imports
@@ -14,7 +15,7 @@ export default function Logo({
   src?: string;
 }) {
   const logo = (
-    <Box component="img" src={src} sx={{ width: 80, height: 80, ...sx }} />
+    <Box component="img" src={src} alt="Push Logo" sx={{ width: 80, height: 80, ...sx }} />
   );
 
   if (disabledLink) {

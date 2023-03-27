@@ -1,10 +1,12 @@
 // React, NextJS imports
 import React from 'react';
+import Image from 'next/image';
 
 // External Library imports
 import { Box, useMediaQuery, Avatar } from '@mui/material';
 import styled, { useTheme } from 'styled-components';
 import { RotatingLines } from 'react-loader-spinner';
+import { useClickAway } from 'react-use';
 
 // Internal Components imports
 import {
@@ -15,9 +17,9 @@ import {
   TimeFilter,
 } from './LineChartSet/linchartset.styled';
 import { useTheme as useMode } from '../../../contexts/ThemeContext';
-import { ItemHV2, ImageV2, SpanV2 } from '../../../components/SharedStyling';
+import { ItemHV2 } from '../../../components/SharedStyling';
 import { Text } from '../dashboard.styled';
-import { useClickAway } from 'react-use';
+import { ThemeType } from '../../../types/theme';
 
 export default function Filters({
   selectedChannel,
@@ -38,7 +40,7 @@ export default function Filters({
 }) {
   const isSmall = useMediaQuery('(max-width:768px)');
   const { isDarkMode } = useMode();
-  const theme = useTheme();
+  const theme = useTheme() as ThemeType;
   const [channels, setChannels] = React.useState<any[]>();
 
   const dropdownRef = React.useRef(null);
@@ -109,25 +111,26 @@ export default function Filters({
                 : selectedChannel?.name}
             </Box>
           </Box>
-          <ImageV2
-            height="20px"
-            width="20px"
-            cursor="pointer"
-            alt="Dropdown icon"
-            src={'./static/caret-down-white.png'}
+          <Image
+            height={20}
+            width={20}
+            alt="Dropdown"
+            src={'/static/caret-down-white.png'}
             onClick={openChannelList}
+            style={{ cursor: 'pointer' }}
           />
           {showChannel && (
             <OptionList left="0px" ref={dropdownRef}>
               <SearchbarContainer>
-                <ImageV2
+                <Image
                   src={
                     isDarkMode
-                      ? './static/search-dark.png'
-                      : './static/search.png'
+                      ? '/static/search-dark.png'
+                      : '/static/search.png'
                   }
-                  width="16px"
-                  height="16px"
+                  width={16}
+                  height={16}
+                  alt="Search"
                 />
                 <Searchbar
                   placeholder="Search Channels"
@@ -169,10 +172,11 @@ export default function Filters({
                     >
                       <Avatar
                         src={channel.icon}
+                        alt={channel.name}
                         sx={{
-                          width: 24,
-                          height: 24,
                           marginRight: '8px',
+                          width: '24px',
+                          height: '24px',
                           cursor: 'pointer',
                         }}
                       />
@@ -211,11 +215,12 @@ export default function Filters({
             onClick={openChainList}
             cursor="pointer"
           >
-            <Avatar
+            <Image
               src={selectedChain.image}
-              sx={{
-                width: 32,
-                height: 32,
+              alt={selectedChain.chain}
+              width={32}
+              height={32}
+              style={{
                 marginRight: '8px',
                 cursor: 'pointer',
               }}
@@ -231,13 +236,13 @@ export default function Filters({
               {selectedChain?.chain}
             </Box>
           </ItemHV2>
-          <ImageV2
-            height="20px"
-            width="20px"
-            alt="Dropdown icon"
-            cursor="pointer"
-            src={'./static/caret-down-black.png'}
+          <Image
+            height={20}
+            width={20}
+            alt="Dropdown"
+            src={'/static/caret-down-black.png'}
             onClick={openChainList}
+            style={{ cursor: 'pointer', borderRadius: '100%' }}
           />
           {showChain && (
             <OptionList ref={dropdownRef}>
@@ -246,13 +251,15 @@ export default function Filters({
               </Text>
               {chainList.map((chain, index) => (
                 <Option key={index} onClick={() => handleChainChange(chain)}>
-                  <Avatar
-                    src={chain.image}
-                    sx={{
-                      width: 24,
-                      height: 24,
+                  <Image
+                    src={chain?.image}
+                    alt={chain?.chain}
+                    width={24}
+                    height={24}
+                    style={{
                       marginRight: '8px',
                       cursor: 'pointer',
+                      borderRadius: '100%',
                     }}
                   />
                   {chain?.chain}

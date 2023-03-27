@@ -4,9 +4,10 @@ import React, { useEffect, useState } from 'react';
 // Internal Components imports
 import { getLeaderBoard } from '../../../utils/api';
 import LeaderBoard from './LeaderBoard/LeaderBoard';
+import { LeaderboardType } from '../../../types/otherTypes';
 
 export default function TopChannels() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<LeaderboardType[]>([]);
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
   useEffect(() => {

@@ -1,26 +1,41 @@
+// React, NextJS imports
 import React from 'react';
+
+// Internal Components imports
 import getDatesArray from '../utils/helpers';
 import { getSubscribers, getNotifications } from '../utils/api';
+import { DATA_KEYS } from '../utils/constants';
+import { useData } from '../contexts/DataContext';
+import { DataContextType } from '../types/context';
+import { ChainType, ChannelType } from '../types/context';
+
+interface useStatisticDataPropsType {
+  selectedChannel: ChannelType;
+  selectedChain: ChainType;
+  startDate: string | Date;
+  endDate: string | Date;
+}
 
 export default function useStatisticData({
   selectedChannel,
   selectedChain,
   startDate,
   endDate,
-  // interval,
-  setStatisticDataLoading,
-}) {
-  const [subscriberData, setSubscriberData] = React.useState<any[]>([]);
-  const [notificationData, setNotificationData] = React.useState<any[]>([]);
-  const [totalSubscribers, setTotalSubscribers] = React.useState(0);
-  const [totalNotifications, setTotalNotifications] = React.useState(0);
-  const [channelList, setChannelList] = React.useState<any[]>([]);
+}: // interval,
+useStatisticDataPropsType) {
+  const {
+    setSubscriberData,
+    setNotificationData,
+    setTotalNotifications,
+    setTotalSubscribers,
+    setStatisticDataLoading,
+  }: DataContextType = useData();
 
   React.useEffect(() => {
     (async () => {
-      setStatisticDataLoading(true);
-      setSubscriberData([]);
-      setNotificationData([]);
+      setStatisticDataLoading?.(true);
+      setSubscriberData?.([]);
+      setNotificationData?.([]);
       let localNotificationData: any[] = [];
       let localSubscriberData: any[] = [];
       let totalNotifications = 0;
@@ -45,9 +60,9 @@ export default function useStatisticData({
       });
 
       const notificationAnalyticsData =
-        notificationResponse.notificationAnalytics;
+        notificationResponse?.notificationAnalytics;
       let notificationsArray: any[] = [];
-      for (let i = 0; i < notificationAnalyticsData.length; i++) {
+      for (let i = 0; i < notificationAnalyticsData?.length; i++) {
         let total = 0,
           dat = '';
 
@@ -63,7 +78,7 @@ export default function useStatisticData({
 
       for (let i = 0; i < dateArray.length; i++) {
         let isFound = false;
-        for (let j = 0; j < notificationsArray.length; j++) {
+        for (let j = 0; j < notificationsArray?.length; j++) {
           if (
             new Date(notificationsArray[j].date).toDateString() ===
             new Date(dateArray[i]).toDateString()
@@ -90,10 +105,10 @@ export default function useStatisticData({
         chain: selectedChain?.value,
       });
 
-      const subscriberAnalyticsData = subscriberResponse.subscriberAnalytics;
+      const subscriberAnalyticsData = subscriberResponse?.subscriberAnalytics;
 
       let subscriberArray: any[] = [];
-      for (let i = 0; i < subscriberAnalyticsData.length; i++) {
+      for (let i = 0; i < subscriberAnalyticsData?.length; i++) {
         let total = 0,
           dat = '';
         for (let key in subscriberAnalyticsData[i]) {
@@ -127,25 +142,32 @@ export default function useStatisticData({
         }
       }
 
-      setTotalNotifications(totalNotifications);
-      setTotalSubscribers(totalSubscribers);
-      setSubscriberData(localSubscriberData);
-      setNotificationData(localNotificationData);
-      setChannelList(channels);
-      setStatisticDataLoading(false);
+      setTotalNotifications?.(totalNotifications);
+      sessionStorage.setItem(
+        DATA_KEYS.TOTAL_NOTIFICATIONS,
+        JSON.stringify(totalNotifications)
+      );
+      setTotalSubscribers?.(totalSubscribers);
+      sessionStorage.setItem(
+        DATA_KEYS.TOTAL_SUBSCRIBERS,
+        JSON.stringify(totalSubscribers)
+      );
+      setSubscriberData?.(localSubscriberData);
+      sessionStorage.setItem(
+        DATA_KEYS.SUBSCRIBER_DATA,
+        JSON.stringify(localSubscriberData)
+      );
+      setNotificationData?.(localNotificationData);
+      sessionStorage.setItem(
+        DATA_KEYS.NOTIFICATION_DATA,
+        JSON.stringify(localNotificationData)
+      );
+      setStatisticDataLoading?.(false);
     })();
 
     return () => {
-      setSubscriberData([]);
-      setNotificationData([]);
+      setSubscriberData?.([]);
+      setNotificationData?.([]);
     };
   }, [selectedChain, selectedChannel, startDate]);
-
-  return {
-    totalNotifications,
-    totalSubscribers,
-    notificationData,
-    subscriberData,
-    channelList,
-  };
 }

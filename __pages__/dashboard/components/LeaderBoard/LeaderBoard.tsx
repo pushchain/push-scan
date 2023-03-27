@@ -18,7 +18,6 @@ import { RotatingLines } from 'react-loader-spinner';
 
 // Internal Components imports
 import { DAPP_LINKS } from '../../../../utils/constants';
-import { useTheme as getTheme } from '../../../../contexts/ThemeContext';
 import {
   ItemVV2,
   ItemHV2,
@@ -26,6 +25,7 @@ import {
   SpanV2,
 } from '../../../../components/SharedStyling';
 import { Text } from '../../dashboard.styled';
+import { ThemeType } from '../../../../types/theme';
 
 export default function LeaderBoard({
   title,
@@ -38,11 +38,27 @@ export default function LeaderBoard({
   isTrending?: boolean;
   isLoading?: boolean;
 }) {
-  const theme = useTheme();
+  const theme = useTheme() as ThemeType;
   const isMobile = useMediaQuery('(max-width:480px)');
-  const { isDarkMode } = getTheme();
+  const isSmall = useMediaQuery('(max-width:1280px)');
+  const getChannelName = (name: string) => {
+    const trimmedName =
+      isMobile && isTrending
+        ? name.length < 15
+          ? name
+          : name.substr(0, 15) + '...'
+        : isSmall && isTrending
+        ? name.length < 10
+          ? name
+          : name.substr(0, 10) + '...'
+        : name.length < 14
+        ? name
+        : name.substr(0, 14) + '...';
+    return trimmedName;
+  };
+
   return (
-    <Grid item xs={12} md={4} lg={4} mb={isMobile ? 2 : 0}>
+    <Grid item xs={12} md={12} lg={4} mb={isMobile ? 2 : 0}>
       <CardContainer
         padding={isMobile ? '30px 5px 0px' : '30px'}
         background={isMobile ? 'transparent' : theme.background.card}
@@ -113,6 +129,7 @@ export default function LeaderBoard({
                         >
                           <Avatar
                             src={channel.icon}
+                            alt={channel.name}
                             sx={{
                               width: 26,
                               height: 26,
@@ -120,17 +137,12 @@ export default function LeaderBoard({
                               cursor: 'pointer',
                             }}
                           />
-
-                          <TextContainer>
-                            {' '}
-                            {isMobile && isTrending
-                              ? channel.name.length < 15
-                                ? channel.name
-                                : channel.name.substr(0, 15) + '...'
-                              : channel.name.length < 14
-                              ? channel.name
-                              : channel.name.substr(0, 14) + '...'}
-                          </TextContainer>
+                          <TooltipContainer>
+                            <TextContainer>
+                              {getChannelName(channel?.name)}
+                            </TextContainer>
+                            <Tooltip>{channel?.name}</Tooltip>
+                          </TooltipContainer>
                         </ItemHV2>
                       </a>
                     </TableCell>
@@ -157,7 +169,7 @@ export default function LeaderBoard({
                             height="6.67px"
                             width="10px"
                             marginRight="4px"
-                            alt="Trend."
+                            alt="Trend"
                             src={
                               channel?.trend >= 0
                                 ? './static/increase.png'
@@ -194,4 +206,24 @@ const TextContainer = styled(SpanV2)`
   justify-content: flex-start;
   align-items: center;
   cursor: pointer;
+`;
+
+const Tooltip = styled.div`
+  z-index: 1;
+  position: absolute;
+  min-width: 140px;
+  bottom: 10px;
+  left: 95%;
+  display: none;
+  border-radius: 10px 10px 10px 0px;
+  border: 1px solid ${(props) => props.theme.background.border};
+  padding: 5px 10px;
+  background: ${(props) => props.theme.background.tooltip};
+`;
+
+const TooltipContainer = styled.div`
+  position: relative;
+  & ${TextContainer}:hover + ${Tooltip} {
+    display: flex;
+  }
 `;

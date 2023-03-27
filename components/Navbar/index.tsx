@@ -20,19 +20,20 @@ import {
   HamburgerLine,
   SidebarContainer,
 } from './navbar.styled';
+import { ThemeType } from '../../types/theme';
 
 export default function Navbar() {
   const { isDarkMode, darkModeToggle } = Theme();
   const { isLoggedIn, setIsLoggedIn, token } = useData();
   const router = useRouter();
-  const theme = useTheme();
+  const theme = useTheme() as ThemeType;
   const isMobile = useMediaQuery('(max-width:480px)');
   const isSmall = useMediaQuery('(max-width:1024px)');
   const { asPath } = useRouter();
   const [showSidebar, setShowSidebar] = React.useState<boolean>(false);
 
   const logout = () => {
-    setIsLoggedIn(false);
+    setIsLoggedIn?.(false);
     sessionStorage.setItem(CREDENTIALKEYS.LOGINCHECK, '' + false);
     sessionStorage.setItem(CREDENTIALKEYS.TOKEN, '');
     router.push(ROUTES.LOGIN);
@@ -60,7 +61,6 @@ export default function Navbar() {
           )}
         </ItemVV2>
       </ItemHV2>
-
       <ItemHV2 justifyContent="flex-end" alignItems="center">
         {asPath !== '/dashboard' && !isSmall && (
           <NavBarButtons logout={logout} isLoggedIn={isLoggedIn} />

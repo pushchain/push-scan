@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 // Internal Components imports
-import { ROUTES, CREDENTIALKEYS } from './constants';
+import { CREDENTIALKEYS } from './constants';
 
 const API_BASE = 'https://backend.epns.io/apis/v1';
 
@@ -56,7 +56,7 @@ export const getSubscribers = async ({
         source: chain,
       },
     });
-    // console.log('subscribers', res.data);
+    //console.log('subscribers on chain', chain, res.data);
     return res.data;
   } catch (e) {
     console.log('Error occured in subscribers', e);

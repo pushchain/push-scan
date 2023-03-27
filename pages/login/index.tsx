@@ -1,11 +1,12 @@
 // React, NextJS imports
 import React from 'react';
 import Head from 'next/head';
+import dynamic from 'next/dynamic';
 
 // Internal Components imports
-import LoginView from '../../__pages__/login';
-import Navbar from '../../components/Navbar';
-import Footer from '../../components/Footer';
+const LoginView = dynamic(() => import('../../__pages__/login'));
+const Navbar = dynamic(() => import('../../components/Navbar'));
+const Footer = dynamic(() => import('../../components/Footer'));
 
 export default function Login() {
   return (

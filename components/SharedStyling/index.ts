@@ -2,10 +2,16 @@
 import styled from 'styled-components';
 
 // Internal Configs
+import {IButtonV2Props,
+  IH2V2Props,
+  IImageV2Props,
+  IItemHV2Props,
+  ISectionV2Props,
+  ISpanV2Props} from "../../types/sharedStyling"
 import { themeLight } from '../../theme/palette';
 
 // Section covers the entire width and height
-export const SectionV2 = styled.section`
+export const SectionV2 = styled.section<ISectionV2Props>`
   align-items: ${(props) => props.alignItems || 'center'};
   align-self: ${(props) => props.alignSelf || 'stretch'};
   background: ${(props) =>
@@ -29,10 +35,7 @@ export const ItemBreakV2 = styled.div`
   flex-basis: 100%;
 `;
 
-// Item comes inside section or components
-// ItemH is horizontal
-// ItemV is vertical
-export const ItemHV2 = styled.div`
+export const ItemHV2 = styled.div<IItemHV2Props>`
   align-items: ${(props) => props.alignItems || 'center'};
   align-self: ${(props) => props.alignSelf || 'stretch'};
   background: ${(props) =>
@@ -98,7 +101,7 @@ export const ItemVV2 = styled(ItemHV2)`
   }
 `;
 
-export const H2V2 = styled.h2`
+export const H2V2 = styled.h2<IH2V2Props>`
   color: ${(props) => props.color || themeLight.text.primary};
   font-family: ${(props) =>
     props.family || "'Strawford', Helvetica, sans-serif"};
@@ -111,7 +114,7 @@ export const H2V2 = styled.h2`
   text-transform: ${(props) => props.textTransform || 'inherit'};
 `;
 
-export const ButtonV2 = styled.button`
+export const ButtonV2 = styled.button<IButtonV2Props>`
   align-items: ${(props) => props.alignItems || 'center'};
   align-self: ${(props) => props.alignSelf || 'auto'};
   background: ${(props) => props.background || 'tranparent'};
@@ -178,7 +181,7 @@ export const ButtonV2 = styled.button`
   }
 `;
 
-export const SpanV2 = styled.span`
+export const SpanV2 = styled.span<ISpanV2Props>`
   align-self: ${(props) => props.alignSelf || 'auto'};
   background: ${(props) => props.background || 'transparent'};
   border-radius: ${(props) => props.borderRadius || 'initial'};
@@ -201,7 +204,7 @@ export const SpanV2 = styled.span`
   max-width: ${(props) => props.maxWidth || 'initial'};
 `;
 
-export const ImageV2 = styled.img`
+export const ImageV2 = styled.img<IImageV2Props>`
   display: ${(props) => props.display || 'flex'};
   height: ${(props) => props.height || 'auto'};
   max-height: ${(props) => props.maxHeight || 'initial'};
