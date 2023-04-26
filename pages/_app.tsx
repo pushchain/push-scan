@@ -45,7 +45,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <Theme>
         <DataProvider>
           <Head>
-            <link rel="shortcut icon" href="/static/push.png" />
+            <link rel="shortcut icon" href='./static/push.png'/>
             <meta
               name="description"
               content="push protocol analytics dashboard"

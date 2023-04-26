@@ -20,6 +20,10 @@ import { useTheme as useMode } from '../../../contexts/ThemeContext';
 import { ItemHV2 } from '../../../components/SharedStyling';
 import { Text } from '../dashboard.styled';
 import { ThemeType } from '../../../types/theme';
+import CaretDownIconWhite from '../../../public/static/caret-down-white.png';
+import SearchIconDark from '../../../public/static/search-dark.png';
+import SearchIconWhite from '../../../public/static/search.png';
+import CaretDownIconBlack from '../../../public/static/caret-down-black.png';
 
 export default function Filters({
   selectedChannel,
@@ -115,7 +119,7 @@ export default function Filters({
             height={20}
             width={20}
             alt="Dropdown"
-            src={'/static/caret-down-white.png'}
+            src={CaretDownIconWhite}
             onClick={openChannelList}
             style={{ cursor: 'pointer' }}
           />
@@ -123,11 +127,7 @@ export default function Filters({
             <OptionList left="0px" ref={dropdownRef}>
               <SearchbarContainer>
                 <Image
-                  src={
-                    isDarkMode
-                      ? '/static/search-dark.png'
-                      : '/static/search.png'
-                  }
+                  src={isDarkMode ? SearchIconDark : SearchIconWhite}
                   width={16}
                   height={16}
                   alt="Search"
@@ -240,7 +240,7 @@ export default function Filters({
             height={20}
             width={20}
             alt="Dropdown"
-            src={'/static/caret-down-black.png'}
+            src={CaretDownIconBlack}
             onClick={openChainList}
             style={{ cursor: 'pointer', borderRadius: '100%' }}
           />

@@ -172,8 +172,8 @@ export default function LeaderBoard({
                             alt="Trend"
                             src={
                               channel?.trend >= 0
-                                ? './static/increase.png'
-                                : './static/decrease.png'
+                                ? "./static/increase.png"
+                                : "./static/decrease.png"
                             }
                           />
                           {channel?.trend}%

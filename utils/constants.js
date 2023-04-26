@@ -1,3 +1,7 @@
+import AllChainIcon from "../public/static/allchain.svg";
+import EthereumIcon from "../public/static/ethereum.svg";
+import PolygonIcon from "../public/static/polygon.svg";
+
 export const ROUTES = {
   HOME: '/',
   LOGIN: '/login',
@@ -13,18 +17,18 @@ export const DAPP_LINKS = {
 
 export const CHAIN_LIST = [
   {
-    image: '/static/allchain.svg',
+    image: AllChainIcon,
     chain: 'All Network',
     value: 'All',
   },
   {
-    image: '/static/ethereum.svg',
+    image: EthereumIcon,
     chain: 'Ethereum Network',
     //value: 'ETH_TEST_GOERLI',
     value: 'ETH_MAINNET',
   },
   {
-    image: '/static/polygon.svg',
+    image: PolygonIcon,
     chain: 'Polygon Network',
     //value: 'POLYGON_TEST_MUMBAI',
     value: 'POLYGON_MAINNET',

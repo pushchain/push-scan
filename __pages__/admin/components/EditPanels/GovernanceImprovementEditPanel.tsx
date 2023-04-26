@@ -80,7 +80,7 @@ export const GovernanceImprovementEditPanel = ({
             </InfoContent>
             <ItemHV2>
               <ImageV2
-                src="./static/edit-1.png"
+                src={"./static/edit-1.png"}
                 height="50px"
                 width="50px"
                 cursor="pointer"

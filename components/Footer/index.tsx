@@ -3,7 +3,6 @@ import React from 'react';
 import Image from 'next/image';
 
 // External Library imports
-import { Box } from '@mui/material';
 import { useTheme } from 'styled-components';
 
 // Internal Components imports
@@ -16,6 +15,14 @@ import {
 import { useTheme as Theme } from '../../contexts/ThemeContext';
 import { Text } from '../../__pages__/dashboard/dashboard.styled';
 import { ThemeType } from '../../types/theme';
+import PushLogoLight from "../../public/static/push-logo-2.svg";
+import PushLogoDark from "../../public/static/push-logo-1.svg";
+import TwitterIconDark from "../../public/static/twitter-dark.svg";
+import TwitterIconLight from "../../public/static/twitter.svg";
+import GithubIconDark from "../../public/static/github-dark.svg";
+import GithubIconLight from "../../public/static/github.svg";
+import DiscordIconDark from "../../public/static/discord-dark.svg";
+import DiscordIconLight from "../../public/static/discord.svg";
 
 export default function Footer() {
   const { isDarkMode } = Theme();
@@ -29,7 +36,7 @@ export default function Footer() {
             width={125}
             height={48}
             src={
-              isDarkMode ? '/static/push-logo-1.svg' : '/static/push-logo-2.svg'
+              isDarkMode ? PushLogoDark : PushLogoLight
             }
           />
         </a>
@@ -64,7 +71,7 @@ export default function Footer() {
             height={24}
             width={30}
             src={
-              isDarkMode ? '/static/twitter.svg' : '/static/twitter-dark.svg'
+              isDarkMode ? TwitterIconDark : TwitterIconLight
             }
           />
         </a>
@@ -77,7 +84,7 @@ export default function Footer() {
             alt="Github"
             height={26}
             width={26}
-            src={isDarkMode ? '/static/github.svg' : '/static/github-dark.svg'}
+            src={isDarkMode ? GithubIconDark : GithubIconLight}
           />
         </a>
         <a
@@ -90,7 +97,7 @@ export default function Footer() {
             height={23}
             width={32}
             src={
-              isDarkMode ? '/static/discord.svg' : '/static/discord-dark.svg'
+              isDarkMode ? DiscordIconDark : DiscordIconLight
             }
           />
         </a>
