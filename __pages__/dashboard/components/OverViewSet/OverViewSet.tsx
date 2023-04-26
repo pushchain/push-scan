@@ -15,6 +15,14 @@ import { useTheme as getTheme } from '../../../../contexts/ThemeContext';
 import { ItemHV2, ItemVV2 } from '../../../../components/SharedStyling';
 import { DATA_KEYS, CHAIN_LIST } from '../../../../utils/constants';
 import { ThemeType } from '../../../../types/theme';
+import IntegrationLightIcon from "../../../../public/static/push-integration.svg";
+import IntegrationDarkIcon from "../../../../public/static/push-integration-dark.svg";
+import ChatSentLightIcon from "../../../../public/static/chat-sent.svg";
+import ChatSentDarkIcon from "../../../../public/static/chat-sent-dark.svg";
+import ChatUsersLightIcon from "../../../../public/static/chat-user.svg";
+import ChatUsersDarkIcon from "../../../../public/static/chat-user-dark.svg";
+import NotificationsLightIcon from "../../../../public/static/notifications.svg";
+import NotificationsDarkIcon from "../../../../public/static/notifications-dark.svg";
 
 export default function OverViewSet() {
   const {
@@ -32,32 +40,32 @@ export default function OverViewSet() {
   const overViewData = [
     {
       image: !isDarkMode
-        ? '/static/push-integration.svg'
-        : '/static/push-integration-dark.svg',
+        ? IntegrationLightIcon
+        : IntegrationDarkIcon,
       title: 'Push Integrations',
       value: pushIntegrations,
       size: 60,
     },
     {
       image: !isDarkMode
-        ? '/static/chat-sent.svg'
-        : '/static/chat-sent-dark.svg',
+        ? ChatSentLightIcon
+        : ChatSentDarkIcon,
       title: 'Chats Sent',
       value: chatSent,
       size: 51,
     },
     {
       image: !isDarkMode
-        ? '/static/chat-user.svg'
-        : '/static/chat-user-dark.svg',
+        ? ChatUsersLightIcon
+        : ChatUsersDarkIcon,
       title: 'Chat Users',
       value: chatUsers,
       size: 65,
     },
     {
       image: !isDarkMode
-        ? '/static/notifications.svg'
-        : '/static/notifications-dark.svg',
+        ? NotificationsLightIcon
+        : NotificationsDarkIcon,
       title: 'Notifications Sent',
       value: notifiactionsSent,
       size: 41,
