@@ -91,10 +91,12 @@ export default function Trending() {
         });
       }
 
-      const sorted = trendingChannelData?.sort(
+      const filteredChannels=trendingChannelData.filter(channel=> channel.subscriber>30);
+
+      const sortedChannels = filteredChannels?.sort(
         (a, b) => parseFloat(b?.trend) - parseFloat(a?.trend)
       );
-      setLeaderBoard(sorted.slice(0, 5));
+      setLeaderBoard(sortedChannels.slice(0, 5));
       setIsLoading(false);
     })();
   }, []);
