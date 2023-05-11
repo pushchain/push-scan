@@ -1,6 +1,10 @@
 import AllChainIcon from "../public/static/allchain.svg";
 import EthereumIcon from "../public/static/ethereum.svg";
 import PolygonIcon from "../public/static/polygon.svg";
+import OptimismIcon from '../public/static/optimism.svg';
+import BSCIcon from "../public/static/bsc.svg";
+import ZkevmIcon from '../public/static/zkevm.svg';
+import ArbitrumIcon from "../public/static/arbitrum.svg";
 
 export const ROUTES = {
   HOME: '/',
@@ -33,6 +37,26 @@ export const CHAIN_LIST = [
     //value: 'POLYGON_TEST_MUMBAI',
     value: 'POLYGON_MAINNET',
   },
+  {
+    image: BSCIcon,
+    chain: 'BNB Network',
+    value: 'BSC_MAINNET',
+  },
+  // {
+  //   image: OptimismIcon,
+  //   chain: 'Optimism Network',
+  //   value: 'OPTIMISM_MAINNET',
+  // },
+  // {
+  //   image: ArbitrumIcon,
+  //   chain: 'Arbitrum Network',
+  //   value: 'ARBITRUMONE_MAINNET',
+  // },
+  // {
+  //   image: ZkevmIcon,
+  //   chain: 'Polygon zkEVM Network',
+  //   value: 'POLYGON_ZK_EVM_MAINNET',
+  // },
 ];
 
 export const CREDENTIALKEYS = {
