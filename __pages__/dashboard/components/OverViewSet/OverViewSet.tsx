@@ -30,7 +30,6 @@ export default function OverViewSet() {
     setChatSent,
     setChatUsers,
     setNotificationsSent,
-    chatUsers,
     chatSent,
     notifiactionsSent,
   } = useData();
@@ -54,14 +53,14 @@ export default function OverViewSet() {
       value: chatSent,
       size: 51,
     },
-    {
-      image: !isDarkMode
-        ? ChatUsersLightIcon
-        : ChatUsersDarkIcon,
-      title: 'Chat Users',
-      value: chatUsers,
-      size: 65,
-    },
+    // {
+    //   image: !isDarkMode
+    //     ? ChatUsersLightIcon
+    //     : ChatUsersDarkIcon,
+    //   title: 'Chat Users',
+    //   value: chatUsers,
+    //   size: 65,
+    // },
     {
       image: !isDarkMode
         ? NotificationsLightIcon

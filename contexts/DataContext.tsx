@@ -48,7 +48,7 @@ const DataProvider = ({ children }: { children: any }) => {
     channel: 'All',
   });
   const [selectedChain, setSelectedChain] = React.useState<ChainType>(
-    CHAIN_LIST[1]
+    CHAIN_LIST[0]
   );
   const [pushGrants, setPushGrants] = React.useState<number>(0);
   const [updateTracker, setUpdateTracker] = useState<boolean>(false);
