@@ -22,7 +22,7 @@ export const DAPP_LINKS = {
 export const CHAIN_LIST = [
   {
     image: AllChainIcon,
-    chain: 'All Network',
+    chain: 'All Networks',
     value: 'All',
   },
   {
