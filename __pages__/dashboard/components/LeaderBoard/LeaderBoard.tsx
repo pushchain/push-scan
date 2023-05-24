@@ -203,7 +203,7 @@ const Tooltip = styled.div`
   z-index:1;
   min-width: 140px;
   bottom: 14px;
-  left: 95%;
+  left: 80%;
   display: none;
   border-radius: 10px 10px 10px 0px;
   border: 1px solid ${(props) => props.theme.background.border};
