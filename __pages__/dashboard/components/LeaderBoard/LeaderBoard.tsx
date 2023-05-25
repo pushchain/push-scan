@@ -2,17 +2,7 @@
 import React from 'react';
 
 // External Library imports
-import {
-  Avatar,
-  Grid,
-  Table,
-  TableBody,
-  TableHead,
-  TableRow,
-  TableCell,
-  useMediaQuery,
-} from '@mui/material';
-import { tableCellClasses } from '@mui/material/TableCell';
+import { Avatar, Grid, useMediaQuery } from '@mui/material';
 import styled, { useTheme } from 'styled-components';
 import { RotatingLines } from 'react-loader-spinner';
 
@@ -22,7 +12,7 @@ import {
   ItemVV2,
   ItemHV2,
   ImageV2,
-  SpanV2,
+  SpanV2
 } from '../../../../components/SharedStyling';
 import { Text } from '../../dashboard.styled';
 import { ThemeType } from '../../../../types/theme';
@@ -40,20 +30,15 @@ export default function LeaderBoard({
 }) {
   const theme = useTheme() as ThemeType;
   const isMobile = useMediaQuery('(max-width:480px)');
-  const isSmall = useMediaQuery('(max-width:1280px)');
+  const isXSmall = useMediaQuery('(min-width:1200px)');
+  const isSmall = useMediaQuery('(max-width:1400px)');
   const getChannelName = (name: string) => {
     const trimmedName =
-      isMobile && isTrending
-        ? name.length < 15
-          ? name
-          : name.substr(0, 15) + '...'
-        : isSmall && isTrending
-        ? name.length < 10
-          ? name
-          : name.substr(0, 10) + '...'
-        : name.length < 14
-        ? name
-        : name.substr(0, 14) + '...';
+      (isMobile && isTrending) || (isSmall && isXSmall && isTrending)
+        ? name.length > 13
+          ? name.substr(0, 10) + '...'
+          : name
+        : name;
     return trimmedName;
   };
 
@@ -79,117 +64,122 @@ export default function LeaderBoard({
               />
             </ItemHV2>
           ) : (
-            <Table
-              sx={{
-                width: '100%',
-                [`& .${tableCellClasses.root}`]: {
-                  borderBottom: 'none',
-                  // fontSize: "14px",
-                  fontFamily: 'Strawford, Helvetica, sans-serif',
-                  fontWeight: 500,
-                  padding: '0px',
-                  paddingTop: '18px',
-                  // paddingBottom: '9px',
-                },
-              }}
-            >
-              <TableHead>
-                <TableRow
-                  sx={{
-                    '& th': {
-                      color: theme.text.leaderboardHeader,
-                      fontSize: '13px',
-                    },
-                  }}
+            <TableContainer>
+              <GridContainer
+                gridStructure={isTrending ? '7fr 4fr 5.5fr' : '7fr 3fr'}
+              >
+                <TableHeaderCell justifyContent="flex-start">
+                  Name
+                </TableHeaderCell>
+                <TableHeaderCell>Subscribers</TableHeaderCell>
+                {isTrending && <TableHeaderCell>Trend</TableHeaderCell>}
+              </GridContainer>
+              {data.map((channel, index) => (
+                <GridContainer
+                  gridStructure={isTrending ? '7fr 4fr 5.5fr' : '7fr 3fr'}
+                  key={index}
                 >
-                  <TableCell>Name</TableCell>
-                  <TableCell align="right">Subscribers</TableCell>
-                  {isTrending && <TableCell align="right">7D%</TableCell>}
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {data.map((channel) => (
-                  <TableRow
-                    key={channel.name}
-                    sx={{
-                      '&:last-child td, &:last-child th': {
-                        border: 'none',
-                      },
-                    }}
-                  >
-                    <TableCell component="th" scope="row">
-                      <a
-                        href={DAPP_LINKS.CHANNELS}
-                        target={'_blank'}
-                        rel={'noreferrer'}
-                      >
-                        <ItemHV2
-                          justifyContent="flex-start"
-                          color={theme.text.leaderboardText}
-                        >
-                          <Avatar
-                            src={channel.icon}
-                            alt={channel.name}
-                            sx={{
-                              width: 26,
-                              height: 26,
-                              marginRight: 1,
-                              cursor: 'pointer',
-                            }}
-                          />
-                          <TooltipContainer>
-                            <TextContainer>
-                              {getChannelName(channel?.name)}
-                            </TextContainer>
-                            <Tooltip>{channel?.name}</Tooltip>
-                          </TooltipContainer>
-                        </ItemHV2>
-                      </a>
-                    </TableCell>
-
-                    <TableCell
-                      align="right"
-                      sx={{
-                        color: theme.text.leaderboardText,
-                        fontSize: '15px',
-                      }}
+                  <ContentCell justifyContent="flex-start">
+                    <a
+                      href={DAPP_LINKS.CHANNELS}
+                      target={'_blank'}
+                      rel={'noreferrer'}
                     >
-                      {channel?.subscriber?.toLocaleString()}
-                    </TableCell>
-                    {isTrending && (
-                      <TableCell align="right">
-                        <ItemHV2
-                          alignItems="center"
-                          justifyContent="flex-end"
-                          color={channel?.trend >= 0 ? '#30CC8B' : '#E93636'}
-                          padding="0px 0px 0px 30px"
-                          fontSize="15px"
-                        >
-                          <ImageV2
-                            height="6.67px"
-                            width="10px"
-                            marginRight="4px"
-                            alt="Trend"
-                            src={
-                              channel?.trend >= 0
-                                ? "./static/increase.png"
-                                : "./static/decrease.png"
-                            }
-                          />
-                          {channel?.trend}%
-                        </ItemHV2>
-                      </TableCell>
-                    )}
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
+                      <ItemHV2
+                        justifyContent="flex-start"
+                        color={theme.text.leaderboardText}
+                      >
+                        <Avatar
+                          src={channel.icon}
+                          alt={channel.name}
+                          sx={{
+                            width: 26,
+                            height: 26,
+                            marginRight: 1,
+                            cursor: 'pointer',
+                          }}
+                        />
+                      </ItemHV2>
+                    </a>
+                    <TooltipContainer>
+                      <TextContainer>
+                        {getChannelName(channel?.name)}
+                      </TextContainer>
+                      <Tooltip>{channel?.name}</Tooltip>
+                    </TooltipContainer>
+                  </ContentCell>
+
+                  <ContentCell>
+                    {channel?.subscriber?.toLocaleString()}
+                  </ContentCell>
+                  {isTrending && (
+                    <ContentCell>
+                      <ItemHV2
+                        alignItems="center"
+                        justifyContent="flex-end"
+                        color={channel?.trend >= 0 ? '#30CC8B' : '#E93636'}
+                        padding="0px 0px 0px 30px"
+                        fontSize="15px"
+                      >
+                        <ImageV2
+                          height="6.67px"
+                          width="10px"
+                          marginRight="4px"
+                          alt="Trend"
+                          src={
+                            channel?.trend >= 0
+                              ? './static/increase.png'
+                              : './static/decrease.png'
+                          }
+                        />
+                        {channel?.trend}%
+                      </ItemHV2>
+                    </ContentCell>
+                  )}
+                </GridContainer>
+              ))}
+            </TableContainer>
           )}
         </ItemHV2>
       </CardContainer>
     </Grid>
   );
 }
+
+const TableContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+`;
+
+const GridContainer = styled.div`
+  display: grid;
+  width: 100%;
+  grid-template-columns: ${(props) => props.gridStructure || '6fr 2fr 2fr'};
+  position: relative;
+`;
+
+const TableHeaderCell = styled.div`
+  display: flex;
+  justify-content: ${(props) => props.justifyContent || 'flex-end'};
+  color: ${({ theme }) => theme.text.leaderboardHeader};
+  font-size: 13px;
+  margin-top: 18px;
+`;
+
+const ContentCell = styled.div`
+  display: flex;
+  justify-content: ${(props) => props.justifyContent || 'flex-end'};
+  align-items: center;
+  margin-top: 18px;
+  color: ${({ theme }) => theme.text.leaderboardText};
+  font-size: 15px;
+  z-index: 0;
+  width: 100%;
+  white-space: nowrap;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+`;
 
 const CardContainer = styled(ItemVV2)`
   height: 100%;
@@ -209,11 +199,11 @@ const TextContainer = styled(SpanV2)`
 `;
 
 const Tooltip = styled.div`
-  z-index: 1;
   position: absolute;
+  z-index:1;
   min-width: 140px;
-  bottom: 10px;
-  left: 95%;
+  bottom: 14px;
+  left: 80%;
   display: none;
   border-radius: 10px 10px 10px 0px;
   border: 1px solid ${(props) => props.theme.background.border};
@@ -222,7 +212,8 @@ const Tooltip = styled.div`
 `;
 
 const TooltipContainer = styled.div`
-  position: relative;
+  position: absolute;
+  left: 33px;
   & ${TextContainer}:hover + ${Tooltip} {
     display: flex;
   }
