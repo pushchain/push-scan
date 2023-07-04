@@ -10,18 +10,18 @@ src="https://res.cloudinary.com/drdjegqln/image/upload/v1686227558/Push-Logo-Sta
 </h1>
 
 <p align="center">
-  <i align="center">Push Protocol is a web3 communication network, enabling cross-chain notifications and messaging for 
-dapps, wallets, and services.🚀</i>
+  <i align="center">Push Protocol is a web3 communication network, enabling cross-chain notifications, messaging, video, and NFT chat for dapps, wallets, and services.🚀</i>
 </p>
 
 <div>
 <h2>
 <br>
 Push Analytics </h1>
-<h3 align="center">This repository contains all the code behind the analytics part of Push Protocol.
-</h3>
-<h3 align="center">Analytics <a href="https://push.network/"> Link </a></h2>
-  
+<p>Push Analytics Dashboard is a comprehensive tool designed to provide in-depth insights into the performance and usage of the Push Protocol. This repository hosts the code that powers the analytics component of the Push Protocol, offering a detailed view of various metrics such as the number of subscribers, notifications, channels, and more. The dashboard is an essential tool for understanding the reach and impact of the Push Protocol, providing valuable data that can help guide future development and improvements.
+
+The dashboard is designed with a user-friendly interface, making it easy to navigate and understand the data presented. It provides real-time updates, ensuring you have the most accurate and up-to-date information at your fingertips. Whether you're a developer looking to monitor the performance of your channels, or a user interested in understanding more about your subscriptions, the Push Analytics Dashboard is a powerful resource for all things related to the Push Protocol.</p>
+<h3> <a href="https://push.network/">Visit: Push.network 🕸️</a> </h3>
+<br />
 <p align="center">
 <img src="https://img.shields.io/badge/Next.js-%23111111.svg?style=flat&logo=next.js&logoColor=white" />
 <img src="https://img.shields.io/badge/JavaScript-F7DF1E.svg?style=for-the-badge&logo=JavaScript&logoColor=black" alt="JavaScript" />
@@ -40,14 +40,15 @@ Push Analytics </h1>
 ---
 
 ## 📚 Table of Contents
-- [Getting Started](#getting-started)
 - [Screenshots](#screenshots)
-- [Resources](#resources)
+- [Getting Started](#getting-started)
 - [Contributing](#contributing)
 
 ---
 
-## Screenshots - (as of June 2023)
+## Screenshots 
+
+<h3>June 2023</h3>
 
 ![image](https://github.com/firascodes/push-analytics-dashboard/assets/72166289/f1e7ae48-f400-41e4-b256-50a9c29a02ef)
 ![image](https://github.com/firascodes/push-analytics-dashboard/assets/72166289/7de305ea-c7b1-4540-a2fb-f6b9a8c821c7)
@@ -86,15 +87,6 @@ npm run dev && node dist/main.js
 npm test
 ```
 
-## Resources
-- **[Website](https://push.org)** To checkout our Product.
-- **[Docs](https://docs.push.org/developers/)** For comprehensive documentation.
-- **[Blog](https://medium.com/push-protocol)** To learn more about our partners, new launches, etc.
-- **[Discord](discord.gg/pushprotocol)** for support and discussions with the community and the team.
-- **[GitHub](https://github.com/ethereum-push-notification-service)** for source code, project board, issues, and pull requests.
-- **[Twitter](https://twitter.com/pushprotocol)** for the latest updates on the product and published blogs.
-
-
 ## Contributing
 
 Push Protocol is an open source Project. We firmly believe in a completely transparent development process and value any contributions. We would love to have you as a member of the community, whether you are assisting us in bug fixes, suggesting new features, enhancing our documentation, or simply spreading the word. 
@@ -104,12 +96,12 @@ Push Protocol is an open source Project. We firmly believe in a completely trans
 - Documentation Request: If you're reading the Push documentation and believe that we're missing something, please create a docs request.
 
 
-Read how you can contribute <a href="https://github.com/ethereum-push-notification-service/push-sdk/blob/main/contributing.md">HERE</a>
+Read how you can contribute <a href="https://github.com/ethereum-push-notification-service/push-analytics-dashboard/blob/main/contributing.md">HERE</a>
 
 Not sure where to start? Join our discord and we will help you get started!
 
 
-<a href="discord.gg/pushprotocol" title="Join Our Community"><img src="https://www.freepnglogos.com/uploads/discord-logo-png/playerunknown-battlegrounds-bgparty-15.png" width="200" alt="Discord" /></a>
+<a href="https://discord.gg/pushprotocol" title="Join Our Community"><img src="https://www.freepnglogos.com/uploads/discord-logo-png/playerunknown-battlegrounds-bgparty-15.png" width="200" alt="Discord" /></a>
 
 ## License
-Check out our License <a href='https://github.com/ethereum-push-notification-service/push-sdk/blob/main/license-v1.md'>HERE </a>
+Check out our License <a href='https://github.com/ethereum-push-notification-service/push-analytics-dashboard/blob/main/license-v1.md'>HERE </a>
