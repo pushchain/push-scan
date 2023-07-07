@@ -1,14 +1,11 @@
 // React, NextJS imports
 import React from 'react';
 import Head from 'next/head';
-
-// External Library imports
-import { Grid } from '@mui/material';
+import dynamic from 'next/dynamic';
 
 // Internal Components imports
-import Navbar from '../../components/Navbar';
-import DashBoardView from '../../__pages__/dashboard';
-import Footer from '../../components/Footer';
+const DashBoardView = dynamic(() => import('../../sections/Dashboard'));
+const Layout = dynamic(() => import('../../layout'));
 
 export default function Dashboard() {
   return (
@@ -16,11 +13,9 @@ export default function Dashboard() {
       <Head>
         <title>Push Analytics DashBoard</title>
       </Head>
-      <Grid width="100%">
-        <Navbar />
+      <Layout>
         <DashBoardView />
-        <Footer />
-      </Grid>
+      </Layout>
     </>
   );
 }

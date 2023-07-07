@@ -13,7 +13,7 @@ import {
   RightContainer,
 } from './footer.styled';
 import { useTheme as Theme } from '../../contexts/ThemeContext';
-import { Text } from '../../__pages__/dashboard/dashboard.styled';
+import { Text } from '../Dashboard/dashboard.styled';
 import { ThemeType } from '../../types/theme';
 import PushLogoLight from "../../public/static/push-logo-2.svg";
 import PushLogoDark from "../../public/static/push-logo-1.svg";

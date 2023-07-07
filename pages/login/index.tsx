@@ -4,9 +4,10 @@ import Head from 'next/head';
 import dynamic from 'next/dynamic';
 
 // Internal Components imports
-const LoginView = dynamic(() => import('../../__pages__/login'));
+const LoginView = dynamic(() => import('../../sections/Login'));
 const Navbar = dynamic(() => import('../../components/Navbar'));
 const Footer = dynamic(() => import('../../components/Footer'));
+const Layout = dynamic(() => import('../../layout'));
 
 export default function Login() {
   return (
@@ -14,9 +15,9 @@ export default function Login() {
       <Head>
         <title>Admin Login</title>
       </Head>
-      <Navbar />
-      <LoginView />
-      <Footer />
+      <Layout>
+        <LoginView />
+      </Layout>
     </>
   );
 }

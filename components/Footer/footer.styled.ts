@@ -2,7 +2,7 @@
 import styled from 'styled-components';
 
 // Internal Components imports
-import { ItemHV2 } from '../../components/SharedStyling';
+import { ItemHV2 } from '../../components/Reusables/SharedStyling';
 
 export const FooterContainer = styled.div`
   width: 100%;
