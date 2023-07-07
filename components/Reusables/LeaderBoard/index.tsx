@@ -14,7 +14,7 @@ import {
   ImageV2,
   SpanV2
 } from '../SharedStyling';
-import { Text } from '../../Dashboard/dashboard.styled';
+import { Text } from '../SharedStyling';
 import { ThemeType } from '../../../types/theme';
 
 export default function LeaderBoard({

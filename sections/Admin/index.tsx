@@ -21,7 +21,7 @@ import {
 import { getGovernanceData } from '../../utils/api';
 import { useData } from '../../contexts/DataContext';
 import { ItemVV2 } from '../../components/Reusables/SharedStyling';
-import { Text } from '../../components/Dashboard/dashboard.styled';
+import { Text } from '../../components/Reusables/SharedStyling';
 import { ThemeType } from '../../types/theme';
 
 export default function Admin() {

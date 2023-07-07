@@ -5,7 +5,7 @@ import * as React from 'react';
 import { Grid, useMediaQuery } from '@mui/material';
 
 // Internal Components imports
-import { HorizontalLine } from '../dashboard.styled';
+import { HorizontalLine } from '../../Reusables/SharedStyling';
 import Notifications from '../Notifications';
 import Subscribers from '../Subscribers';
 import ChatUsers from '../ChatUsers';

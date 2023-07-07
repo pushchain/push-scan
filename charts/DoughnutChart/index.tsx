@@ -8,7 +8,7 @@ import styled, { useTheme } from 'styled-components';
 
 // Internal Components imports
 import { ItemHV2 } from '../../components/Reusables/SharedStyling';
-import { Text } from '../../components/Dashboard/dashboard.styled';
+import { Text } from '../../components/Reusables/SharedStyling';
 import { ThemeType } from '../../types/theme';
 
 const DoughnutChart = ({ data, title, label, value, colorSet }: any) => {

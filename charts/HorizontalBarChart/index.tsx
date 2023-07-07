@@ -15,7 +15,7 @@ const ReactApexChart = dynamic(() => import('react-apexcharts'), {
 import BaseOptions from '../BaseOptions';
 import { DAPP_LINKS } from '../../utils/constants';
 import { ItemVV2, ItemHV2 } from '../../components/Reusables/SharedStyling';
-import { Text } from '../../components/Dashboard/dashboard.styled';
+import { Text } from '../../components/Reusables/SharedStyling';
 import { ThemeType } from '../../types/theme';
 
 export default function HorizontalBarChart({

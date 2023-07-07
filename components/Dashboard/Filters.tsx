@@ -18,7 +18,7 @@ import {
 } from './LineChartSet/linchartset.styled';
 import { useTheme as useMode } from '../../contexts/ThemeContext';
 import { ItemHV2 } from '../Reusables/SharedStyling';
-import { Text } from './dashboard.styled';
+import { Text } from '../Reusables/SharedStyling';
 import { ThemeType } from '../../types/theme';
 import CaretDownIconWhite from '../../public/static/caret-down-white.png';
 import SearchIconDark from '../../public/static/search-dark.png';

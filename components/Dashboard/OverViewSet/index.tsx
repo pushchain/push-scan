@@ -8,21 +8,21 @@ import { useMediaQuery } from '@mui/material';
 
 // Internal Components imports
 import { OverviewItem } from './overview.styled';
-import { Text } from '../dashboard.styled';
+import { Text } from '../../Reusables/SharedStyling';
 import { getChats, getUsers, getNotifications } from '../../../utils/api';
 import { useData } from '../../../contexts/DataContext';
 import { useTheme as getTheme } from '../../../contexts/ThemeContext';
 import { ItemHV2, ItemVV2 } from '../../Reusables/SharedStyling';
 import { DATA_KEYS, CHAIN_LIST } from '../../../utils/constants';
 import { ThemeType } from '../../../types/theme';
-import IntegrationLightIcon from "../../../public/static/push-integration.svg";
-import IntegrationDarkIcon from "../../../public/static/push-integration-dark.svg";
-import ChatSentLightIcon from "../../../public/static/chat-sent.svg";
-import ChatSentDarkIcon from "../../../public/static/chat-sent-dark.svg";
-import ChatUsersLightIcon from "../../../public/static/chat-user.svg";
-import ChatUsersDarkIcon from "../../../public/static/chat-user-dark.svg";
-import NotificationsLightIcon from "../../../public/static/notifications.svg";
-import NotificationsDarkIcon from "../../../public/static/notifications-dark.svg";
+import IntegrationLightIcon from '../../../public/static/push-integration.svg';
+import IntegrationDarkIcon from '../../../public/static/push-integration-dark.svg';
+import ChatSentLightIcon from '../../../public/static/chat-sent.svg';
+import ChatSentDarkIcon from '../../../public/static/chat-sent-dark.svg';
+import ChatUsersLightIcon from '../../../public/static/chat-user.svg';
+import ChatUsersDarkIcon from '../../../public/static/chat-user-dark.svg';
+import NotificationsLightIcon from '../../../public/static/notifications.svg';
+import NotificationsDarkIcon from '../../../public/static/notifications-dark.svg';
 
 export default function OverViewSet() {
   const {
@@ -38,17 +38,13 @@ export default function OverViewSet() {
 
   const overViewData = [
     {
-      image: !isDarkMode
-        ? IntegrationLightIcon
-        : IntegrationDarkIcon,
+      image: !isDarkMode ? IntegrationLightIcon : IntegrationDarkIcon,
       title: 'Push Integrations',
       value: pushIntegrations,
       size: 60,
     },
     {
-      image: !isDarkMode
-        ? ChatSentLightIcon
-        : ChatSentDarkIcon,
+      image: !isDarkMode ? ChatSentLightIcon : ChatSentDarkIcon,
       title: 'Chats Sent',
       value: chatSent,
       size: 51,
@@ -62,9 +58,7 @@ export default function OverViewSet() {
     //   size: 65,
     // },
     {
-      image: !isDarkMode
-        ? NotificationsLightIcon
-        : NotificationsDarkIcon,
+      image: !isDarkMode ? NotificationsLightIcon : NotificationsDarkIcon,
       title: 'Notifications Sent',
       value: notifiactionsSent,
       size: 41,

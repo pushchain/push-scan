@@ -12,7 +12,7 @@ import Logo from '../Logo';
 import { useTheme as Theme } from '../../contexts/ThemeContext';
 import { useData } from '../../contexts/DataContext';
 import { ROUTES, CREDENTIALKEYS } from '../../utils/constants';
-import { Text } from '../Dashboard/dashboard.styled';
+import { Text } from '../Reusables/SharedStyling';
 import { ItemHV2, ItemVV2 } from '../../components/Reusables/SharedStyling';
 import { NavBarButtons } from './NavBarButtons';
 import {

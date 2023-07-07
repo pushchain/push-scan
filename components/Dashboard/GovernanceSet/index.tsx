@@ -7,7 +7,7 @@ import { useTheme } from 'styled-components';
 
 // Internal Components imports
 import GovernanceGraph from '../../../charts/DoughnutChart';
-import { Text, HorizontalLine } from '../dashboard.styled';
+import { Text, HorizontalLine } from '../../Reusables/SharedStyling';
 import { getGovernanceData } from '../../../utils/api';
 import { useData } from '../../../contexts/DataContext';
 import { DataContextType } from '../../../types/context';

@@ -5,13 +5,16 @@ import React from 'react';
 import { Grid, useMediaQuery } from '@mui/material';
 
 // Internal Components imports
-import { HorizontalLine, DashBoardContainer } from '../../components/Dashboard/dashboard.styled';
+import {
+  HorizontalLine,
+  DashBoardContainer,
+} from '../../components/Reusables/SharedStyling';
 import Trending from '../../components/Dashboard/Trending';
 import RecentlyAdded from '../../components/Dashboard/RecentlyAdded';
 import TopChannels from '../../components/Dashboard/TopChannels';
-import LineChartSet from '../../components/Dashboard/LineChartSet/LineChartSet';
-import OverViewSet from '../../components/Dashboard/OverViewSet/OverViewSet';
-import GovernanceSet from '../../components/Dashboard/GovernanceSet/GovernanceSet';
+import LineChartSet from '../../components/Dashboard/LineChartSet';
+import OverViewSet from '../../components/Dashboard/OverViewSet';
+import GovernanceSet from '../../components/Dashboard/GovernanceSet';
 
 const DashBoard = () => {
   const isMobile = useMediaQuery('(max-width:480px)');

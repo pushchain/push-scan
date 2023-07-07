@@ -14,7 +14,7 @@ const ReactApexChart = dynamic(() => import('react-apexcharts'), {
 // Internal Components imports
 import BaseOptions from '../BaseOptions';
 import { ItemVV2, ItemHV2 } from '../../components/Reusables/SharedStyling';
-import { Text } from '../../components/Dashboard/dashboard.styled';
+import { Text } from '../../components/Reusables/SharedStyling';
 import { ThemeType } from '../../types/theme';
 
 export default function Chart({

@@ -9,7 +9,7 @@ import { useTheme } from 'styled-components';
 // Internal Components imports
 import useLogin from '../../hooks/useLogin';
 import { ItemHV2, ItemVV2, ButtonV2 } from '../../components/Reusables/SharedStyling';
-import { Text } from '../../components/Dashboard/dashboard.styled';
+import { Text } from '../../components/Reusables/SharedStyling';
 import { Input, InputContainer } from './login.styled';
 import { ThemeType } from '../../types/theme';
 
