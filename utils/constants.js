@@ -16,6 +16,7 @@ export const ROUTES = {
 
 export const DAPP_LINKS = {
   CHANNELS: 'https://app.push.org/#/channels',
+  DAPP_CHANNEL:'https://app.push.org/channels?search=',
   CHATS: 'https://app.push.org/#/chat',
 };
 
