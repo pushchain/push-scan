@@ -42,6 +42,10 @@ export default function LeaderBoard({
     return trimmedName;
   };
 
+  const handleOpenLink = (channel:any) => {
+    window.open(DAPP_LINKS.DAPP_CHANNEL + channel?.channel, '_blank');
+  };
+
   return (
     <Grid item xs={12} md={12} lg={4} mb={isMobile ? 2 : 0}>
       <CardContainer
@@ -79,28 +83,25 @@ export default function LeaderBoard({
                   gridStructure={isTrending ? '7fr 4fr 5.5fr' : '7fr 3fr'}
                   key={index}
                 >
-                  <ContentCell justifyContent="flex-start">
-                    <a
-                      href={DAPP_LINKS.CHANNELS}
-                      target={'_blank'}
-                      rel={'noreferrer'}
+                  <ContentCell
+                    justifyContent="flex-start"
+                    onClick={() => handleOpenLink(channel)}
+                  >
+                    <ItemHV2
+                      justifyContent="flex-start"
+                      color={theme.text.leaderboardText}
                     >
-                      <ItemHV2
-                        justifyContent="flex-start"
-                        color={theme.text.leaderboardText}
-                      >
-                        <Avatar
-                          src={channel.icon}
-                          alt={channel.name}
-                          sx={{
-                            width: 26,
-                            height: 26,
-                            marginRight: 1,
-                            cursor: 'pointer',
-                          }}
-                        />
-                      </ItemHV2>
-                    </a>
+                      <Avatar
+                        src={channel.icon}
+                        alt={channel.name}
+                        sx={{
+                          width: 26,
+                          height: 26,
+                          marginRight: 1,
+                          cursor: 'pointer',
+                        }}
+                      />
+                    </ItemHV2>
                     <TooltipContainer>
                       <TextContainer>
                         {getChannelName(channel?.name)}
@@ -200,7 +201,7 @@ const TextContainer = styled(SpanV2)`
 
 const Tooltip = styled.div`
   position: absolute;
-  z-index:1;
+  z-index: 1;
   min-width: 140px;
   bottom: 14px;
   left: 80%;
