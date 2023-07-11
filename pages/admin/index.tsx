@@ -5,9 +5,10 @@ import dynamic from 'next/dynamic';
 
 // Internal Components imports
 const RequiresAuth = dynamic(() => import('../../components/RequireAuth'));
-const AdminView = dynamic(() => import('../../__pages__/admin'));
+const AdminView = dynamic(() => import('../../sections/Admin'));
 const Navbar = dynamic(() => import('../../components/Navbar'));
 const Footer = dynamic(() => import('../../components/Footer'));
+const Layout = dynamic(() => import('../../layout'));
 
 export default function Admin() {
   return (
@@ -15,9 +16,9 @@ export default function Admin() {
       <Head>
         <title>Admin Dashboard</title>
       </Head>
-      <Navbar />
-      <AdminView />
-      <Footer />
+      <Layout>
+        <AdminView />
+      </Layout>
     </RequiresAuth>
   );
 }

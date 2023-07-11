@@ -10,8 +10,8 @@ import { DataContextType } from '../types/context';
 import { ChainType, ChannelType } from '../types/context';
 
 interface useStatisticDataPropsType {
-  selectedChannel: ChannelType;
-  selectedChain: ChainType;
+  selectedChannel: ChannelType| undefined;
+  selectedChain: ChainType | undefined;
   startDate: string | Date;
   endDate: string | Date;
 }
