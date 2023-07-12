@@ -4,7 +4,10 @@ import Head from 'next/head';
 import dynamic from 'next/dynamic';
 
 // Internal Components imports
-const DashBoardView = dynamic(() => import('../../sections/Dashboard'));
+import { DashboardLoader } from '../../components/Loader/DashboardLoader';
+const DashBoardView = dynamic(() => import('../../sections/Dashboard'), {
+  loading: () => <DashboardLoader />,
+});
 const Layout = dynamic(() => import('../../layout'));
 
 export default function Dashboard() {
