@@ -85,16 +85,3 @@ export const DashboardLoader = () => {
     </SkeletonTheme>
   );
 };
-
-const Container = styled.div`
-  padding: 10px;
-  margin-top: 20px;
-`;
-const Container2 = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 100%;
-  gap: 15px;
-  margin: 10px 0px;
-`;
