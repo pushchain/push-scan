@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 // External Library imports
 import { useTheme } from 'styled-components';
-import { useMediaQuery } from '@mui/material';
+import { useMediaQuery, useScrollTrigger } from '@mui/material';
 
 // Internal Components imports
 import { OverviewItem } from './overview.styled';
@@ -23,6 +23,7 @@ import ChatUsersLightIcon from '../../../public/static/chat-user.svg';
 import ChatUsersDarkIcon from '../../../public/static/chat-user-dark.svg';
 import NotificationsLightIcon from '../../../public/static/notifications.svg';
 import NotificationsDarkIcon from '../../../public/static/notifications-dark.svg';
+import { OverviewLoader } from '../../Loader/OverviewLoader';
 
 export default function OverViewSet() {
   const {
@@ -32,6 +33,8 @@ export default function OverViewSet() {
     setNotificationsSent,
     chatSent,
     notifiactionsSent,
+    overViewLoading,
+    setOverviewLoading,
   } = useData();
   const { isDarkMode } = getTheme();
   const isMobile = useMediaQuery('(max-width:480px)');
@@ -68,6 +71,9 @@ export default function OverViewSet() {
 
   React.useEffect(() => {
     (async () => {
+      notifiactionsSent > 0
+        ? setOverviewLoading(false)
+        : setOverviewLoading(true);
       let total = 0;
       const chatResponse = await getChats();
       sessionStorage.setItem(
@@ -106,6 +112,7 @@ export default function OverViewSet() {
         JSON.stringify(total)
       );
       setNotificationsSent(total);
+      setOverviewLoading(false);
     })();
   }, []);
 
@@ -127,28 +134,35 @@ export default function OverViewSet() {
         {overViewData.map((data, index) => (
           <OverviewItem
             key={data.title}
+            padding={overViewLoading ? '25px' : '25px 30px 22px 40px'}
             style={{
               backgroundColor: theme.background.card,
               border: `1px solid ${theme.background.border}`,
               height: '114px',
             }}
           >
-            <ItemVV2 alignItems="flex-start" justifyContent="center">
-              <Text size="18px" weight={500}>
-                {data.title}
-              </Text>
+            {!overViewLoading ? (
+              <>
+                <ItemVV2 alignItems="flex-start" justifyContent="center">
+                  <Text size="18px" weight={500}>
+                    {data.title}
+                  </Text>
 
-              <Text size="36px" weight={500}>
-                {data.value?.toLocaleString()}
-                {index == 0 ? '+' : null}
-              </Text>
-            </ItemVV2>
-            <Image
-              src={data.image}
-              width={data.size}
-              height={data.size}
-              alt="Overview"
-            />
+                  <Text size="36px" weight={500}>
+                    {data.value?.toLocaleString()}
+                    {index == 0 ? '+' : null}
+                  </Text>
+                </ItemVV2>
+                <Image
+                  src={data.image}
+                  width={data.size}
+                  height={data.size}
+                  alt="Overview"
+                />
+              </>
+            ) : (
+              <OverviewLoader key={data.title} />
+            )}
           </OverviewItem>
         ))}
       </ItemHV2>

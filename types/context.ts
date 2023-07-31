@@ -66,6 +66,8 @@ export type DataContextType = {
   setGovernanceData?: (data: GovernanceType) => void;
   pushGrants?: number;
   setPushGrants?: (grants: number) => void;
+  overViewLoading?: boolean;
+  setOverviewLoading?: (loader: boolean) => void;
 };
 
 export type ThemeContextType = {
