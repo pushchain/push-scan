@@ -16,6 +16,7 @@ import BaseOptions from '../BaseOptions';
 import { ItemVV2, ItemHV2 } from '../../components/Reusables/SharedStyling';
 import { Text } from '../../components/Reusables/SharedStyling';
 import { ThemeType } from '../../types/theme';
+import { GraphHeadingLoader } from '../../components/Loader/GraphHeadingLoader';
 
 export default function Chart({
   title,
@@ -136,12 +137,19 @@ export default function Chart({
         minHeight="364px"
         padding={isMobile ? '35px 0px 0px' : '30px 30px 6px'}
       >
-        <Text weight={500} size="18px" color={theme.text.primary}>
-          {title}
-        </Text>
-        <Text weight={500} size="28px" color={theme.text.primary}>
-          {value?.toLocaleString()}
-        </Text>
+        {isLoading ? (
+          <GraphHeadingLoader />
+        ) : (
+          <>
+            {' '}
+            <Text weight={500} size="18px" color={theme.text.primary}>
+              {title}
+            </Text>
+            <Text weight={500} size="28px" color={theme.text.primary}>
+              {value?.toLocaleString()}
+            </Text>
+          </>
+        )}
 
         <CardContent
           sx={{

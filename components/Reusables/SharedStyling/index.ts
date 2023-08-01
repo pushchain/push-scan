@@ -9,6 +9,8 @@ import {
   IItemHV2Props,
   ISectionV2Props,
   ISpanV2Props,
+  ISkeletonProps,
+  ISkeletonLineProps
 } from '../../../types/sharedStyling';
 import { TextType } from '../../../types/otherStyled';
 import { themeLight } from '../../../theme/palette';
@@ -267,3 +269,47 @@ export const HorizontalLine = styled.div(
   }
 `
 );
+
+export const Skeleton = styled.div<ISkeletonProps>`
+  padding: ${(props) => props.padding || '0px'};
+  max-width: ${(props) => props.maxWidth || 'initial'};
+  width: ${(props) => props.width || 'initial'};
+  background: ${(props) =>
+    props.gradient
+      ? props.gradient
+      : props.background
+      ? props.background
+      : 'transparent' || 'transparent'};
+  border-radius: ${(props) => props.borderRadius || 'initial'};
+  display: ${(props) => props.display || 'flex'};
+  flex-direction: ${(props) => props.flexDirection || 'column'};
+  justify-content: ${(props) => props.justifyContent || 'center'};
+  align-items: ${(props) => props.alignItems || 'center'};
+  margin: ${(props) => props.margin || '0px'};
+  gap: ${(props) => props.gap || '0px'};
+`;
+
+export const SkeletonLine = styled.div<ISkeletonLineProps>`
+height: ${(props) => props.height || 'auto'};
+width: ${(props) => props.width || 'initial'};
+margin: ${(props) => props.margin || '0px'};
+padding:${(props) => props.padding || '0px'};
+border-radius: ${(props) => props.borderRadius || '16px'};
+background: ${(props) =>
+  props.gradient
+    ? props.gradient
+    : props.background
+    ? props.background
+    : 'linear-gradient(to right, rgba(130, 130, 130, 0.2) 8%, rgba(130, 130, 130, 0.3) 18%, rgba(130, 130, 130, 0.2) 33%)' ||
+      'linear-gradient(to right, rgba(130, 130, 130, 0.2) 8%, rgba(130, 130, 130, 0.3) 18%, rgba(130, 130, 130, 0.2) 33%)'};
+background-size: ${(props) => props.backgroundSize || '800px 100px'};
+animation: wave-lines 1.5s infinite ease-out;
+
+@keyframes wave-lines {
+    0% {
+        background-position: -468px 0;
+    }
+    100% {
+        background-position: 468px 0;
+    }
+`;

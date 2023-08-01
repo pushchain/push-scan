@@ -8,14 +8,10 @@ import { RotatingLines } from 'react-loader-spinner';
 
 // Internal Components imports
 import { DAPP_LINKS } from '../../../utils/constants';
-import {
-  ItemVV2,
-  ItemHV2,
-  ImageV2,
-  SpanV2
-} from '../SharedStyling';
+import { ItemVV2, ItemHV2, ImageV2, SpanV2 } from '../SharedStyling';
 import { Text } from '../SharedStyling';
 import { ThemeType } from '../../../types/theme';
+import { LeaderboardLoader } from '../../Loader/LeaderBoardLoader';
 
 export default function LeaderBoard({
   title,
@@ -42,22 +38,25 @@ export default function LeaderBoard({
     return trimmedName;
   };
 
-  const handleOpenLink = (channel:any) => {
+  const handleOpenLink = (channel: any) => {
     window.open(DAPP_LINKS.DAPP_CHANNEL + channel?.channel, '_blank');
   };
 
   return (
     <Grid item xs={12} md={12} lg={4} mb={isMobile ? 2 : 0}>
-      <CardContainer
-        padding={isMobile ? '30px 5px 0px' : '30px'}
-        background={isMobile ? 'transparent' : theme.background.card}
-        border={`1px solid ${theme.background.border}`}
-      >
-        <Text weight={500} size="18px" color={theme.text.primary}>
-          {title}
-        </Text>
-        <ItemHV2>
-          {isLoading ? (
+      {isLoading ? (
+        <LeaderboardLoader isTrending={isTrending} />
+      ) : (
+        <CardContainer
+          padding={isMobile ? '30px 5px 0px' : '30px'}
+          background={isMobile ? 'transparent' : theme.background.card}
+          border={`1px solid ${theme.background.border}`}
+        >
+          <Text weight={500} size="18px" color={theme.text.primary}>
+            {title}
+          </Text>
+          <ItemHV2>
+            {/* {isLoading ? (
             <ItemHV2 minHeight="262px" minWidth="300px">
               <RotatingLines
                 strokeColor="#CF1C84"
@@ -67,7 +66,7 @@ export default function LeaderBoard({
                 visible={true}
               />
             </ItemHV2>
-          ) : (
+          ) : ( */}
             <TableContainer>
               <GridContainer
                 gridStructure={isTrending ? '7fr 4fr 5.5fr' : '7fr 3fr'}
@@ -140,9 +139,10 @@ export default function LeaderBoard({
                 </GridContainer>
               ))}
             </TableContainer>
-          )}
-        </ItemHV2>
-      </CardContainer>
+            {/* )} */}
+          </ItemHV2>
+        </CardContainer>
+      )}
     </Grid>
   );
 }

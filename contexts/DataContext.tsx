@@ -57,6 +57,7 @@ const DataProvider = ({ children }: { children: any }) => {
     useState<boolean>(false);
   const [isChannelDataLoading, setChannelDataLoading] =
     useState<boolean>(false);
+    const [overViewLoading,setOverviewLoading]=useState<boolean>(false);
 
   useEffect(() => {
     if (Boolean(sessionStorage.getItem(CREDENTIALKEYS.LOGINCHECK))) {
@@ -176,6 +177,8 @@ const DataProvider = ({ children }: { children: any }) => {
         setGovernanceData,
         pushGrants,
         setPushGrants,
+        overViewLoading,
+        setOverviewLoading
       }}
     >
       {children}
