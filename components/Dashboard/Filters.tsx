@@ -212,6 +212,7 @@ export default function Filters({
         >
           <ItemHV2
             justifyContent="flex-start"
+            flexWrap="inherit"
             onClick={openChainList}
             cursor="pointer"
           >
