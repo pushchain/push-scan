@@ -1,10 +1,12 @@
-import AllChainIcon from "../public/static/allchain.svg";
-import EthereumIcon from "../public/static/ethereum.svg";
-import PolygonIcon from "../public/static/polygon.svg";
+import AllChainIcon from '../public/static/allchain.svg';
+import EthereumIcon from '../public/static/ethereum.svg';
+import PolygonIcon from '../public/static/polygon.svg';
 import OptimismIcon from '../public/static/optimism.svg';
-import BSCIcon from "../public/static/bsc.svg";
+import BSCIcon from '../public/static/bsc.svg';
 import ZkevmIcon from '../public/static/zkevm.svg';
-import ArbitrumIcon from "../public/static/arbitrum.svg";
+import ArbitrumIcon from '../public/static/arbitrum.svg';
+import FuseIcon from '../public/static/fuse.svg';
+import CyberIcon from '../public/static/cyber.svg';
 
 export const ROUTES = {
   HOME: '/',
@@ -16,7 +18,7 @@ export const ROUTES = {
 
 export const DAPP_LINKS = {
   CHANNELS: 'https://app.push.org/#/channels',
-  DAPP_CHANNEL:'https://app.push.org/channels?search=',
+  DAPP_CHANNEL: 'https://app.push.org/channels?search=',
   CHATS: 'https://app.push.org/#/chat',
 };
 
@@ -28,19 +30,17 @@ export const CHAIN_LIST = [
   },
   {
     image: EthereumIcon,
-    chain: 'Ethereum Network',
-    //value: 'ETH_TEST_GOERLI',
+    chain: 'Ethereum Mainnet',
     value: 'ETH_MAINNET',
   },
   {
     image: PolygonIcon,
-    chain: 'Polygon Network',
-    //value: 'POLYGON_TEST_MUMBAI',
+    chain: 'Polygon Mainnet',
     value: 'POLYGON_MAINNET',
   },
   {
     image: BSCIcon,
-    chain: 'BNB Network',
+    chain: 'BNB Mainnet',
     value: 'BSC_MAINNET',
   },
   // {
@@ -48,16 +48,26 @@ export const CHAIN_LIST = [
   //   chain: 'Optimism Network',
   //   value: 'OPTIMISM_MAINNET',
   // },
-  // {
-  //   image: ArbitrumIcon,
-  //   chain: 'Arbitrum Network',
-  //   value: 'ARBITRUMONE_MAINNET',
-  // },
-  // {
-  //   image: ZkevmIcon,
-  //   chain: 'Polygon zkEVM Network',
-  //   value: 'POLYGON_ZK_EVM_MAINNET',
-  // },
+  {
+    image: ArbitrumIcon,
+    chain: 'Arbitrum Mainnet',
+    value: 'ARBITRUMONE_MAINNET',
+  },
+  {
+    image: ZkevmIcon,
+    chain: 'Polygon zkEVM Mainnet',
+    value: 'POLYGON_ZK_EVM_MAINNET',
+  },
+  {
+    image: FuseIcon,
+    chain: 'Fuse Mainnet',
+    value: 'FUSE_MAINNET',
+  },
+  {
+    image: CyberIcon,
+    chain: 'Cyber Mainnet',
+    value: 'CYBER_CONNECT_MAINNET',
+  },
 ];
 
 export const CREDENTIALKEYS = {
