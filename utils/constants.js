@@ -9,7 +9,7 @@ import FuseIcon from '../public/static/fuse.svg';
 import CyberIcon from '../public/static/cyber.svg';
 
 export const ROUTES = {
-  HOME: '/',
+  HOME: '/home',
   LOGIN: '/login',
   ERROR: '*',
   ADMIN: '/admin',

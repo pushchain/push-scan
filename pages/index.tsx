@@ -7,7 +7,9 @@ import { ROUTES } from '../utils/constants';
 
 export default function Home() {
   const router = useRouter();
+
   useEffect(() => {
     router.push(ROUTES.DASHBOARD, undefined, { shallow: true });
-  });
+    router.push(ROUTES.HOME, undefined, { shallow: true });
+  }, [router]);
 }

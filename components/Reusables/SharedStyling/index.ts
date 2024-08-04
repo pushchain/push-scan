@@ -247,6 +247,20 @@ export const DashBoardContainer = styled(ItemVV2)`
   }
 `;
 
+export const HomeContainer = styled(ItemVV2)`
+  width: 100%;
+  height: auto;
+  justify-content: flex-start;
+
+  @media (min-width: 310px) {
+    padding: 0px 24px !important;
+  }
+  @media (min-width: 1024px) {
+    padding: 0px 70px !important;
+  }
+`;
+
+
 export const Text = styled.p<TextType>`
   font-size: ${(props) => props.size || '15px'};
   font-weight: ${(props) => props.weight || 400};

@@ -1,5 +1,6 @@
 // External Library imports
 import { createGlobalStyle } from 'styled-components';
+import { blocksColors, getBlocksCSSVariables } from '../blocks';
 
 export const GlobalStyles = createGlobalStyle`
   @font-face {
@@ -27,7 +28,7 @@ export const GlobalStyles = createGlobalStyle`
     font-family:  'Strawford', Helvetica, sans-serif;
     transition: all 0.2s linear;
   }
-  *{
-    
+  :root {
+    ${(props) => getBlocksCSSVariables(props.theme.blocksTheme)}
   }
   `;
