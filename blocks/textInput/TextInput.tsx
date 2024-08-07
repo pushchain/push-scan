@@ -182,7 +182,6 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
           success={success}
         >
           <InputContainer>
-            {icon}
             <input
               type={type}
               disabled={!!disabled}
@@ -192,6 +191,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
               onChange={onChange}
               value={value}
             />
+            {icon}
           </InputContainer>
           {onClear && <CrossFilled onClick={() => onClear?.()} />}
         </StyledTextInput>

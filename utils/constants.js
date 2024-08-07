@@ -11,9 +11,11 @@ import CyberIcon from '../public/static/cyber.svg';
 export const ROUTES = {
   HOME: '/home',
   LOGIN: '/login',
-  ERROR: '*',
   ADMIN: '/admin',
   DASHBOARD: '/dashboard',
+  TRANSACTION_DETAILS: '/transactions',
+  BLOCKS_DETAILS: '/blocks',
+  ERROR: '*',
 };
 
 export const DAPP_LINKS = {

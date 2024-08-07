@@ -11,5 +11,8 @@ export default function Home() {
   useEffect(() => {
     router.push(ROUTES.DASHBOARD, undefined, { shallow: true });
     router.push(ROUTES.HOME, undefined, { shallow: true });
+    router.push(ROUTES.TRANSACTION_DETAILS, undefined, { shallow: true });
+    router.push(ROUTES.BLOCKS_DETAILS, undefined, { shallow: true });
+
   }, [router]);
 }

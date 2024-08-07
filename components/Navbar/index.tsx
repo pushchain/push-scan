@@ -111,6 +111,19 @@ export default function Navbar() {
                 border: 'none',
               }}
               onClick={() => {
+                router.push(ROUTES.HOME);
+              }}
+            >
+              Home
+            </Button>
+            <Button
+              variant="outlined"
+              style={{
+                marginRight: '5px',
+                color: theme.text.primary,
+                border: 'none',
+              }}
+              onClick={() => {
                 router.push(ROUTES.DASHBOARD);
               }}
             >

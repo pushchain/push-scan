@@ -1,4 +1,4 @@
-import { IconColors } from 'blocks/theme/Theme.types';
+import { IconColors } from './../../blocks/theme/Theme.types';
 
 export type IconProps = {
   /** Set icon fill color from design system */
