@@ -91,7 +91,7 @@ export default function LiveBlocks() {
             flexDirection="row"
             padding="spacing-xs"
             justifyContent="space-between"
-            gap="spacing-xxl"
+            gap="spacing-xs"
           >
             <Text variant='os-bold' color='text-tertiary'>BLOCK HASH</Text>
             <Text variant='os-bold' color='text-tertiary'>VALIDATOR</Text>
@@ -110,7 +110,7 @@ export default function LiveBlocks() {
               padding="spacing-xs"
               justifyContent="space-between"
               alignItems="center"
-              gap="spacing-xxl"
+              gap="spacing-xs"
               >
               <Text variant='bs-regular' color="text-primary">{dt.blockHash}</Text>
               <Text variant='bs-regular' color="text-primary">{dt.validator}</Text>

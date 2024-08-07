@@ -15,7 +15,8 @@ export const ROUTES = {
   DASHBOARD: '/dashboard',
   TRANSACTIONS: '/transactions',
   TRANSACTION_DETAILS: '/transactions/address',
-  BLOCKS_DETAILS: '/blocks',
+  BLOCKS: '/blocks',
+  BLOCKS_DETAILS: '/blocks/address',
   ERROR: '*',
 };
 

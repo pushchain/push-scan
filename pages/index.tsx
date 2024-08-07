@@ -15,6 +15,7 @@ export default function Home() {
     router.push(ROUTES.TRANSACTIONS, undefined, { shallow: true });
     router.push(ROUTES.TRANSACTIONS_DETAILS, undefined, { shallow: true });
 
+    router.push(ROUTES.BLOCKS, undefined, { shallow: true });
     router.push(ROUTES.BLOCKS_DETAILS, undefined, { shallow: true });
 
   }, [router]);

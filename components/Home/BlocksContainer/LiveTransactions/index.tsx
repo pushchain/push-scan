@@ -98,7 +98,7 @@ export default function LiveTransactions() {
             padding="spacing-xs"
             justifyContent="space-between"
             alignSelf="stretch"
-            gap="spacing-xxl"
+            gap="spacing-xs"
           >
             <Text variant='os-bold' color='text-tertiary'>STATUS</Text>
             <Text variant='os-bold' color='text-tertiary'>Tx HASH</Text>
@@ -118,7 +118,7 @@ export default function LiveTransactions() {
               padding="spacing-xs"
               justifyContent="space-between"
               alignItems="center"
-              gap="spacing-xxl"
+              gap="spacing-xs"
               >
               <Text variant='bs-regular' color="text-primary">{dt.status}</Text>
               <Text variant='bs-regular' color="text-primary">{dt.txHash}</Text>
