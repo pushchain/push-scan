@@ -16,7 +16,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Push Transaction detail</title>
+        <title>Push Transactions</title>
       </Head>
       <Layout>
         <TransactionView />

@@ -13,7 +13,8 @@ export const ROUTES = {
   LOGIN: '/login',
   ADMIN: '/admin',
   DASHBOARD: '/dashboard',
-  TRANSACTION_DETAILS: '/transactions',
+  TRANSACTIONS: '/transactions',
+  TRANSACTION_DETAILS: '/transactions/address',
   BLOCKS_DETAILS: '/blocks',
   ERROR: '*',
 };
