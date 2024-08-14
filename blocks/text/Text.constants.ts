@@ -176,6 +176,14 @@ export const textVariants = {
     letterSpacing: null,
     textTransform: null,
   },
+  'h4-regular-logo': {
+    fontSize: '20px',
+    fontStyle: null,
+    fontWeight: '400',
+    lineHeight: '160px',
+    letterSpacing: "-0.402px",
+    textTransform: null,
+  },
   'h5-regular': {
     fontSize: '16px',
     fontStyle: null,

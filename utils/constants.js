@@ -28,11 +28,6 @@ export const DAPP_LINKS = {
 
 export const CHAIN_LIST = [
   {
-    image: AllChainIcon,
-    chain: 'All Networks',
-    value: 'All',
-  },
-  {
     image: EthereumIcon,
     chain: 'Ethereum Mainnet',
     value: 'ETH_MAINNET',

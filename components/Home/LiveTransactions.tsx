@@ -1,21 +1,11 @@
 // React, NextJS imports
 import React from 'react';
-
-// External Library imports
-import { useTheme } from 'styled-components';
-import { Divider, useMediaQuery } from '@mui/material';
-import { ThemeType } from '../../../../types/theme';
+import { Divider } from '@mui/material';
 
 // Internal Components imports
-import { useTheme as getTheme } from '../../../../contexts/ThemeContext';
-import { Box, Text, ArrowUpRight } from '../../../../blocks';
+import { Box, Text, Front } from '../../blocks';
 
 export default function LiveTransactions() {
-  const isMobile = useMediaQuery('(max-width:480px)');
-  const { isDarkMode } = getTheme();
-
-  const theme = useTheme() as ThemeType;
-
   const overViewData = [
     {
       status: "Success",
@@ -95,7 +85,7 @@ export default function LiveTransactions() {
           <Box
             display="flex"
             flexDirection="row"
-            padding="spacing-xs"
+            padding="spacing-xs spacing-none"
             justifyContent="space-between"
             alignSelf="stretch"
             gap="spacing-xs"
@@ -115,7 +105,7 @@ export default function LiveTransactions() {
             <Box
               display="flex"
               flexDirection="row"
-              padding="spacing-xs"
+              padding="spacing-xs spacing-none"
               justifyContent="space-between"
               alignItems="center"
               gap="spacing-xs"
@@ -141,7 +131,7 @@ export default function LiveTransactions() {
         justifyContent="flex-end"
       >
         <Text variant='bes-semibold' color="text-brand-medium">View All Transactions</Text>
-        <ArrowUpRight></ArrowUpRight>
+        <Front />
       </Box>
     </Box>
   )

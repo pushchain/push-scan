@@ -2,18 +2,28 @@
 import React from 'react';
 
 // External Library imports
-import { Grid } from '@mui/material';
+import { Box, Text, Add, CaretLeft, CaretRight } from '../blocks';
+import { useMediaQuery, useScrollTrigger } from '@mui/material';
 
 // Internal Components imports
 import FooterSection from '../sections/Footer';
 import HeaderSection from '../sections/Header';
 
 export default function Layout({ children }) {
+  const isMobile = useMediaQuery('(max-width:480px)');
+
   return (
-    <Grid width="100%">
+    <Box
+      display="flex"
+      flexDirection="column"
+      alignItems="center"
+      justifyContent="space-between"
+      height="100vh"
+      margin={`spacing-none ${isMobile ? 'spacing-xs' : 'spacing-xxxl'}`}
+    >
       <HeaderSection />
       {children}
       <FooterSection />
-    </Grid>
+    </Box>
   );
 }

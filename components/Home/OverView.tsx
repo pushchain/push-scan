@@ -1,29 +1,13 @@
-// React, NextJS imports
 import React from 'react';
+import { Divider, useMediaQuery } from '@mui/material';
+import { Box, Text } from '../../blocks';
 
-// External Library imports
-import { useTheme } from 'styled-components';
-import { Divider, useMediaQuery, useScrollTrigger } from '@mui/material';
-import { Box, Text } from '../../../blocks';
-
-// Internal Components imports
-import { useTheme as getTheme } from '../../../contexts/ThemeContext';
-import { ThemeType } from '../../../types/theme';
-import { HorizontalLine } from '../../Reusables/SharedStyling';
-
-export default function OverViewSet() {
-  
-  const { isDarkMode } = getTheme();
+export default function OverView() {
   const isMobile = useMediaQuery('(max-width:480px)');
-
-  const theme = useTheme() as ThemeType;
-
-  console.log("theme : ", console.log(theme))
-
   return (
     <Box
       display="flex"
-      flexDirection="row"
+      flexDirection={isMobile ? "column" : "row"}
       justifyContent="space-between"
       gap="spacing-xxxs"
       padding="spacing-sm"

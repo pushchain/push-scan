@@ -1,13 +1,11 @@
-// React, NextJS imports
 import React from 'react';
-// External Library imports
-import { useMediaQuery } from '@mui/material';
-import SearchContainer from '../../components/Home/SearchContainer';
-import BlocksContainer from '../../components/Home/BlocksContainer';
-import { Box } from '../../blocks';
+import { Box, Text } from '../../blocks';
+import SearchBar from '../../components/Home/SearchBar'
+import OverView from '../../components/Home/OverView'
+import LiveBlocks from '../../components/Home/LiveBlocks'
+import LiveTransactions from '../../components/Home/LiveTransactions'
 
 const Home = () => {
-  const isMobile = useMediaQuery('(max-width:480px)');
   return (
     <Box
       width="100%"
@@ -15,10 +13,38 @@ const Home = () => {
       display="flex"
       flexDirection="column"
       gap="spacing-xxxl"
-      padding="spacing-xxxl"
     >
-      <SearchContainer />
-      <BlocksContainer />
+      <Box
+        display="flex"
+        flexDirection="column"
+        justifyContent="flex-start"
+        alignItems="flex-start"
+        gap="spacing-xxxl"
+        width="100%"
+      >
+        <Box
+          display="flex"
+          flexDirection="column"
+          gap="spacing-xs"
+          width="100%"
+        >
+          <Text variant="h3-semibold" color='text-primary'>Push Blockchain Explorer</Text>
+          <SearchBar />
+        </Box>
+        
+        <OverView />
+      </Box>
+
+      <Box
+        width="100%"
+        display="flex"
+        flexDirection="row"
+        justifyContent="space-between"
+        gap="spacing-sm"
+      >
+        <LiveBlocks />
+        <LiveTransactions />
+      </Box>
     </Box>
   );
 };

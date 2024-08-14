@@ -18,6 +18,8 @@ export { default as CalendarBlank } from './components/CalendarBlank';
 
 export { default as CaretDown } from './components/CaretDown';
 export { default as CaretUp } from './components/CaretUp';
+export { default as CaretLeft } from './components/CaretLeft';
+export { default as CaretRight } from './components/CaretRight';
 
 export { default as CameraFilled } from './components/CameraFilled';
 

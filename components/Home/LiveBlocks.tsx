@@ -1,22 +1,8 @@
-// React, NextJS imports
 import React from 'react';
-
-// External Library imports
-import { useTheme } from 'styled-components';
-import { Divider, useMediaQuery } from '@mui/material';
-import { ThemeType } from '../../../../types/theme';
-
-// Internal Components imports
-import { OverviewItem } from './liveblocks.styles';
-import { useTheme as getTheme } from '../../../../contexts/ThemeContext';
-import { Box, Text, ArrowUpRight } from '../../../../blocks';
+import { Divider } from '@mui/material';
+import { Box, Text, Front } from '../../blocks';
 
 export default function LiveBlocks() {
-  const isMobile = useMediaQuery('(max-width:480px)');
-  const { isDarkMode } = getTheme();
-
-  const theme = useTheme() as ThemeType;
-
   const overViewData = [
     {
       blockHash: '0556ba4acd62f....',
@@ -89,7 +75,7 @@ export default function LiveBlocks() {
           <Box
             display="flex"
             flexDirection="row"
-            padding="spacing-xs"
+            padding="spacing-xs spacing-none"
             justifyContent="space-between"
             gap="spacing-xs"
           >
@@ -99,26 +85,26 @@ export default function LiveBlocks() {
             <Text variant='os-bold' color='text-tertiary'>AGE</Text>
           </Box>
           {overViewData.map((dt) => 
-          <Box
-            display="flex"
-            flexDirection="column"
-            gap="spacing-xs"
-          >
             <Box
               display="flex"
-              flexDirection="row"
-              padding="spacing-xs"
-              justifyContent="space-between"
-              alignItems="center"
+              flexDirection="column"
               gap="spacing-xs"
-              >
-              <Text variant='bs-regular' color="text-primary">{dt.blockHash}</Text>
-              <Text variant='bs-regular' color="text-primary">{dt.validator}</Text>
-              <Text variant='bs-regular' color="text-primary">{dt.tx}</Text>
-              <Text variant='bs-regular' color="text-tertiary">{dt.age}</Text>
+            >
+              <Box
+                display="flex"
+                flexDirection="row"
+                padding="spacing-xs spacing-none"
+                justifyContent="space-between"
+                alignItems="center"
+                gap="spacing-xs"
+                >
+                <Text variant='bs-regular' color="text-primary">{dt.blockHash}</Text>
+                <Text variant='bs-regular' color="text-primary">{dt.validator}</Text>
+                <Text variant='bs-regular' color="text-primary">{dt.tx}</Text>
+                <Text variant='bs-regular' color="text-tertiary">{dt.age}</Text>
+              </Box>
+              <Divider color="#313338" flexItem orientation='horizontal' />
             </Box>
-            <Divider color="#313338" flexItem orientation='horizontal' />
-          </Box>
           )}
         </Box>
       </Box>
@@ -130,7 +116,7 @@ export default function LiveBlocks() {
         justifyContent="flex-end"
       >
         <Text variant='bes-semibold' color="text-brand-medium">View All Blocks</Text>
-        <ArrowUpRight></ArrowUpRight>
+        <Front />
       </Box>
     </Box>
   )
