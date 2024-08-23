@@ -16,7 +16,7 @@ const Details = (props: TransactionDetailsProps) => {
       display="flex"
       flexDirection="column"
       justifyContent="flex-start"
-      gap="spacing-sm"
+      gap={{initial: "spacing-sm", ml: "spacing-md"}}
     >
       <Text variant="h3-semibold" color='text-primary'>Transaction Details</Text>
       <TXDetails />

@@ -8,8 +8,7 @@ import LiveTransactions from '../../components/Home/LiveTransactions'
 const Home = () => {
   return (
     <Box
-      width="100%"
-      alignItems="center"
+      width="-webkit-fill-available"
       display="flex"
       flexDirection="column"
       gap="spacing-xxxl"
@@ -19,14 +18,13 @@ const Home = () => {
         flexDirection="column"
         justifyContent="flex-start"
         alignItems="flex-start"
-        gap="spacing-xxxl"
-        width="100%"
+        gap={{ ml: "spacing-lg", initial: "spacing-xxxl" }}
       >
         <Box
           display="flex"
           flexDirection="column"
           gap="spacing-xs"
-          width="100%"
+          width="-webkit-fill-available"
         >
           <Text variant="h3-semibold" color='text-primary'>Push Blockchain Explorer</Text>
           <SearchBar />
@@ -38,9 +36,9 @@ const Home = () => {
       <Box
         width="100%"
         display="flex"
-        flexDirection="row"
+        flexDirection={{ initial: "row", ml: "column" }}
         justifyContent="space-between"
-        gap="spacing-sm"
+        gap={{ initial: "spacing-sm", ml: "spacing-xxl" }}
       >
         <LiveBlocks />
         <LiveTransactions />

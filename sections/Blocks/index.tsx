@@ -5,7 +5,7 @@ import BlocksListView from '../../components/Blocks/ListView';
 const Blocks = () => {
   return (
     <Box
-      width="100%"
+      width="-webkit-fill-available"
       display="flex"
       flexDirection="column"
       justifyContent="flex-start"

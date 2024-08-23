@@ -8,6 +8,9 @@ import ArbitrumIcon from '../public/static/arbitrum.svg';
 import FuseIcon from '../public/static/fuse.svg';
 import CyberIcon from '../public/static/cyber.svg';
 
+export const POLL_INTERVAL = 30 * 1000 // 30 seconds
+export const PerPageItems = 10
+
 export const ROUTES = {
   HOME: '/home',
   LOGIN: '/login',

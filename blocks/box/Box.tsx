@@ -1,3 +1,4 @@
+
 import { forwardRef } from 'react';
 import styled from 'styled-components';
 
@@ -6,7 +7,7 @@ import { getBlocksBorder, getBlocksBorderRadius } from '../Blocks.utils';
 import { BoxCSSProps, BoxComponentProps } from './Box.types';
 import { getBoxResponsiveCSS } from './Box.utils';
 import { boxRestrictedCSSPropKeys } from './Box.constants';
-import { colorBrands } from 'blocks/theme/colors/colors.brands';
+import { colorBrands } from '../../blocks/theme/colors/colors.brands';
 
 export type BoxProps = BoxCSSProps & BoxComponentProps & TransformedHTMLAttributes<HTMLDivElement>;
 

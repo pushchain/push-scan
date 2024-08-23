@@ -4,9 +4,9 @@ import styled, { FlattenSimpleInterpolation } from 'styled-components';
 import type { TransformedHTMLAttributes } from '../Blocks.types';
 import type { AlertVariant } from './Alert.types';
 import { alertVariants } from './Alert.utils';
-import { Cross } from 'blocks/icons';
-import { HoverableSVG } from 'blocks/hoverableSVG';
-import { getTextVariantStyles } from 'blocks/Blocks.utils';
+import { Cross } from '../../blocks/icons';
+import { HoverableSVG } from '../../blocks/hoverableSVG';
+import { getTextVariantStyles } from '../../blocks/Blocks.utils';
 
 export type AlertProps = {
   /* Additional prop from styled components to apply custom css to Alert */

@@ -9,7 +9,7 @@ import {
   BlocksGapType,
 } from '../Blocks.types';
 import { FlattenSimpleInterpolation } from 'styled-components';
-import { SurfaceColors, TextColors } from 'blocks/theme/Theme.types';
+import { SurfaceColors, TextColors } from '../../blocks/theme/Theme.types';
 
 export type BoxResponsiveProps = {
   /* Sets align-items css property */

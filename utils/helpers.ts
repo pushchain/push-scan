@@ -3,6 +3,12 @@ import { format, formatDistanceToNow } from 'date-fns';
 import { replace } from 'lodash';
 import numeral from 'numeral';
 
+type Signer = {
+  sig: string;
+  node: string;
+  role: number;
+};
+
 export function fDate(date) {
   return format(new Date(date), 'dd MMMM yyyy');
 }
@@ -64,4 +70,35 @@ export default function getDatesArray({
   }
 
   return dateArray;
+}
+
+export function isErrorWithMessage(error: unknown): error is { message: string } {
+  return typeof error === 'object' && error !== null && 'message' in error;
+}
+
+export function getValidatorNode(signers: Signer[]) {
+  const signer = signers.find(signer => signer.role === 1);
+  return signer?.node
+}
+
+export function centerMaskString(str) {
+  // Check if the string length is more than 2 to mask characters
+  if (str.length > 14) {
+    const start = str.substring(0, 10);
+    const end = str.substring(str.length - 7);
+    return start + '...' + end;
+  }
+  // If the string is too short, return it as is
+  return str;
+}
+
+export function rightMaskString(str) {
+  // Check if the string length is more than 15 to mask the remaining characters
+  if (str.length > 15) {
+      const visiblePart = str.substring(0, 15);
+      const maskedPart = '...';
+      return visiblePart + maskedPart;
+  }
+  // If the string is too short to mask after 15 characters, return it as is
+  return str;
 }

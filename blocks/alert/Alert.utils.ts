@@ -1,6 +1,6 @@
 import { AlertVariant } from './Alert.types';
 import { IconProps, InfoFilled, TickCircleFilled, WarningCircleFilled } from '../icons';
-import { ThemeColors } from 'blocks/theme/Theme.types';
+import { ThemeColors } from '../../blocks/theme/Theme.types';
 import { FC } from 'react';
 
 export const alertVariants: Record<

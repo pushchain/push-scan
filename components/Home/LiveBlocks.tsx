@@ -1,60 +1,15 @@
 import React from 'react';
-import { Divider } from '@mui/material';
-import { Box, Text, Front } from '../../blocks';
+import { Box, Text, Front, Separator } from '../../blocks';
+import { useRouter } from 'next/router'
+import Link from 'next/link'
+import { useLiveBlocks } from '../../hooks/useBlocks';
+import moment from 'moment';
+import { getValidatorNode } from '../../utils/helpers'
+import { centerMaskString, rightMaskString } from '../../utils/helpers'
 
 export default function LiveBlocks() {
-  const overViewData = [
-    {
-      blockHash: '0556ba4acd62f....',
-      validator: '0556b...96e5659bf',
-      tx: 460,
-      age: '2s ago'
-    },
-    {
-      blockHash: '0556ba4acd62f....',
-      validator: '0556b...96e5659bf',
-      tx: 660,
-      age: '6s ago'
-    },
-    {
-      blockHash: '0556ba4acd62f....',
-      validator: '0556b...96e5659bf',
-      tx: 660,
-      age: '9s ago'
-    },
-    {
-      blockHash: '0556ba4acd62f....',
-      validator: '0556b...96e5659bf',
-      tx: 605,
-      age: '2m ago'
-    },
-    {
-      blockHash: '0556ba4acd62f....',
-      validator: '0556b...96e5659bf',
-      tx: 60,
-      age: '33m ago'
-    },
-    {
-      blockHash: '0556ba4acd62f....',
-      validator: '0556b...96e5659bf',
-      tx: 234,
-      age: '45m ago'
-    },
-
-    {
-      blockHash: '0556ba4acd62f....',
-      validator: '0556b...96e5659bf',
-      tx: 2,
-      age: '48m ago'
-    },
-    {
-      blockHash: '0556ba4acd62f....',
-      validator: '0556b...96e5659bf',
-      tx: 789,
-      age: '52m ago'
-    },
-  ];
-
+  const router = useRouter()
+  const { data, error, isLoading, isError } = useLiveBlocks();    
   return (
     <Box
       display="flex"
@@ -84,11 +39,12 @@ export default function LiveBlocks() {
             <Text variant='os-bold' color='text-tertiary'>TX</Text>
             <Text variant='os-bold' color='text-tertiary'>AGE</Text>
           </Box>
-          {overViewData.map((dt) => 
+          {data?.blocks?.map((dt) => 
             <Box
               display="flex"
               flexDirection="column"
               gap="spacing-xs"
+              key={dt.blockHash}
             >
               <Box
                 display="flex"
@@ -97,25 +53,29 @@ export default function LiveBlocks() {
                 justifyContent="space-between"
                 alignItems="center"
                 gap="spacing-xs"
-                >
-                <Text variant='bs-regular' color="text-primary">{dt.blockHash}</Text>
-                <Text variant='bs-regular' color="text-primary">{dt.validator}</Text>
-                <Text variant='bs-regular' color="text-primary">{dt.tx}</Text>
-                <Text variant='bs-regular' color="text-tertiary">{dt.age}</Text>
+                onClick={() => router.push(`/blocks/${dt.blockHash}`)}
+              >
+                <Text variant='bs-regular' color="text-primary">{rightMaskString(dt.blockHash)}</Text>
+                <Text variant='bs-regular' color="text-primary">{centerMaskString(getValidatorNode(dt.blockDataAsJson?.signersList))}</Text>
+                <Text variant='bs-regular' color="text-primary">{dt.totalNumberOfTxns}</Text>
+                <Text variant='bs-regular' color="text-tertiary">{moment(dt.ts * 1000).fromNow()}</Text>
               </Box>
-              <Divider color="#313338" flexItem orientation='horizontal' />
+              <Separator orientation="horizontal" />
             </Box>
           )}
         </Box>
       </Box>
+
       <Box
         display="flex"
         flexDirection="row"
         gap="spacing-xxxs"
         color="text-brand-medium"
-        justifyContent="flex-end"
+        justifyContent={{initial: "flex-end", ml: "flex-start"}}
       >
-        <Text variant='bes-semibold' color="text-brand-medium">View All Blocks</Text>
+        <Link href='/blocks'>
+          <Text variant='bes-semibold' color="text-brand-medium">View All Blocks</Text>
+        </Link>
         <Front />
       </Box>
     </Box>

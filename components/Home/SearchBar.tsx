@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import { Box, TextInput, Search } from '../../blocks';
 import { ethers } from 'ethers';
+import { useDebounce } from 'react-use';
 
 export default function SearchBar() {
   const [query, setQuery] = useState('');
@@ -9,10 +10,16 @@ export default function SearchBar() {
   const getFormattedQuery = useCallback((qry: string) => {
     if (!qry) return {};
     const isAddress = ethers.isAddress(qry);
-    const key = isAddress ? 'wallet' : 'twitter';
+    console.log("isAddress: ", isAddress)
+
+    const key = isAddress ? 'wallet' : 'transaction';
     const value = isAddress ? `eip155:${qry}` : qry;
+    console.log("{ [key]: value } :::::", { [key]: value })
+
     return { [key]: value };
   }, []);
+
+  useDebounce(() => setDebouncedQuery(getFormattedQuery(query)), 500, [query]);
 
   return (
       <Box

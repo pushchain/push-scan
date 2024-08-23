@@ -1,7 +1,7 @@
 // React, NextJS imports
 import React, { FC, useRef, useState, ReactNode, useEffect } from 'react';
 
-import { Box, Select, Text } from '../../blocks';
+import { Box, Text } from '../../blocks';
 import Ethereum from '../../blocks/illustrations/components/Ethereum';
 import Polygon from '../../blocks/illustrations/components/Polygon';
 import BNB from '../../blocks/illustrations/components/BNB';
@@ -42,10 +42,12 @@ export default function ChainsDropDown() {
     const [chain, setChain] = useState(networkOptions[0].value);
 
     return (
-        <Select
-            options={networkOptions}
-            value={chain}
-            onSelect={(value) => setChain(value)}
-        />
+        <Box width="100%">
+            {/* <Select
+                options={networkOptions}
+                value={chain}
+                onSelect={(value) => setChain(value)}
+            /> */}
+        </Box>
     )
 }

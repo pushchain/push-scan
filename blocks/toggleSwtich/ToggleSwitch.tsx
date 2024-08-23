@@ -4,7 +4,7 @@ import styled, { FlattenSimpleInterpolation } from 'styled-components';
 import * as Switch from '@radix-ui/react-switch';
 
 import { TextVariants, textVariants } from '../text';
-import { ThemeColors } from 'blocks/theme/Theme.types';
+import { ThemeColors } from '../../blocks/theme/Theme.types';
 
 export type ToggleSwitchProps = {
   /* Additional prop from styled components to apply custom css to Toggle switch */

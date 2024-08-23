@@ -1,69 +1,16 @@
 // React, NextJS imports
 import React from 'react';
 import { Divider } from '@mui/material';
-
-// Internal Components imports
-import { Box, Text, Front } from '../../blocks';
+import { Box, Text, Front, Tag, Separator } from '../../blocks';
+import { useRouter } from 'next/router'
+import Link from 'next/link'
+import { useLiveTransactions } from '../../hooks/useLiveTransactions';
+import moment from 'moment';
+import { centerMaskString, rightMaskString } from '../../utils/helpers'
 
 export default function LiveTransactions() {
-  const overViewData = [
-    {
-      status: "Success",
-      txHash: '0556ba4acd62f....',
-      from: '0556b...96e5659bf',
-      to: '0556b...96e5659bf',
-      age: '2s ago'
-    },
-    {
-      status: "Success",
-      txHash: '0556ba4acd62f....',
-      from: '0556b...96e5659bf',
-      to: '0556b...96e5659bf',
-      age: '2s ago'
-    },
-    {
-      status: "Success",
-      txHash: '0556ba4acd62f....',
-      from: '0556b...96e5659bf',
-      to: '0556b...96e5659bf',
-      age: '2s ago'
-    },
-    {
-      status: "Success",
-      txHash: '0556ba4acd62f....',
-      from: '0556b...96e5659bf',
-      to: '0556b...96e5659bf',
-      age: '2s ago'
-    },
-    {
-      status: "Success",
-      txHash: '0556ba4acd62f....',
-      from: '0556b...96e5659bf',
-      to: '0556b...96e5659bf',
-      age: '2s ago'
-    },
-    {
-      status: "Success",
-      txHash: '0556ba4acd62f....',
-      from: '0556b...96e5659bf',
-      to: '0556b...96e5659bf',
-      age: '2s ago'
-    },
-    {
-      status: "Success",
-      txHash: '0556ba4acd62f....',
-      from: '0556b...96e5659bf',
-      to: '0556b...96e5659bf',
-      age: '2s ago'
-    },
-    {
-      status: "Success",
-      txHash: '0556ba4acd62f....',
-      from: '0556b...96e5659bf',
-      to: '0556b...96e5659bf',
-      age: '2s ago'
-    },
-  ];
+  const router = useRouter()
+  const { data, error, isLoading, isError } = useLiveTransactions({ lastTs: null });
 
   return (
     <Box
@@ -93,33 +40,38 @@ export default function LiveTransactions() {
             <Text variant='os-bold' color='text-tertiary'>STATUS</Text>
             <Text variant='os-bold' color='text-tertiary'>Tx HASH</Text>
             <Text variant='os-bold' color='text-tertiary'>FROM</Text>
-            <Text variant='os-bold' color='text-tertiary'>TO</Text>
-            <Text variant='os-bold' color='text-tertiary'>AGE</Text>
+            <Text display={{ ml: 'none', dp: 'block' }} variant='os-bold' color='text-tertiary'>TO</Text>
+            <Text display={{ ml: 'none', dp: 'block' }} variant='os-bold' color='text-tertiary'>AGE</Text>
           </Box>
-          {overViewData.map((dt) => 
-          <Box
-            display="flex"
-            flexDirection="column"
-            gap="spacing-xs"
-          >
+          {data?.transactions.map((dt) => 
             <Box
               display="flex"
-              flexDirection="row"
-              padding="spacing-xs spacing-none"
-              justifyContent="space-between"
-              alignItems="center"
+              flexDirection="column"
               gap="spacing-xs"
+              key={dt.txHash}
+            >
+              <Box
+                display="flex"
+                flexDirection="row"
+                padding="spacing-xs spacing-none"
+                justifyContent="space-between"
+                alignItems="center"
+                gap="spacing-xs"
+                onClick={() => router.push(`/transactions/${dt.txhash}`)}
               >
-              <Text variant='bs-regular' color="text-primary">{dt.status}</Text>
-              <Text variant='bs-regular' color="text-primary">{dt.txHash}</Text>
-              <Text variant='bs-regular' color="text-primary">{dt.from}</Text>
-              <Text variant='bs-regular' color="text-primary">{dt.to}</Text>
-              <Text variant='bs-regular' color="text-tertiary">{dt.age}</Text>
-            </Box>
-            <Divider color="#313338" flexItem orientation='horizontal' />
-          </Box>
-            
+                <Tag label={dt.status} variant={dt.status.toLowerCase()}></Tag>
+                <Text variant='bs-regular' color="text-primary">{rightMaskString(dt.txHash)}</Text>
+                <Text variant='bs-regular' color="text-primary">{centerMaskString(dt.from)}</Text>
+                <Box>
+                  <Text display={{ ml: 'none', dp: 'block' }} variant='bs-regular' color="text-primary">{centerMaskString(dt?.recipients[0])}</Text>
+                  { dt?.recipients.length > 1 && ( <Text variant='bs-regular' color="text-tertiary">{ `+ ${dt?.recipients.length - 1} more`}</Text>) }
+                  
+                </Box>
+                <Text display={{ ml: 'none', dp: 'block' }} variant='bs-regular' color="text-tertiary">{moment(dt.ts * 1000).fromNow()}</Text>
+              </Box>
 
+              <Separator orientation="horizontal" />
+            </Box>
           )}
         </Box>
       </Box>
@@ -128,9 +80,11 @@ export default function LiveTransactions() {
         flexDirection="row"
         gap="spacing-xxxs"
         color="text-brand-medium"
-        justifyContent="flex-end"
+        justifyContent={{initial: "flex-end", ml: "flex-start"}}
       >
-        <Text variant='bes-semibold' color="text-brand-medium">View All Transactions</Text>
+        <Link href='/transactions'>
+          <Text variant='bes-semibold' color="text-brand-medium">View All Transactions</Text>
+        </Link>
         <Front />
       </Box>
     </Box>

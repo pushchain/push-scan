@@ -18,8 +18,9 @@ export default function Layout({ children }) {
       flexDirection="column"
       alignItems="center"
       justifyContent="space-between"
-      height="100vh"
+      height="100%"
       margin={`spacing-none ${isMobile ? 'spacing-xs' : 'spacing-xxxl'}`}
+      gap="spacing-lg"
     >
       <HeaderSection />
       {children}

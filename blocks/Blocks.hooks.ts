@@ -1,4 +1,4 @@
-import { themeDark, themeLight } from './../theme/palette';
+import { themeDark, themeLight } from '../theme/palette';
 import { useTheme } from 'styled-components';
 import { ThemeMode } from './Blocks.types';
 

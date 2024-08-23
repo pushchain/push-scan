@@ -21,9 +21,10 @@ import {
   SidebarContainer,
 } from './navbar.styled';
 import { ThemeType } from '../../types/theme';
-import { Box, Select, Text } from '../../blocks';
+import { Box, Select, Text, Lozenge } from '../../blocks';
 import SearchBar from '../Home/SearchBar'
 import ChainsDropDown from '../Reusables/ChainsDropDown'
+import Link from 'next/link'
 
 export default function Navbar() {
   const { isDarkMode, darkModeToggle } = Theme();
@@ -43,85 +44,136 @@ export default function Navbar() {
   };
 
   return (
-    <Box
-      width="100%"
-      alignItems="center"
-      display="flex"
-      flexDirection="row"
-      justifyContent="space-between"
-    >
+    <>
       <Box
-        display="flex"
-        flexDirection="row"
+        width="100%"
         alignItems="center"
-        gap="spacing-xs"
+        display={{ ml: "none", dp: "flex" }}
+        flexDirection="row"
+        justifyContent="space-between"
       >
         <Box
           display="flex"
           flexDirection="row"
           alignItems="center"
+          gap="spacing-xs"
         >
-          <Logo
-            src="./static/push-icon-v1.svg"
-            sx={{
-              width: isMobile ? 38 : 54,
-              height: isMobile ? 39 : 56,
-              margin: isMobile ? '33px 10px 33px 0px' : '39px 10px 33px 0px',
-            }}
-          />
-          <Text variant='h4-regular' color="text-primary">PushScan</Text>
-        </Box>  
+          <Box
+            display="flex"
+            flexDirection="row"
+            alignItems="center"
+          >
+            <Logo
+              src="./static/push-icon-v1.svg"
+              sx={{
+                width: isMobile ? 38 : 54,
+                height: isMobile ? 39 : 56,
+                margin: isMobile ? '33px 10px 33px 0px' : '39px 10px 33px 0px',
+              }}
+            />
 
-        <Box
-          backgroundColor="surface-brand-subtle"
-          borderRadius='radius-xxs'
-          padding="spacing-xxxs spacing-xs"
-        >
-          <Text variant='os-bold' color='text-brand-bold'>ALPHA</Text>
+            <Text variant='h4-regular' color="text-primary">PushScan</Text>
+
+            <Lozenge 
+              size="small"
+              variant="primary" 
+              css={css`padding: 10px; margin-left: 10px;`}
+            >ALPHA</Lozenge>
+          </Box>
+
+          <ChainsDropDown />
+          
         </Box>
 
-        <ChainsDropDown />
-        
+        <Box
+          display="flex"
+          flexDirection="row"
+          alignItems="center"
+          gap="spacing-sm"
+        > 
+          { asPath !== '/dashboard' && (
+            <Link href="/dashboard">
+              <Text variant="bs-regular">Analytics</Text>
+            </Link>
+          )}
+
+          <DarkModeSwitch
+            checked={isDarkMode}
+            onChange={darkModeToggle}
+            size={28}
+            sunColor="#575D73"
+            moonColor="#FFFFFF"
+          />
+
+          { asPath !== '/home' && <SearchBar /> }
+        </Box>
       </Box>
 
       <Box
-        display="flex"
-        flexDirection="row"
+        width="100%"
         alignItems="center"
-        gap="spacing-sm"
-      > 
-      { asPath !== '/home' && (
-          <Text
-            variant="bs-regular"
-            onClick={() => {
-              router.push(ROUTES.HOME);
-            }}
+        display={{ ml: "flex", dp: "none" }}
+        flexDirection="column"
+        gap="spacing-xs"
+      >
+        <Box
+          width="100%"
+          display="flex"
+          flexDirection="row"
+          justifyContent="space-between"
+        >
+          <Box
+            display="flex"
+            flexDirection="row"
+            alignItems="center"
+            gap="spacing-xs"
           >
-            Home
-          </Text>
-        )}
+            <Box
+              display="flex"
+              flexDirection="row"
+              alignItems="center"
+            >
+              <Logo
+                src="./static/push-icon-v1.svg"
+              />
 
-        { asPath !== '/dashboard' && (
-          <Text
-            variant="bs-regular"
-            onClick={() => {
-              router.push(ROUTES.DASHBOARD);
-            }}
-          >
-            Analytics
-          </Text>
-        )}
+              <Text variant='h4-regular' color="text-primary">PushScan</Text>
 
-        <DarkModeSwitch
-          checked={isDarkMode}
-          onChange={darkModeToggle}
-          size={28}
-          sunColor="#575D73"
-          moonColor="#FFFFFF"
-        />
+              <Lozenge 
+                size="small"
+                variant="primary" 
+                css={css`padding: 10px; margin-left: 10px;`}
+              >ALPHA</Lozenge>
+            </Box>
+          </Box>
+
+          <Box
+            display="flex"
+            flexDirection="row"
+            alignItems="center"
+            gap="spacing-sm"
+          > 
+            { asPath !== '/dashboard' && (
+              <Link href="/dashboard">
+                <Text variant="bs-regular">Analytics</Text>
+              </Link>
+            )}
+
+            <DarkModeSwitch
+              checked={isDarkMode}
+              onChange={darkModeToggle}
+              size={28}
+              sunColor="#575D73"
+              moonColor="#FFFFFF"
+            />
+          </Box>
+        </Box>
+
+        <ChainsDropDown />
 
         { asPath !== '/home' && <SearchBar /> }
       </Box>
-    </Box>
+    </>
+    
   );
 }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Box, Text, Add, CaretLeft, CaretRight } from '../blocks';
+import { Box, Text, Add, PrevIconSlider, NextIconSlider } from '../blocks';
 
 const Pagination = ({ itemsPerPage, totalItems, paginate, currentPage }) => {
     const totalPages = Math.ceil(totalItems / itemsPerPage);
@@ -35,34 +35,35 @@ const Pagination = ({ itemsPerPage, totalItems, paginate, currentPage }) => {
 
     return (
         <Box
+            width="-webkit-fill-available"
             display="flex"
             flexDirection="row"
-            justifyContent="flex-end"
+            justifyContent={{initial: "flex-end", ml: "center" }}
             alignSelf="stretch"
             gap="spacing-xs"
         >
            
-           <CaretLeft onClick={() => currentPage > 1 && paginate(currentPage - 1)} />
+           <PrevIconSlider onClick={() => currentPage > 1 && paginate(currentPage - 1)} />
             {currentPage > 3 && totalPages > 5 && (
                 <>
-                    <Text css={{"margin-top": "3px"}} textAlign="center" variant='bes-semibold' color='text-tertiary' onClick={() => paginate(1)}>1</Text>
-                    {currentPage > 4 && <Text css={{"margin-top": "3px"}} textAlign="center" variant='bes-semibold' color='text-tertiary'>...</Text>}
+                    <Text textAlign="center" variant='bes-semibold' color='text-tertiary' onClick={() => paginate(1)}>1</Text>
+                    {currentPage > 4 && <Text textAlign="center" variant='bes-semibold' color='text-tertiary'>...</Text>}
                 </>
             )}
 
             {pageNumbers.map(number => (
-                <Text css={{"margin-top": "3px"}} textAlign="center" variant='bes-semibold' color='text-tertiary' onClick={() => paginate(number)} key={number}>
+                <Text textAlign="center" variant='bes-semibold' color='text-tertiary' onClick={() => paginate(number)} key={number}>
                     {number}
                 </Text>
             ))}
 
             {currentPage + 3 < totalPages && (
                 <>
-                    <Text css={{"margin-top": "3px"}} textAlign="center" variant='bes-semibold' color='text-tertiary'>...</Text>
-                    <Text css={{"margin-top": "3px"}} textAlign="center" variant='bes-semibold' color='text-tertiary' onClick={() => paginate(totalPages)}>{totalPages}</Text>
+                    <Text textAlign="center" variant='bes-semibold' color='text-tertiary'>...</Text>
+                    <Text textAlign="center" variant='bes-semibold' color='text-tertiary' onClick={() => paginate(totalPages)}>{totalPages}</Text>
                 </>
             )}
-            <CaretRight onClick={() => currentPage < totalPages && paginate(currentPage + 1)} />
+            <NextIconSlider onClick={() => currentPage < totalPages && paginate(currentPage + 1)} />
         </Box>
     );
 };
