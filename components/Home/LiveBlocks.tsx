@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Text, Front, Separator } from '../../blocks';
+import { Box, Text, Front, Separator, Table } from '../../blocks';
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { useLiveBlocks } from '../../hooks/useBlocks';
@@ -9,62 +9,60 @@ import { centerMaskString, rightMaskString } from '../../utils/helpers'
 
 export default function LiveBlocks() {
   const router = useRouter()
-  const { data, error, isLoading, isError } = useLiveBlocks();    
+  const { data, error, isLoading, isError } = useLiveBlocks();
+
+  const columns = [
+    {
+      title: 'BLOCK HASH',
+      dataIndex: 'blockHash',
+      render: (text) => <Text variant='bs-regular' color="text-primary" onClick={() => router.push(`/blocks/${text}`)}>{text}</Text>,
+      cellAlignment: 'flex-start',
+      headerAlignment: 'flex-start',
+      width: '35%'
+    },
+    {
+      title: 'VALIDATOR',
+      dataIndex: 'validator',
+      render: (text) => <Text variant='bs-regular' color="text-primary">{text}</Text>,
+      cellAlignment: 'flex-start',
+      headerAlignment: 'flex-start',
+      width: '35%'
+    },
+    {
+      title: 'TX',
+      dataIndex: 'totalNumberOfTxns',
+      render: (text) => <Text variant='bs-regular' color="text-primary">{text}</Text>,
+      cellAlignment: 'center',
+      headerAlignment: 'center',
+      width: '15%'
+    },
+    {
+      title: 'AGE',
+      dataIndex: 'ts',
+      render: (text) => <Text variant='bs-regular' color="text-tertiary">{moment(text * 1000).fromNow()}</Text>,
+      cellAlignment: 'flex-end',
+      headerAlignment: 'flex-end',
+      width: '15%'
+    },
+  ];
+
+  const dataSource = data?.blocks?.map(block => ({
+    id: block.blockHash,
+    blockHash: block.blockHash,
+    validator: getValidatorNode(block.blockDataAsJson?.signersList), // Define this function or update data mapping accordingly
+    totalNumberOfTxns: block.totalNumberOfTxns,
+    ts: block.ts
+  })) || [];
+
   return (
     <Box
+      css={'flex: 0 0 20%'}
       display="flex"
       flexDirection="column"
       gap="spacing-sm"
     >
-      <Box
-        display="flex"
-        flexDirection="column"
-        gap="spacing-md"
-      >
-        <Text variant='h5-semibold' color="text-primary">Live Blocks</Text>
-        <Box
-          display="flex"
-          flexDirection="column"
-          gap="spacing-xxxs"
-        >
-          <Box
-            display="flex"
-            flexDirection="row"
-            padding="spacing-xs spacing-none"
-            justifyContent="space-between"
-            gap="spacing-xs"
-          >
-            <Text variant='os-bold' color='text-tertiary'>BLOCK HASH</Text>
-            <Text variant='os-bold' color='text-tertiary'>VALIDATOR</Text>
-            <Text variant='os-bold' color='text-tertiary'>TX</Text>
-            <Text variant='os-bold' color='text-tertiary'>AGE</Text>
-          </Box>
-          {data?.blocks?.map((dt) => 
-            <Box
-              display="flex"
-              flexDirection="column"
-              gap="spacing-xs"
-              key={dt.blockHash}
-            >
-              <Box
-                display="flex"
-                flexDirection="row"
-                padding="spacing-xs spacing-none"
-                justifyContent="space-between"
-                alignItems="center"
-                gap="spacing-xs"
-                onClick={() => router.push(`/blocks/${dt.blockHash}`)}
-              >
-                <Text variant='bs-regular' color="text-primary">{rightMaskString(dt.blockHash)}</Text>
-                <Text variant='bs-regular' color="text-primary">{centerMaskString(getValidatorNode(dt.blockDataAsJson?.signersList))}</Text>
-                <Text variant='bs-regular' color="text-primary">{dt.totalNumberOfTxns}</Text>
-                <Text variant='bs-regular' color="text-tertiary">{moment(dt.ts * 1000).fromNow()}</Text>
-              </Box>
-              <Separator orientation="horizontal" />
-            </Box>
-          )}
-        </Box>
-      </Box>
+      <Text variant='h5-semibold' color="text-primary">Live Blocks</Text>
+      <Table columns={columns} dataSource={dataSource} />
 
       <Box
         display="flex"

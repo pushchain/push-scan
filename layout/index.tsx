@@ -2,8 +2,8 @@
 import React from 'react';
 
 // External Library imports
-import { Box, Text, Add, CaretLeft, CaretRight } from '../blocks';
-import { useMediaQuery, useScrollTrigger } from '@mui/material';
+import { Box } from '../blocks';
+import { useMediaQuery } from '@mui/material';
 
 // Internal Components imports
 import FooterSection from '../sections/Footer';

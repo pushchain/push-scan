@@ -5,24 +5,24 @@ import dynamic from 'next/dynamic';
 import Head from 'next/head';
 
 const Layout = dynamic(() => import('../../layout'));
-const TransactionDetailsView = dynamic(() => import('../../sections/Transactions/address'), {
+const BlocksDetailsView = dynamic(() => import('../../sections/Blocks/blockHash'), {
   loading: () => <p>Loading...</p>,
 });
 
-const TransactionDetailsPage = () => {
+const BlocksDetailsPage = () => {
   const router = useRouter();
-  const { address } = router.query; // Accessing the dynamic address parameter
+  const { blockHash } = router.query;
 
   return (
     <>
       <Head>
-        <title>Transaction Details for {address}</title>
+        <title>Blocks Details for {blockHash}</title>
       </Head>
       <Layout>
-        <TransactionDetailsView address={address} />
+        <BlocksDetailsView blockHash={blockHash} />
       </Layout>
     </>
   );
 };
 
-export default TransactionDetailsPage;
+export default BlocksDetailsPage;

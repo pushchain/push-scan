@@ -1,39 +1,33 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Box, TextInput, Search } from '../../blocks';
 import { ethers } from 'ethers';
 import { useDebounce } from 'react-use';
+import { useRouter } from 'next/router'
 
 export default function SearchBar() {
+  const router = useRouter()
+
   const [query, setQuery] = useState('');
-  const [debouncedQuery, setDebouncedQuery] = useState({});
+  const [debouncedQuery, setDebouncedQuery] = useState('');
 
   const getFormattedQuery = useCallback((qry: string) => {
-    if (!qry) return {};
+    if (!qry) return '';
     const isAddress = ethers.isAddress(qry);
-    console.log("isAddress: ", isAddress)
-
-    const key = isAddress ? 'wallet' : 'transaction';
     const value = isAddress ? `eip155:${qry}` : qry;
-    console.log("{ [key]: value } :::::", { [key]: value })
+    console.log(" Search Value: ", value)
 
-    return { [key]: value };
+    return value;
   }, []);
 
   useDebounce(() => setDebouncedQuery(getFormattedQuery(query)), 500, [query]);
-
+  
   return (
-      <Box
-        width="100%"
-        borderRadius='radius-xs'
-        backgroundColor="components-inputs-background-default"
-      >
-        <TextInput
-          placeholder="Search by Address"
-          icon={<Search />}
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-        />
-      </Box>
+    <TextInput
+      placeholder="Search by Address"
+      icon={<Search onClick={() => router.push(`/transactions/search/${debouncedQuery}`)}/>}
+      value={query}
+      onChange={(e) => setQuery(e.target.value)}
+    />
   )
 }
 

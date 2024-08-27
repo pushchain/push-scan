@@ -1,7 +1,21 @@
 import React from 'react';
-import { Box, Text, Tag, CaretDown } from '../../blocks';
+import { Box, Text, Tag } from '../../blocks';
+import { Transaction } from '../../types/transaction';
+import moment from 'moment';
+import { TagVariant } from '../../blocks/tag';
 
-const TXDetails = () => {
+interface IProps {
+    data: Transaction | null | undefined,
+    isLoading: boolean
+}
+
+const TXDetails = (props: IProps) => {
+    let status: TagVariant = "default"
+
+    if (props.data?.status) {
+        status = props.data.status.toLowerCase() as TagVariant
+    }
+
     return (
         <>
             <Box
@@ -10,7 +24,7 @@ const TXDetails = () => {
                 alignItems="flex-start"
                 borderRadius="radius-sm"
                 backgroundColor="surface-primary"
-                gap="spacing-xxxxl"
+                gap="spacing-xxxl"
                 padding="spacing-md"
             >
                 <Box
@@ -30,11 +44,11 @@ const TXDetails = () => {
                     flexDirection="column"
                     gap="spacing-sm"
                 >
-                    <Text variant="bs-regular" color='text-primary'>0x2d2269c5863cc504fef489cca963f3f2beb197b6a80cd1820357d6b5447408df</Text>
-                    <Tag label="success" variant='success'></Tag>
-                    <Text variant="bs-regular" color='text-primary'>0x2d2269c5863cc504fef489cca963f3f2beb197b6a80cd1820357d6b5447408df</Text>
-                    <Text variant="bs-regular" color='text-primary'>Notification</Text>
-                    <Text variant="bs-regular" color='text-tertiary'>40 minutes ago, Sun, Jul 21 2024 18:33:47 GMT</Text>
+                    <Text variant="bs-regular" color='text-primary'>{props.data?.txnHash}</Text>
+                    <Tag label={status} variant={status}></Tag>
+                    <Text variant="bs-regular" color='text-primary'>{props.data?.blockHash}</Text>
+                    <Text variant="bs-regular" color='text-primary'>{props.data?.category}</Text>
+                    <Text variant="bs-regular" color='text-tertiary'>{ props.data?.ts && moment(props.data.ts * 1000).fromNow() }</Text>
                 </Box>
             </Box>
 
@@ -53,7 +67,7 @@ const TXDetails = () => {
                     gap="spacing-xxxs"
                 >
                     <Text variant="bs-semibold" color='text-secondary'>Transaction Hash</Text>
-                    <Text variant="bs-regular" color='text-primary' wrap>0x2d2269c5863cc504fef489cca963f3f2beb197b6a80cd1820357d6b5447408df</Text>
+                    <Text variant="bs-regular" color='text-primary' wrap>{props.data?.txnHash}</Text>
                 </Box>
 
                 <Box
@@ -61,8 +75,8 @@ const TXDetails = () => {
                     flexDirection="column"
                     gap="spacing-xxxs"
                 >
-                    <Text variant="bs-semibold" color='text-secondary'>Status</Text>
-                    <Tag label="success" variant='success'></Tag>
+                    <Text variant="bs-semibold" color='text-secondary'>Status</Text> 
+                    <Tag label={status} variant={status}></Tag>
                 </Box>
 
                 <Box
@@ -71,7 +85,7 @@ const TXDetails = () => {
                     gap="spacing-xxxs"
                 >
                     <Text variant="bs-semibold" color='text-secondary'>Block Hash</Text>
-                    <Text variant="bs-regular" color='text-primary' wrap>0x2d2269c5863cc504fef489cca963f3f2beb197b6a80cd1820357d6b5447408df</Text>
+                    <Text variant="bs-regular" color='text-primary' wrap>{props.data?.blockHash}</Text>
                 </Box>
 
                 <Box
@@ -80,7 +94,7 @@ const TXDetails = () => {
                     gap="spacing-xxxs"
                 >
                     <Text variant="bs-semibold" color='text-secondary'>Category </Text>
-                    <Text variant="bs-regular" color='text-primary'>Notification</Text>
+                    <Text variant="bs-regular" color='text-primary'>{props.data?.category}</Text>
                 </Box>
 
                 <Box
@@ -89,8 +103,7 @@ const TXDetails = () => {
                     gap="spacing-xxxs"
                 >
                     <Text variant="bs-semibold" color='text-secondary'>Timestamp</Text>
-                    <Text variant="bs-regular" color='text-tertiary'>40 minutes ago, Sun, Jul 21 2024 18:33:47 GMT</Text>
-
+                    <Text variant="bs-regular" color='text-tertiary'>{ props.data?.ts && moment(props.data.ts * 1000).fromNow() }</Text>
                 </Box>
             </Box>
         </>

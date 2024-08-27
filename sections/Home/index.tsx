@@ -12,7 +12,8 @@ const Home = () => {
       display="flex"
       flexDirection="column"
       gap="spacing-xxxl"
-    >
+      
+      >
       <Box
         display="flex"
         flexDirection="column"
@@ -37,8 +38,8 @@ const Home = () => {
         width="100%"
         display="flex"
         flexDirection={{ initial: "row", ml: "column" }}
+        gap={{ initial: "spacing-xxxl", ml: "spacing-xxl" }}
         justifyContent="space-between"
-        gap={{ initial: "spacing-sm", ml: "spacing-xxl" }}
       >
         <LiveBlocks />
         <LiveTransactions />

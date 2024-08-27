@@ -15,7 +15,7 @@ const StyledTagContainer = styled.div<{ variant: TagVariant }>`
   background: var(--components-tag-background-${({ variant }) => variant});
   display: flex;
   gap: var(--spacing-xxxs);
-  padding: var(--spacing-none) var(--spacing-xxxs);
+  padding: var(--spacing-xxxs) var(--spacing-xxs);
   width: max-content;
 `;
 

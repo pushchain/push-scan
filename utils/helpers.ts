@@ -2,12 +2,7 @@
 import { format, formatDistanceToNow } from 'date-fns';
 import { replace } from 'lodash';
 import numeral from 'numeral';
-
-type Signer = {
-  sig: string;
-  node: string;
-  role: number;
-};
+import { Signer } from '../types/block'
 
 export function fDate(date) {
   return format(new Date(date), 'dd MMMM yyyy');
@@ -76,8 +71,8 @@ export function isErrorWithMessage(error: unknown): error is { message: string }
   return typeof error === 'object' && error !== null && 'message' in error;
 }
 
-export function getValidatorNode(signers: Signer[]) {
-  const signer = signers.find(signer => signer.role === 1);
+export function getValidatorNode(signers: Signer[] | undefined) {
+  const signer = signers?.find(signer => signer.role === 1);
   return signer?.node
 }
 
@@ -101,4 +96,9 @@ export function rightMaskString(str) {
   }
   // If the string is too short to mask after 15 characters, return it as is
   return str;
+}
+
+export function capitalizeStr(string) {
+  if (!string) return '';
+  return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
 }

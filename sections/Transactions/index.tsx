@@ -23,10 +23,8 @@ const Transactions = (props) => {
       </Box>)}
 
       <Box
-        width="100%"
         display="flex"
         flexDirection="column"
-        justifyContent="flex-start"
         gap="spacing-md"
       >
         <Text variant="h3-semibold" color='text-primary'>Transactions</Text>
