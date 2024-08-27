@@ -1,6 +1,6 @@
 // React, NextJS imports
 import React from 'react';
-import { Box, Text, Front, Tag, Separator, Table } from '../../blocks';
+import { Box, Text, Front, Tag, Separator, Table, Ethereum } from '../../blocks';
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { useLiveTransactions } from '../../hooks/useLiveTransactions';
@@ -32,7 +32,7 @@ export default function LiveTransactions() {
     {
       title: 'FROM',
       dataIndex: 'from',
-      render: (from: string) => <Text variant='bs-regular' color="text-primary">{centerMaskString(from)}</Text>,
+      render: (from: string) => <Box display="flex" flexDirection="row"><Text variant='bs-regular' color="text-primary">{centerMaskString(from)}</Text></Box>,
       cellAlignment: 'center',
       headerAlignment: 'center',
       width: '25%'

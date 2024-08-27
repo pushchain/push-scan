@@ -7,12 +7,33 @@ import { capitalizeStr } from '../../utils/helpers'
 import { useRouter } from 'next/router'
 import moment from 'moment';
 import { TagVariant } from '../../blocks/tag';
+import { Transaction } from '../../types/transaction';
 
-const ListView = () => {
+interface dataProps {
+  transactions: Transaction[],
+  totalPages: number,
+  lastTs: number
+}
+interface IProps {
+  data?: dataProps,
+  search?: true,
+  address?: string
+}
+
+const ListView = (props) => {
   const router = useRouter()
 
-  const [page, setPage] = useState(null);
-  const { data, error, isLoading, isError } = useLiveTransactions({ lastTs: page });
+  const [page, setPage] = useState(1);
+
+
+  let data;
+
+  if (props.search) {
+    data = props.data;
+  } else {
+    const { data: liveData, error, isLoading, isError } = useLiveTransactions({ page });
+    data = liveData;
+  }
 
   const columns = [
     {
@@ -105,7 +126,7 @@ const ListView = () => {
       <Pagination
         itemsPerPage={PerPageItems}
         totalItems={data?.totalPages * PerPageItems}
-        paginate={(page) => setPage(data?.lastTs)}
+        paginate={(page) => setPage(page)}
         currentPage={page}
       />
     </Box>

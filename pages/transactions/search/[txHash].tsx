@@ -10,7 +10,7 @@ const TransactionView = dynamic(() => import('../../../sections/Transactions'), 
   loading: () => <TransactionLoader />,
 });
 
-const TransactionDetailsView = dynamic(() => import('../../../sections/Transactions/txHash'), {
+const TransactionsView = dynamic(() => import('../../../sections/Transactions'), {
     loading: () => <p>Loading...</p>,
   });
 
@@ -27,11 +27,13 @@ export default function Transactions() {
     }
   }, [router.isReady, txHash]);
 
-  console.log(" address : ", address)
+  
   const { data, error, isLoading, isError } = useSearchByAddress({ address });
-  console.log(" data : ", data)
+  
+  
 
-  if (!address) {
+
+  if (!address || data?.transactions.length == 0) {
     return <TransactionLoader />; // Render a loading state or placeholder until address is defined
   }
 
@@ -41,7 +43,7 @@ export default function Transactions() {
         <title>Push Transactions</title>
       </Head>
       <Layout>
-        <TransactionDetailsView txHash={address} search={true} />
+        <TransactionsView address={address} data={data} search={true} />
       </Layout>
     </>
   );

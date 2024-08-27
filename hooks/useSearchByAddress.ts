@@ -24,20 +24,25 @@ export const useSearchByAddress = (params: searchProps) => {
     return useQuery('searchByAddressDetailswee', searchByAddress, {
         cacheTime: 0,
         staleTime: 0,
-        refetchInterval: 5000,
+        refetchInterval: 1000,
         select: (data) => {
-            if (data.blocks && data.blocks.length > 0) {
-                const { blocks } = data;
-                // Creating a summary of the block details
-                const transaction: Transaction = blocks[0].transactions[0]
-
-                return {
-                    transaction
-                }
-            }
-
+            const transactions = data.blocks.flatMap(block =>
+                block.transactions.map(tx => ({
+                    txHash: tx.txnHash,
+                    ts: tx.ts,
+                    blockHash: tx.blockHash,
+                    category: tx.category,
+                    status: tx.status,
+                    source: tx.source,
+                    from: tx.from,
+                    recipients: tx.recipients.recipients.map(recipient => recipient.address)
+                }))
+            );
+            // Sorting transactions by timestamp in descending order
             return {
-                transaction: null
+                transactions: transactions.sort((a, b) => b.ts - a.ts),
+                totalPages: data.totalPages,
+                lastTs: data.lastTs
             }
         }
     }); 
