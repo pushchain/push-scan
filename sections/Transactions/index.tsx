@@ -1,8 +1,8 @@
-import React from 'react';
-import { Box, Text } from '../../blocks';
+import React, { useState } from 'react';
+import { Box, Text, Copy, Tooltip } from '../../blocks';
 import ListView from '../../components/Transactions/ListView';
 import { Transaction } from '../../types/transaction';
-
+import { centerMaskString } from '../../utils/helpers';
 
 interface dataProps {
   transactions: Transaction[],
@@ -17,12 +17,26 @@ interface IProps {
 }
 
 const Transactions = (props) => {
+  const [tooltipText, setToolTipText] = useState('Copy Address');
+
+  const copyAddress = () => {
+    if (props.address) {
+      navigator.clipboard.writeText(props.address);
+      setToolTipText('Copied');
+    }
+    setTimeout(() => {
+      setToolTipText('Copy Address');
+    }, 1000);
+  };
+
+
   return (
 
     <Box
       width="100%"
       display="flex"
       flexDirection="column"
+      gap="spacing-md"
     >
 
       { props.address && (<Box
@@ -32,8 +46,26 @@ const Transactions = (props) => {
         justifyContent="flex-start"
         gap="spacing-md"
       >
-        <Text variant="h3-semibold" color='text-primary'>Address {props.address}</Text>
-        <Text variant="h3-semibold" color='text-primary'>Transactions for {props.address}</Text>
+        <Box
+          display="flex"
+          flexDirection="row"
+          gap="spacing-xxs"
+          alignItems="center"
+        >
+          <Text variant="h3-semibold" color='text-primary'>Address {props.address}</Text>
+          <Tooltip title={tooltipText}>
+            <Box cursor="pointer">
+                <Copy
+                  onClick={copyAddress}
+                  autoSize
+                  size={24}
+                  color="icon-tertiary"
+                />
+            </Box>
+          </Tooltip>
+        </Box>
+
+        <Text variant="h3-semibold" color='text-primary'>Transactions for {centerMaskString(props.address)}</Text>
       </Box>)}
 
       <Box
@@ -41,7 +73,7 @@ const Transactions = (props) => {
         flexDirection="column"
         gap="spacing-md"
       >
-        <Text variant="h3-semibold" color='text-primary'>Transactions</Text>
+        {!props.search && <Text variant="h3-semibold" color='text-primary'>Transactions</Text>}
         <ListView data={props.data} address={props.address} search={props.search} />
       </Box>
     </Box>

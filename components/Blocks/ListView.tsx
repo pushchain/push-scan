@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Text, Table } from '../../blocks';
-import Pagination from '../Pagination';
+import { Box, Text, Table, Pagination } from '../../blocks';
 import { useLiveBlocks } from '../../hooks/useBlocks';
 import { PerPageItems } from '../../utils/constants'
 import { useRouter } from 'next/router'
@@ -10,7 +9,7 @@ import { getValidatorNode } from '../../utils/helpers'
 const Blocks = () => {
   const router = useRouter()
   const [page, setPage] = useState(1);
-  const { data, error, isLoading, isError } = useLiveBlocks();    
+  const { data, error, isLoading, isError } = useLiveBlocks({ page });    
 
   const columns = [
     {
@@ -71,13 +70,19 @@ const Blocks = () => {
         gap="spacing-xs"
     >
         <Table columns={columns} dataSource={dataSource} />
-
-        <Pagination
-          itemsPerPage={PerPageItems}
-          totalItems={data?.totalPages * PerPageItems}
-          paginate={(page) => setPage(page)}
-          currentPage={page}
-        />
+        <Box
+          display="flex"
+          flexDirection="column"
+          justifyContent="flex-end"
+          alignItems="flex-end"
+        >
+          <Pagination
+            pageSize={PerPageItems}
+            current={page}
+            total={data?.totalPages * PerPageItems}
+            onChange={(page) => setPage(page)}
+          />
+        </Box>
     </Box>
   );
 };

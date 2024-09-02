@@ -28,7 +28,7 @@ const Details = (props: BlockDetailsProps) => {
         isLoading={isLoading}
       />
       <Advanced />
-      <ConsensusInfo 
+      <ConsensusInfo
         data={data?.blockDetails}
         isLoading={isLoading}
       />

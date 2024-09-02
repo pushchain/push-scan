@@ -1,10 +1,10 @@
-import { type FC, useRef, useState } from 'react';
+import React, { type FC, useRef, useState } from 'react';
 import styled from 'styled-components';
 import * as RadixTooltip from '@radix-ui/react-tooltip';
 import type { TooltipProps } from './Tooltip.types';
 import { getTooltipPositionalCSS } from './Tooltip.utils';
 import { tooltipCSSPropsKeys } from './Tooltip.constants';
-import { useIsVisible } from 'common';
+import { useIsVisible } from '../../common';
 import { textVariants } from '../text';
 
 const RadixTooltipContent = styled(RadixTooltip.Content).withConfig({

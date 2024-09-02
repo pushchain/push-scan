@@ -5,7 +5,7 @@ export type Column = {
   dataIndex: string;
   cellAlignment?: CSSProperties['justifyContent'];
   headerAlignment?: CSSProperties['justifyContent'];
-  render?: (text: string | string[], record: any) => ReactNode;
+  render?: (text: string, record: any) => ReactNode;
   width?: string;
   fixed?: 'left' | 'right';
 };

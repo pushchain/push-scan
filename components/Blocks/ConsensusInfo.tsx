@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box, Text, Button, Add, Ethereum } from '../../blocks';
 import { BlockDetails } from '../../types/block'
 
@@ -7,8 +7,29 @@ interface IProps {
     isLoading: boolean
 }
 
+const MAX_DISPLAY_NODES = 5 
+const MAX_DISPLAY_CHARS = 700;
+
 const ConsensusInfo = (props: IProps) => {
-    
+    const [showAll, setShowAll] = useState(false);
+    const [showAllPayload, setShowAllPayload] = useState(false);
+
+    const toggleShowAll = () => {
+        setShowAll(!showAll);
+    };
+
+    const toggleShowAllPayload = () => {
+        setShowAllPayload(!showAllPayload);
+    };
+
+    const nodes = props.data?.signers.map((signer) => signer.node) || []
+    const displayedNodes = showAll ? nodes : nodes.slice(0, MAX_DISPLAY_NODES);
+    const showMoreButton = nodes.length > MAX_DISPLAY_NODES;
+
+    const payload = props.data?.blockData || "";
+    const displayedPayload = showAllPayload ? payload : payload.substring(0, MAX_DISPLAY_CHARS);
+    const showMorePayloadButton = payload.length > MAX_DISPLAY_CHARS;
+
     return (
         <>
             <Box
@@ -34,112 +55,24 @@ const ConsensusInfo = (props: IProps) => {
                         flexDirection="column"
                         gap="spacing-xs"
                     >
-                        <Box
-                            display="flex"
-                            flexDirection="row"
-                            gap="spacing-lg"
-                        >
-                            <Text variant="bs-regular" color='text-primary'>0x2d2269c5863cc504fef489cca963f3f2beb197b6a80cd1820357d6b5447408df</Text>
-                            <Button
-                                aria-label="Cancel"
-                                size="extraSmall"
-                                variant="outline"
-                                onClick={() => {}}
-                            >
-                                <Text>Accept</Text>
-                            </Button>
-                        </Box>
+                        {displayedNodes.map((node, index) => (
+                            <Text key={index} variant="bs-regular" color='text-primary'>{node}</Text>
+                        ))}
                         
-                        <Box
-                            display="flex"
-                            flexDirection="row"
-                            gap="spacing-lg"
-                        >
-                            <Text variant="bs-regular" color='text-primary'>0x2d2269c5863cc504fef489cca963f3f2beb197b6a80cd1820357d6b5447408df</Text>
-                            <Button
-                                aria-label="Cancel"
-                                size="extraSmall"
-                                variant="outline"
-                                onClick={() => {}}
+                        {showMoreButton && (
+                            <Box
+                                display="flex"
+                                flexDirection="row"
+                                alignItems="center"
+                                gap="spacing-xxs"
+                                cursor="pointer"
+                                onClick={toggleShowAll}
                             >
-                                <Text>Accept</Text>
-                            </Button>
-                        </Box>
-
-                        <Box
-                            display="flex"
-                            flexDirection="row"
-                            gap="spacing-lg"
-                        >
-                            <Text variant="bs-regular" color='text-primary'>0x2d2269c5863cc504fef489cca963f3f2beb197b6a80cd1820357d6b5447408df</Text>
-                            <Button
-                                aria-label="Cancel"
-                                size="extraSmall"
-                                variant="outline"
-                                onClick={() => {}}
-                            >
-                                <Text>Accept</Text>
-                            </Button>
-                        </Box>
-
-                        <Box
-                            display="flex"
-                            flexDirection="row"
-                            gap="spacing-lg"
-                        >
-                            <Text variant="bs-regular" color='text-primary'>0x2d2269c5863cc504fef489cca963f3f2beb197b6a80cd1820357d6b5447408df</Text>
-                            <Button
-                                aria-label="Cancel"
-                                size="extraSmall"
-                                variant="outline"
-                                onClick={() => {}}
-                            >
-                                <Text>Accept</Text>
-                            </Button>
-                        </Box>
-
-                        <Box
-                            display="flex"
-                            flexDirection="row"
-                            gap="spacing-lg"
-                        >
-                            <Text variant="bs-regular" color='text-primary'>0x2d2269c5863cc504fef489cca963f3f2beb197b6a80cd1820357d6b5447408df</Text>
-                            <Button
-                                aria-label="Cancel"
-                                size="extraSmall"
-                                variant="outline"
-                                onClick={() => {}}
-                            >
-                                <Text color='text-state-danger-bold'>Reject</Text>
-                            </Button>
-                        </Box>
-
-                        <Box
-                            display="flex"
-                            flexDirection="row"
-                            gap="spacing-lg"
-                        >
-                            <Text variant="bs-regular" color='text-primary'>0x2d2269c5863cc504fef489cca963f3f2beb197b6a80cd1820357d6b5447408df</Text>
-                            <Button
-                                aria-label="Cancel"
-                                size="extraSmall"
-                                variant="outline"
-                                onClick={() => {}}
-                            >
-                                <Text>Accept</Text>
-                            </Button>
-                        </Box>
-                        
-                        <Box
-                            display="flex"
-                            flexDirection="row"
-                            gap="spacing-xxs"
-                            color="text-brand-medium"
-                        >
-                            <Add />
-                            <Text variant='bes-semibold' color="text-brand-medium">Show more</Text>
-                        </Box>
-
+                                <Text variant='bes-semibold' color="text-brand-medium">
+                                    {showAll ? 'Show Less' : 'Show More'}
+                                </Text>
+                            </Box>
+                        )}
                     </Box>
                 </Box>
 
@@ -155,10 +88,23 @@ const ConsensusInfo = (props: IProps) => {
                         borderRadius="radius-xs"
                         padding="spacing-sm"
                         width="68vw"
-                    >
-                        <Text variant='bs-semibold' color='text-tertiary' wrap>{props.data?.blockData}</Text>
-                    </Box>
-
+                    >   
+                        <Text variant='bs-semibold' color='text-tertiary' wrap>{displayedPayload}</Text>
+                        {showMorePayloadButton && (
+                            <Box
+                                display="flex"
+                                flexDirection="row"
+                                alignItems="center"
+                                gap="spacing-xxs"
+                                cursor="pointer"
+                                onClick={toggleShowAllPayload}
+                            >
+                                <Text variant='bes-semibold' color="text-brand-medium">
+                                    {showAllPayload ? 'Show Less' : 'Show More'}
+                                </Text>
+                            </Box>
+                        )}
+                    </Box>  
                 </Box>
             </Box>
 
@@ -185,117 +131,24 @@ const ConsensusInfo = (props: IProps) => {
                         flexDirection="column"
                         gap="spacing-xs"
                     >
-                        <Box
-                            display="flex"
-                            flexDirection="row"
-                            gap="spacing-lg"
-                            width="50vw"
-                        >
-                            <Box
-                                display="flex"
-                                flexDirection="row"
-                                gap="spacing-xxxs"
-                            >
-                                <Ethereum height={20} width={20} />
-                                <Text variant="bs-regular" color='text-primary' wrap>0x2d2269c5863cc504fef489cca963f3f2beb197b6a80cd1820357d6b5447408df</Text>
-                            </Box>
-                                
-                                
-                            <Button
-                                aria-label="Cancel"
-                                size="extraSmall"
-                                variant="outline"
-                                onClick={() => {}}
-                            >
-                                <Text>Accept</Text>
-                            </Button>
-                        </Box>
+                        {displayedNodes.map((node, index) => (
+                            <Text key={index} variant="bs-regular" color='text-primary'>{node}</Text>
+                        ))}
                         
-                        <Box
-                            display="flex"
-                            flexDirection="row"
-                            gap="spacing-lg"
-                        >
+                        {showMoreButton && (
                             <Box
                                 display="flex"
                                 flexDirection="row"
-                                gap="spacing-xxxs"
+                                alignItems="center"
+                                gap="spacing-xxs"
+                                cursor="pointer"
+                                onClick={toggleShowAll}
                             >
-                                <Ethereum height={20} width={20} />
-                                <Text variant="bs-regular" color='text-primary' wrap>0x2d2269c5863cc504fef489cca963f3f2beb197b6a80cd1820357d6b5447408df</Text>
+                                <Text variant='bes-semibold' color="text-brand-medium">
+                                    {showAll ? 'Show Less' : 'Show More'}
+                                </Text>
                             </Box>
-                                
-                                
-                            <Button
-                                aria-label="Cancel"
-                                size="extraSmall"
-                                variant="outline"
-                                onClick={() => {}}
-                            >
-                                <Text>Accept</Text>
-                            </Button>
-                        </Box>
-
-                        <Box
-                            display="flex"
-                            flexDirection="row"
-                            gap="spacing-lg"
-                        >
-                            <Box
-                                display="flex"
-                                flexDirection="row"
-                                gap="spacing-xxxs"
-                            >
-                                <Ethereum height={20} width={20} />
-                                <Text variant="bs-regular" color='text-primary' wrap>0x2d2269c5863cc504fef489cca963f3f2beb197b6a80cd1820357d6b5447408df</Text>
-                            </Box>
-                                
-                                
-                            <Button
-                                aria-label="Cancel"
-                                size="extraSmall"
-                                variant="outline"
-                                onClick={() => {}}
-                            >
-                                <Text>Accept</Text>
-                            </Button>
-                        </Box>
-                        
-                        <Box
-                            display="flex"
-                            flexDirection="row"
-                            gap="spacing-lg"
-                        >
-                            <Box
-                                display="flex"
-                                flexDirection="row"
-                                gap="spacing-xxxs"
-                            >
-                                <Ethereum height={20} width={20} />
-                                <Text variant="bs-regular" color='text-primary' wrap>0x2d2269c5863cc504fef489cca963f3f2beb197b6a80cd1820357d6b5447408df</Text>
-                            </Box>
-                                
-                                
-                            <Button
-                                aria-label="Cancel"
-                                size="extraSmall"
-                                variant="outline"
-                                onClick={() => {}}
-                            >
-                                <Text>Accept</Text>
-                            </Button>
-                        </Box>
-                        
-                        <Box
-                            display="flex"
-                            flexDirection="row"
-                            gap="spacing-xxs"
-                            color="text-brand-medium"
-                        >
-                            <Add />
-                            <Text variant='bes-semibold' color="text-brand-medium">Show more</Text>
-                        </Box>
-
+                        )}
                     </Box>
                 </Box>
 
@@ -312,7 +165,21 @@ const ConsensusInfo = (props: IProps) => {
                         padding="spacing-sm"
                         width="88vw"
                     >
-                        <Text variant='bs-semibold' color='text-tertiary' wrap>{props.data?.blockData}</Text>
+                        <Text variant='bs-semibold' color='text-tertiary' wrap>{displayedPayload}</Text>
+                        {showMorePayloadButton && (
+                            <Box
+                                display="flex"
+                                flexDirection="row"
+                                alignItems="center"
+                                gap="spacing-xxs"
+                                cursor="pointer"
+                                onClick={toggleShowAllPayload}
+                            >
+                                <Text variant='bes-semibold' color="text-brand-medium">
+                                    {showAllPayload ? 'Show Less' : 'Show More'}
+                                </Text>
+                            </Box>
+                        )}
                     </Box>
 
                 </Box>

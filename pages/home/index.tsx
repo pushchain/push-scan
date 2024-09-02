@@ -6,10 +6,7 @@ import dynamic from 'next/dynamic';
 // Internal Components imports
 import { HomeLoader } from '../../components/Loader/HomeLoader';
 
-const HomeView = dynamic(() => import('../../sections/Home'), {
-  loading: () => <HomeLoader />,
-});
-
+const HomeView = dynamic(() => import('../../sections/Home'));
 const Layout = dynamic(() => import('../../layout'));
 
 export default function Home() {

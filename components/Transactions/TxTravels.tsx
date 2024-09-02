@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Text, Ethereum } from '../../blocks';
+import { Box, Text, Ethereum, Polygon, BNB } from '../../blocks';
 import { Transaction } from '../../types/transaction';
 
 const MAX_DISPLAY = 5;
@@ -19,6 +19,19 @@ const TxTravels = (props: IProps) => {
     const recipients = props.data?.recipients?.recipients || [];
     const displayedRecipients = showAll ? recipients : recipients.slice(0, MAX_DISPLAY);
     const showMoreButton = recipients.length > MAX_DISPLAY;
+
+    function getChainIcon(source) {
+        switch(source) {
+          case 'ETH_MAINNET':
+            return <Ethereum height={16} width={16} />
+          case 'POLYGON_MAINNET':
+            return <Polygon height={16} width={16} />
+          case 'BSC_MAINNET':
+            return <BNB height={16} width={16} />
+          default: 
+            return <Ethereum />
+        }
+      }
 
     return (
         <>
@@ -45,7 +58,11 @@ const TxTravels = (props: IProps) => {
                     flexDirection="column"
                     gap="spacing-sm"
                 >
-                    <Text variant="bs-regular" color='text-primary'>{props.data?.from}</Text>
+                    <Box display="flex" flexDirection="row" gap="spacing-xxs" alignItems="center">
+                        { getChainIcon(props.data?.source) }
+                        <Text variant="bs-regular" color='text-primary'>{props.data?.from}</Text>
+                    </Box>
+
                     <Box
                         display="flex"
                         flexDirection="column"
@@ -93,7 +110,7 @@ const TxTravels = (props: IProps) => {
                         flexDirection="row"
                         gap="spacing-xxxs"
                     >
-                        <Ethereum height={20} width={20} />
+                        { getChainIcon(props.data?.source) }
                         <Text variant="bs-regular" color='text-primary' wrap>{props.data?.from}</Text>
                     </Box>
                 </Box>

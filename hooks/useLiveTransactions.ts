@@ -87,31 +87,5 @@ export const useLiveTransactions = (props: inputProps) => {
                 lastTs: data.lastTs
             }
         }
-    });
-
-
-    // return useQuery('homeLiveTransactions', getTransactions, {
-    //     cacheTime: 0,
-    //     staleTime: 0,
-    //     select: (data) => {
-    //         const transactions = data.blocks.flatMap(block =>
-    //             block.transactions.map(tx => ({
-    //                 txHash: tx.txnHash,
-    //                 ts: tx.ts,
-    //                 blockHash: tx.blockHash,
-    //                 category: tx.category,
-    //                 status: tx.status,
-    //                 source: tx.source,
-    //                 from: tx.from,
-    //                 recipients: tx.recipients.recipients.map(recipient => recipient.address)
-    //             }))
-    //         );
-    //         // Sorting transactions by timestamp in descending order
-    //         return {
-    //             transactions: transactions.sort((a, b) => b.ts - a.ts),
-    //             totalPages: data.totalPages,
-    //             lastTs: data.lastTs
-    //         }
-    //     }
-    // });  
+    }); 
 }

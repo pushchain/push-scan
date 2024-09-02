@@ -1,6 +1,6 @@
 // React, NextJS imports
 import React from 'react';
-import { Box, Text, Front, Tag, Separator, Table, Ethereum } from '../../blocks';
+import { Box, Text, Front, Tag, Separator, Table, Ethereum, Polygon, BNB } from '../../blocks';
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { useLiveTransactions } from '../../hooks/useLiveTransactions';
@@ -10,7 +10,20 @@ import { TagVariant } from '../../blocks/tag';
 
 export default function LiveTransactions() {
   const router = useRouter()
-  const { data, error, isLoading, isError } = useLiveTransactions({ lastTs: null });
+  const { data, error, isLoading, isError } = useLiveTransactions({ page: 1 });
+
+  function getChainIcon(source) {
+    switch(source) {
+      case 'ETH_MAINNET':
+        return <Ethereum height={16} width={16}/>
+      case 'POLYGON_MAINNET':
+        return <Polygon height={16} width={16}/>
+      case 'BSC_MAINNET':
+        return <BNB height={16} width={16}/>
+      default: 
+        return <Ethereum height={16} width={16}/>
+    }
+  }
 
   const columns = [
     {
@@ -32,7 +45,15 @@ export default function LiveTransactions() {
     {
       title: 'FROM',
       dataIndex: 'from',
-      render: (from: string) => <Box display="flex" flexDirection="row"><Text variant='bs-regular' color="text-primary">{centerMaskString(from)}</Text></Box>,
+      render: (params) => { 
+        const from = JSON.parse(params)
+        return (
+          <Box display="flex" flexDirection="row" gap="spacing-xxs" alignItems="center">
+            { getChainIcon(from.source) }
+            <Text variant='bs-regular' color="text-primary">{centerMaskString(from.from)}</Text>
+          </Box>
+        )
+      },
       cellAlignment: 'center',
       headerAlignment: 'center',
       width: '25%'
@@ -69,7 +90,7 @@ export default function LiveTransactions() {
     id: dt.txHash,
     status: dt.status,
     txHash: dt.txHash,
-    from: dt.from,
+    from: JSON.stringify({ from: dt.from, source: dt.source }),
     recipients: dt.recipients,
     ts: dt.ts,
   })) || [];

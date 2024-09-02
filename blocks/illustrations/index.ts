@@ -12,7 +12,9 @@ export { default as Discord } from './components/Discord';
 export { default as EarnOnPush } from './components/EarnOnPush';
 
 export { default as Ethereum } from './components/Ethereum';
-
+export { default as Polygon } from './components/Polygon';
+export { default as BNB } from './components/BNB';
+ 
 export { default as PushAlpha } from './components/PushAlpha';
 
 export { default as PushBot } from './components/PushBot';

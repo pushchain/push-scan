@@ -2,6 +2,7 @@ import { useQuery } from 'react-query';
 import { makeJsonRpcRequest } from '../utils/json-rpc';
 import { Transaction } from '../types/transaction';
 import { POLL_INTERVAL } from '../utils/constants'
+import { PerPageItems } from '../utils/constants';
 
 const RPC_ID = 7
 
@@ -10,21 +11,18 @@ export interface searchProps {
 }
 
 export const useSearchByAddress = (params: searchProps) => {    
-    
-    console.log("useSearchByAddress hook params : ", params.address)
-    
     const searchByAddress = () => makeJsonRpcRequest(RPC_ID, 'searchByAddress', {
         "searchTerm": params.address,
         "startTime": Math.floor(Date.now() / 1000),
         "direction": "DESC",
-        "pageSize": 10,
+        "pageSize": PerPageItems,
+        "page": 1,
         "showDetails": true
     });
 
-    return useQuery('searchByAddressDetailswee', searchByAddress, {
-        cacheTime: 0,
-        staleTime: 0,
-        refetchInterval: 1000,
+    return useQuery({
+        queryKey: ['searchByAddressDetailswee', params],
+        queryFn: searchByAddress,
         select: (data) => {
             const transactions = data.blocks.flatMap(block =>
                 block.transactions.map(tx => ({
@@ -45,5 +43,5 @@ export const useSearchByAddress = (params: searchProps) => {
                 lastTs: data.lastTs
             }
         }
-    }); 
+    });
 }

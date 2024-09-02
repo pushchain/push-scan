@@ -21,7 +21,7 @@ import {
   SidebarContainer,
 } from './navbar.styled';
 import { ThemeType } from '../../types/theme';
-import { Box, Select, Text, Lozenge } from '../../blocks';
+import { Box, Select, Text, Lozenge, PushLogo } from '../../blocks';
 import SearchBar from '../Home/SearchBar'
 import ChainsDropDown from '../Reusables/ChainsDropDown'
 import Link from 'next/link'
@@ -51,6 +51,7 @@ export default function Navbar() {
         display={{ ml: "none", dp: "flex" }}
         flexDirection="row"
         justifyContent="space-between"
+        css={'margin-top: 20px'}
       >
         <Box
           display="flex"
@@ -62,18 +63,10 @@ export default function Navbar() {
             display="flex"
             flexDirection="row"
             alignItems="center"
+            gap="spacing-xxs"
           >
-            <Logo
-              src="./static/push-icon-v1.svg"
-              sx={{
-                width: isMobile ? 38 : 54,
-                height: isMobile ? 39 : 56,
-                margin: isMobile ? '33px 10px 33px 0px' : '39px 10px 33px 0px',
-              }}
-            />
-
+            <PushLogo height={36} width={36}/>
             <Text variant='h4-regular' color="text-primary">PushScan</Text>
-
             <Lozenge 
               size="small"
               variant="primary" 
@@ -133,9 +126,7 @@ export default function Navbar() {
               flexDirection="row"
               alignItems="center"
             >
-              <Logo
-                src="./static/push-icon-v1.svg"
-              />
+              <PushLogo height={24} width={24}/>
 
               <Text variant='h4-regular' color="text-primary">PushScan</Text>
 

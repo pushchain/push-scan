@@ -28,8 +28,9 @@ const Details = (props: TxDetailsProps) => {
         isLoading={isLoading}
       />
       <Advanced />
-      <ConsensusInfo 
-        data={data?.transaction}
+      <ConsensusInfo
+        blockDetails={data?.blockDetails}
+        transaction={data?.transaction}
         isLoading={isLoading}
       />
     </Box>

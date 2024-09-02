@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { Box, Text, Tag, Table } from '../../blocks';
-import Pagination from '../Pagination';
+import { Box, Text, Tag, Table, Pagination, Ethereum, Polygon, BNB } from '../../blocks';
 import { useLiveTransactions } from '../../hooks/useLiveTransactions';
 import { PerPageItems } from '../../utils/constants'
-import { capitalizeStr } from '../../utils/helpers'
+import { capitalizeStr, centerMaskString } from '../../utils/helpers'
 import { useRouter } from 'next/router'
 import moment from 'moment';
 import { TagVariant } from '../../blocks/tag';
@@ -35,6 +34,19 @@ const ListView = (props) => {
     data = liveData;
   }
 
+  function getChainIcon(source) {
+    switch(source) {
+      case 'ETH_MAINNET':
+        return <Ethereum height={16} width={16}/>
+      case 'POLYGON_MAINNET':
+        return <Polygon height={16} width={16}/>
+      case 'BSC_MAINNET':
+        return <BNB height={16} width={16}/>
+      default: 
+        return <Ethereum height={16} width={16}/>
+    }
+  }
+
   const columns = [
     {
       title: 'STATUS',
@@ -63,9 +75,17 @@ const ListView = (props) => {
     {
       title: 'FROM',
       dataIndex: 'from',
-      render: (from: string) => <Text variant='bs-regular' color="text-primary">{from}</Text>,
-      cellAlignment: 'flex-start',
-      headerAlignment: 'flex-start',
+      render: (params) => { 
+        const from = JSON.parse(params)
+        return (
+          <Box display="flex" flexDirection="row" gap="spacing-xxs" alignItems="center">
+            { getChainIcon(from.source) }
+            <Text variant='bs-regular' color="text-primary">{centerMaskString(from.from)}</Text>
+          </Box>
+        )
+      },
+      cellAlignment: 'center',
+      headerAlignment: 'center',
       width: '20%'
     },
     {
@@ -110,7 +130,7 @@ const ListView = (props) => {
     txHash: dt.txHash,
     blockHash: dt.blockHash,
     category: dt.category,
-    from: dt.from,
+    from: JSON.stringify({ from: dt.from, source: dt.source }),
     recipients: dt.recipients,
     ts: dt.ts,
   })) || [];
@@ -123,12 +143,19 @@ const ListView = (props) => {
       gap="spacing-xs"
     >
       <Table columns={columns} dataSource={dataSource} />
-      <Pagination
-        itemsPerPage={PerPageItems}
-        totalItems={data?.totalPages * PerPageItems}
-        paginate={(page) => setPage(page)}
-        currentPage={page}
-      />
+      <Box
+        display="flex"
+        flexDirection="column"
+        justifyContent="flex-end"
+        alignItems="flex-end"
+      >
+        <Pagination
+          pageSize={PerPageItems}
+          current={page}
+          total={data?.totalPages * PerPageItems}
+          onChange={(page) => setPage(page)}
+        />
+      </Box>
     </Box>
   );
 };

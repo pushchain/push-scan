@@ -9,7 +9,7 @@ import { centerMaskString, rightMaskString } from '../../utils/helpers'
 
 export default function LiveBlocks() {
   const router = useRouter()
-  const { data, error, isLoading, isError } = useLiveBlocks();
+  const { data, error, isLoading, isError } = useLiveBlocks({ page: 1 });
 
   const columns = [
     {
