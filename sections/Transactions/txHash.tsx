@@ -1,14 +1,26 @@
 import React from 'react';
-import { Box, Text } from '../../blocks';
+import { Box, Text, Spinner } from '../../blocks';
 import Advanced from '../../components/Reusables/Advanced';
 import ConsensusInfo from '../../components/Transactions/ConsensusInfo';
 import TXDetails from '../../components/Transactions/TxDetails'
 import TxTravels from '../../components/Transactions/TxTravels'
-import { useLiveTxByHash, TxDetailsProps } from '../../hooks/useLiveTxByHash';
+import { useLiveTxByHash } from '../../hooks/useLiveTxByHash';
+import { useRouter } from 'next/router';
 
-const Details = (props: TxDetailsProps) => {
+const Details = () => {
+  const router = useRouter();
+  const { txHash } = router.query;
+  
+  const { data, isLoading } = useLiveTxByHash({ txHash });    
+  const showLoading = !txHash || isLoading
 
-  const { data, error, isLoading, isError } = useLiveTxByHash({ txHash: props.txHash });    
+  if (showLoading) {
+    return (
+      <Box display="flex" justifyContent="center">
+        <Spinner size='extraLarge'/>
+      </Box>
+    )
+  }
 
   return (
     <Box

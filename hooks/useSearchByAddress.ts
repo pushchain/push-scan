@@ -8,6 +8,7 @@ const RPC_ID = 7
 
 export interface searchProps {
     address: string | string[] | undefined;
+    page: number
 }
 
 export const useSearchByAddress = (params: searchProps) => {    
@@ -16,7 +17,7 @@ export const useSearchByAddress = (params: searchProps) => {
         "startTime": Math.floor(Date.now() / 1000),
         "direction": "DESC",
         "pageSize": PerPageItems,
-        "page": 1,
+        "page": params.page,
         "showDetails": true
     });
 
@@ -26,13 +27,7 @@ export const useSearchByAddress = (params: searchProps) => {
         select: (data) => {
             const transactions = data.blocks.flatMap(block =>
                 block.transactions.map(tx => ({
-                    txHash: tx.txnHash,
-                    ts: tx.ts,
-                    blockHash: tx.blockHash,
-                    category: tx.category,
-                    status: tx.status,
-                    source: tx.source,
-                    from: tx.from,
+                    ...tx,
                     recipients: tx.recipients.recipients.map(recipient => recipient.address)
                 }))
             );

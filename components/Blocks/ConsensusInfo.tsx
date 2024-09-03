@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Text, Button, Add, Ethereum } from '../../blocks';
+import { Box, Text, Button, Add, Ethereum, Tooltip, Copy } from '../../blocks';
 import { BlockDetails } from '../../types/block'
 
 interface IProps {
@@ -13,6 +13,7 @@ const MAX_DISPLAY_CHARS = 700;
 const ConsensusInfo = (props: IProps) => {
     const [showAll, setShowAll] = useState(false);
     const [showAllPayload, setShowAllPayload] = useState(false);
+    const [tooltipText, setToolTipText] = useState('Copy Payload');
 
     const toggleShowAll = () => {
         setShowAll(!showAll);
@@ -29,6 +30,16 @@ const ConsensusInfo = (props: IProps) => {
     const payload = props.data?.blockData || "";
     const displayedPayload = showAllPayload ? payload : payload.substring(0, MAX_DISPLAY_CHARS);
     const showMorePayloadButton = payload.length > MAX_DISPLAY_CHARS;
+
+    const copyPayload = () => {
+        if (payload) {
+            navigator.clipboard.writeText(payload);
+            setToolTipText('Copied');
+        }
+        setTimeout(() => {
+            setToolTipText('Copy Payload');
+        }, 1000);
+    };
 
     return (
         <>
@@ -104,6 +115,16 @@ const ConsensusInfo = (props: IProps) => {
                                 </Text>
                             </Box>
                         )}
+                        <Tooltip title={tooltipText}>
+                            <Box cursor="pointer">
+                                <Copy
+                                    onClick={copyPayload}
+                                    autoSize
+                                    size={24}
+                                    color="icon-tertiary"
+                                />
+                            </Box>
+                        </Tooltip>
                     </Box>  
                 </Box>
             </Box>

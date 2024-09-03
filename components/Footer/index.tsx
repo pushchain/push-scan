@@ -3,9 +3,7 @@ import React from 'react';
 import Image from 'next/image';
 
 // External Library imports
-import { useTheme } from 'styled-components';
 import { useTheme as Theme } from '../../contexts/ThemeContext';
-import { ThemeType } from '../../types/theme';
 import TwitterIconDark from "../../public/static/twitter-dark.svg";
 import TwitterIconLight from "../../public/static/twitter.svg";
 import GithubIconDark from "../../public/static/github-dark.svg";
@@ -13,11 +11,10 @@ import GithubIconLight from "../../public/static/github.svg";
 import DiscordIconDark from "../../public/static/discord-dark.svg";
 import DiscordIconLight from "../../public/static/discord.svg";
 
-import { Box, Text, TickCircleFilled, TickDecoratedCircleFilled } from '../../blocks';
+import { Box, Text, TickCircleFilled } from '../../blocks';
 
 export default function Footer() {
   const { isDarkMode } = Theme();
-  const theme = useTheme() as ThemeType;
   return (
     <Box
       width="100%"
@@ -25,7 +22,6 @@ export default function Footer() {
       display="flex"
       flexDirection="row"
       justifyContent="space-between"
-      padding="spacing-md spacing-none"
     >
       <Box
         display="flex"
@@ -78,7 +74,7 @@ export default function Footer() {
         flexDirection="row"
         gap="spacing-xxs"
       >
-        <TickCircleFilled color='icon-state-success-bold' />
+        <TickCircleFilled color='icon-state-success-bold'/>
         <Text variant='bes-semibold' color='text-tertiary'>All systems operational</Text>
       </Box>
     </Box>

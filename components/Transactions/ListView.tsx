@@ -1,7 +1,5 @@
-import React, { useState } from 'react';
-import { Box, Text, Tag, Table, Pagination, Ethereum, Polygon, BNB } from '../../blocks';
-import { useLiveTransactions } from '../../hooks/useLiveTransactions';
-import { PerPageItems } from '../../utils/constants'
+import React from 'react';
+import { Box, Text, Tag, Table, Ethereum, Polygon, BNB } from '../../blocks';
 import { capitalizeStr, centerMaskString } from '../../utils/helpers'
 import { useRouter } from 'next/router'
 import moment from 'moment';
@@ -14,25 +12,13 @@ interface dataProps {
   lastTs: number
 }
 interface IProps {
-  data?: dataProps,
-  search?: true,
-  address?: string
+  data?: dataProps
 }
 
-const ListView = (props) => {
+const ListView = (props: IProps) => {
   const router = useRouter()
 
-  const [page, setPage] = useState(1);
-
-
-  let data;
-
-  if (props.search) {
-    data = props.data;
-  } else {
-    const { data: liveData, error, isLoading, isError } = useLiveTransactions({ page });
-    data = liveData;
-  }
+  let data = props.data;
 
   function getChainIcon(source) {
     switch(source) {
@@ -67,7 +53,7 @@ const ListView = (props) => {
     {
       title: 'BLOCK HASH',
       dataIndex: 'blockHash',
-      render: (blockHash: string) => <Text variant='bs-regular' color="text-primary" onClick={() => router.push(`/transactions/${txHash}`)}>{blockHash}</Text>,
+      render: (blockHash: string) => <Text variant='bs-regular' color="text-primary" onClick={() => router.push(`/blocks/${blockHash}`)}>{blockHash}</Text>,
       cellAlignment: 'flex-start',
       headerAlignment: 'flex-start',
       width: '15%'
@@ -125,9 +111,9 @@ const ListView = (props) => {
   ];
 
   const dataSource = data?.transactions.map((dt) => ({
-    id: dt.txHash,
+    id: dt.txnHash,
     status: dt.status,
-    txHash: dt.txHash,
+    txHash: dt.txnHash,
     blockHash: dt.blockHash,
     category: dt.category,
     from: JSON.stringify({ from: dt.from, source: dt.source }),
@@ -137,26 +123,7 @@ const ListView = (props) => {
 
 
   return (
-    <Box
-      display="flex"
-      flexDirection="column"
-      gap="spacing-xs"
-    >
-      <Table columns={columns} dataSource={dataSource} />
-      <Box
-        display="flex"
-        flexDirection="column"
-        justifyContent="flex-end"
-        alignItems="flex-end"
-      >
-        <Pagination
-          pageSize={PerPageItems}
-          current={page}
-          total={data?.totalPages * PerPageItems}
-          onChange={(page) => setPage(page)}
-        />
-      </Box>
-    </Box>
+    <Table columns={columns} dataSource={dataSource} />
   );
 };
 

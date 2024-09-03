@@ -18,8 +18,9 @@ export const useLiveTxByHash = (params: TxDetailsProps) => {
         "showDetails": true
     });
 
-    return useQuery('getTxByHashDetails', getTxByHash, {
-        refetchInterval: POLL_INTERVAL,
+    return useQuery({
+        queryKey: ['getTxByHashDetails', params],
+        queryFn: getTxByHash,
         select: (data) => {
             if (data.blocks && data.blocks.length > 0) {
                 const { blocks } = data;
@@ -47,5 +48,5 @@ export const useLiveTxByHash = (params: TxDetailsProps) => {
                 transaction: null
             }
         }
-    }); 
+    });
 }

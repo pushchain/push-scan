@@ -1,12 +1,12 @@
-// React, NextJS imports
 import React from 'react';
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
+import { Spinner } from '../../blocks'
 
-// Internal Components imports
-import { HomeLoader } from '../../components/Loader/HomeLoader';
+const HomeView = dynamic(() => import('../../sections/Home'), {
+  loading: () => <Spinner size='extraLarge'/>,
+});
 
-const HomeView = dynamic(() => import('../../sections/Home'));
 const Layout = dynamic(() => import('../../layout'));
 
 export default function Home() {

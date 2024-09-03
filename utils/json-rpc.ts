@@ -2,6 +2,8 @@ import axios from 'axios';
 
 const API_BASE = 'http://localhost:3000/rpc';
 
+const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
 export const makeJsonRpcRequest = async (id, method, params = {}) => {
   const data = {
     jsonrpc: '2.0',
@@ -11,7 +13,11 @@ export const makeJsonRpcRequest = async (id, method, params = {}) => {
   };
 
   try {
-    const response = await axios.post(API_BASE, data);    
+    const response = await axios.post(API_BASE, data);
+    if (response.data.error) {
+      throw new Error('JSON-RPC Error: ' + response.data.error.message);
+    }
+
     return response.data.result;
   } catch (error) {
     throw new Error('JSON-RPC Error: ' + error.message);

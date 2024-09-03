@@ -1,25 +1,14 @@
-// React, NextJS imports
 import React from 'react';
-
-// External Library imports
 import { Box } from '../blocks';
-import { useMediaQuery } from '@mui/material';
-
-// Internal Components imports
 import FooterSection from '../sections/Footer';
 import HeaderSection from '../sections/Header';
 
 export default function Layout({ children }) {
-  const isMobile = useMediaQuery('(max-width:480px)');
-
   return (
     <Box
       display="flex"
       flexDirection="column"
-      alignItems="center"
-      justifyContent="space-between"
-      height="100%"
-      margin={`spacing-none ${isMobile ? 'spacing-xs' : 'spacing-xxxl'}`}
+      margin={{ initial: 'spacing-md spacing-xxxl spacing-none spacing-xxxl', ml: 'spacing-none spacing-xs' }}
       gap="spacing-lg"
     >
       <HeaderSection />

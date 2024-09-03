@@ -55,8 +55,6 @@ type inputProps = {
 };
 
 export const useLiveTransactions = (props: inputProps) => {
-    console.log("props : ", props)
-
     const getTransactions = () => makeJsonRpcRequest(RPC_ID, 'getTxs', {
         "startTime": Math.floor(Date.now() / 1000),
         "direction": "DESC",

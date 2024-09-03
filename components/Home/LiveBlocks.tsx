@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Text, Front, Separator, Table } from '../../blocks';
+import { Box, Text, Front, Skeleton, Table } from '../../blocks';
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { useLiveBlocks } from '../../hooks/useBlocks';
@@ -15,18 +15,18 @@ export default function LiveBlocks() {
     {
       title: 'BLOCK HASH',
       dataIndex: 'blockHash',
-      render: (text) => <Text variant='bs-regular' color="text-primary" onClick={() => router.push(`/blocks/${text}`)}>{text}</Text>,
+      render: (text) => <Text variant='bs-regular' color="text-primary" onClick={() => router.push(`/blocks/${text}`)}>{rightMaskString(text)}</Text>,
       cellAlignment: 'flex-start',
       headerAlignment: 'flex-start',
-      width: '35%'
+      width: '30%'
     },
     {
       title: 'VALIDATOR',
       dataIndex: 'validator',
-      render: (text) => <Text variant='bs-regular' color="text-primary">{text}</Text>,
+      render: (text) => <Text variant='bs-regular' color="text-primary">{centerMaskString(text)}</Text>,
       cellAlignment: 'flex-start',
       headerAlignment: 'flex-start',
-      width: '35%'
+      width: '30%'
     },
     {
       title: 'TX',
@@ -34,7 +34,7 @@ export default function LiveBlocks() {
       render: (text) => <Text variant='bs-regular' color="text-primary">{text}</Text>,
       cellAlignment: 'center',
       headerAlignment: 'center',
-      width: '15%'
+      width: '20%'
     },
     {
       title: 'AGE',
@@ -42,7 +42,7 @@ export default function LiveBlocks() {
       render: (text) => <Text variant='bs-regular' color="text-tertiary">{moment(text * 1000).fromNow()}</Text>,
       cellAlignment: 'flex-end',
       headerAlignment: 'flex-end',
-      width: '15%'
+      width: '20%'
     },
   ];
 
@@ -56,14 +56,15 @@ export default function LiveBlocks() {
 
   return (
     <Box
-      css={'flex: 0 0 20%'}
+      css={'flex: 0 0 40%'}
       display="flex"
       flexDirection="column"
       gap="spacing-sm"
     >
       <Text variant='h5-semibold' color="text-primary">Live Blocks</Text>
-      <Table columns={columns} dataSource={dataSource} />
-
+      <Skeleton isLoading={isLoading}>
+        <Table columns={columns} dataSource={dataSource} />
+      </Skeleton>
       <Box
         display="flex"
         flexDirection="row"
@@ -74,7 +75,7 @@ export default function LiveBlocks() {
         <Link href='/blocks'>
           <Text variant='bes-semibold' color="text-brand-medium">View All Blocks</Text>
         </Link>
-        <Front />
+        <Front autoSize />
       </Box>
     </Box>
   )

@@ -15,8 +15,9 @@ export const useLiveBlockByHash = (params: BlockDetailsProps) => {
         "showDetails": true
     });
 
-    return useQuery('getBlockByHashDetails', getBlockByHash, {
-        refetchInterval: POLL_INTERVAL,
+    return useQuery({
+        queryKey: ['getBlockByHashDetails', params],
+        queryFn: getBlockByHash,
         select: (data) => {
             if (data.blocks && data.blocks.length > 0) {
                 const { blocks } = data;
@@ -39,5 +40,5 @@ export const useLiveBlockByHash = (params: BlockDetailsProps) => {
                 blockDetails: null
             }
         }
-    }); 
+    });
 }

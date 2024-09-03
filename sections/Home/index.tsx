@@ -12,14 +12,13 @@ const Home = () => {
       display="flex"
       flexDirection="column"
       gap="spacing-xxxl"
-      
-      >
+    >
       <Box
         display="flex"
         flexDirection="column"
         justifyContent="flex-start"
         alignItems="flex-start"
-        gap={{ ml: "spacing-lg", initial: "spacing-xxxl" }}
+        gap={{ ml: "spacing-lg", initial: "spacing-xxl" }}
       >
         <Box
           display="flex"

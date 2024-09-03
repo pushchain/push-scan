@@ -2,12 +2,10 @@
 import React from 'react';
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
-
-// Internal Components imports
-import { BlocksLoader } from '../../components/Loader/BlocksLoader';
+import { Spinner } from '../../blocks'
 
 const BlocksView = dynamic(() => import('../../sections/Blocks'), {
-  loading: () => <BlocksLoader />,
+  loading: () => <Spinner size='extraLarge'/>,
 });
 
 const Layout = dynamic(() => import('../../layout'));

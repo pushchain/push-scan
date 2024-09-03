@@ -51,7 +51,6 @@ export default function Navbar() {
         display={{ ml: "none", dp: "flex" }}
         flexDirection="row"
         justifyContent="space-between"
-        css={'margin-top: 20px'}
       >
         <Box
           display="flex"
@@ -63,10 +62,11 @@ export default function Navbar() {
             display="flex"
             flexDirection="row"
             alignItems="center"
-            gap="spacing-xxs"
+            gap="spacing-xxxs"
           >
             <PushLogo height={36} width={36}/>
             <Text variant='h4-regular' color="text-primary">PushScan</Text>
+
             <Lozenge 
               size="small"
               variant="primary" 
@@ -126,7 +126,9 @@ export default function Navbar() {
               flexDirection="row"
               alignItems="center"
             >
-              <PushLogo height={24} width={24}/>
+              <Logo
+                src="./static/push-icon-v1.svg"
+              />
 
               <Text variant='h4-regular' color="text-primary">PushScan</Text>
 

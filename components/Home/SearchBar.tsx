@@ -24,7 +24,7 @@ export default function SearchBar() {
   return (
     <TextInput
       placeholder="Search by Address"
-      icon={<Search onClick={() => router.push(`/transactions/search/${debouncedQuery}`)}/>}
+      icon={<Search size={24} onClick={() => router.push(`/search/${debouncedQuery}`)}/>}
       value={query}
       onChange={(e) => setQuery(e.target.value)}
     />

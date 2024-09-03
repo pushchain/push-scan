@@ -76,9 +76,8 @@ export function getValidatorNode(signers: Signer[] | undefined) {
   return signer?.node
 }
 
-export function centerMaskString(str) {
-  // Check if the string length is more than 2 to mask characters
-  if (str.length > 14) {
+export function centerMaskString(str, len = 15) {
+  if (str.length > 15) {
     const start = str.substring(0, 10);
     const end = str.substring(str.length - 7);
     return start + '...' + end;
@@ -87,10 +86,10 @@ export function centerMaskString(str) {
   return str;
 }
 
-export function rightMaskString(str) {
+export function rightMaskString(str, len = 15) {
   // Check if the string length is more than 15 to mask the remaining characters
-  if (str.length > 15) {
-      const visiblePart = str.substring(0, 15);
+  if (str.length > len) {
+      const visiblePart = str.substring(0, len);
       const maskedPart = '...';
       return visiblePart + maskedPart;
   }
