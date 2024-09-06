@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import React , { FC } from 'react';
 import { IllustrationWrapper } from '../IllustrationWrapper';
 import { IllustrationProps } from '../Illustrations.types';
 

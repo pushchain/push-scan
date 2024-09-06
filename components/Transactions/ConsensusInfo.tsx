@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Text, Button, Add, Ethereum } from '../../blocks';
+import { Box, Text, Button, Add, Ethereum, Tooltip, Copy } from '../../blocks';
 import { Transaction } from '../../types/transaction';
 import { BlockDetails } from '../../types/block';
 
@@ -15,6 +15,7 @@ const MAX_DISPLAY_CHARS = 700;
 const ConsensusInfo = (props: IProps) => {
     const [showAll, setShowAll] = useState(false);
     const [showAllPayload, setShowAllPayload] = useState(false);
+    const [tooltipText, setToolTipText] = useState('Copy Payload');
 
     const toggleShowAll = () => {
         setShowAll(!showAll);
@@ -31,6 +32,16 @@ const ConsensusInfo = (props: IProps) => {
     const payload = props.transaction?.txnData || "";
     const displayedPayload = showAllPayload ? payload : payload.substring(0, MAX_DISPLAY_CHARS);
     const showMorePayloadButton = payload.length > MAX_DISPLAY_CHARS;
+
+    const copyPayload = () => {
+        if (payload) {
+            navigator.clipboard.writeText(payload);
+            setToolTipText('Copied');
+        }
+        setTimeout(() => {
+            setToolTipText('Copy Payload');
+        }, 1000);
+    };
 
     return (
         <>
@@ -63,14 +74,13 @@ const ConsensusInfo = (props: IProps) => {
                                 gap="spacing-lg"
                             >
                                 <Text key={index} variant="bs-regular" color='text-primary'>{node}</Text>
-                                <Button
-                                    aria-label="Cancel"
-                                    size="extraSmall"
-                                    variant="outline"
-                                    onClick={() => {}}
+                                <Box
+                                    border="border-sm solid stroke-tertiary"
+                                    borderRadius="radius-xs"
+                                    padding="spacing-xxs spacing-sm"
                                 >
                                     <Text>Accepted</Text>
-                                </Button>
+                                </Box>
                             </Box>
                         ))}
                         
@@ -118,6 +128,16 @@ const ConsensusInfo = (props: IProps) => {
                                 </Text>
                             </Box>
                         )}
+                        <Tooltip title={tooltipText}>
+                            <Box cursor="pointer">
+                                <Copy
+                                    onClick={copyPayload}
+                                    autoSize
+                                    size={24}
+                                    color="icon-tertiary"
+                                />
+                            </Box>
+                        </Tooltip>
                     </Box>
                 </Box>
             </Box>
@@ -149,16 +169,23 @@ const ConsensusInfo = (props: IProps) => {
                                 display="flex"
                                 flexDirection="row"
                                 gap="spacing-lg"
-                            >
-                                <Text key={index} variant="bs-regular" color='text-primary'>{node}</Text>
-                                <Button
-                                    aria-label="Cancel"
-                                    size="extraSmall"
-                                    variant="outline"
-                                    onClick={() => {}}
+                            >    
+                                <Box
+                                    width="60vw"
+                                >
+                                    <Text wrap key={index} variant="bs-regular" color='text-primary'>
+                                        {node}
+                                    </Text>
+                                </Box>
+                                                               
+                                <Box
+                                    border="border-sm solid stroke-tertiary"
+                                    borderRadius="radius-xs"
+                                    padding="spacing-xxs spacing-sm"
                                 >
                                     <Text>Accepted</Text>
-                                </Button>
+                                </Box>
+                                
                             </Box>
                         ))}
                         
@@ -206,6 +233,16 @@ const ConsensusInfo = (props: IProps) => {
                                 </Text>
                             </Box>
                         )}
+                        <Tooltip title={tooltipText}>
+                            <Box cursor="pointer">
+                                <Copy
+                                    onClick={copyPayload}
+                                    autoSize
+                                    size={24}
+                                    color="icon-tertiary"
+                                />
+                            </Box>
+                        </Tooltip>
                     </Box>
                 </Box>
             </Box>

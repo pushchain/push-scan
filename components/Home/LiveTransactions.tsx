@@ -1,16 +1,20 @@
 // React, NextJS imports
 import React from 'react';
-import { Box, Text, Front, Tag, Skeleton, Table, Ethereum, Polygon, BNB } from '../../blocks';
+import { Box, Text, Front, Tag, Spinner, Table, Ethereum, Polygon, BNB } from '../../blocks';
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { useLiveTransactions } from '../../hooks/useLiveTransactions';
 import moment from 'moment';
 import { centerMaskString, rightMaskString, capitalizeStr } from '../../utils/helpers'
 import { TagVariant } from '../../blocks/tag';
+import { useTheme } from 'styled-components';
 
 export default function LiveTransactions() {
   const router = useRouter()
-  const { data, error, isLoading, isError } = useLiveTransactions({ page: 1 });
+  const { data, isLoading } = useLiveTransactions({ page: 1 });
+
+  const theme = useTheme();
+  const isDarkMode = theme.scheme === 'dark';
 
   function getChainIcon(source) {
     switch(source) {
@@ -64,18 +68,18 @@ export default function LiveTransactions() {
       render: (recipients: string) => {
         const reci = recipients.split(',')
         return (
-        <Box
-          display="flex"
-          flexDirection="column"
-        >
-          <Box display="flex" flexDirection="column" alignItems="flex-start">
-            <Box display="flex" flexDirection="row" gap="spacing-xxs" alignItems="center">
-              { getChainIcon('ETH_MAINNET') }
-              <Text display={{ ml: 'none', dp: 'block' }} variant='bs-regular' color="text-primary">{centerMaskString(reci[0])}</Text>
+          <Box
+            display={{ ml: 'none', dp: 'block' }}
+            flexDirection="column"
+          >
+            <Box display="flex" flexDirection="column" alignItems="flex-start">
+              <Box display="flex" flexDirection="row" gap="spacing-xxs" alignItems="center">
+                { getChainIcon('ETH_MAINNET') }
+                <Text display={{ ml: 'none', dp: 'block' }} variant='bs-regular' color="text-primary">{centerMaskString(reci[0])}</Text>
+              </Box>
+              { reci.length > 1 && <Text variant='bs-regular' color="text-tertiary">{`+ ${reci.length - 1} more`}</Text>}
             </Box>
-            { reci.length > 1 && <Text variant='bs-regular' color="text-tertiary">{`+ ${reci.length - 1} more`}</Text>}
           </Box>
-        </Box>
       )},
       cellAlignment: 'center',
       headerAlignment: 'center',
@@ -92,9 +96,9 @@ export default function LiveTransactions() {
   ];
 
   const dataSource = data?.transactions.map((dt) => ({
-    id: dt.txHash,
+    id: dt.txnHash,
     status: dt.status,
-    txHash: dt.txHash,
+    txHash: dt.txnHash,
     from: JSON.stringify({ from: dt.from, source: dt.source }),
     recipients: dt.recipients,
     ts: dt.ts,
@@ -108,9 +112,7 @@ export default function LiveTransactions() {
       gap="spacing-sm"
     >
         <Text variant='h5-semibold' color="text-primary">Live Transactions</Text>
-        <Skeleton isLoading={isLoading}>
-          <Table columns={columns} dataSource={dataSource} />
-        </Skeleton>
+        <Table loading={isLoading} columns={columns} dataSource={dataSource} backgroundColor={isDarkMode ? 'surface-secondary' : 'surface-primary'} />
         <Box
           display="flex"
           flexDirection="row"

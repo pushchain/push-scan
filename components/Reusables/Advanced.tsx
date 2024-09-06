@@ -1,15 +1,21 @@
 import React from 'react';
-import { Box, Text, CaretDown } from '../../blocks';
+import { Box, Text, CaretDown, CaretUp } from '../../blocks';
 
-const Advanced = () => {
+interface IProps {
+  showConsensusInfo: boolean
+  toggleConsensusInfo: (value: boolean) => void
+}
+
+const Advanced = ({ showConsensusInfo, toggleConsensusInfo }: IProps) => {
   return (
       <Box
         display="flex"
         flexDirection="row"
         gap="spacing-xxs"
+        onClick={() => toggleConsensusInfo(!showConsensusInfo)}
       >
         <Text variant='bes-semibold' color='text-primary'>Advanced</Text>
-        <CaretDown />
+        { showConsensusInfo ? <CaretDown /> : <CaretUp /> }
       </Box>
   );
 };

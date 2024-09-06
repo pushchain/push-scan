@@ -8,7 +8,7 @@ export default function Layout({ children }) {
     <Box
       display="flex"
       flexDirection="column"
-      margin={{ initial: 'spacing-md spacing-xxxl spacing-none spacing-xxxl', ml: 'spacing-none spacing-xs' }}
+      margin={{ initial: 'spacing-lg spacing-xxxl', ml: 'spacing-sm spacing-xs' }}
       gap="spacing-lg"
     >
       <HeaderSection />

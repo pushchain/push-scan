@@ -5,11 +5,15 @@ import { PerPageItems } from '../../utils/constants'
 import { useRouter } from 'next/router'
 import moment from 'moment';
 import { getValidatorNode } from '../../utils/helpers'
+import { useTheme } from 'styled-components';
 
 const Blocks = () => {
   const router = useRouter()
   const [page, setPage] = useState(1);
-  const { data, error, isLoading, isError } = useLiveBlocks({ page });    
+  const { data, error, isLoading, isError } = useLiveBlocks({ page });
+
+  const theme = useTheme();
+  const isDarkMode = theme.scheme === 'dark';
 
   const columns = [
     {
@@ -63,13 +67,14 @@ const Blocks = () => {
     ts: block.ts
   })) || [];
 
+  
   return (
     <Box
         display="flex"
         flexDirection="column"
         gap="spacing-xs"
     >
-        <Table columns={columns} dataSource={dataSource} />
+        <Table columns={columns} dataSource={dataSource} backgroundColor={isDarkMode ? 'surface-secondary' : 'surface-primary'} />
         <Box
           display="flex"
           flexDirection="column"

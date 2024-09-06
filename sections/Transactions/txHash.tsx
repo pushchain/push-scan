@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box, Text, Spinner } from '../../blocks';
 import Advanced from '../../components/Reusables/Advanced';
 import ConsensusInfo from '../../components/Transactions/ConsensusInfo';
@@ -10,6 +10,8 @@ import { useRouter } from 'next/router';
 const Details = () => {
   const router = useRouter();
   const { txHash } = router.query;
+  
+  const [showConsensusInfo, setConsensusInfo] = useState(true);
   
   const { data, isLoading } = useLiveTxByHash({ txHash });    
   const showLoading = !txHash || isLoading
@@ -39,12 +41,14 @@ const Details = () => {
         data={data?.transaction}
         isLoading={isLoading}
       />
-      <Advanced />
-      <ConsensusInfo
-        blockDetails={data?.blockDetails}
-        transaction={data?.transaction}
-        isLoading={isLoading}
-      />
+      <Advanced showConsensusInfo={showConsensusInfo} toggleConsensusInfo={setConsensusInfo} />
+      { showConsensusInfo && 
+        <ConsensusInfo
+          blockDetails={data?.blockDetails}
+          transaction={data?.transaction}
+          isLoading={isLoading}
+        />
+      }
     </Box>
   );
 };

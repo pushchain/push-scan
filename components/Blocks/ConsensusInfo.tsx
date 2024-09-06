@@ -201,6 +201,16 @@ const ConsensusInfo = (props: IProps) => {
                                 </Text>
                             </Box>
                         )}
+                        <Tooltip title={tooltipText}>
+                            <Box cursor="pointer">
+                                <Copy
+                                    onClick={copyPayload}
+                                    autoSize
+                                    size={24}
+                                    color="icon-tertiary"
+                                />
+                            </Box>
+                        </Tooltip>
                     </Box>
 
                 </Box>

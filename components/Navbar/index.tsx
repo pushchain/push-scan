@@ -9,19 +9,11 @@ import { Button, useMediaQuery } from '@mui/material';
 import { useTheme } from 'styled-components';
 
 // Internal Components imports
-import Logo from '../Logo';
 import { useTheme as Theme } from '../../contexts/ThemeContext';
 import { useData } from '../../contexts/DataContext';
 import { ROUTES, CREDENTIALKEYS } from '../../utils/constants';
-import { ItemHV2, ItemVV2 } from '../../components/Reusables/SharedStyling';
-import { NavBarButtons } from './NavBarButtons';
-import {
-  NavbarContainer,
-  HamburgerLine,
-  SidebarContainer,
-} from './navbar.styled';
 import { ThemeType } from '../../types/theme';
-import { Box, Select, Text, Lozenge, PushLogo } from '../../blocks';
+import { Box, Text, Lozenge, PushLogo } from '../../blocks';
 import SearchBar from '../Home/SearchBar'
 import ChainsDropDown from '../Reusables/ChainsDropDown'
 import Link from 'next/link'
@@ -103,7 +95,6 @@ export default function Navbar() {
       </Box>
 
       <Box
-        width="100%"
         alignItems="center"
         display={{ ml: "flex", dp: "none" }}
         flexDirection="column"
@@ -121,23 +112,14 @@ export default function Navbar() {
             alignItems="center"
             gap="spacing-xs"
           >
-            <Box
-              display="flex"
-              flexDirection="row"
-              alignItems="center"
-            >
-              <Logo
-                src="./static/push-icon-v1.svg"
-              />
+            <PushLogo height={24} width={24}/>
+            <Text variant='h4-regular' color="text-primary">PushScan</Text>
 
-              <Text variant='h4-regular' color="text-primary">PushScan</Text>
-
-              <Lozenge 
-                size="small"
-                variant="primary" 
-                css={css`padding: 10px; margin-left: 10px;`}
-              >ALPHA</Lozenge>
-            </Box>
+            <Lozenge 
+              size="small"
+              variant="primary" 
+              css={css`padding: 10px; margin-left: 10px;`}
+            >ALPHA</Lozenge>
           </Box>
 
           <Box

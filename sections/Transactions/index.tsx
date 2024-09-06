@@ -7,7 +7,7 @@ import { PerPageItems } from '../../utils/constants'
 const Transactions = () => {
   const [page, setPage] = useState(1);
   const { data, isLoading } = useLiveTransactions({ page });
-  
+    
   if (isLoading) {
     return (
       <Box display="flex" justifyContent="center">

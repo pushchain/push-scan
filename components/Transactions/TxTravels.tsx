@@ -105,13 +105,16 @@ const TxTravels = (props: IProps) => {
                     gap="spacing-xxxs"
                 >
                     <Text variant="bs-semibold" color='text-secondary'>From</Text>
+
                     <Box
                         display="flex"
                         flexDirection="row"
                         gap="spacing-xxxs"
                     >
                         { getChainIcon(props.data?.source) }
-                        <Text variant="bs-regular" color='text-primary' wrap>{props.data?.from}</Text>
+                        <Box width="75vw">
+                            <Text variant="bs-regular" color='text-primary' wrap>{props.data?.from}</Text>
+                        </Box>
                     </Box>
                 </Box>
 
@@ -127,7 +130,17 @@ const TxTravels = (props: IProps) => {
                         gap="spacing-xs"
                     >
                         {displayedRecipients.map((recipient, index) => (
-                            <Text key={index} variant="bs-regular" color='text-primary'>{recipient.address}</Text>
+                            <Box 
+                                display="flex"
+                                flexDirection="row"
+                                gap="spacing-xxxs"
+                                key={index}
+                            >
+                                { getChainIcon(props.data?.source) }
+                                <Box width="75vw">
+                                    <Text wrap key={index} variant="bs-regular" color='text-primary'>{recipient.address}</Text>
+                                </Box>
+                            </Box>
                         ))}   
                         
                         {showMoreButton && (

@@ -17,9 +17,10 @@ export const ROUTES = {
   ADMIN: '/admin',
   DASHBOARD: '/dashboard',
   TRANSACTIONS: '/transactions',
-  TRANSACTION_DETAILS: '/transactions/address',
+  TRANSACTION_DETAILS: '/transactions/:address',
   BLOCKS: '/blocks',
-  BLOCKS_DETAILS: '/blocks/address',
+  BLOCKS_DETAILS: '/blocks/:address',
+  SEARCH: '/search/:address',
   ERROR: '*',
 };
 

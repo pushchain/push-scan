@@ -68,13 +68,7 @@ export const useLiveTransactions = (props: inputProps) => {
         select: (data) => {
             const transactions = data.blocks.flatMap(block =>
                 block.transactions.map(tx => ({
-                    txHash: tx.txnHash,
-                    ts: tx.ts,
-                    blockHash: tx.blockHash,
-                    category: tx.category,
-                    status: tx.status,
-                    source: tx.source,
-                    from: tx.from,
+                    ...tx,
                     recipients: tx.recipients.recipients.map(recipient => recipient.address)
                 }))
             );

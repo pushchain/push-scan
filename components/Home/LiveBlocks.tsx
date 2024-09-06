@@ -1,15 +1,19 @@
 import React from 'react';
-import { Box, Text, Front, Skeleton, Table } from '../../blocks';
+import { Box, Text, Front, Table } from '../../blocks';
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { useLiveBlocks } from '../../hooks/useBlocks';
 import moment from 'moment';
 import { getValidatorNode } from '../../utils/helpers'
 import { centerMaskString, rightMaskString } from '../../utils/helpers'
+import { useTheme } from 'styled-components';
 
 export default function LiveBlocks() {
   const router = useRouter()
   const { data, error, isLoading, isError } = useLiveBlocks({ page: 1 });
+
+  const theme = useTheme();
+  const isDarkMode = theme.scheme === 'dark';
 
   const columns = [
     {
@@ -62,10 +66,12 @@ export default function LiveBlocks() {
       gap="spacing-sm"
     >
       <Text variant='h5-semibold' color="text-primary">Live Blocks</Text>
-      <Skeleton isLoading={isLoading}>
-        <Table columns={columns} dataSource={dataSource} />
-      </Skeleton>
       <Box
+        height={"100%"}
+      >
+        <Table loading={isLoading} columns={columns} dataSource={dataSource} backgroundColor={isDarkMode ? 'surface-secondary' : 'surface-primary'} />
+      </Box>
+     <Box
         display="flex"
         flexDirection="row"
         gap="spacing-xxxs"

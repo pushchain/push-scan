@@ -13,6 +13,7 @@ export const makeJsonRpcRequest = async (id, method, params = {}) => {
   };
 
   try {
+    // await delay(500000);
     const response = await axios.post(API_BASE, data);
     if (response.data.error) {
       throw new Error('JSON-RPC Error: ' + response.data.error.message);

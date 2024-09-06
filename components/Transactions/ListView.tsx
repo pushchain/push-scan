@@ -5,6 +5,7 @@ import { useRouter } from 'next/router'
 import moment from 'moment';
 import { TagVariant } from '../../blocks/tag';
 import { Transaction } from '../../types/transaction';
+import { useTheme } from 'styled-components';
 
 interface dataProps {
   transactions: Transaction[],
@@ -17,6 +18,9 @@ interface IProps {
 
 const ListView = (props: IProps) => {
   const router = useRouter()
+
+  const theme = useTheme();
+  const isDarkMode = theme.scheme === 'dark';
 
   let data = props.data;
 
@@ -123,7 +127,7 @@ const ListView = (props: IProps) => {
 
 
   return (
-    <Table columns={columns} dataSource={dataSource} />
+    <Table columns={columns} dataSource={dataSource} backgroundColor={isDarkMode ? 'surface-secondary' : 'surface-primary'} />
   );
 };
 
