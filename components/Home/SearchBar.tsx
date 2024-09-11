@@ -22,16 +22,12 @@ export default function SearchBar() {
   useDebounce(() => setDebouncedQuery(getFormattedQuery(query)), 500, [query]);
   
   return (
-    <Box
-      width={'100%'}
-    >
-      <TextInput
-        placeholder="Search by Address"
-        icon={<Search size={24} onClick={() => router.push(`/search/${debouncedQuery}`)}/>}
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-      />
-    </Box>
+    <TextInput
+      placeholder="Search by Address, Tx Hash, Block Hash"
+      icon={<Search size={24} onClick={() => router.push(`/search/${debouncedQuery}`)}/>}
+      value={query}
+      onChange={(e) => setQuery(e.target.value)}
+    />
   )
 }
 

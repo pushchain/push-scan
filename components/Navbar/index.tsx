@@ -36,11 +36,15 @@ export default function Navbar() {
   };
 
   return (
-    <>
+    <Box
+      display="flex"
+      flexDirection="column"
+      gap={{initial: "spacing-lg", ml: "spacing-sm" }}
+    >
       <Box
         width="100%"
         alignItems="center"
-        display={{ ml: "none", dp: "flex" }}
+        display="flex"
         flexDirection="row"
         justifyContent="space-between"
       >
@@ -55,6 +59,8 @@ export default function Navbar() {
             flexDirection="row"
             alignItems="center"
             gap="spacing-xxxs"
+            css={'cursor: pointer'}
+            onClick={() => router.push('/home')}
           >
             <PushLogo height={36} width={36}/>
             <Text variant='h4-regular' color="text-primary">PushScan</Text>
@@ -78,7 +84,7 @@ export default function Navbar() {
         > 
           { asPath !== '/dashboard' && (
             <Link href="/dashboard">
-              <Text variant="bs-regular">Analytics</Text>
+              <Text variant="bs-regular" color='text-primary'>Analytics</Text>
             </Link>
           )}
 
@@ -90,65 +96,38 @@ export default function Navbar() {
             moonColor="#FFFFFF"
           />
 
-          { asPath !== '/home' && <SearchBar /> }
+          { asPath !== '/home' && (
+            <Box
+              display={{ ml: 'none', dp: 'flex' }}
+            >
+              <SearchBar /> 
+            </Box>
+          )}
         </Box>
       </Box>
 
       <Box
-        alignItems="center"
-        display={{ ml: "flex", dp: "none" }}
+        display={{ dp: "none", ml: "flex" }}
         flexDirection="column"
         gap="spacing-xs"
+        width="-webkit-fill-available"
       >
-        <Box
-          width="100%"
-          display="flex"
-          flexDirection="row"
-          justifyContent="space-between"
-        >
-          <Box
-            display="flex"
-            flexDirection="row"
-            alignItems="center"
-            gap="spacing-xs"
-          >
-            <PushLogo height={24} width={24}/>
-            <Text variant='h4-regular' color="text-primary">PushScan</Text>
-
-            <Lozenge 
-              size="small"
-              variant="primary" 
-              css={css`padding: 10px; margin-left: 10px;`}
-            >ALPHA</Lozenge>
-          </Box>
-
-          <Box
-            display="flex"
-            flexDirection="row"
-            alignItems="center"
-            gap="spacing-sm"
-          > 
-            { asPath !== '/dashboard' && (
-              <Link href="/dashboard">
-                <Text variant="bs-regular">Analytics</Text>
-              </Link>
-            )}
-
-            <DarkModeSwitch
-              checked={isDarkMode}
-              onChange={darkModeToggle}
-              size={28}
-              sunColor="#575D73"
-              moonColor="#FFFFFF"
-            />
-          </Box>
-        </Box>
-
-        <ChainsDropDown />
-
-        { asPath !== '/home' && <SearchBar /> }
+        { asPath === '/home' && <Text variant="h3-semibold" color='text-primary'>Push Blockchain Explorer - TESTS!!!!!!!!!!!!</Text> }
+        <Text>HELLO TEST!!!!</Text>
+        <SearchBar />
       </Box>
-    </>
-    
+
+      { asPath === '/home' && (
+        <Box
+          display={{ dp: "flex", ml: "none" }}
+          flexDirection="column"
+          gap="spacing-xs"
+          width="-webkit-fill-available"
+        >
+          <Text variant="h3-semibold" color='text-primary'>Push Blockchain Explorer</Text>
+          <SearchBar />
+        </Box>
+      )}
+    </Box>
   );
 }

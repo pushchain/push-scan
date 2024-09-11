@@ -69,7 +69,7 @@ export default function LiveBlocks() {
       <Box
         height={"100%"}
       >
-        <Table loading={isLoading} columns={columns} dataSource={dataSource} backgroundColor={isDarkMode ? 'surface-secondary' : 'surface-primary'} />
+        <Table onRow={{ onClick: () => console.log("Clicked !!!") }} loading={isLoading} columns={columns} dataSource={dataSource} backgroundColor={isDarkMode ? 'surface-secondary' : 'surface-primary'} />
       </Box>
      <Box
         display="flex"

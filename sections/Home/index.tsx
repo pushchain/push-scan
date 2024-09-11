@@ -20,16 +20,6 @@ const Home = () => {
         alignItems="flex-start"
         gap={{ ml: "spacing-lg", initial: "spacing-xxl" }}
       >
-        <Box
-          display="flex"
-          flexDirection="column"
-          gap="spacing-xs"
-          width="-webkit-fill-available"
-        >
-          <Text variant="h3-semibold" color='text-primary'>Push Blockchain Explorer</Text>
-          <SearchBar />
-        </Box>
-        
         <OverView />
       </Box>
 
