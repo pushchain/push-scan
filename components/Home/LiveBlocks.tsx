@@ -5,12 +5,12 @@ import Link from 'next/link'
 import { useLiveBlocks } from '../../hooks/useBlocks';
 import moment from 'moment';
 import { getValidatorNode } from '../../utils/helpers'
-import { centerMaskString, rightMaskString } from '../../utils/helpers'
+import { convertCaipToAddress, centerMaskString, rightMaskString } from '../../utils/helpers'
 import { useTheme } from 'styled-components';
 
 export default function LiveBlocks() {
   const router = useRouter()
-  const { data, error, isLoading, isError } = useLiveBlocks({ page: 1 });
+  const { data, error, isLoading, isError } = useLiveBlocks({ page: 1, perPageItems: 6 });
 
   const theme = useTheme();
   const isDarkMode = theme.scheme === 'dark';
@@ -27,7 +27,7 @@ export default function LiveBlocks() {
     {
       title: 'VALIDATOR',
       dataIndex: 'validator',
-      render: (text) => <Text variant='bs-regular' color="text-primary">{centerMaskString(text)}</Text>,
+      render: (text) => <Text variant='bs-regular' color="text-primary">{centerMaskString(convertCaipToAddress(text))}</Text>,
       cellAlignment: 'flex-start',
       headerAlignment: 'flex-start',
       width: '30%'
@@ -44,8 +44,8 @@ export default function LiveBlocks() {
       title: 'AGE',
       dataIndex: 'ts',
       render: (text) => <Text variant='bs-regular' color="text-tertiary">{moment(text * 1000).fromNow()}</Text>,
-      cellAlignment: 'flex-end',
-      headerAlignment: 'flex-end',
+      cellAlignment: 'center',
+      headerAlignment: 'center',
       width: '20%'
     },
   ];
@@ -60,7 +60,7 @@ export default function LiveBlocks() {
 
   return (
     <Box
-      css={'flex: 0 0 40%'}
+      css={'flex: 0 0 38%'}
       display="flex"
       flexDirection="column"
       gap="spacing-sm"

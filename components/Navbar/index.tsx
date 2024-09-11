@@ -40,9 +40,9 @@ export default function Navbar() {
       display="flex"
       flexDirection="column"
       gap={{initial: "spacing-lg", ml: "spacing-sm" }}
+      margin="spacing-lg spacing-xxxxl spacing-none spacing-xxxxl"
     >
       <Box
-        width="100%"
         alignItems="center"
         display="flex"
         flexDirection="row"
@@ -99,6 +99,8 @@ export default function Navbar() {
           { asPath !== '/home' && (
             <Box
               display={{ ml: 'none', dp: 'flex' }}
+              minWidth="330px"
+              height="38px"
             >
               <SearchBar /> 
             </Box>
@@ -112,22 +114,9 @@ export default function Navbar() {
         gap="spacing-xs"
         width="-webkit-fill-available"
       >
-        { asPath === '/home' && <Text variant="h3-semibold" color='text-primary'>Push Blockchain Explorer - TESTS!!!!!!!!!!!!</Text> }
-        <Text>HELLO TEST!!!!</Text>
+        { asPath === '/home' && <Text variant="h3-semibold" color='text-primary'>Push Blockchain Explorer</Text> }
         <SearchBar />
       </Box>
-
-      { asPath === '/home' && (
-        <Box
-          display={{ dp: "flex", ml: "none" }}
-          flexDirection="column"
-          gap="spacing-xs"
-          width="-webkit-fill-available"
-        >
-          <Text variant="h3-semibold" color='text-primary'>Push Blockchain Explorer</Text>
-          <SearchBar />
-        </Box>
-      )}
     </Box>
   );
 }

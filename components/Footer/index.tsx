@@ -17,11 +17,10 @@ export default function Footer() {
   const { isDarkMode } = Theme();
   return (
     <Box
-      width="100%"
-      alignItems="flex-end"
       display="flex"
       flexDirection="row"
       justifyContent="space-between"
+      margin="spacing-none spacing-xxxxl spacing-none spacing-xxxxl"
     >
       <Box
         display="flex"

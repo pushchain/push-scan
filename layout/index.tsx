@@ -2,17 +2,20 @@ import React from 'react';
 import { Box } from '../blocks';
 import FooterSection from '../sections/Footer';
 import HeaderSection from '../sections/Header';
+import { ContentLayout } from '../common'
 
 export default function Layout({ children }) {
   return (
     <Box
       display="flex"
       flexDirection="column"
-      margin={{ initial: 'spacing-lg spacing-xxxl', ml: 'spacing-sm spacing-xs' }}
-      gap="spacing-lg"
+      gap={{ initial: "spacing-xxxl", ml: "spacing-lg" }}
+      
     >
       <HeaderSection />
-      {children}
+      <ContentLayout>
+        {children}
+      </ContentLayout>
       <FooterSection />
     </Box>
   );

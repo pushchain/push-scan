@@ -7,6 +7,7 @@ const RPC_ID = 1
 
 type inputProps = {
     page?: number | null;
+    perPageItems?: number | null;
 };
 
 export const useLiveBlocks = (props: inputProps) => {
@@ -16,7 +17,7 @@ export const useLiveBlocks = (props: inputProps) => {
         "startTime": Math.floor(Date.now() / 1000),
         "direction": "DESC",
         "showDetails": false,
-        "pageSize": PerPageItems,
+        "pageSize": props.perPageItems || PerPageItems,
         "page": props.page
     });
 

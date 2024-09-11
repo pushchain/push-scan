@@ -23,6 +23,7 @@ export default function SearchBar() {
   
   return (
     <TextInput
+      css={'width: 100%'}
       placeholder="Search by Address, Tx Hash, Block Hash"
       icon={<Search size={24} onClick={() => router.push(`/search/${debouncedQuery}`)}/>}
       value={query}

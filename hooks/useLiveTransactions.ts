@@ -52,13 +52,14 @@ type ApiResponse = {
 
 type inputProps = {
     page?: number | null;
+    perPageItems?: number | null;
 };
 
 export const useLiveTransactions = (props: inputProps) => {
     const getTransactions = () => makeJsonRpcRequest(RPC_ID, 'getTxs', {
         "startTime": Math.floor(Date.now() / 1000),
         "direction": "DESC",
-        "pageSize": PerPageItems,
+        "pageSize": props.perPageItems || PerPageItems,
         "page": props.page
     });
 

@@ -41,20 +41,20 @@ const Blocks = () => {
       width: '10%'
     },
     {
-      title: 'SIZE',
+      title: 'SIZE (IN BYTES)',
       dataIndex: 'blockSize',
       render: (text) => <Text variant='bs-regular' color="text-primary">{text}</Text>,
       cellAlignment: 'center',
       headerAlignment: 'center',
-      width: '10%'
+      width: '15%'
     },
     {
       title: 'AGE',
       dataIndex: 'ts',
       render: (text) => <Text variant='bs-regular' color="text-tertiary">{moment(text * 1000).fromNow()}</Text>,
-      cellAlignment: 'flex-end',
-      headerAlignment: 'flex-end',
-      width: '10%'
+      cellAlignment: 'center',
+      headerAlignment: 'center',
+      width: '5%'
     },
   ];
 

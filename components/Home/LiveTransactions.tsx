@@ -5,13 +5,13 @@ import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { useLiveTransactions } from '../../hooks/useLiveTransactions';
 import moment from 'moment';
-import { centerMaskString, rightMaskString, capitalizeStr } from '../../utils/helpers'
+import { convertCaipToAddress, centerMaskString, rightMaskString, capitalizeStr } from '../../utils/helpers'
 import { TagVariant } from '../../blocks/tag';
 import { useTheme } from 'styled-components';
 
 export default function LiveTransactions() {
   const router = useRouter()
-  const { data, isLoading } = useLiveTransactions({ page: 1 });
+  const { data, isLoading } = useLiveTransactions({ page: 1, perPageItems: 6 });
 
   const theme = useTheme();
   const isDarkMode = theme.scheme === 'dark';
@@ -39,11 +39,11 @@ export default function LiveTransactions() {
       width: '15%'
     },
     {
-      title: 'Tx HASH',
+      title: 'TX HASH',
       dataIndex: 'txHash',
       render: (txHash: string) => <Text variant='bs-regular' color="text-primary" onClick={() => router.push(`/transactions/${txHash}`)}>{rightMaskString(txHash)}</Text>,
-      cellAlignment: 'center',
-      headerAlignment: 'center',
+      cellAlignment: 'flex-start',
+      headerAlignment: 'flex-start',
       width: '20%'
     },
     {
@@ -54,12 +54,12 @@ export default function LiveTransactions() {
         return (
           <Box display="flex" flexDirection="row" gap="spacing-xxs" alignItems="center">
             { getChainIcon(from.source) }
-            <Text variant='bs-regular' color="text-primary">{centerMaskString(from.from)}</Text>
+            <Text variant='bs-regular' color="text-primary">{centerMaskString(convertCaipToAddress(from.from))}</Text>
           </Box>
         )
       },
-      cellAlignment: 'center',
-      headerAlignment: 'center',
+      cellAlignment: 'flex-start',
+      headerAlignment: 'flex-start',
       width: '25%'
     },
     {
@@ -75,22 +75,22 @@ export default function LiveTransactions() {
             <Box display="flex" flexDirection="column" alignItems="flex-start">
               <Box display="flex" flexDirection="row" gap="spacing-xxs" alignItems="center">
                 { getChainIcon('ETH_MAINNET') }
-                <Text display={{ ml: 'none', dp: 'block' }} variant='bs-regular' color="text-primary">{centerMaskString(reci[0])}</Text>
+                <Text display={{ ml: 'none', dp: 'block' }} variant='bs-regular' color="text-primary">{centerMaskString(convertCaipToAddress(reci[0]))}</Text>
               </Box>
               { reci.length > 1 && <Text variant='bs-regular' color="text-tertiary">{`+ ${reci.length - 1} more`}</Text>}
             </Box>
           </Box>
       )},
-      cellAlignment: 'center',
-      headerAlignment: 'center',
+      cellAlignment: 'flex-start',
+      headerAlignment: 'flex-start',
       width: '25%'
     },
     {
       title: 'AGE',
       dataIndex: 'ts',
       render: (ts: number) => <Text display={{ ml: 'none', dp: 'block' }} variant='bs-regular' color="text-tertiary">{moment(ts * 1000).fromNow()}</Text>,
-      cellAlignment: 'flex-end',
-      headerAlignment: 'flex-end',
+      cellAlignment: 'center',
+      headerAlignment: 'center',
       width: '15%'
     },
   ];
@@ -106,7 +106,7 @@ export default function LiveTransactions() {
 
   return (
     <Box
-      css={'flex: 0 0 55%'}
+      css={'flex: 0 0 60%'}
       display="flex"
       flexDirection="column"
       gap="spacing-sm"

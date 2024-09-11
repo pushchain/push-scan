@@ -5,70 +5,62 @@ import { useCounts } from '../../hooks/useCounts';
 export type OverViewProps = {};
 
 const OverView: FC<OverViewProps> = () => {
-    const { data, error, isLoading, isError } = useCounts();    
+    const { data, isLoading } = useCounts();    
     return (
         <Box
             display="flex"
             flexDirection={{ ml: "column", initial: "row"}}
-            justifyContent="space-between"
+            justifyContent="center"
+            alignItems="center"
             gap="spacing-xxxs"
             padding="spacing-sm"
             border="border-lg solid stroke-secondary"
             backgroundColor="surface-primary"
             borderRadius='radius-md'
-            width="-webkit-fill-available"
+            width="100%"
         >   
                 <Skeleton isLoading={isLoading}>
                     <Box
+                        width="100%"
                         display="flex"
                         flexDirection="column"
                         justifyContent="flex-start"
+                        align-items="flex-start"
                         gap="spacing-xxxs"
-                        padding="spacing-sm"
+                        padding="spacing-none spacing-lg spacing-none spacing-lg"
                     >
                         <Text variant="h6-regular" color='text-tertiary'>Transactions</Text>
                         <Text variant="h3-semibold" color='text-primary'>{data?.totalTransactions}</Text>
                     </Box>
                 </Skeleton>
-
-                <Box display={{ initial: 'block', ml: 'none' }}>
-                    <Separator orientation="vertical" />
-                </Box>
-
-                <Box display={{ initial: 'none', ml: 'block' }}>
-                    <Separator orientation="horizontal" />
-                </Box>
+                
 
                 <Skeleton isLoading={isLoading}>
                     <Box
+                        width="100%"
                         display="flex"
                         flexDirection="column"
                         justifyContent="flex-start"
+                        align-items="flex-start"
                         gap="spacing-xxxs"
-                        padding="spacing-sm"
-                        border-left="border-sm solid stroke-secondary"
+                        padding="spacing-none spacing-lg spacing-none spacing-lg"
+                        css={`border-left: var(--border-md) solid var(--stroke-tertiary);`} 
                     >
                         <Text variant="h6-regular" color='text-tertiary'>Total Blocks</Text>
                         <Text variant="h3-semibold" color='text-primary'>{data?.totalBlocks}</Text>
                     </Box>
                 </Skeleton>
 
-                <Box display={{ initial: 'block', ml: 'none' }}>
-                    <Separator orientation="vertical" />
-                </Box>
-
-                <Box display={{ initial: 'none', ml: 'block' }}>
-                    <Separator orientation="horizontal" />
-                </Box>
-
                 <Skeleton isLoading={isLoading}>
                     <Box
+                        width="100%"
                         display="flex"
                         flexDirection="column"
                         justifyContent="flex-start"
+                        align-items="flex-start"
                         gap="spacing-xxxs"
-                        padding="spacing-sm"
-                        border-left="border-sm solid stroke-secondary"
+                        padding="spacing-none spacing-lg spacing-none spacing-lg"
+                        css={`border-left: var(--border-md) solid var(--stroke-tertiary);`} 
                     >
                         <Text variant="h6-regular" color='text-tertiary'>Daily Transactions</Text>
                         <Text variant="h3-semibold" color='text-primary'>{data?.dailyTransactions}</Text>

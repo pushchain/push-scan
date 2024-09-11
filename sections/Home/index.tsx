@@ -14,6 +14,15 @@ const Home = () => {
       gap="spacing-xxxl"
     >
       <Box
+        display={{ dp: "flex", ml: "none"}}
+        flexDirection="column"
+        gap="spacing-xs"
+      >
+        <Text variant="h3-semibold" color='text-primary'>Push Blockchain Explorer</Text>
+        <SearchBar />
+      </Box>
+
+      <Box
         display="flex"
         flexDirection="column"
         justifyContent="flex-start"
@@ -24,10 +33,9 @@ const Home = () => {
       </Box>
 
       <Box
-        width="100%"
         display="flex"
         flexDirection={{ initial: "row", ml: "column" }}
-        gap={{ initial: "spacing-xxxl", ml: "spacing-xxl" }}
+        gap={{ initial: "spacing-xxxs", ml: "spacing-xxl" }}
         justifyContent="space-between"
       >
         <LiveBlocks />
