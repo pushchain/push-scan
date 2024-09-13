@@ -18,10 +18,11 @@ const Details = (props: IProps) => {
                 alignItems="flex-start"
                 borderRadius="radius-sm"
                 backgroundColor="surface-primary"
-                gap="spacing-xxxl"
+                gap="spacing-xxxxxl"
                 padding="spacing-md"
             >
                 <Box
+                    width="134px"
                     display="flex"
                     flexDirection="column"
                     gap="spacing-sm"

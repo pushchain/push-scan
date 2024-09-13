@@ -4,14 +4,16 @@ import Image from 'next/image';
 
 // External Library imports
 import { useTheme as Theme } from '../../contexts/ThemeContext';
-import TwitterIconDark from "../../public/static/twitter-dark.svg";
-import TwitterIconLight from "../../public/static/twitter.svg";
+import TwitterIconDark from "../../public/static/X-dark.svg";
+import TwitterIconLight from "../../public/static/X.svg";
 import GithubIconDark from "../../public/static/github-dark.svg";
 import GithubIconLight from "../../public/static/github.svg";
+import TelegramIconDark from "../../public/static/telegram-dark.svg";
+import TelegramIconLight from "../../public/static/telegram.svg";
 import DiscordIconDark from "../../public/static/discord-dark.svg";
 import DiscordIconLight from "../../public/static/discord.svg";
 
-import { Box, Text, TickCircleFilled } from '../../blocks';
+import { Box, Text, TickCircleFilled, Link } from '../../blocks';
 
 export default function Footer() {
   const { isDarkMode } = Theme();
@@ -20,7 +22,7 @@ export default function Footer() {
       display="flex"
       flexDirection="row"
       justifyContent="space-between"
-      margin="spacing-none spacing-xxxxl spacing-none spacing-xxxxl"
+      margin="spacing-none spacing-xxxxxl spacing-lg spacing-xxxxxl"
     >
       <Box
         display="flex"
@@ -34,8 +36,8 @@ export default function Footer() {
         >
           <Image
             alt="Twitter"
-            height={24}
-            width={30}
+            height={18}
+            width={17}
             src={
               isDarkMode ? TwitterIconDark : TwitterIconLight
             }
@@ -48,11 +50,24 @@ export default function Footer() {
         >
           <Image
             alt="Github"
-            height={26}
-            width={26}
+            height={20}
+            width={20}
             src={isDarkMode ? GithubIconDark : GithubIconLight}
           />
         </a>
+        <a
+          href="https://github.com/ethereum-push-notification-service/"
+          target={'_blank'}
+          rel={'noreferrer'}
+        >
+          <Image
+            alt="Telegram"
+            height={20}
+            width={20}
+            src={isDarkMode ? TelegramIconDark : TelegramIconLight}
+          />
+        </a>
+        
         <a
           href="https://discord.com/invite/pushprotocol"
           target={'_blank'}
@@ -60,8 +75,8 @@ export default function Footer() {
         >
           <Image
             alt="Discord"
-            height={23}
-            width={32}
+            height={20}
+            width={20}
             src={
               isDarkMode ? DiscordIconDark : DiscordIconLight
             }

@@ -3,6 +3,8 @@ import { Box, Text, Tag } from '../../blocks';
 import { Transaction } from '../../types/transaction';
 import moment from 'moment';
 import { TagVariant } from '../../blocks/tag';
+import { Tick } from '../../blocks/icons'
+import BlockHashLink from '../Reusables/BlockHashLink'
 
 interface IProps {
     data: Transaction | null | undefined,
@@ -24,10 +26,11 @@ const TXDetails = (props: IProps) => {
                 alignItems="flex-start"
                 borderRadius="radius-sm"
                 backgroundColor="surface-primary"
-                gap="spacing-xxxl"
+                gap="spacing-xxxxl"
                 padding="spacing-md"
             >
                 <Box
+                    width="134px"
                     display="flex"
                     flexDirection="column"
                     gap="spacing-sm"
@@ -45,8 +48,8 @@ const TXDetails = (props: IProps) => {
                     gap="spacing-sm"
                 >
                     <Text variant="bs-regular" color='text-primary'>{props.data?.txnHash}</Text>
-                    <Tag label={status} variant={status}></Tag>
-                    <Text variant="bs-regular" color='text-primary'>{props.data?.blockHash}</Text>
+                    <Tag icon={<Tick />} label={status} variant={status}></Tag>
+                    <BlockHashLink blockHash={props.data?.blockHash} />
                     <Text variant="bs-regular" color='text-primary'>{props.data?.category}</Text>
                     <Text variant="bs-regular" color='text-tertiary'>{ props.data?.ts && moment(props.data.ts * 1000).fromNow() }</Text>
                 </Box>

@@ -11,7 +11,7 @@ const Details = () => {
   const router = useRouter();
   const { blockHash } = router.query;
 
-  const [showConsensusInfo, setConsensusInfo] = useState(true);
+  const [showConsensusInfo, setConsensusInfo] = useState(false);
 
   const { data, isLoading } = useLiveBlockByHash({ blockHash });
   const showLoading = !blockHash || isLoading

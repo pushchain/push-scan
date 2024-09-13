@@ -3,14 +3,14 @@ import { Box, Text, Table, Pagination } from '../../blocks';
 import { useLiveBlocks } from '../../hooks/useBlocks';
 import { PerPageItems } from '../../utils/constants'
 import { useRouter } from 'next/router'
-import moment from 'moment';
-import { getValidatorNode } from '../../utils/helpers'
+import { getValidatorNode, fromNow, centerMaskString } from '../../utils/helpers'
 import { useTheme } from 'styled-components';
+import BlockHashLink from '../Reusables/BlockHashLink'
 
 const Blocks = () => {
   const router = useRouter()
   const [page, setPage] = useState(1);
-  const { data, error, isLoading, isError } = useLiveBlocks({ page });
+  const { data, error, isLoading, isError } = useLiveBlocks({ page, perPageItems: 15 });
 
   const theme = useTheme();
   const isDarkMode = theme.scheme === 'dark';
@@ -19,18 +19,18 @@ const Blocks = () => {
     {
       title: 'BLOCK HASH',
       dataIndex: 'blockHash',
-      render: (text) => <Text variant='bs-regular' color="text-primary" onClick={() => router.push(`/blocks/${text}`)}>{text}</Text>,
+      render: (text) => <BlockHashLink blockHash={text} masking={true}/>,
       cellAlignment: 'flex-start',
       headerAlignment: 'flex-start',
-      width: '35%'
+      width: '25%'
     },
     {
       title: 'VALIDATOR',
       dataIndex: 'validator',
-      render: (text) => <Text variant='bs-regular' color="text-primary">{text}</Text>,
+      render: (text) => <Text variant='bs-regular' color="text-primary">{centerMaskString(text)}</Text>,
       cellAlignment: 'flex-start',
       headerAlignment: 'flex-start',
-      width: '35%'
+      width: '25%'
     },
     {
       title: 'TXN',
@@ -38,7 +38,7 @@ const Blocks = () => {
       render: (text) => <Text variant='bs-regular' color="text-primary">{text}</Text>,
       cellAlignment: 'center',
       headerAlignment: 'center',
-      width: '10%'
+      width: '19%'
     },
     {
       title: 'SIZE (IN BYTES)',
@@ -46,15 +46,15 @@ const Blocks = () => {
       render: (text) => <Text variant='bs-regular' color="text-primary">{text}</Text>,
       cellAlignment: 'center',
       headerAlignment: 'center',
-      width: '15%'
+      width: '25%'
     },
     {
       title: 'AGE',
       dataIndex: 'ts',
-      render: (text) => <Text variant='bs-regular' color="text-tertiary">{moment(text * 1000).fromNow()}</Text>,
+      render: (text) => <Text variant='bs-regular' color="text-tertiary">{fromNow(text * 1000)}</Text>,
       cellAlignment: 'center',
       headerAlignment: 'center',
-      width: '5%'
+      width: '6%'
     },
   ];
 

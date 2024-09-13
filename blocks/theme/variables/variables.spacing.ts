@@ -9,5 +9,6 @@ export const spacingVariables = {
   'spacing-xl': '40px',
   'spacing-xxl': '48px',
   'spacing-xxxl': '64px',
-  'spacing-xxxxl': '168px'
+  'spacing-xxxxl': '128px',
+  'spacing-xxxxxl': '168px',
 };

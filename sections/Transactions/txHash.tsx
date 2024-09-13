@@ -11,7 +11,7 @@ const Details = () => {
   const router = useRouter();
   const { txHash } = router.query;
   
-  const [showConsensusInfo, setConsensusInfo] = useState(true);
+  const [showConsensusInfo, setConsensusInfo] = useState(false);
   
   const { data, isLoading } = useLiveTxByHash({ txHash });    
   const showLoading = !txHash || isLoading

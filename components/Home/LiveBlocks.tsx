@@ -3,10 +3,10 @@ import { Box, Text, Front, Table } from '../../blocks';
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { useLiveBlocks } from '../../hooks/useBlocks';
-import moment from 'moment';
 import { getValidatorNode } from '../../utils/helpers'
-import { convertCaipToAddress, centerMaskString, rightMaskString } from '../../utils/helpers'
+import { centerMaskString, fromNow } from '../../utils/helpers'
 import { useTheme } from 'styled-components';
+import BlockHashLink from '../Reusables/BlockHashLink'
 
 export default function LiveBlocks() {
   const router = useRouter()
@@ -19,7 +19,7 @@ export default function LiveBlocks() {
     {
       title: 'BLOCK HASH',
       dataIndex: 'blockHash',
-      render: (text) => <Text variant='bs-regular' color="text-primary" onClick={() => router.push(`/blocks/${text}`)}>{rightMaskString(text)}</Text>,
+      render: (text) => <BlockHashLink blockHash={text} masking={true}/>,
       cellAlignment: 'flex-start',
       headerAlignment: 'flex-start',
       width: '30%'
@@ -27,7 +27,7 @@ export default function LiveBlocks() {
     {
       title: 'VALIDATOR',
       dataIndex: 'validator',
-      render: (text) => <Text variant='bs-regular' color="text-primary">{centerMaskString(convertCaipToAddress(text))}</Text>,
+      render: (text) => <Text variant='bs-regular' color="text-primary">{centerMaskString(text)}</Text>,
       cellAlignment: 'flex-start',
       headerAlignment: 'flex-start',
       width: '30%'
@@ -43,7 +43,7 @@ export default function LiveBlocks() {
     {
       title: 'AGE',
       dataIndex: 'ts',
-      render: (text) => <Text variant='bs-regular' color="text-tertiary">{moment(text * 1000).fromNow()}</Text>,
+      render: (text) => <Text variant='bs-regular' color="text-tertiary">{fromNow(text * 1000)}</Text>,
       cellAlignment: 'center',
       headerAlignment: 'center',
       width: '20%'

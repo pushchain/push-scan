@@ -1,20 +1,3 @@
-@font-face {
-  font-family: 'Strawford';
-  font-display: swap;
-  src: url('../public/static/fonts/FKGroteskNeue-Regular.woff2') format('woff2'),
-    url('../public/static/fonts/FKGroteskNeue-Regular.woff') format('woff');
-  font-weight: 400;
-  font-style: regular;
-}
-
-@font-face {
-  font-family: 'Strawford';
-  font-display: swap;
-  src: url('../public/static/fonts/FKGroteskNeue-Regular.woff2') format('woff2');
-  font-weight: 500 600 700;
-  font-style: medium;
-}
-
 html,
 body {
   padding: 0;

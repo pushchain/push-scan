@@ -1,13 +1,15 @@
 // React, NextJS imports
 import React from 'react';
-import { Box, Text, Front, Tag, Spinner, Table, Ethereum, Polygon, BNB } from '../../blocks';
+import { Box, Text, Front, Tag, Table } from '../../blocks';
+import { Tick } from '../../blocks/icons'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { useLiveTransactions } from '../../hooks/useLiveTransactions';
-import moment from 'moment';
-import { convertCaipToAddress, centerMaskString, rightMaskString, capitalizeStr } from '../../utils/helpers'
+import { fromNow, capitalizeStr } from '../../utils/helpers'
 import { TagVariant } from '../../blocks/tag';
 import { useTheme } from 'styled-components';
+import Address from '../Reusables/AddressComponent'
+import TxHashLink from '../Reusables/TxHashLink'
 
 export default function LiveTransactions() {
   const router = useRouter()
@@ -16,24 +18,11 @@ export default function LiveTransactions() {
   const theme = useTheme();
   const isDarkMode = theme.scheme === 'dark';
 
-  function getChainIcon(source) {
-    switch(source) {
-      case 'ETH_MAINNET':
-        return <Ethereum height={14} width={14}/>
-      case 'POLYGON_MAINNET':
-        return <Polygon height={14} width={14}/>
-      case 'BSC_MAINNET':
-        return <BNB height={14} width={14}/>
-      default: 
-        return <Ethereum height={14} width={14}/>
-    }
-  }
-
   const columns = [
     {
       title: 'STATUS',
       dataIndex: 'status',
-      render: (status: string) => <Tag label={capitalizeStr(status)} variant={status.toLowerCase() as TagVariant}></Tag>,
+      render: (status: string) => <Tag icon={<Tick />} label={capitalizeStr(status)} variant={status.toLowerCase() as TagVariant}></Tag>,
       cellAlignment: 'flex-start',
       headerAlignment: 'flex-start',
       width: '15%'
@@ -41,7 +30,7 @@ export default function LiveTransactions() {
     {
       title: 'TX HASH',
       dataIndex: 'txHash',
-      render: (txHash: string) => <Text variant='bs-regular' color="text-primary" onClick={() => router.push(`/transactions/${txHash}`)}>{rightMaskString(txHash)}</Text>,
+      render: (txHash: string) => <TxHashLink txHash={txHash} />,
       cellAlignment: 'flex-start',
       headerAlignment: 'flex-start',
       width: '20%'
@@ -50,13 +39,8 @@ export default function LiveTransactions() {
       title: 'FROM',
       dataIndex: 'from',
       render: (params) => { 
-        const from = JSON.parse(params)
-        return (
-          <Box display="flex" flexDirection="row" gap="spacing-xxs" alignItems="center">
-            { getChainIcon(from.source) }
-            <Text variant='bs-regular' color="text-primary">{centerMaskString(convertCaipToAddress(from.from))}</Text>
-          </Box>
-        )
+        const from = JSON.parse(params);
+        return <Address address={from.from} />
       },
       cellAlignment: 'flex-start',
       headerAlignment: 'flex-start',
@@ -73,10 +57,7 @@ export default function LiveTransactions() {
             flexDirection="column"
           >
             <Box display="flex" flexDirection="column" alignItems="flex-start">
-              <Box display="flex" flexDirection="row" gap="spacing-xxs" alignItems="center">
-                { getChainIcon('ETH_MAINNET') }
-                <Text display={{ ml: 'none', dp: 'block' }} variant='bs-regular' color="text-primary">{centerMaskString(convertCaipToAddress(reci[0]))}</Text>
-              </Box>
+              <Address address={reci[0]} />
               { reci.length > 1 && <Text variant='bs-regular' color="text-tertiary">{`+ ${reci.length - 1} more`}</Text>}
             </Box>
           </Box>
@@ -88,7 +69,7 @@ export default function LiveTransactions() {
     {
       title: 'AGE',
       dataIndex: 'ts',
-      render: (ts: number) => <Text display={{ ml: 'none', dp: 'block' }} variant='bs-regular' color="text-tertiary">{moment(ts * 1000).fromNow()}</Text>,
+      render: (ts: number) => <Text display={{ ml: 'none', dp: 'block' }} variant='bs-regular' color="text-tertiary">{fromNow(ts * 1000)}</Text>,
       cellAlignment: 'center',
       headerAlignment: 'center',
       width: '15%'

@@ -8,9 +8,9 @@ import {
   tertiaryButtonSemantics,
 } from '../semantics/semantics.button';
 import { checkboxSemantics } from '../semantics/semantics.checkbox';
-import { dropdownSemantics } from '../semantics/semantics.dropdown';
 import { iconSemantics } from '../semantics/semantics.icon';
 import { inputSemantics } from '../semantics/semantics.input';
+import { listItemSemantics } from '../semantics/semantics.listItem';
 import { modalSemantics } from '../semantics/semantics.modal';
 import { notificationsSemantics } from '../semantics/semantics.notifications';
 import { paginationSemantics } from '../semantics/semantics.pagination';
@@ -25,6 +25,7 @@ import { textSemantics } from '../semantics/semantics.text';
 import { textAreaSemantics } from '../semantics/semantics.textarea';
 import { toastSemantics } from '../semantics/semantics.toast';
 import { tooltipSemantics } from '../semantics/semantics.tooltip';
+import { sliderSemantics } from '../semantics/semantics.slider';
 import { spinnerSemantics } from '../semantics/semantics.spinner';
 import { tableSemantics } from '../semantics/semantics.table';
 
@@ -38,9 +39,9 @@ type SemanticKeys = {
   buttonDanger: 'components-button-danger';
   buttonDangerSecondary: 'components-button-danger-secondary';
   checkbox: 'components-checkbox';
-  dropdown: 'components-dropdown';
   icon: 'icon';
   input: 'components-inputs';
+  listItem: 'components-list-item';
   modal: 'components-modal';
   notifications: 'components-in-app-notification';
   pagination: 'components-pagination';
@@ -49,13 +50,14 @@ type SemanticKeys = {
   surface: 'surface';
   stroke: 'stroke';
   skeleton: 'components-skeleton-loader';
-  table: 'components-table',
+  table: 'components-table';
   tag: 'components-tag';
   text: 'text';
   textArea: 'components-textarea';
   toast: 'components-toast';
   toggle: 'components-toggle-switch';
   tooltip: 'components-tooltip';
+  slider: 'components-slider';
   spinner: 'components-spinner';
 };
 
@@ -68,9 +70,9 @@ export const semanticKeys: SemanticKeys = {
   buttonDanger: 'components-button-danger',
   buttonDangerSecondary: 'components-button-danger-secondary',
   checkbox: 'components-checkbox',
-  dropdown: 'components-dropdown',
   icon: 'icon',
   input: 'components-inputs',
+  listItem: 'components-list-item',
   modal: 'components-modal',
   notifications: 'components-in-app-notification',
   pagination: 'components-pagination',
@@ -86,6 +88,7 @@ export const semanticKeys: SemanticKeys = {
   toast: 'components-toast',
   toggle: 'components-toggle-switch',
   tooltip: 'components-tooltip',
+  slider: 'components-slider',
   spinner: 'components-spinner',
 };
 
@@ -98,9 +101,9 @@ export const colorSemantics = {
   [semanticKeys.buttonDanger]: dangerButtonSemantics,
   [semanticKeys.buttonDangerSecondary]: dangerSecondaryButtonSemantics,
   [semanticKeys.checkbox]: checkboxSemantics,
-  [semanticKeys.dropdown]: dropdownSemantics,
   [semanticKeys.icon]: iconSemantics,
   [semanticKeys.input]: inputSemantics,
+  [semanticKeys.listItem]: listItemSemantics,
   [semanticKeys.modal]: modalSemantics,
   [semanticKeys.notifications]: notificationsSemantics,
   [semanticKeys.pagination]: paginationSemantics,
@@ -109,12 +112,13 @@ export const colorSemantics = {
   [semanticKeys.surface]: surfaceSemantics,
   [semanticKeys.stroke]: strokeSemantics,
   [semanticKeys.skeleton]: skeletonSemantics,
+  [semanticKeys.table]: tableSemantics,
   [semanticKeys.tag]: tagSemantics,
   [semanticKeys.text]: textSemantics,
   [semanticKeys.textArea]: textAreaSemantics,
   [semanticKeys.toast]: toastSemantics,
   [semanticKeys.toggle]: switchSemantics,
   [semanticKeys.tooltip]: tooltipSemantics,
+  [semanticKeys.slider]: sliderSemantics,
   [semanticKeys.spinner]: spinnerSemantics,
-  [semanticKeys.table]: tableSemantics
 };

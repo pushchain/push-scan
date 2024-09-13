@@ -55,9 +55,9 @@ const ConsensusInfo = (props: IProps) => {
                 <Box
                     display="flex"
                     flexDirection="row"
-                    gap="spacing-xxxl"
+                    gap="spacing-xxxxxl"
                 >
-                    <Box>
+                    <Box width="134px">
                         <Text variant="bs-semibold" color='text-secondary'>Consensus Info</Text>
                     </Box>
 
@@ -90,16 +90,16 @@ const ConsensusInfo = (props: IProps) => {
                 <Box
                     display="flex"
                     flexDirection="row"
-                    gap="spacing-xxxl"
+                    gap="spacing-xxxxxl"
                 >
-                    <Text variant="bs-semibold" color='text-secondary'>Payload Data</Text>
+                    <Box width="134px"><Text variant="bs-semibold" color='text-secondary'>Payload Data</Text></Box>
 
                     <Box
                         border="border-sm solid stroke-tertiary"
                         borderRadius="radius-xs"
                         padding="spacing-sm"
-                        width="68vw"
-                    >   
+                        width="52vw"
+                    >  
                         <Text variant='bs-semibold' color='text-tertiary' wrap>{displayedPayload}</Text>
                         {showMorePayloadButton && (
                             <Box

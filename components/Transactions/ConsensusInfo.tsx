@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Box, Text, Button, Add, Ethereum, Tooltip, Copy } from '../../blocks';
+import { Box, Text, Button, Add, Ethereum, Tooltip, Copy, Tag } from '../../blocks';
 import { Transaction } from '../../types/transaction';
 import { BlockDetails } from '../../types/block';
+import { Tick } from '../../blocks/icons'
 
 interface IProps {
     blockDetails: BlockDetails | null | undefined,
@@ -57,9 +58,11 @@ const ConsensusInfo = (props: IProps) => {
                 <Box
                     display="flex"
                     flexDirection="row"
-                    gap="spacing-xxxl"
+                    gap="spacing-xxxxl"
                 >
-                    <Box>
+                    <Box
+                        width="134px"
+                    >
                         <Text variant="bs-semibold" color='text-secondary'>Consensus Info</Text>
                     </Box>
                     <Box
@@ -74,13 +77,8 @@ const ConsensusInfo = (props: IProps) => {
                                 gap="spacing-lg"
                             >
                                 <Text key={index} variant="bs-regular" color='text-primary'>{node}</Text>
-                                <Box
-                                    border="border-sm solid stroke-tertiary"
-                                    borderRadius="radius-xs"
-                                    padding="spacing-xxs spacing-sm"
-                                >
-                                    <Text>Accepted</Text>
-                                </Box>
+                                <Tag icon={<Tick />}label={'Accepted'} variant='success'></Tag>
+                                
                             </Box>
                         ))}
                         
@@ -104,15 +102,15 @@ const ConsensusInfo = (props: IProps) => {
                 <Box
                     display="flex"
                     flexDirection="row"
-                    gap="spacing-xxxl"
-                >
-                    <Text variant="bs-semibold" color='text-secondary'>Payload Data</Text>
+                    gap="spacing-xxxxl"
+                >   
+                    <Box width="134px"><Text variant="bs-semibold" color='text-secondary'>Payload Data</Text></Box>
                     <Box
                         border="border-sm solid stroke-tertiary"
                         borderRadius="radius-xs"
                         padding="spacing-sm"
-                        width="68vw"
-                    >   
+                        width="52vw"
+                    >  
                         <Text variant='bs-semibold' color='text-tertiary' wrap>{displayedPayload}</Text>
                         {showMorePayloadButton && (
                             <Box

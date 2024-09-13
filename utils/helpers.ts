@@ -3,6 +3,7 @@ import { format, formatDistanceToNow } from 'date-fns';
 import { replace } from 'lodash';
 import numeral from 'numeral';
 import { Signer } from '../types/block'
+import { ethers } from 'ethers'
 
 export function fDate(date) {
   return format(new Date(date), 'dd MMMM yyyy');
@@ -77,7 +78,7 @@ export function getValidatorNode(signers: Signer[] | undefined) {
 }
 
 export function centerMaskString(str, len = 15) {
-  if (str.length > 15) {
+  if (str && str.length > 15) {
     const start = str.substring(0, 7);
     const end = str.substring(str.length - 7);
     return start + '...' + end;
@@ -88,7 +89,7 @@ export function centerMaskString(str, len = 15) {
 
 export function rightMaskString(str, len = 13) {
   // Check if the string length is more than 15 to mask the remaining characters
-  if (str.length > len) {
+  if (str && str.length > len) {
       const visiblePart = str.substring(0, len);
       const maskedPart = '...';
       return visiblePart + maskedPart;
@@ -102,15 +103,101 @@ export function capitalizeStr(string) {
   return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
 }
 
-export const convertCaipToAddress = function (addressinCAIP: string): string {
+export const convertCaipToAddress = function (addressinCAIP: string): string | null {
   const addressComponent = addressinCAIP.split(':')
   if (
+    addressComponent.length === 3 &&
+    addressComponent[0] === 'eip155'
+  ) {
+    return addressComponent[2]
+  }
+  // Wallet can be in the new caip10 format used in w2w: eip155:walletAddress
+  else if (
     addressComponent.length === 2 &&
-    addressComponent[0] === 'eip155' &&
-    addressComponent[1]
+    addressComponent[0] === 'eip155'
   ) {
     return addressComponent[1]
   } else {
     return addressinCAIP
   }
+}
+
+export function isValidAddress(address: string): boolean {
+  return ethers.isAddress(address.toLowerCase())
+}
+
+export const caip10ToWallet = (wallet: string) => {
+  if (wallet.split(':').length === 2) {
+    wallet = wallet.replace('eip155:', '')
+    return isValidAddress(wallet) ? wallet : null
+  } else {
+    return null
+  }
+}
+
+export const convertCaipToObject = (addressinCAIP: string): {
+  result: { chainId: string | null; chain: string; address: string }
+} => {
+  if (!addressinCAIP) {
+    throw new Error('CAIP address cannot be null or empty');
+  }
+
+  const addressComponent = addressinCAIP.split(':');
+
+  if (addressComponent.length === 3 && isValidAddress(addressComponent[2])) {
+    return {
+      result: {
+        chain: addressComponent[0],
+        chainId: addressComponent[1],
+        address: addressComponent[2],
+      },
+    };
+  } else if (addressComponent.length === 2 && isValidAddress(addressComponent[1])) {
+    return {
+      result: {
+        chain: addressComponent[0],
+        chainId: null,
+        address: addressComponent[1],
+      },
+    };
+  } else {
+    throw new Error('Invalid CAIP Format');
+  }
+};
+
+export const fromNow = (timestamp: number): string => {
+  const now = Date.now();
+  const diffInSeconds = Math.floor((now - timestamp) / 1000);
+
+  if (diffInSeconds < 60) {
+    return `${diffInSeconds}s ago`;
+  }
+
+  const diffInMinutes = Math.floor(diffInSeconds / 60);
+  if (diffInMinutes < 60) {
+    return `${diffInMinutes}m ago`;
+  }
+
+  const diffInHours = Math.floor(diffInMinutes / 60);
+  if (diffInHours < 24) {
+    return `${diffInHours}h ago`;
+  }
+
+  const diffInDays = Math.floor(diffInHours / 24);
+  if (diffInDays < 7) {
+    return `${diffInDays}d ago`;
+  }
+
+  const diffInWeeks = Math.floor(diffInDays / 7);
+  if (diffInWeeks < 4) {
+    return `${diffInWeeks}w ago`;
+  }
+
+  const diffInMonths = Math.floor(diffInDays / 30);
+  if (diffInMonths < 12) {
+    return `${diffInMonths}m ago`;
+  }
+
+  const diffInYears = Math.floor(diffInMonths / 12);
+  return `${diffInYears}y ago`;
 }
