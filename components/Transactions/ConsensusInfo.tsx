@@ -51,6 +51,7 @@ const ConsensusInfo = (props: IProps) => {
                 flexDirection="column"
                 alignItems="flex-start"
                 borderRadius="radius-sm"
+                border="border-xs solid stroke-secondary"
                 backgroundColor="surface-primary"
                 padding="spacing-md"
                 gap="spacing-md"
@@ -145,6 +146,7 @@ const ConsensusInfo = (props: IProps) => {
                 flexDirection="column"
                 alignItems="flex-start"
                 borderRadius="radius-sm"
+                border="border-xs solid stroke-secondary"
                 backgroundColor="surface-primary"
                 gap="spacing-md"
                 padding="spacing-xs" 
@@ -232,7 +234,7 @@ const ConsensusInfo = (props: IProps) => {
                             </Box>
                         )}
                         <Tooltip title={tooltipText}>
-                            <Box cursor="pointer">
+                            <Box display="flex" justifyContent="flex-end" cursor="pointer">
                                 <Copy
                                     onClick={copyPayload}
                                     autoSize

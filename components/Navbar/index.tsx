@@ -40,8 +40,7 @@ export default function Navbar() {
       display="flex"
       flexDirection="column"
       gap={{initial: "spacing-lg", ml: "spacing-sm" }}
-      margin={{initial: "spacing-lg spacing-xxxxxl spacing-none spacing-xxxxxl", ml: "spacing-sm" }}
-
+      margin={{initial: "spacing-sm spacing-xxxxxl spacing-sm spacing-xxxxxl", ml: "spacing-sm" }}
     >
       <Box
         alignItems="center"

@@ -39,7 +39,7 @@ export default function Footer() {
       display="flex"
       flexDirection="row"
       justifyContent="space-between"
-      margin="spacing-none spacing-xxxxxl spacing-lg spacing-xxxxxl"
+      margin={{ initial: "spacing-none spacing-xxxxxl spacing-md spacing-xxxxxl", ml: "spacing-sm" }}
     >
       <Box
         display="flex"
@@ -73,7 +73,7 @@ export default function Footer() {
           />
         </a>
         <a
-          href="https://github.com/ethereum-push-notification-service/"
+          href="https://t.me/epnsproject"
           target={'_blank'}
           rel={'noreferrer'}
         >

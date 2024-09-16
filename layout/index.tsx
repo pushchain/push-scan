@@ -9,7 +9,7 @@ export default function Layout({ children }) {
     <Box
       display="flex"
       flexDirection="column"
-      gap={{ initial: "spacing-xxxl", ml: "spacing-lg" }}
+      gap="spacing-lg"
       minHeight="100vh"
     >
       <HeaderSection />

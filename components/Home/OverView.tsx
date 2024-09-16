@@ -14,7 +14,7 @@ const OverView: FC<OverViewProps> = () => {
             alignItems="center"
             gap="spacing-xxxs"
             padding="spacing-sm"
-            border="border-lg solid stroke-secondary"
+            border="border-xmd solid stroke-secondary"
             backgroundColor="surface-primary"
             borderRadius='radius-md'
             width="100%"

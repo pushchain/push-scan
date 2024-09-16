@@ -27,6 +27,7 @@ const Details = (props: IProps) => {
                 flexDirection="row"
                 alignItems="flex-start"
                 borderRadius="radius-sm"
+                border="border-xs solid stroke-secondary"
                 backgroundColor="surface-primary"
                 gap="spacing-xxxxxl"
                 padding="spacing-md"
@@ -58,6 +59,7 @@ const Details = (props: IProps) => {
                 flexDirection="column"
                 alignItems="flex-start"
                 borderRadius="radius-sm"
+                border="border-xs solid stroke-secondary"
                 backgroundColor="surface-primary"
                 gap="spacing-md"
                 padding="spacing-xs"
@@ -87,7 +89,7 @@ const Details = (props: IProps) => {
                     gap="spacing-xxxs"
                 >
                     <Text variant="bs-semibold" color='text-secondary'>Timestamp</Text>
-                    <Text variant="bs-regular" color='text-tertiary'>{ props.data?.ts && moment(props.data.ts * 1000).fromNow() }</Text>
+                    <Text variant="bs-regular" color='text-tertiary'>{ dateTime }</Text>
 
                 </Box>
             </Box>

@@ -34,6 +34,7 @@ const TXDetails = (props: IProps) => {
                 flexDirection="row"
                 alignItems="flex-start"
                 borderRadius="radius-sm"
+                border="border-xs solid stroke-secondary"
                 backgroundColor="surface-primary"
                 gap="spacing-xxxxl"
                 padding="spacing-md"
@@ -69,6 +70,7 @@ const TXDetails = (props: IProps) => {
                 flexDirection="column"
                 alignItems="flex-start"
                 borderRadius="radius-sm"
+                border="border-xs solid stroke-secondary"
                 backgroundColor="surface-primary"
                 gap="spacing-md"
                 padding="spacing-xs"
@@ -88,7 +90,8 @@ const TXDetails = (props: IProps) => {
                     gap="spacing-xxxs"
                 >
                     <Text variant="bs-semibold" color='text-secondary'>Status</Text> 
-                    <Tag label={status} variant={status}></Tag>
+                    <Tag icon={<Tick />} label={capitalizeStr(status)} variant={status}></Tag>
+
                 </Box>
 
                 <Box
@@ -97,7 +100,7 @@ const TXDetails = (props: IProps) => {
                     gap="spacing-xxxs"
                 >
                     <Text variant="bs-semibold" color='text-secondary'>Block Hash</Text>
-                    <Text variant="bs-regular" color='text-primary' wrap>{props.data?.blockHash}</Text>
+                    <BlockHashLink blockHash={props.data?.blockHash} />
                 </Box>
 
                 <Box
@@ -115,7 +118,7 @@ const TXDetails = (props: IProps) => {
                     gap="spacing-xxxs"
                 >
                     <Text variant="bs-semibold" color='text-secondary'>Timestamp</Text>
-                    <Text variant="bs-regular" color='text-tertiary'>{ props.data?.ts && moment(props.data.ts * 1000).fromNow() }</Text>
+                    <Text variant="bs-regular" color='text-tertiary'>{ dateTime }</Text>
                 </Box>
             </Box>
         </>
