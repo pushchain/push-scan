@@ -5,6 +5,7 @@ import moment from 'moment';
 import { TagVariant } from '../../blocks/tag';
 import { Tick } from '../../blocks/icons'
 import BlockHashLink from '../Reusables/BlockHashLink'
+import { capitalizeStr } from '../../utils/helpers'
 
 interface IProps {
     data: Transaction | null | undefined,
@@ -16,6 +17,14 @@ const TXDetails = (props: IProps) => {
 
     if (props.data?.status) {
         status = props.data.status.toLowerCase() as TagVariant
+    }
+
+    let dateTime = ''
+    if (props.data?.ts) {
+        const timestamp = props.data?.ts
+        const formattedTime = moment.unix(timestamp).utc().fromNow(); // "40 minutes ago"
+        const detailedTime = moment.unix(timestamp).utc().format('ddd, MMM DD YYYY HH:mm:ss [GMT]'); // "Sun, Jul 21 2024 18:33:47 GMT"
+        dateTime = `${formattedTime}, ${detailedTime}`
     }
 
     return (
@@ -48,10 +57,10 @@ const TXDetails = (props: IProps) => {
                     gap="spacing-sm"
                 >
                     <Text variant="bs-regular" color='text-primary'>{props.data?.txnHash}</Text>
-                    <Tag icon={<Tick />} label={status} variant={status}></Tag>
+                    <Tag icon={<Tick />} label={capitalizeStr(status)} variant={status}></Tag>
                     <BlockHashLink blockHash={props.data?.blockHash} />
                     <Text variant="bs-regular" color='text-primary'>{props.data?.category}</Text>
-                    <Text variant="bs-regular" color='text-tertiary'>{ props.data?.ts && moment(props.data.ts * 1000).fromNow() }</Text>
+                    <Text variant="bs-regular" color='text-tertiary'>{dateTime}</Text>
                 </Box>
             </Box>
 

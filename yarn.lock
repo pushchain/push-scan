@@ -1356,6 +1356,16 @@ big-integer@^1.6.16:
   resolved "https://registry.yarnpkg.com/big-integer/-/big-integer-1.6.52.tgz#60a887f3047614a8e1bffe5d7173490a97dc8c85"
   integrity sha512-QxD8cf2eVqJOOz63z6JIN9BzvVs/dlySa5HGSBH5xtR8dPteIRQnBxxKqkNTiT6jbDTF6jAfrd4oMcND9RGbQg==
 
+blockies-react-svg@^0.0.13:
+  version "0.0.13"
+  resolved "https://registry.yarnpkg.com/blockies-react-svg/-/blockies-react-svg-0.0.13.tgz#785500bebdbe5e4aea8e094b3241f73669470b00"
+  integrity sha512-w3Upvq5xnO2m0KEf4QhExLDpPMlJZes0Oi5e1EaILTpU+TtDGipoqxJuGGMhFHl2Qg7cuw4P1pAgEMy+Y3nZrg==
+
+blockies@0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/blockies/-/blockies-0.0.2.tgz#22ad58da4f6b382bc79bf4386c5820c70047e4ed"
+  integrity sha512-D9kUW071jJxjp+8w99Bcf7TxJAnhoNfglLHAVHn2dmacbZcULCq4Zi2w8/NZpPQ8lsiX1E+LiEhZITJhxNmo6g==
+
 brace-expansion@^1.1.7:
   version "1.1.11"
   resolved "https://registry.npmjs.org/brace-expansion/-/brace-expansion-1.1.11.tgz"

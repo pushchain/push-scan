@@ -5,6 +5,7 @@ import { Tick } from '../../blocks/icons'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { useLiveTransactions } from '../../hooks/useLiveTransactions';
+import moment from 'moment';
 import { fromNow, capitalizeStr } from '../../utils/helpers'
 import { TagVariant } from '../../blocks/tag';
 import { useTheme } from 'styled-components';

@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { Box, Text, Ethereum, Polygon, BNB } from '../../blocks';
+import { Add, Box, Text } from '../../blocks';
 import { Transaction } from '../../types/transaction';
-import { convertCaipToObject } from '../../utils/helpers'
-import { EtheriumMonotone, BnbMonotone, PolygonMonotone, PushMonotone } from '../../blocks/icons'
+import Address from '../Reusables/AddressComponent'
 
 const MAX_DISPLAY = 5;
 
@@ -21,28 +20,6 @@ const TxTravels = (props: IProps) => {
     const recipients = props.data?.recipients?.recipients || [];
     const displayedRecipients = showAll ? recipients : recipients.slice(0, MAX_DISPLAY);
     const showMoreButton = recipients.length > MAX_DISPLAY;
-
-    function getChainIcon(address) {
-        try {
-          const { result } = convertCaipToObject(address);
-          if (!result.chainId) {
-            return <PushMonotone />
-          }
-    
-          switch(Number(result.chainId)) {
-            case 1:
-              return <EtheriumMonotone height={14} width={14} color="icon-tertiary" />
-            case 137:
-              return <PolygonMonotone height={14} width={14} color="icon-tertiary"/>
-            case 56:
-              return <BnbMonotone height={14} width={14} color="icon-tertiary"/>
-            default: 
-              return <EtheriumMonotone height={14} width={14}/>
-          }
-        } catch (err) {
-          return <PushMonotone />
-        }
-    }
 
     return (
         <>
@@ -70,21 +47,14 @@ const TxTravels = (props: IProps) => {
                     flexDirection="column"
                     gap="spacing-sm"
                 >
-                    <Box display="flex" flexDirection="row" gap="spacing-xxs" alignItems="center">
-                        { getChainIcon(props.data?.from) }
-                        <Text variant="bs-regular" color='text-primary'>{props.data?.from}</Text>
-                    </Box>
-
+                    <Address address={props.data?.from} masking={false} />
                     <Box
                         display="flex"
                         flexDirection="column"
-                        gap="spacing-xxs"
+                        gap="spacing-xs"
                     >
                         {displayedRecipients.map((recipient, index) => (
-                            <Box display="flex" flexDirection="row" gap="spacing-xxs" alignItems="center">
-                                { getChainIcon(recipient.address) }
-                                <Text key={index} variant="bs-regular" color='text-primary'>{recipient.address}</Text>
-                            </Box>
+                            <Address key={index} address={recipient.address} masking={false}/>
                         ))}   
                         
                         {showMoreButton && (
@@ -96,6 +66,7 @@ const TxTravels = (props: IProps) => {
                                 cursor="pointer"
                                 onClick={toggleShowAll}
                             >
+                                <Add color='icon-brand-medium'/>
                                 <Text variant='bes-semibold' color="text-brand-medium">
                                     {showAll ? 'Show Less' : 'Show More'}
                                 </Text>
@@ -120,17 +91,7 @@ const TxTravels = (props: IProps) => {
                     gap="spacing-xxxs"
                 >
                     <Text variant="bs-semibold" color='text-secondary'>From</Text>
-
-                    <Box
-                        display="flex"
-                        flexDirection="row"
-                        gap="spacing-xxxs"
-                    >
-                        { getChainIcon(props.data?.source) }
-                        <Box width="75vw">
-                            <Text variant="bs-regular" color='text-primary' wrap>{props.data?.from}</Text>
-                        </Box>
-                    </Box>
+                    <Address address={props.data?.from} masking={false} wrap={true} />
                 </Box>
 
                 <Box
@@ -145,17 +106,7 @@ const TxTravels = (props: IProps) => {
                         gap="spacing-xs"
                     >
                         {displayedRecipients.map((recipient, index) => (
-                            <Box 
-                                display="flex"
-                                flexDirection="row"
-                                gap="spacing-xxxs"
-                                key={index}
-                            >
-                                { getChainIcon(props.data?.source) }
-                                <Box width="75vw">
-                                    <Text wrap key={index} variant="bs-regular" color='text-primary'>{recipient.address}</Text>
-                                </Box>
-                            </Box>
+                            <Address address={recipient.address} masking={false} wrap={true} />
                         ))}   
                         
                         {showMoreButton && (
@@ -167,6 +118,7 @@ const TxTravels = (props: IProps) => {
                                 cursor="pointer"
                                 onClick={toggleShowAll}
                             >
+                                <Add color='icon-brand-medium'/>
                                 <Text variant='bes-semibold' color="text-brand-medium">
                                     {showAll ? 'Show Less' : 'Show More'}
                                 </Text>

@@ -1,7 +1,8 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import { Box, TextInput, Search } from '../../blocks';
+import React, { useCallback, useState, useEffect } from 'react';
+import { TextInput, Search } from '../../blocks';
 import { ethers } from 'ethers';
 import { useDebounce } from 'react-use';
+import { useSearchByAddress } from '../../hooks/useSearchByAddress';
 import { useRouter } from 'next/router'
 
 export default function SearchBar() {
@@ -11,26 +12,53 @@ export default function SearchBar() {
   const [debouncedQuery, setDebouncedQuery] = useState('');
 
   const getFormattedQuery = useCallback((qry: string) => {
-    if (!qry) return '';
+    if (!qry) return ''; // Return empty string if the query is empty
     const isAddress = ethers.isAddress(qry);
-    const value = isAddress ? `eip155:${qry}` : qry;
-    console.log(" Search Value: ", value)
-
-    return value;
+    return isAddress ? `eip155:${qry}` : qry;
   }, []);
 
-  useDebounce(() => setDebouncedQuery(getFormattedQuery(query)), 500, [query]);
-  
+  // Debounce the query
+  useDebounce(() => {
+    setDebouncedQuery(query);
+  }, 500, [query])
+
+  // Conditionally call the useSearchByAddress hook if debouncedQuery is not empty
+  const { data, isLoading } = useSearchByAddress({
+    address: debouncedQuery || '',
+    page: 1,
+  })
+
+  // Log the data or loading state
+  useEffect(() => {
+    if (debouncedQuery) {
+      if (!isLoading && data) {
+
+        const blocks = data?.blocks
+        const transactions = blocks.map((block) => block.transactions)
+        
+        const isSearchedTransaction = transactions.find((tx) => tx.txnHash === debouncedQuery)
+        if (isSearchedTransaction) {
+          router.push(`/transactions/${debouncedQuery}`)
+          return 
+        }
+
+        const isSearchedBlock = blocks && blocks.length > 0 && blocks.map((block) => block.blockHash === debouncedQuery) 
+        if (isSearchedBlock) {
+          router.push(`/blocks/${debouncedQuery}`)
+          return
+        }
+
+      }
+    }
+  }, [debouncedQuery, data, isLoading]);
+
   return (
     <TextInput
       css={'width: 100%'}
       placeholder="Search by Address, Tx Hash, Block Hash"
-      icon={<Search size={24} onClick={() => router.push(`/search/${debouncedQuery}`)}/>}
+      icon={<Search size={24} />}
       value={query}
       onChange={(e) => setQuery(e.target.value)}
     />
-  )
+  );
 }
-
-
-

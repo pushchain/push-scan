@@ -4,7 +4,7 @@ import Head from 'next/head';
 import dynamic from 'next/dynamic';
 import { Spinner, Box } from '../../blocks';
 
-const SearchView = dynamic(() => import('../../sections/Search'), {
+const UserTransactionsView = dynamic(() => import('../../sections/User'), {
     loading: () => <Spinner size='extraLarge'/>
   });
 
@@ -17,7 +17,7 @@ export default function Transactions() {
         <title>Push Transactions</title>
       </Head>
       <Layout>
-        <SearchView />
+        <UserTransactionsView />
       </Layout>
     </>
   );

@@ -4,11 +4,12 @@ import { EtheriumMonotone, BnbMonotone, PolygonMonotone, PushMonotone } from '..
 import { convertCaipToAddress, convertCaipToObject, centerMaskString } from '../../utils/helpers'
 import Link from 'next/link'
 
-const Address = ({ address }) => {
+const Address = ({ address, wrap = false, masking = true }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   const handleMouseEnter = () => setIsHovered(true);
   const handleMouseLeave = () => setIsHovered(false);
+
 
   function getChainIcon(chainId) {
     try {
@@ -32,6 +33,8 @@ const Address = ({ address }) => {
   }
 
   const { result } = convertCaipToObject(address)
+  
+  const maskedAddress = masking ? centerMaskString(result.address) : result.address;
 
   return (
     <Box 
@@ -47,13 +50,13 @@ const Address = ({ address }) => {
         <Link
           href={`/users/${address}`}
         >
-          <Text variant='bs-regular' color="text-brand-medium">
-            {centerMaskString(result.address)}
+          <Text wrap variant='bs-regular' color="text-brand-medium">
+            {maskedAddress}
           </Text>
         </Link>
       ) : (
-        <Text variant='bs-regular' color="text-primary">
-            {centerMaskString(result.address)}
+        <Text wrap variant='bs-regular' color="text-primary">
+            {maskedAddress}
         </Text>
       )}
     </Box>

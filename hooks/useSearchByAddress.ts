@@ -11,32 +11,18 @@ export interface searchProps {
     page: number
 }
 
-export const useSearchByAddress = (params: searchProps) => {    
+export const useSearchByAddress = (params: searchProps) => {
     const searchByAddress = () => makeJsonRpcRequest(RPC_ID, 'searchByAddress', {
         "searchTerm": params.address,
         "startTime": Math.floor(Date.now() / 1000),
         "direction": "DESC",
         "pageSize": PerPageItems,
         "page": params.page,
-        "showDetails": true
+        "showDetails": false
     });
 
     return useQuery({
-        queryKey: ['searchByAddressDetailswee', params],
-        queryFn: searchByAddress,
-        select: (data) => {
-            const transactions = data.blocks.flatMap(block =>
-                block.transactions.map(tx => ({
-                    ...tx,
-                    recipients: tx.recipients.recipients.map(recipient => recipient.address)
-                }))
-            );
-            // Sorting transactions by timestamp in descending order
-            return {
-                transactions: transactions.sort((a, b) => b.ts - a.ts),
-                totalPages: data.totalPages,
-                lastTs: data.lastTs
-            }
-        }
+        queryKey: [`searchByAddressDetails-${params.address}`, params],
+        queryFn: searchByAddress
     });
 }

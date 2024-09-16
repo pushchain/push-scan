@@ -10,6 +10,16 @@ interface IProps {
 }
 
 const Details = (props: IProps) => {
+
+    let dateTime = ''
+    if (props.data?.ts) {
+        const timestamp = props.data?.ts
+        const formattedTime = moment.unix(timestamp).utc().fromNow(); // "40 minutes ago"
+        const detailedTime = moment.unix(timestamp).utc().format('ddd, MMM DD YYYY HH:mm:ss [GMT]'); // "Sun, Jul 21 2024 18:33:47 GMT"
+        dateTime = `${formattedTime}, ${detailedTime}`
+    }
+
+
     return (
         <>
             <Box
@@ -39,7 +49,7 @@ const Details = (props: IProps) => {
                 >
                     <Text variant="bs-regular" color='text-primary'>{ props.data?.blockHash }</Text>
                     <Text variant="bs-regular" color='text-primary'>{ getValidatorNode(props.data?.signers) }</Text>
-                    <Text variant="bs-regular" color='text-tertiary'>{ props.data?.ts && moment(props.data.ts * 1000).fromNow() }</Text>
+                    <Text variant="bs-regular" color='text-tertiary'>{ dateTime }</Text>
                 </Box>
             </Box>
 

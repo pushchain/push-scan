@@ -1,5 +1,5 @@
 // React, NextJS imports
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 
 // External Library imports
@@ -12,11 +12,28 @@ import TelegramIconDark from "../../public/static/telegram-dark.svg";
 import TelegramIconLight from "../../public/static/telegram.svg";
 import DiscordIconDark from "../../public/static/discord-dark.svg";
 import DiscordIconLight from "../../public/static/discord.svg";
-
-import { Box, Text, TickCircleFilled, Link } from '../../blocks';
+import { getHeathCheck } from '../../utils/api';
+import { Box, Text, TickCircleFilled, CrossFilled, Link } from '../../blocks';
 
 export default function Footer() {
   const { isDarkMode } = Theme();
+  const [data, setData] = useState(true);
+  const [isLoading, setIsLoading] = React.useState<boolean>(false);
+
+  useEffect(() => {
+    (async () => {
+      setIsLoading(true);
+      try {
+        const res = await getHeathCheck();
+        setData(res.status === "OK");
+      } catch (e) {
+        console.log('Error occured', e);
+      }
+      setIsLoading(false);
+    })();
+  }, []);
+
+
   return (
     <Box
       display="flex"
@@ -88,8 +105,8 @@ export default function Footer() {
         flexDirection="row"
         gap="spacing-xxs"
       >
-        <TickCircleFilled color='icon-state-success-bold'/>
-        <Text variant='bes-semibold' color='text-tertiary'>All systems operational</Text>
+        { data ? <TickCircleFilled color='icon-state-success-bold'/> : <CrossFilled color='icon-state-danger-bold' /> }
+        <Text variant='bes-semibold' color='text-tertiary'>{ data ? 'All systems operational' : 'Not all system are operational' }</Text>
       </Box>
     </Box>
   );

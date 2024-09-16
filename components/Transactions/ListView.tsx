@@ -29,28 +29,6 @@ const ListView = (props: IProps) => {
 
   let data = props.data;
 
-  function getChainIcon(address) {
-    try {
-      const { result } = convertCaipToObject(address);
-      if (!result.chainId) {
-        return <PushMonotone />
-      }
-
-      switch(Number(result.chainId)) {
-        case 1:
-          return <EtheriumMonotone height={14} width={14} color="icon-tertiary" />
-        case 137:
-          return <PolygonMonotone height={14} width={14} color="icon-tertiary"/>
-        case 56:
-          return <BnbMonotone height={14} width={14} color="icon-tertiary"/>
-        default: 
-          return <EtheriumMonotone height={14} width={14}/>
-      }
-    } catch (err) {
-      return <PushMonotone />
-    }
-  }
-
   const columns = [
     {
       title: 'STATUS',
@@ -111,7 +89,7 @@ const ListView = (props: IProps) => {
       render: (category: string) => <Text variant='bs-regular' color="text-primary">{category}</Text>,
       cellAlignment: 'flex-start',
       headerAlignment: 'flex-start',
-      width: '14%'
+      width: '13%'
     },
     {
       title: 'AGE',

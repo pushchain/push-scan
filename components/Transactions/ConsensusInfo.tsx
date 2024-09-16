@@ -74,11 +74,11 @@ const ConsensusInfo = (props: IProps) => {
                             <Box
                                 display="flex"
                                 flexDirection="row"
+                                justifyContent="space-between"
                                 gap="spacing-lg"
                             >
                                 <Text key={index} variant="bs-regular" color='text-primary'>{node}</Text>
                                 <Tag icon={<Tick />}label={'Accepted'} variant='success'></Tag>
-                                
                             </Box>
                         ))}
                         
@@ -127,7 +127,7 @@ const ConsensusInfo = (props: IProps) => {
                             </Box>
                         )}
                         <Tooltip title={tooltipText}>
-                            <Box cursor="pointer">
+                            <Box display="flex" justifyContent="flex-end" cursor="pointer">
                                 <Copy
                                     onClick={copyPayload}
                                     autoSize

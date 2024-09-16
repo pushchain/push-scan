@@ -13,7 +13,7 @@ import { useTheme as Theme } from '../../contexts/ThemeContext';
 import { useData } from '../../contexts/DataContext';
 import { ROUTES, CREDENTIALKEYS } from '../../utils/constants';
 import { ThemeType } from '../../types/theme';
-import { Box, Text, Lozenge, PushLogo } from '../../blocks';
+import { Box, Text, Lozenge, MoonFilled, PushLogo } from '../../blocks';
 import SearchBar from '../Home/SearchBar'
 import ChainsDropDown from '../Reusables/ChainsDropDown'
 import Link from 'next/link'
@@ -40,7 +40,8 @@ export default function Navbar() {
       display="flex"
       flexDirection="column"
       gap={{initial: "spacing-lg", ml: "spacing-sm" }}
-      margin="spacing-lg spacing-xxxxxl spacing-none spacing-xxxxxl"
+      margin={{initial: "spacing-lg spacing-xxxxxl spacing-none spacing-xxxxxl", ml: "spacing-sm" }}
+
     >
       <Box
         alignItems="center"
@@ -70,10 +71,7 @@ export default function Navbar() {
               variant="primary" 
               css={css`padding: 10px; margin-left: 10px;`}
             >ALPHA</Lozenge>
-          </Box>
-
-          <ChainsDropDown />
-          
+          </Box>          
         </Box>
 
         <Box
@@ -84,17 +82,11 @@ export default function Navbar() {
         > 
           { asPath !== '/dashboard' && (
             <Link href="/dashboard">
-              <Text variant="bs-regular" color='text-primary'>Analytics</Text>
+              <Text variant="h6-semibold" color='text-primary'>Analytics</Text>
             </Link>
           )}
 
-          <DarkModeSwitch
-            checked={isDarkMode}
-            onChange={darkModeToggle}
-            size={28}
-            sunColor="#575D73"
-            moonColor="#FFFFFF"
-          />
+          <MoonFilled onClick={darkModeToggle} size={24} color='icon-primary'/>
 
           { asPath !== '/home' && (
             <Box
