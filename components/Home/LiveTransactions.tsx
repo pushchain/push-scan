@@ -26,7 +26,7 @@ export default function LiveTransactions() {
       render: (status: string) => <Tag icon={<Tick />} label={capitalizeStr(status)} variant={status.toLowerCase() as TagVariant}></Tag>,
       cellAlignment: 'flex-start',
       headerAlignment: 'flex-start',
-      width: '15%'
+      width: '100px'
     },
     {
       title: 'TX HASH',
@@ -34,7 +34,7 @@ export default function LiveTransactions() {
       render: (txHash: string) => <TxHashLink txHash={txHash} />,
       cellAlignment: 'flex-start',
       headerAlignment: 'flex-start',
-      width: '20%'
+      width: '135px'
     },
     {
       title: 'FROM',
@@ -45,7 +45,7 @@ export default function LiveTransactions() {
       },
       cellAlignment: 'flex-start',
       headerAlignment: 'flex-start',
-      width: '25%'
+      width: '175px'
     },
     {
       title: 'TO',
@@ -54,7 +54,7 @@ export default function LiveTransactions() {
         const reci = recipients.split(',')
         return (
           <Box
-            display={{ ml: 'none', dp: 'block' }}
+            
             flexDirection="column"
           >
             <Box display="flex" flexDirection="column" alignItems="flex-start">
@@ -65,15 +65,15 @@ export default function LiveTransactions() {
       )},
       cellAlignment: 'flex-start',
       headerAlignment: 'flex-start',
-      width: '25%'
+      width: '175px'
     },
     {
       title: 'AGE',
       dataIndex: 'ts',
-      render: (ts: number) => <Text display={{ ml: 'none', dp: 'block' }} variant='bs-regular' color="text-tertiary">{fromNow(ts * 1000)}</Text>,
+      render: (ts: number) => <Text variant='bs-regular' color="text-tertiary">{fromNow(ts * 1000)}</Text>,
       cellAlignment: 'center',
       headerAlignment: 'center',
-      width: '15%'
+      width: '75px'
     },
   ];
 
@@ -94,19 +94,19 @@ export default function LiveTransactions() {
       gap="spacing-sm"
     >
         <Text variant='h5-semibold' color="text-primary">Live Transactions</Text>
-        <Table loading={isLoading} columns={columns} dataSource={dataSource} backgroundColor={isDarkMode ? 'surface-secondary' : 'surface-primary'} />
-        <Box
-          display="flex"
-          flexDirection="row"
-          gap="spacing-xxxs"
-          color="text-brand-medium"
-          justifyContent={{initial: "flex-end", ml: "flex-start"}}
-        >
-          <Link href='/transactions'>
+        <Box height={"375px"}><Table loading={isLoading} columns={columns} dataSource={dataSource} backgroundColor={isDarkMode ? 'surface-secondary' : 'surface-primary'} /></Box>
+        <Link href='/transactions'>
+          <Box
+            display="flex"
+            flexDirection="row"
+            gap="spacing-xxxs"
+            color="text-brand-medium"
+            justifyContent={{ initial: "flex-end", ml: "flex-start" }}
+          >
             <Text variant='bes-semibold' color="text-brand-medium">View All Transactions</Text>
-          </Link>
-          <Front autoSize/>
-        </Box>
+            <Front />
+          </Box>
+        </Link>
     </Box>
   )
 }

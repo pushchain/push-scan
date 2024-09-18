@@ -73,8 +73,9 @@ export function isErrorWithMessage(error: unknown): error is { message: string }
 }
 
 export function getValidatorNode(signers: Signer[] | undefined) {
-  const signer = signers?.find(signer => signer.role === 1);
-  return signer?.node
+  // const signer = signers?.find(signer => signer.role === 1);
+  // return signer?.node
+  return generateRandomHash()
 }
 
 export function centerMaskString(str, len = 15) {
@@ -200,4 +201,10 @@ export const fromNow = (timestamp: number): string => {
 
   const diffInYears = Math.floor(diffInMonths / 12);
   return `${diffInYears}y ago`;
+}
+
+function generateRandomHash() {
+  const randomPart = Math.random().toString(16).substr(2, 8); // 8 random hex characters
+  const timePart = Date.now().toString(16); // Convert current time to hex
+  return randomPart + timePart;
 }

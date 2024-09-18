@@ -22,7 +22,7 @@ export default function LiveBlocks() {
       render: (text) => <BlockHashLink blockHash={text} masking={true}/>,
       cellAlignment: 'flex-start',
       headerAlignment: 'flex-start',
-      width: '30%'
+      width: '125px'
     },
     {
       title: 'VALIDATOR',
@@ -30,7 +30,7 @@ export default function LiveBlocks() {
       render: (text) => <Text variant='bs-regular' color="text-primary">{centerMaskString(text)}</Text>,
       cellAlignment: 'flex-start',
       headerAlignment: 'flex-start',
-      width: '30%'
+      width: '135px'
     },
     {
       title: 'TX',
@@ -38,7 +38,7 @@ export default function LiveBlocks() {
       render: (text) => <Text variant='bs-regular' color="text-primary">{text}</Text>,
       cellAlignment: 'center',
       headerAlignment: 'center',
-      width: '20%'
+      width: '65px'
     },
     {
       title: 'AGE',
@@ -46,7 +46,7 @@ export default function LiveBlocks() {
       render: (text) => <Text variant='bs-regular' color="text-tertiary">{fromNow(text * 1000)}</Text>,
       cellAlignment: 'center',
       headerAlignment: 'center',
-      width: '20%'
+      width: '65px'
     },
   ];
 
@@ -60,29 +60,27 @@ export default function LiveBlocks() {
 
   return (
     <Box
-      css={'flex: 0 0 38%'}
+      css={'flex: 0 0 35%'}
       display="flex"
       flexDirection="column"
       gap="spacing-sm"
     >
       <Text variant='h5-semibold' color="text-primary">Live Blocks</Text>
-      <Box
-        height={"100%"}
-      >
-        <Table onRow={{ onClick: () => console.log("Clicked !!!") }} loading={isLoading} columns={columns} dataSource={dataSource} backgroundColor={isDarkMode ? 'surface-secondary' : 'surface-primary'} />
+      <Box height={"375px"}>
+        <Table loading={isLoading} columns={columns} dataSource={dataSource} backgroundColor={isDarkMode ? 'surface-secondary' : 'surface-primary'} />
       </Box>
-     <Box
-        display="flex"
-        flexDirection="row"
-        gap="spacing-xxxs"
-        color="text-brand-medium"
-        justifyContent={{initial: "flex-end", ml: "flex-start"}}
-      >
-        <Link href='/blocks'>
-          <Text variant='bes-semibold' color="text-brand-medium">View All Blocks</Text>
-        </Link>
-        <Front autoSize />
-      </Box>
+      <Link href='/blocks'>
+        <Box
+          display="flex"
+          flexDirection="row"
+          gap="spacing-xxxs"
+          color="text-brand-medium"
+          justifyContent={{initial: "flex-end", ml: "flex-start"}}
+        >
+            <Text variant='bes-semibold' color="text-brand-medium">View All Blocks</Text>
+            <Front autoSize />
+        </Box>
+      </Link>
     </Box>
   )
 }

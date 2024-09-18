@@ -127,16 +127,18 @@ const ConsensusInfo = (props: IProps) => {
                                 </Text>
                             </Box>
                         )}
-                        <Tooltip title={tooltipText}>
-                            <Box display="flex" justifyContent="flex-end" cursor="pointer">
-                                <Copy
-                                    onClick={copyPayload}
-                                    autoSize
-                                    size={24}
-                                    color="icon-tertiary"
-                                />
-                            </Box>
-                        </Tooltip>
+                        <Box display="flex" justifyContent="flex-end" cursor="pointer">
+                            <Tooltip title={tooltipText}>
+                                <Box display="flex" justifyContent="flex-end" cursor="pointer">
+                                    <Copy
+                                        onClick={copyPayload}
+                                        autoSize
+                                        size={24}
+                                        color="icon-tertiary"
+                                    />
+                                </Box>
+                            </Tooltip>
+                        </Box>
                     </Box>
                 </Box>
             </Box>
@@ -233,16 +235,18 @@ const ConsensusInfo = (props: IProps) => {
                                 </Text>
                             </Box>
                         )}
-                        <Tooltip title={tooltipText}>
-                            <Box display="flex" justifyContent="flex-end" cursor="pointer">
-                                <Copy
-                                    onClick={copyPayload}
-                                    autoSize
-                                    size={24}
-                                    color="icon-tertiary"
-                                />
-                            </Box>
-                        </Tooltip>
+                        <Box display="flex" justifyContent="flex-end" cursor="pointer">
+                            <Tooltip title={tooltipText}>
+                                <Box display="flex" justifyContent="flex-end" cursor="pointer">
+                                    <Copy
+                                        onClick={copyPayload}
+                                        autoSize
+                                        size={24}
+                                        color="icon-tertiary"
+                                    />
+                                </Box>
+                            </Tooltip>
+                        </Box>
                     </Box>
                 </Box>
             </Box>

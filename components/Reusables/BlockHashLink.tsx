@@ -1,15 +1,25 @@
 import React, { useState } from 'react';
-import { Box, Text } from '../../blocks';
+import { Box, Text, Tooltip, Copy } from '../../blocks';
 import { rightMaskString } from '../../utils/helpers';
 import Link from 'next/link';
 
 const BlockHashLink = ({ blockHash, masking = false }) => {
     const [isHovered, setIsHovered] = useState(false);
+    const [tooltipText, setToolTipText] = useState('Copy');
 
     const handleMouseEnter = () => setIsHovered(true);
     const handleMouseLeave = () => setIsHovered(false);
 
     const maskedBlockHash = masking ? rightMaskString(blockHash) : blockHash;
+
+    const copyData = () => {
+        navigator.clipboard.writeText(blockHash);
+        setToolTipText('Copied');
+        
+        setTimeout(() => {
+            setToolTipText('Copy');
+        }, 1000);
+    };
 
     return (
         <Box 
@@ -31,6 +41,17 @@ const BlockHashLink = ({ blockHash, masking = false }) => {
                     {maskedBlockHash}
                 </Text>
             )}
+
+            <Box display="flex" justifyContent="flex-end" cursor="pointer">
+                <Tooltip title={tooltipText}>
+                    <Copy
+                        onClick={copyData}
+                        autoSize
+                        size={24}
+                        color="icon-tertiary"
+                    />
+                </Tooltip>
+            </Box>
         </Box>
     );
 };

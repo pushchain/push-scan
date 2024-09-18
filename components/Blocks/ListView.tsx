@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Text, Table, Pagination } from '../../blocks';
 import { useLiveBlocks } from '../../hooks/useBlocks';
 import { PerPageItems } from '../../utils/constants'
@@ -10,7 +10,9 @@ import BlockHashLink from '../Reusables/BlockHashLink'
 const Blocks = () => {
   const router = useRouter()
   const [page, setPage] = useState(1);
-  const { data, error, isLoading, isError } = useLiveBlocks({ page, perPageItems: 15 });
+  const [cachedTotalPages, setCachedTotalPages] = useState(0); // State for caching totalPages
+
+  const { data, isLoading } = useLiveBlocks({ page, perPageItems: 15 });
 
   const theme = useTheme();
   const isDarkMode = theme.scheme === 'dark';
@@ -22,7 +24,7 @@ const Blocks = () => {
       render: (text) => <BlockHashLink blockHash={text} masking={true}/>,
       cellAlignment: 'flex-start',
       headerAlignment: 'flex-start',
-      width: '25%'
+      width: '310px'
     },
     {
       title: 'VALIDATOR',
@@ -30,7 +32,7 @@ const Blocks = () => {
       render: (text) => <Text variant='bs-regular' color="text-primary">{centerMaskString(text)}</Text>,
       cellAlignment: 'flex-start',
       headerAlignment: 'flex-start',
-      width: '25%'
+      width: '310px'
     },
     {
       title: 'TXN',
@@ -38,7 +40,7 @@ const Blocks = () => {
       render: (text) => <Text variant='bs-regular' color="text-primary">{text}</Text>,
       cellAlignment: 'center',
       headerAlignment: 'center',
-      width: '19%'
+      width: '200px'
     },
     {
       title: 'SIZE (IN BYTES)',
@@ -46,7 +48,7 @@ const Blocks = () => {
       render: (text) => <Text variant='bs-regular' color="text-primary">{text}</Text>,
       cellAlignment: 'center',
       headerAlignment: 'center',
-      width: '25%'
+      width: '200px'
     },
     {
       title: 'AGE',
@@ -54,7 +56,7 @@ const Blocks = () => {
       render: (text) => <Text variant='bs-regular' color="text-tertiary">{fromNow(text * 1000)}</Text>,
       cellAlignment: 'center',
       headerAlignment: 'center',
-      width: '6%'
+      width: '80px'
     },
   ];
 
@@ -67,26 +69,39 @@ const Blocks = () => {
     ts: block.ts
   })) || [];
 
-  
+  // Cache totalPages when new data is fetched
+  useEffect(() => {
+    if (data?.totalPages) {
+      setCachedTotalPages(data.totalPages);
+    }
+  }, [data?.totalPages]);
+
+  // Use the cached totalPages when data is loading
+  const totalPages = data?.totalPages ?? cachedTotalPages;
+
   return (
     <Box
         display="flex"
         flexDirection="column"
         gap="spacing-xs"
     >
-        <Table columns={columns} dataSource={dataSource} backgroundColor={isDarkMode ? 'surface-secondary' : 'surface-primary'} />
+        <Box height={'875px'}>
+          <Table loading={isLoading} columns={columns} dataSource={dataSource} backgroundColor={isDarkMode ? 'surface-secondary' : 'surface-primary'} />
+        </Box>
         <Box
           display="flex"
           flexDirection="column"
           justifyContent="flex-end"
           alignItems="flex-end"
         >
-          <Pagination
-            pageSize={PerPageItems}
-            current={page}
-            total={data?.totalPages * PerPageItems}
-            onChange={(page) => setPage(page)}
-          />
+          { 
+            totalPages > 1 && <Pagination
+              pageSize={PerPageItems}
+              current={page}
+              total={totalPages * PerPageItems}
+              onChange={(page) => setPage(page)}
+            />
+          }
         </Box>
     </Box>
   );

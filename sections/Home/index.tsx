@@ -35,7 +35,7 @@ const Home = () => {
       <Box
         display="flex"
         flexDirection={{ initial: "row", ml: "column" }}
-        gap={{ initial: "spacing-xxxs", ml: "spacing-xxl" }}
+        gap={{ initial: "spacing-xl", ml: "spacing-xxl" }}
         justifyContent="space-between"
       >
         <LiveBlocks />

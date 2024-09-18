@@ -1,10 +1,8 @@
 import React from 'react';
-import { Box, Text, Tag, Table, Ethereum, Polygon, BNB } from '../../blocks';
-import { Tick, EtheriumMonotone, BnbMonotone, PolygonMonotone, PushMonotone } from '../../blocks/icons'
-
-import { fromNow, convertCaipToObject, capitalizeStr, centerMaskString, rightMaskString} from '../../utils/helpers'
+import { Box, Text, Tag, Table } from '../../blocks';
+import { Tick } from '../../blocks/icons'
+import { fromNow, capitalizeStr} from '../../utils/helpers'
 import { useRouter } from 'next/router'
-import moment from 'moment';
 import { TagVariant } from '../../blocks/tag';
 import { Transaction } from '../../types/transaction';
 import { useTheme } from 'styled-components';
@@ -19,6 +17,7 @@ interface dataProps {
 }
 interface IProps {
   data?: dataProps
+  isLoading?: boolean
 }
 
 const ListView = (props: IProps) => {
@@ -36,7 +35,7 @@ const ListView = (props: IProps) => {
       render: (status: string) => <Tag icon={<Tick />} label={capitalizeStr(status)} variant={status.toLowerCase() as TagVariant}></Tag>,
       cellAlignment: 'flex-start',
       headerAlignment: 'flex-start',
-      width: '10%'
+      width: '110px'
     },
     {
       title: 'TX HASH',
@@ -44,7 +43,7 @@ const ListView = (props: IProps) => {
       render: (txHash: string) => <TxHashLink txHash={txHash} />,
       cellAlignment: 'flex-start',
       headerAlignment: 'flex-start',
-      width: '15%'
+      width: '165px'
     },
     {
       title: 'BLOCK HASH',
@@ -52,7 +51,7 @@ const ListView = (props: IProps) => {
       render: (blockHash: string) => <BlockHashLink blockHash={blockHash} masking={true} />,
       cellAlignment: 'flex-start',
       headerAlignment: 'flex-start',
-      width: '15%'
+      width: '165px'
     },
     {
       title: 'FROM',
@@ -63,7 +62,7 @@ const ListView = (props: IProps) => {
       },
       cellAlignment: 'flex-start',
       headerAlignment: 'flex-start',
-      width: '20%'
+      width: '220px'
     },
     {
       title: 'TO',
@@ -81,7 +80,7 @@ const ListView = (props: IProps) => {
       )},
       cellAlignment: 'flex-start',
       headerAlignment: 'flex-start',
-      width: '20%'
+      width: '240px'
     },
     {
       title: 'CATEGORY',
@@ -89,15 +88,15 @@ const ListView = (props: IProps) => {
       render: (category: string) => <Text variant='bs-regular' color="text-primary">{category}</Text>,
       cellAlignment: 'flex-start',
       headerAlignment: 'flex-start',
-      width: '13%'
+      width: '125px'
     },
     {
       title: 'AGE',
       dataIndex: 'ts',
-      render: (ts: number) => <Text display={{ ml: 'none', dp: 'block' }} variant='bs-regular' color="text-tertiary">{fromNow(ts * 1000)}</Text>,
+      render: (ts: number) => <Text variant='bs-regular' color="text-tertiary">{fromNow(ts * 1000)}</Text>,
       cellAlignment: 'center',
       headerAlignment: 'center',
-      width: '6%'
+      width: '75px'
     },
   ];
 
@@ -114,7 +113,9 @@ const ListView = (props: IProps) => {
 
 
   return (
-    <Table columns={columns} dataSource={dataSource} backgroundColor={isDarkMode ? 'surface-secondary' : 'surface-primary'} />
+    <Box height={'860px'}>
+      <Table loading={props.isLoading} columns={columns} dataSource={dataSource} backgroundColor={isDarkMode ? 'surface-secondary' : 'surface-primary'} />
+    </Box>
   );
 };
 

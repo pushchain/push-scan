@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Add, Box, Text } from '../../blocks';
+import { Add, Box, Text, Tooltip, Copy } from '../../blocks';
 import { Transaction } from '../../types/transaction';
 import Address from '../Reusables/AddressComponent'
 
@@ -12,6 +12,7 @@ interface IProps {
 
 const TxTravels = (props: IProps) => {
     const [showAll, setShowAll] = useState(false);
+    const [tooltipText, setToolTipText] = useState('Copy');
 
     const toggleShowAll = () => {
         setShowAll(!showAll);
@@ -20,6 +21,15 @@ const TxTravels = (props: IProps) => {
     const recipients = props.data?.recipients?.recipients || [];
     const displayedRecipients = showAll ? recipients : recipients.slice(0, MAX_DISPLAY);
     const showMoreButton = recipients.length > MAX_DISPLAY;
+
+    const copyData = (value) => {
+        navigator.clipboard.writeText(value);
+        setToolTipText('Copied');
+        
+        setTimeout(() => {
+            setToolTipText('Copy');
+        }, 1000);
+    };
 
     return (
         <>
@@ -47,15 +57,47 @@ const TxTravels = (props: IProps) => {
                     display="flex"
                     flexDirection="column"
                     gap="spacing-sm"
+                    justifyContent="flex-start"
                 >
-                    <Address address={props.data?.from} masking={false} />
+                    
+                    <Box display="flex" flexDirection="row" alignItems="center" gap="spacing-xxs" >
+                        <Address address={props.data?.from} masking={false} />
+                        <Box display="flex" justifyContent="flex-end" cursor="pointer">
+                            <Tooltip title={tooltipText}>
+                                <Box display="flex" justifyContent="flex-end" cursor="pointer">
+                                    <Copy
+                                        onClick={() => copyData(props.data?.from)}
+                                        autoSize
+                                        size={24}
+                                        color="icon-tertiary"
+                                    />
+                                </Box>
+                            </Tooltip>
+                        </Box>
+                    </Box>
+
                     <Box
                         display="flex"
                         flexDirection="column"
                         gap="spacing-xs"
+                        justifyContent="flex-start"
                     >
                         {displayedRecipients.map((recipient, index) => (
-                            <Address key={index} address={recipient.address} masking={false}/>
+                            <Box display="flex" flexDirection="row" alignItems="center" gap="spacing-xxs" >
+                                <Address key={index} address={recipient.address} masking={false}/>
+                                <Box display="flex" justifyContent="flex-end" cursor="pointer">
+                                    <Tooltip title={tooltipText}>
+                                        <Box display="flex" justifyContent="flex-end" cursor="pointer">
+                                            <Copy
+                                                onClick={() => copyData(recipient.address)}
+                                                autoSize
+                                                size={24}
+                                                color="icon-tertiary"
+                                            />
+                                        </Box>
+                                    </Tooltip>
+                                </Box>
+                            </Box>
                         ))}   
                         
                         {showMoreButton && (
@@ -91,9 +133,25 @@ const TxTravels = (props: IProps) => {
                     display="flex"
                     flexDirection="column"
                     gap="spacing-xxxs"
+                    justifyContent="flex-start" 
                 >
                     <Text variant="bs-semibold" color='text-secondary'>From</Text>
-                    <Address address={props.data?.from} masking={false} wrap={true} />
+                    <Box display="flex" flexDirection="row" alignItems="center" gap="spacing-xxs" >
+                        <Address address={props.data?.from} masking={false} wrap={true} />
+                        <Box display="flex" justifyContent="flex-end" cursor="pointer">
+                            <Tooltip title={tooltipText}>
+                                <Box display="flex" justifyContent="flex-end" cursor="pointer">
+                                    <Copy
+                                        onClick={() => copyData(props.data?.from)}
+                                        autoSize
+                                        size={24}
+                                        color="icon-tertiary"
+                                    />
+                                </Box>
+                            </Tooltip>
+                        </Box>
+                    </Box>
+
                 </Box>
 
                 <Box
@@ -106,9 +164,26 @@ const TxTravels = (props: IProps) => {
                         display="flex"
                         flexDirection="column"
                         gap="spacing-xs"
+                        justifyContent="flex-start"
                     >
                         {displayedRecipients.map((recipient, index) => (
-                            <Address address={recipient.address} masking={false} wrap={true} />
+                            <Box display="flex" flexDirection="row" alignItems="center" gap="spacing-xxs" >
+                                <Address address={recipient.address} masking={false} wrap={true} />
+                                <Box display="flex" justifyContent="flex-end" cursor="pointer">
+                                    <Tooltip title={tooltipText}>
+                                        <Box display="flex" justifyContent="flex-end" cursor="pointer">
+                                            <Copy
+                                                onClick={() => copyData(recipient.address)}
+                                                autoSize
+                                                size={24}
+                                                color="icon-tertiary"
+                                            />
+                                        </Box>
+                                    </Tooltip>
+                                </Box>
+                            </Box>
+
+                            
                         ))}   
                         
                         {showMoreButton && (

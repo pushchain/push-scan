@@ -91,7 +91,6 @@ export default function Navbar() {
             <Box
               display={{ ml: 'none', dp: 'flex' }}
               minWidth="330px"
-              height="38px"
             >
               <SearchBar /> 
             </Box>

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE = 'http://localhost:3000/rpc';
+const API_BASE = 'https://anode1.push.org/rpc';
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -13,7 +13,7 @@ export const makeJsonRpcRequest = async (id, method, params = {}) => {
   };
 
   try {
-    // await delay(500000);
+    await delay(5000);
     const response = await axios.post(API_BASE, data);
     if (response.data.error) {
       throw new Error('JSON-RPC Error: ' + response.data.error.message);
