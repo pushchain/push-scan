@@ -6,7 +6,9 @@
     "dev": "next dev -p 4000",
     "build": "next build",
     "start": "next start -p 4000",
-    "lint": "next lint -p 4000"
+    "lint": "next lint",
+    "export": "next export",
+    "deploy": "npm run build && npm run export && gh-pages -d out"
   },
   "dependencies": {
     "@emotion/react": "^11.10.5",
@@ -19,8 +21,11 @@
     "@radix-ui/react-tooltip": "^1.1.1",
     "@reach/combobox": "^0.18.0",
     "@reach/tabs": "^0.18.0",
+    "@table-library/react-table-library": "^4.1.7",
     "apexcharts": "^3.36.3",
     "axios": "^1.1.3",
+    "blockies": "0.0.2",
+    "blockies-react-svg": "^0.0.13",
     "date-fns": "^2.29.3",
     "echarts": "^5.4.2",
     "echarts-for-react": "^3.0.2",
@@ -29,6 +34,7 @@
     "moment": "^2.29.4",
     "next": "13.0.0",
     "numeral": "^2.0.6",
+    "rc-pagination": "^4.2.0",
     "react": "18.2.0",
     "react-apexcharts": "^1.4.0",
     "react-dom": "18.2.0",
@@ -36,16 +42,12 @@
     "react-loading-skeleton": "^3.3.1",
     "react-query": "^3.39.3",
     "react-router-dom": "^6.9.0",
+    "react-slider": "^2.0.6",
     "react-toastify": "^9.0.8",
     "react-toggle-dark-mode": "^1.1.0",
     "react-use": "^17.4.0",
-    "styled-components": "^5.3.6",
     "sonner": "^1.5.0",
-    "@table-library/react-table-library": "^4.1.7",
-    "rc-pagination": "^4.2.0",
-    "react-slider": "^2.0.6",
-    "blockies": "0.0.2",
-    "blockies-react-svg": "^0.0.13"
+    "styled-components": "^5.3.6"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.188",
@@ -56,6 +58,7 @@
     "babel-plugin-styled-components": "^2.0.7",
     "eslint": "8.26.0",
     "eslint-config-next": "13.0.0",
+    "gh-pages": "^6.1.1",
     "typescript": "4.8.4"
   }
 }
