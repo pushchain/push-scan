@@ -73,6 +73,7 @@ const ConsensusInfo = (props: IProps) => {
                     >
                         {displayedNodes.map((node, index) => (
                             <Box
+                                key={node}
                                 display="flex"
                                 flexDirection="row"
                                 justifyContent="space-between"
@@ -168,6 +169,7 @@ const ConsensusInfo = (props: IProps) => {
                     >
                         {displayedNodes.map((node, index) => (
                             <Box
+                                key={node}
                                 display="flex"
                                 flexDirection="row"
                                 gap="spacing-lg"

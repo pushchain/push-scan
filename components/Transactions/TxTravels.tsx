@@ -83,7 +83,7 @@ const TxTravels = (props: IProps) => {
                         justifyContent="flex-start"
                     >
                         {displayedRecipients.map((recipient, index) => (
-                            <Box display="flex" flexDirection="row" alignItems="center" gap="spacing-xxs" >
+                            <Box key={recipient.address} display="flex" flexDirection="row" alignItems="center" gap="spacing-xxs" >
                                 <Address key={index} address={recipient.address} masking={false}/>
                                 <Box display="flex" justifyContent="flex-end" cursor="pointer">
                                     <Tooltip title={tooltipText}>
@@ -167,7 +167,7 @@ const TxTravels = (props: IProps) => {
                         justifyContent="flex-start"
                     >
                         {displayedRecipients.map((recipient, index) => (
-                            <Box display="flex" flexDirection="row" alignItems="center" gap="spacing-xxs" >
+                            <Box key={recipient.address} display="flex" flexDirection="row" alignItems="center" gap="spacing-xxs" >
                                 <Address address={recipient.address} masking={false} wrap={true} />
                                 <Box display="flex" justifyContent="flex-end" cursor="pointer">
                                     <Tooltip title={tooltipText}>
