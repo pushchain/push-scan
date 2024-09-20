@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Text, Button, Add, Ethereum, Tooltip, Copy, Tag } from '../../blocks';
+import { Box, Text, Tooltip, Copy, Tag } from '../../blocks';
 import { Transaction } from '../../types/transaction';
 import { BlockDetails } from '../../types/block';
 import { Tick } from '../../blocks/icons'
@@ -26,7 +26,7 @@ const ConsensusInfo = (props: IProps) => {
         setShowAllPayload(!showAllPayload);
     };
 
-    const nodes = props.blockDetails?.signers.map((signer) => signer.node) || []
+    const nodes = props.blockDetails?.signers.map((signer) => signer.node) || ['0x2a466dd9e7dc394fc8a2f54c456a7dd00dec3d70', '0x377e68b95912de5fdc1729b4bc2ae397e95752d6']
     const displayedNodes = showAll ? nodes : nodes.slice(0, MAX_DISPLAY_NODES);
     const showMoreButton = nodes.length > MAX_DISPLAY_NODES;
 

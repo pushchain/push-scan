@@ -1,5 +1,5 @@
-import React from 'react';
-import { Box, Text } from '../../blocks';
+import React, { useState } from 'react';
+import { Box, Text, Tooltip, Copy  } from '../../blocks';
 import moment from 'moment';
 import { BlockDetails } from '../../types/block'
 import { getValidatorNode } from '../../utils/helpers'
@@ -10,6 +10,7 @@ interface IProps {
 }
 
 const Details = (props: IProps) => {
+    const [tooltipText, setToolTipText] = useState('Copy');
 
     let dateTime = ''
     if (props.data?.ts) {
@@ -19,6 +20,14 @@ const Details = (props: IProps) => {
         dateTime = `${formattedTime}, ${detailedTime}`
     }
 
+    const copyData = (value) => {
+        navigator.clipboard.writeText(value);
+        setToolTipText('Copied');
+        
+        setTimeout(() => {
+            setToolTipText('Copy');
+        }, 1000);
+    };
 
     return (
         <>
@@ -48,7 +57,22 @@ const Details = (props: IProps) => {
                     flexDirection="column"
                     gap="spacing-sm"
                 >
-                    <Text variant="bs-regular" color='text-primary'>{ props.data?.blockHash }</Text>
+                    <Box display="flex" flexDirection="row" justifyContent="center" alignItems="center" gap="spacing-xxs" >
+                        <Text variant="bs-regular" color='text-primary'>{ props.data?.blockHash }</Text>
+                        <Box display="flex" justifyContent="flex-end" cursor="pointer">
+                            <Tooltip title={tooltipText}>
+                                <Box display="flex" justifyContent="flex-end" cursor="pointer">
+                                    <Copy
+                                        onClick={() => copyData(props.data?.blockHash)}
+                                        autoSize
+                                        size={24}
+                                        color="icon-tertiary"
+                                    />
+                                </Box>
+                            </Tooltip>
+                        </Box>
+                    </Box>
+                    
                     <Text variant="bs-regular" color='text-primary'>{ getValidatorNode(props.data?.signers) }</Text>
                     <Text variant="bs-regular" color='text-tertiary'>{ dateTime }</Text>
                 </Box>

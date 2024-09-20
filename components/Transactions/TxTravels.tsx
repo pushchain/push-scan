@@ -133,7 +133,7 @@ const TxTravels = (props: IProps) => {
                     display="flex"
                     flexDirection="column"
                     gap="spacing-xxxs"
-                    justifyContent="flex-start" 
+                    justifyContent="flex-start"
                 >
                     <Text variant="bs-semibold" color='text-secondary'>From</Text>
                     <Box display="flex" flexDirection="row" alignItems="center" gap="spacing-xxs" >
