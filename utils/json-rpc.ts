@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE = 'http://localhost:3000/rpc';
+const API_BASE = 'https://anode1.push.org/rpc';
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
