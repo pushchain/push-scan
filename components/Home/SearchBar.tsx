@@ -34,14 +34,14 @@ export default function SearchBar() {
       if (!isLoading && data) {
         const blocks = data?.blocks;
         const transactions = blocks.flatMap((block) => block.transactions); // Use flatMap to flatten the transactions
+        
         const isSearchedTransaction = transactions.find((tx) => tx.txnHash === debouncedQuery);
-
         if (isSearchedTransaction) {
           router.push(`/transactions/${debouncedQuery}`)
           return 
         }
 
-        const isSearchedBlock = blocks && blocks.length > 0 && blocks.map((block) => block.blockHash === debouncedQuery) 
+        const isSearchedBlock = blocks.some(block => block.blockHash === debouncedQuery);
         if (isSearchedBlock) {
           router.push(`/blocks/${debouncedQuery}`)
           return
