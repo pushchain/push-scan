@@ -145,7 +145,7 @@ export const convertCaipToObject = (addressinCAIP: string): {
 
   const addressComponent = addressinCAIP.split(':');
 
-  if (addressComponent.length === 3 && isValidAddress(addressComponent[2])) {
+  if (addressComponent.length === 3) {
     return {
       result: {
         chain: addressComponent[0],
@@ -153,7 +153,7 @@ export const convertCaipToObject = (addressinCAIP: string): {
         address: addressComponent[2],
       },
     };
-  } else if (addressComponent.length === 2 && isValidAddress(addressComponent[1])) {
+  } else if (addressComponent.length === 2) {
     return {
       result: {
         chain: addressComponent[0],

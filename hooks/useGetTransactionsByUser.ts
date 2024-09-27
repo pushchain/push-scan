@@ -12,7 +12,7 @@ export interface searchProps {
 export const useGetTransactionsByUser = (params: searchProps) => {    
     const getTransactionsByUser = () => makeJsonRpcRequest(RPC_ID, 'getTransactionsByUser', {
         "searchTerm": params.address,
-        "startTime": Math.floor(Date.now() / 1000),
+        "startTime": Math.floor(Date.now()),
         "direction": "DESC",
         "pageSize": PerPageItems,
         "page": params.page,

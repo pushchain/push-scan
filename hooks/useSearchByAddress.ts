@@ -14,7 +14,7 @@ export interface searchProps {
 export const useSearchByAddress = (params: searchProps) => {
     const searchByAddress = () => makeJsonRpcRequest(RPC_ID, 'searchByAddress', {
         "searchTerm": params.address,
-        "startTime": Math.floor(Date.now() / 1000),
+        "startTime": Math.floor(Date.now()),
         "direction": "DESC",
         "pageSize": PerPageItems,
         "page": params.page,

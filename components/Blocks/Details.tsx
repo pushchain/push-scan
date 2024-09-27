@@ -14,7 +14,7 @@ const Details = (props: IProps) => {
 
     let dateTime = ''
     if (props.data?.ts) {
-        const timestamp = props.data?.ts
+        const timestamp = (props.data?.ts / 1000)
         const formattedTime = moment.unix(timestamp).utc().fromNow(); // "40 minutes ago"
         const detailedTime = moment.unix(timestamp).utc().format('ddd, MMM DD YYYY HH:mm:ss [GMT]'); // "Sun, Jul 21 2024 18:33:47 GMT"
         dateTime = `${formattedTime}, ${detailedTime}`

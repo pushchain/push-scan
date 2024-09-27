@@ -32,11 +32,10 @@ export default function SearchBar() {
   useEffect(() => {
     if (debouncedQuery) {
       if (!isLoading && data) {
+        const blocks = data?.blocks;
+        const transactions = blocks.flatMap((block) => block.transactions); // Use flatMap to flatten the transactions
+        const isSearchedTransaction = transactions.find((tx) => tx.txnHash === debouncedQuery);
 
-        const blocks = data?.blocks
-        const transactions = blocks.map((block) => block.transactions)
-        
-        const isSearchedTransaction = transactions.find((tx) => tx.txnHash === debouncedQuery)
         if (isSearchedTransaction) {
           router.push(`/transactions/${debouncedQuery}`)
           return 
@@ -48,6 +47,10 @@ export default function SearchBar() {
           return
         }
 
+        if (blocks.length >= 1) {
+          router.push(`/users/${debouncedQuery}`)
+          return
+        }
       }
     }
   }, [debouncedQuery, data, isLoading]);

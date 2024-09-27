@@ -70,7 +70,7 @@ export default function LiveTransactions() {
     {
       title: 'AGE',
       dataIndex: 'ts',
-      render: (ts: number) => <Text variant='bs-regular' color="text-tertiary">{fromNow(ts * 1000)}</Text>,
+      render: (ts: number) => <Text variant='bs-regular' color="text-tertiary">{fromNow(ts)}</Text>,
       cellAlignment: 'center',
       headerAlignment: 'center',
       width: '75px'

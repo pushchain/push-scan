@@ -14,7 +14,7 @@ export const useLiveBlocks = (props: inputProps) => {
     console.log("props : ", props)
 
     const getBlocks = () => makeJsonRpcRequest(RPC_ID, 'getBlocks', {
-        "startTime": Math.floor(Date.now() / 1000),
+        "startTime": Math.floor(Date.now()),
         "direction": "DESC",
         "showDetails": false,
         "pageSize": props.perPageItems || PerPageItems,

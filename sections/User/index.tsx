@@ -39,9 +39,7 @@ const Search = () => {
     )
   }
 
-  console.log("::::: Address: ", address)
-
-  address = address && convertCaipToObject(address).result.address
+  // address = address && convertCaipToObject(address).result.address
   
   if (!address) {
     return null

@@ -45,7 +45,7 @@ const Address = ({ address, wrap = false, masking = true }) => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      { getChainIcon(result.chainId) }
+      { getChainIcon("") }
       {isHovered ? (
         <Link
           href={`/users/${address}`}

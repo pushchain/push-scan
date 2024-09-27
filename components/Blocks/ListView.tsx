@@ -53,7 +53,7 @@ const Blocks = () => {
     {
       title: 'AGE',
       dataIndex: 'ts',
-      render: (text) => <Text variant='bs-regular' color="text-tertiary">{fromNow(text * 1000)}</Text>,
+      render: (text) => <Text variant='bs-regular' color="text-tertiary">{fromNow(text)}</Text>,
       cellAlignment: 'center',
       headerAlignment: 'center',
       width: '80px'
