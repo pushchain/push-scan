@@ -34,7 +34,7 @@ const TxTravels = (props: IProps) => {
     return (
         <>
             <Box
-                display={{ml: "none", dp: "flex"}}
+                display={{ initial:"flex", ml:"none"}}
                 flexDirection="row"
                 alignItems="flex-start"
                 borderRadius="radius-sm"
@@ -120,7 +120,7 @@ const TxTravels = (props: IProps) => {
             </Box>
 
             <Box
-                display={{ ml: "flex", dp: "none" }}
+                display={{ initial:"none", ml:"flex" }}
                 flexDirection="column"
                 alignItems="flex-start"
                 borderRadius="radius-sm"

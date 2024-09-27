@@ -89,7 +89,7 @@ export default function Navbar() {
 
           { asPath !== '/home' && (
             <Box
-              display={{ ml: 'none', dp: 'flex' }}
+              display={{ initial:"flex", ml:"none" }}
               minWidth="330px"
             >
               <SearchBar /> 
@@ -99,7 +99,7 @@ export default function Navbar() {
       </Box>
 
       <Box
-        display={{ dp: "none", ml: "flex" }}
+        display={{ initial:"none", ml:"flex" }}
         flexDirection="column"
         gap="spacing-xs"
         width="-webkit-fill-available"
