@@ -63,7 +63,7 @@ const Blocks = () => {
   const dataSource = data?.blocks?.map(block => ({
     id: block.blockHash,
     blockHash: block.blockHash,
-    validator: getValidatorNode(block.blockDataAsJson?.signersList), // Define this function or update data mapping accordingly
+    validator: getValidatorNode(block.blockDataAsJson), // Define this function or update data mapping accordingly
     totalNumberOfTxns: block.totalNumberOfTxns,
     blockSize: block.blockSize,
     ts: block.ts

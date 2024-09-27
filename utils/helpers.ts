@@ -72,10 +72,9 @@ export function isErrorWithMessage(error: unknown): error is { message: string }
   return typeof error === 'object' && error !== null && 'message' in error;
 }
 
-export function getValidatorNode(signers: Signer[] | undefined) {
-  // const signer = signers?.find(signer => signer.role === 1);
-  // return signer?.node
-  return generateRandomHash()
+export function getValidatorNode(blockDataAsJson) {
+  const nodes = buildNodeVotes(blockDataAsJson)
+  return nodes[0]?.node ?? ""
 }
 
 export function centerMaskString(str, len = 15) {

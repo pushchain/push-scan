@@ -73,7 +73,7 @@ const Details = (props: IProps) => {
                         </Box>
                     </Box>
                     
-                    <Text variant="bs-regular" color='text-primary'>{ getValidatorNode(props.data?.signers) }</Text>
+                    <Text variant="bs-regular" color='text-primary'>{ getValidatorNode(props.data?.blockDataAsJson) }</Text>
                     <Text variant="bs-regular" color='text-tertiary'>{ dateTime }</Text>
                 </Box>
             </Box>

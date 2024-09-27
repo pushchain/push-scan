@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Box, Text, Tooltip, Copy } from '../../blocks';
 import { BlockDetails } from '../../types/block'
+import { buildNodeVotes } from '../../utils/helpers'
+import { PushMonotone } from '../../blocks/icons'
 
 interface IProps {
     data: BlockDetails | null | undefined,
@@ -23,7 +25,9 @@ const ConsensusInfo = (props: IProps) => {
         setShowAllPayload(!showAllPayload);
     };
 
-    const nodes = props.data?.signers.map((signer) => signer.node) || ['0x2a466dd9e7dc394fc8a2f54c456a7dd00dec3d70', '0x377e68b95912de5fdc1729b4bc2ae397e95752d6']
+    
+    const nodes = buildNodeVotes(props.data?.blockDataAsJson)
+
     const displayedNodes = showAll ? nodes : nodes.slice(0, MAX_DISPLAY_NODES);
     const showMoreButton = nodes.length > MAX_DISPLAY_NODES;
 
@@ -68,7 +72,16 @@ const ConsensusInfo = (props: IProps) => {
                         gap="spacing-xs"
                     >
                         {displayedNodes.map((node, index) => (
-                            <Text key={index} variant="bs-regular" color='text-primary'>{node}</Text>
+                            <Box
+                                key={node.node}
+                                display="flex"
+                                flexDirection="row"
+                                alignItems="center"
+                                gap="spacing-xs"
+                            >
+                                <PushMonotone />
+                                <Text key={index} variant="bs-regular" color='text-primary'>{node.node}</Text>
+                            </Box>
                         ))}
                         
                         {showMoreButton && (
@@ -157,7 +170,7 @@ const ConsensusInfo = (props: IProps) => {
                         gap="spacing-xs"
                     >
                         {displayedNodes.map((node, index) => (
-                            <Text key={index} variant="bs-regular" color='text-primary'>{node}</Text>
+                            <Text key={index} variant="bs-regular" color='text-primary'>{node.node}</Text>
                         ))}
                         
                         {showMoreButton && (

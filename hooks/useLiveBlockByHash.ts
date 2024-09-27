@@ -24,6 +24,7 @@ export const useLiveBlockByHash = (params: BlockDetailsProps) => {
                 // Creating a summary of the block details
                 const blockDetails: BlockDetails = {
                     blockData: blocks[0].blockData,
+                    blockDataAsJson: blocks[0].blockDataAsJson,
                     blockHash: blocks[0].blockHash,
                     blockSize: blocks[0].blockSize,
                     totalNumberOfTxns: blocks[0].totalNumberOfTxns,
