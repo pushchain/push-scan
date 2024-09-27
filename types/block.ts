@@ -23,6 +23,12 @@ export interface Block {
 
 export interface BlockDetails {
     blockData: string,
+    blockDataAsJson: {
+        ts: number;
+        txobjList: any[];
+        attesttoken: string;
+        signersList: Signer[];
+    }
     blockHash: string,
     blockSize: number,
     totalNumberOfTxns: number,

@@ -137,34 +137,53 @@ export const caip10ToWallet = (wallet: string) => {
 }
 
 export const convertCaipToObject = (addressinCAIP: string): {
-  result: { chainId: string | null; chain: string; address: string }
+  result: { chainId: string | null; chain: string | null; address: string | null }
 } => {
-  if (!addressinCAIP) {
-    throw new Error('CAIP address cannot be null or empty');
-  }
+    // Check if the input is a valid non-empty string
+    if (!addressinCAIP || typeof addressinCAIP !== 'string') {
+      return {
+        result: {
+          chain: null,
+          chainId: null,
+          address: null,
+        },
+      };
+    }
 
-  const addressComponent = addressinCAIP.split(':');
+    const addressComponent = addressinCAIP.split(':');
 
-  if (addressComponent.length === 3) {
-    return {
-      result: {
-        chain: addressComponent[0],
-        chainId: addressComponent[1],
-        address: addressComponent[2],
-      },
-    };
-  } else if (addressComponent.length === 2) {
-    return {
-      result: {
-        chain: addressComponent[0],
-        chainId: null,
-        address: addressComponent[1],
-      },
-    };
-  } else {
-    throw new Error('Invalid CAIP Format');
-  }
+    // Handle cases where there are exactly three components (chain, chainId, address)
+    if (addressComponent.length === 3) {
+      return {
+        result: {
+          chain: addressComponent[0],
+          chainId: addressComponent[1],
+          address: addressComponent[2],
+        },
+      };
+    } 
+    // Handle cases where there are exactly two components (chain, address)
+    else if (addressComponent.length === 2) {
+      return {
+        result: {
+          chain: addressComponent[0],
+          chainId: null,
+          address: addressComponent[1],
+        },
+      };
+    } 
+    // If the input doesn't match the expected format, return the address only
+    else {
+      return {
+        result: {
+          chain: null,
+          chainId: null,
+          address: addressinCAIP,
+        },
+      };
+    }
 };
+
 
 export const fromNow = (timestamp: number): string => {
   const now = Date.now();
@@ -208,3 +227,53 @@ function generateRandomHash() {
   const timePart = Date.now().toString(16); // Convert current time to hex
   return randomPart + timePart;
 }
+
+// Define the type for a vote
+interface Vote {
+  node: string;
+  vote: string;
+}
+
+// Function to decode a base64 string
+const decodeBase64 = (data: string) => atob(data)
+
+// Function to calculate votes and build the result array
+export const buildNodeVotes = (blockDataAsJson: any): Vote[] => {
+  try {
+    // Step 1: Base64 decode the attesttoken and then JWT decode it
+    const decodedBase64 = decodeBase64(decodeBase64(blockDataAsJson.attesttoken));
+
+    // Retrieve the nodes array from the decoded JWT
+    const nodes = JSON.parse(decodedBase64).nodes;
+
+
+    // Step 2: Initialize the votes array with the correct type
+    const votes: Vote[] = [];
+
+    // First node's vote comes from validatordata.vote
+    const validatorVote = blockDataAsJson.txobjList[0].validatordata.vote;
+    const firstVote = validatorVote === 1 ? 'Accepted' : 'Rejected';
+
+    votes.push({
+      node: nodes[0].nodeId,
+      vote: firstVote,
+    });
+
+    // Step 3: Remaining nodes' votes come from attestordataList
+    const attestordataList = blockDataAsJson.txobjList[0].attestordataList;
+
+    attestordataList.forEach((attestor, index) => {
+      const vote = attestor.vote === 1 ? 'Accepted' : 'Rejected';
+
+      // Mapping the remaining node IDs
+      votes.push({
+        node: nodes[index + 1].nodeId, // Index + 1 to skip the first node
+        vote: vote,
+      });
+    });
+
+    return votes;
+  } catch (e) {
+    return [];
+  }
+};

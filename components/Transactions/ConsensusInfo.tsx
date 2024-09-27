@@ -3,6 +3,8 @@ import { Box, Text, Tooltip, Copy, Tag } from '../../blocks';
 import { Transaction } from '../../types/transaction';
 import { BlockDetails } from '../../types/block';
 import { Tick } from '../../blocks/icons'
+import { buildNodeVotes } from '../../utils/helpers'
+import { PushMonotone } from '../../blocks/icons'
 
 interface IProps {
     blockDetails: BlockDetails | null | undefined,
@@ -26,10 +28,11 @@ const ConsensusInfo = (props: IProps) => {
         setShowAllPayload(!showAllPayload);
     };
 
-    const nodes = props.blockDetails?.signers.map((signer) => signer.node) || ['0x2a466dd9e7dc394fc8a2f54c456a7dd00dec3d70', '0x377e68b95912de5fdc1729b4bc2ae397e95752d6']
+    const nodes = buildNodeVotes(props.blockDetails?.blockDataAsJson)
+
+
     const displayedNodes = showAll ? nodes : nodes.slice(0, MAX_DISPLAY_NODES);
     const showMoreButton = nodes.length > MAX_DISPLAY_NODES;
-
     const payload = props.transaction?.txnData || "";
     const displayedPayload = showAllPayload ? payload : payload.substring(0, MAX_DISPLAY_CHARS);
     const showMorePayloadButton = payload.length > MAX_DISPLAY_CHARS;
@@ -73,14 +76,16 @@ const ConsensusInfo = (props: IProps) => {
                     >
                         {displayedNodes.map((node, index) => (
                             <Box
-                                key={node}
+                                key={node.node}
                                 display="flex"
                                 flexDirection="row"
                                 justifyContent="space-between"
-                                gap="spacing-lg"
+                                alignItems="center"
+                                gap="spacing-xs"
                             >
-                                <Text key={index} variant="bs-regular" color='text-primary'>{node}</Text>
-                                <Tag icon={<Tick />}label={'Accepted'} variant='success'></Tag>
+                                <PushMonotone />
+                                <Text key={index} variant="bs-regular" color='text-primary'>{node.node}</Text>
+                                <Tag icon={<Tick />}label={`${node.vote}`} variant={node.vote === 'Accepted' ? 'success' : 'danger'}></Tag>
                             </Box>
                         ))}
                         
@@ -169,7 +174,7 @@ const ConsensusInfo = (props: IProps) => {
                     >
                         {displayedNodes.map((node, index) => (
                             <Box
-                                key={node}
+                                key={node.node}
                                 display="flex"
                                 flexDirection="row"
                                 gap="spacing-lg"
@@ -178,7 +183,7 @@ const ConsensusInfo = (props: IProps) => {
                                     width="60vw"
                                 >
                                     <Text wrap key={index} variant="bs-regular" color='text-primary'>
-                                        {node}
+                                        {node.node}
                                     </Text>
                                 </Box>
                                                                
@@ -187,7 +192,7 @@ const ConsensusInfo = (props: IProps) => {
                                     borderRadius="radius-xs"
                                     padding="spacing-xxs spacing-sm"
                                 >
-                                    <Text>Accepted</Text>
+                                    <Tag icon={<Tick />}label={`${node.vote}`} variant={node.vote === 'Accepted' ? 'success' : 'danger'}></Tag>
                                 </Box>
                                 
                             </Box>

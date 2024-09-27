@@ -25,7 +25,7 @@ const Address = ({ address, wrap = false, masking = true }) => {
         case 56:
           return <BnbMonotone height={14} width={14} color="icon-tertiary"/>
         default: 
-          return <EtheriumMonotone height={14} width={14}/>
+          return <PushMonotone height={14} width={14}/>
       }
     } catch (err) {
       return <PushMonotone />
@@ -33,7 +33,7 @@ const Address = ({ address, wrap = false, masking = true }) => {
   }
 
   const { result } = convertCaipToObject(address)
-  
+
   const maskedAddress = masking ? centerMaskString(result.address) : result.address;
 
   return (
@@ -45,7 +45,7 @@ const Address = ({ address, wrap = false, masking = true }) => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      { getChainIcon("") }
+      { result.chainId && getChainIcon(result.chainId) }
       {isHovered ? (
         <Link
           href={`/users/${address}`}
