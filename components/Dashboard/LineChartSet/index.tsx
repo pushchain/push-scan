@@ -228,7 +228,12 @@ export default function LineChartSet() {
           Notifications Statistics
         </Text>
       </Box> */}
-      <Grid container spacing={isMobile ? 0 : 3} justifyContent="center" mt={0}>
+      <Grid
+        container
+        spacing={isMobile ? 0 : 3}
+        justifyContent="flex-start"
+        mt={0}
+      >
         <Notifications
           isLoading={isStatisticDataLoading}
           data={notificationData}
@@ -252,13 +257,13 @@ export default function LineChartSet() {
           isLoading={isChannelDataLoading}
         />
         <HorizontalLine />
-        <HorizontalBarChart
+        {/* <HorizontalBarChart
           title="Notifications By Channel"
           label="Notifications"
           category={notificationCategories}
           value={notificationValues}
           isLoading={isChannelDataLoading}
-        />
+        /> */}
       </Grid>
       {/* <Box
         sx={{ display: 'flex', width: '100%', justifyContent: 'flex-start' }}
