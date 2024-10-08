@@ -2,68 +2,80 @@ import React, { useState } from 'react';
 import { Box, Text, Tooltip, Copy } from '../../blocks';
 import { rightMaskString } from '../../utils/helpers'
 import Link from 'next/link'
+import styled from 'styled-components';
 
-const TxHashLink = ({ txHash }) => {
-    const [isHovered, setIsHovered] = useState(false);
+const TxHashLinkComponent = ({ txHash }) => {
     const [tooltipText, setToolTipText] = useState('Copy');
-
-    const handleMouseEnter = () => setIsHovered(true);
-    const handleMouseLeave = () => setIsHovered(false);
 
     const copyData = () => {
         navigator.clipboard.writeText(txHash);
         setToolTipText('Copied');
-        
+
         setTimeout(() => {
-            setToolTipText('Copy');
+        setToolTipText('Copy');
         }, 1000);
     };
 
     return (
-        <Box 
-            display="flex" 
-            flexDirection="row" 
-            gap="spacing-xxs" 
-            alignItems="center" 
-            onMouseEnter={handleMouseEnter} 
-            onMouseLeave={handleMouseLeave}
-        >
-            {isHovered ? (
-                <Box 
-                    display="flex" 
-                    flexDirection="row"
-                    alignItems="center"
-                    justifyContent="center"
-                > 
-                    <Link href={`/transactions/${txHash}`}>
-                        <Text 
-                            variant='bs-regular'
-                            color="text-brand-medium"
-                        >
-                            {rightMaskString(txHash)}
-                        </Text>
-                    </Link>
-                    <Box display="flex" justifyContent="flex-end" cursor="pointer">
-                        <Tooltip title={tooltipText} >
-                            <Copy
-                                onClick={copyData}
-                                autoSize
-                                size={24}
-                                color="icon-tertiary"
-                            />
-                        </Tooltip>
-                    </Box>
-                </Box>
-            ) : (
-                <Text 
-                    variant='bs-regular'
-                    color="text-primary"
-                >
-                    {rightMaskString(txHash)}
-                </Text>
-            )}
-        </Box>
+        <TxHashContainer>
+        <TxHashLinkStyled href={`/transactions/${txHash}`}>
+            <TxHashText variant='bs-regular'>
+            {rightMaskString(txHash)}
+            </TxHashText>
+        </TxHashLinkStyled>
+        <CopyIconButton onClick={copyData}>
+            <Tooltip title={tooltipText}>
+            <Copy
+                autoSize
+                size={24}
+                color="icon-tertiary"
+            />
+            </Tooltip>
+        </CopyIconButton>
+        </TxHashContainer>
     );
 };
 
-export default TxHashLink;
+
+const CopyIconButton = styled.button`
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease-in-out;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+`;
+
+const TxHashText = styled(Text)`
+    color: var(--text-primary);
+    transition: color 0.2s ease-in-out;
+`;
+
+const TxHashLinkStyled = styled(Link)`
+    text-decoration: none;
+`;
+
+const TxHashContainer = styled(Box)`
+    display: flex;
+    flex-direction: row;
+    gap: spacing-xxs;
+    align-items: center;
+
+    &:hover ${CopyIconButton},
+    &:focus-within ${CopyIconButton} {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    &:hover ${TxHashText},
+    &:focus-within ${TxHashText} {
+        color: var(--text-brand-medium);
+    }
+`;
+
+
+export default TxHashLinkComponent;

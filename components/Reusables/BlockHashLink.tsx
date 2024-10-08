@@ -2,13 +2,10 @@ import React, { useState } from 'react';
 import { Box, Text, Tooltip, Copy } from '../../blocks';
 import { rightMaskString } from '../../utils/helpers';
 import Link from 'next/link';
+import styled from 'styled-components';
 
-const BlockHashLink = ({ blockHash, masking = false }) => {
-    const [isHovered, setIsHovered] = useState(false);
+const BlockHashLinkComponent = ({ blockHash, masking = false }) => {
     const [tooltipText, setToolTipText] = useState('Copy');
-
-    const handleMouseEnter = () => setIsHovered(true);
-    const handleMouseLeave = () => setIsHovered(false);
 
     const maskedBlockHash = masking ? rightMaskString(blockHash) : blockHash;
 
@@ -17,51 +14,68 @@ const BlockHashLink = ({ blockHash, masking = false }) => {
         setToolTipText('Copied');
         
         setTimeout(() => {
-            setToolTipText('Copy');
+        setToolTipText('Copy');
         }, 1000);
     };
 
     return (
-        <Box 
-            display="flex" 
-            flexDirection="row" 
-            gap="spacing-xxs" 
-            alignItems="center" 
-            onMouseEnter={handleMouseEnter} 
-            onMouseLeave={handleMouseLeave}
-        >
-            {isHovered ? (
-                <Box 
-                    display="flex" 
-                    flexDirection="row"
-                    alignItems="center"
-                    justifyContent="center"
-                >   
-                    <Link href={`/blocks/${blockHash}`}>
-                        <Text variant='bs-regular' color="text-brand-medium">
-                            {maskedBlockHash}
-                        </Text>
-                    </Link>
-                    <Box display="flex" justifyContent="flex-end" cursor="pointer">
-                        <Tooltip title={tooltipText} >
-                            <Copy
-                                onClick={copyData}
-                                autoSize
-                                size={24}
-                                color="icon-tertiary"
-                            />
-                        </Tooltip>
-                    </Box>
-                </Box>
-            ) : (
-                <Text variant='bs-regular' color="text-primary">
-                    {maskedBlockHash}
-                </Text>
-            )}
-
-            
-        </Box>
+        <BlockHashContainer>
+            <BlockHashLink href={`/blocks/${blockHash}`}>
+                <BlockHashText variant='bs-regular'>
+                {maskedBlockHash}
+                </BlockHashText>
+            </BlockHashLink>
+            <CopyIconButton onClick={copyData}>
+                <Tooltip title={tooltipText}>
+                <Copy
+                    autoSize
+                    size={24}
+                    color="icon-tertiary"
+                />
+                </Tooltip>
+            </CopyIconButton>
+        </BlockHashContainer>
     );
 };
 
-export default BlockHashLink;
+
+const CopyIconButton = styled.button`
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease-in-out;
+    display: flex;
+    align-items: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+`;
+
+const BlockHashLink = styled(Link)`
+    text-decoration: none;
+`;
+
+const BlockHashText = styled(Text)`
+    color: var(--text-primary);
+    transition: color 0.2s ease-in-out;
+`;
+
+const BlockHashContainer = styled(Box)`
+    display: flex;
+    flex-direction: row;
+    gap: spacing-xxs;
+    align-items: center;
+
+    &:hover ${CopyIconButton},
+    &:focus-within ${CopyIconButton} {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    &:hover ${BlockHashText},
+    &:focus-within ${BlockHashText} {
+        color: var(--text-brand-medium);
+    }
+`;
+
+export default BlockHashLinkComponent;

@@ -101,20 +101,30 @@ const ConsensusInfo = (props: IProps) => {
                     </Box>
                 </Box>
 
-                <Box
-                    display="flex"
-                    flexDirection="row"
-                    gap="spacing-xxxxxl"
-                >
-                    <Box width="134px"><Text variant="bs-semibold" color='text-secondary'>Payload Data</Text></Box>
-
+                <Box display="flex" flexDirection="row" gap="spacing-xxxxxl">
+                    <Box width="134px">
+                        <Text variant="bs-semibold" color="text-secondary">
+                            Payload Data
+                        </Text>
+                    </Box>
                     <Box
+                        display="flex"
+                        flexDirection="column"
+                        gap="spacing-xs"
                         border="border-sm solid stroke-tertiary"
                         borderRadius="radius-xs"
-                        padding="spacing-sm"
-                        width="52vw"
-                    >  
-                        <Text variant='bs-semibold' color='text-tertiary' wrap>{displayedPayload}</Text>
+                        padding="spacing-xs"
+                        width="100%"
+                        maxWidth="750px" /* Adjust as per your layout */
+                    >
+                        <Text
+                            variant="bs-semibold"
+                            color="text-tertiary"
+                            css={css`word-break: break-all; overflow-wrap: break-word;`}
+                        >
+                            {displayedPayload}
+                        </Text>
+
                         {showMorePayloadButton && (
                             <Box
                                 display="flex"
@@ -124,24 +134,24 @@ const ConsensusInfo = (props: IProps) => {
                                 cursor="pointer"
                                 onClick={toggleShowAllPayload}
                             >
-                                <Text variant='bes-semibold' color="text-brand-medium">
-                                    {showAllPayload ? 'Show Less' : 'Show More'}
+                                <Text variant="bes-semibold" color="text-brand-medium">
+                                    {showAllPayload ? "Show Less" : "Show More"}
                                 </Text>
                             </Box>
                         )}
                         <Box display="flex" justifyContent="flex-end" cursor="pointer">
                             <Tooltip title={tooltipText}>
-                                <Box display="flex" justifyContent="flex-end" cursor="pointer">
-                                    <Copy
-                                        onClick={copyPayload}
-                                        autoSize
-                                        size={24}
-                                        color="icon-tertiary"
-                                    />
-                                </Box>
+                            <Box display="flex" justifyContent="flex-end" cursor="pointer">
+                                <Copy
+                                onClick={copyPayload}
+                                autoSize
+                                size={24}
+                                color="icon-tertiary"
+                                />
+                            </Box>
                             </Tooltip>
                         </Box>
-                    </Box>  
+                    </Box>
                 </Box>
             </Box>
 
@@ -170,7 +180,16 @@ const ConsensusInfo = (props: IProps) => {
                         gap="spacing-xs"
                     >
                         {displayedNodes.map((node, index) => (
-                            <Text key={index} variant="bs-regular" color='text-primary'>{node.node}</Text>
+                            <Box
+                                key={node.node}
+                                display="flex"
+                                flexDirection="row"
+                                alignItems="center"
+                                gap="spacing-xs"
+                            >
+                                <PushMonotone />
+                                <Text key={index} variant="bs-regular" color='text-primary'>{node.node}</Text>
+                            </Box>
                         ))}
                         
                         {showMoreButton && (
@@ -201,9 +220,17 @@ const ConsensusInfo = (props: IProps) => {
                         border="border-sm solid stroke-tertiary"
                         borderRadius="radius-xs"
                         padding="spacing-sm"
-                        width="88vw"
+                        width="100%"
+                        maxWidth="750px" /* Adjust as per your layout */
                     >
-                        <Text variant='bs-semibold' color='text-tertiary' wrap>{displayedPayload}</Text>
+                        <Text
+                            variant="bs-semibold"
+                            color="text-tertiary"
+                            css={css`word-break: break-all; overflow-wrap: break-word;`}
+                        >
+                            {displayedPayload}
+                        </Text>
+
                         {showMorePayloadButton && (
                             <Box
                                 display="flex"
