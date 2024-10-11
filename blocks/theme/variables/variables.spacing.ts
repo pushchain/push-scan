@@ -10,5 +10,5 @@ export const spacingVariables = {
   'spacing-xxl': '48px',
   'spacing-xxxl': '64px',
   'spacing-xxxxl': '128px',
-  'spacing-xxxxxl': '168px',
+  'spacing-xxxxxl': '148px',
 };
