@@ -65,7 +65,7 @@ const BlockHashContainer = styled(Box)`
     flex-direction: row;
     gap: spacing-xxs;
     align-items: center;
-
+    
     &:hover ${CopyIconButton},
     &:focus-within ${CopyIconButton} {
         opacity: 1;

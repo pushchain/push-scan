@@ -37,6 +37,7 @@ const TXDetails = (props: IProps) => {
         }, 1000);
     };
 
+    
     return (
         <>
             <Box
@@ -106,8 +107,10 @@ const TXDetails = (props: IProps) => {
                     gap="spacing-xxxs"
                 >
                     <Text variant="bs-semibold" color='text-secondary'>Transaction Hash</Text>
-                    <Box display="flex" flexDirection="row" justifyContent="center" alignItems="center" gap="spacing-xxs" >
-                        <Text variant="bs-regular" color='text-primary' wrap>{props.data?.txnHash}</Text>
+                    <Box display="flex" flexDirection="row" justifyContent="center" alignItems="center" gap="spacing-xxs">
+                        <Box css={css`word-break: break-all; overflow-wrap: break-word;`}>
+                            <Text variant="bs-regular" color='text-primary' wrap>{props.data?.txnHash}</Text>
+                        </Box>
                         <Tooltip title={tooltipText}>
                             <Copy
                                 onClick={() => copyData(props.data?.txnHash)}
@@ -135,7 +138,7 @@ const TXDetails = (props: IProps) => {
                     gap="spacing-xxxs"
                 >
                     <Text variant="bs-semibold" color='text-secondary'>Block Hash</Text>
-                    <BlockHashLink blockHash={props.data?.blockHash} />
+                    <Box css={css`word-break: break-all; overflow-wrap: break-word;`}><BlockHashLink blockHash={props.data?.blockHash} /></Box>
                 </Box>
 
                 <Box

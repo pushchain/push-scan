@@ -188,7 +188,11 @@ const ConsensusInfo = (props: IProps) => {
                                 gap="spacing-xs"
                             >
                                 <PushMonotone />
-                                <Text key={index} variant="bs-regular" color='text-primary'>{node.node}</Text>
+                                <Box
+                                    css={css`word-break: break-all; overflow-wrap: break-word;`}
+                                >
+                                    <Text key={index} variant="bs-regular" color='text-primary'>{node.node}</Text>
+                                </Box>
                             </Box>
                         ))}
                         

@@ -94,7 +94,10 @@ const Details = (props: IProps) => {
                     gap="spacing-xxxs"
                 >
                     <Text variant="bs-semibold" color='text-secondary'>Block Hash</Text>
-                    <Text variant="bs-regular" color='text-primary' wrap>{ props.data?.blockHash }</Text>
+
+                    <Box css={css`word-break: break-all; overflow-wrap: break-word;`}>
+                        <Text variant="bs-regular" color='text-primary' wrap>{ props.data?.blockHash }</Text>
+                    </Box>
                 </Box>
 
 
@@ -104,7 +107,7 @@ const Details = (props: IProps) => {
                     gap="spacing-xxxs"
                 >
                     <Text variant="bs-semibold" color='text-secondary'>Validator</Text>
-                    <Text variant="bs-regular" color='text-primary' wrap>{ getValidatorNode(props.data?.signers) }</Text>
+                    <Box css={css`word-break: break-all; overflow-wrap: break-word;`}><Text variant="bs-regular" color='text-primary' wrap>{ getValidatorNode(props.data?.signers) }</Text></Box>
                 </Box>
 
                 <Box

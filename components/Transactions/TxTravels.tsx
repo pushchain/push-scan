@@ -137,7 +137,7 @@ const TxTravels = (props: IProps) => {
                 >
                     <Text variant="bs-semibold" color='text-secondary'>From</Text>
                     <Box display="flex" flexDirection="row" alignItems="center" gap="spacing-xxs" >
-                        <Address address={props.data?.from} masking={false} wrap={true} />
+                        <Box css={css`word-break: break-all; overflow-wrap: break-word;`}><Address address={props.data?.from} masking={false} wrap={true} /></Box>
                         <Box display="flex" justifyContent="flex-end" cursor="pointer">
                             <Tooltip title={tooltipText}>
                                 <Box display="flex" justifyContent="flex-end" cursor="pointer">
@@ -168,7 +168,9 @@ const TxTravels = (props: IProps) => {
                     >
                         {displayedRecipients.map((recipient, index) => (
                             <Box key={recipient.address} display="flex" flexDirection="row" alignItems="center" gap="spacing-xxs" >
-                                <Address address={recipient.address} masking={false} wrap={true} />
+                                <Box css={css`word-break: break-all; overflow-wrap: break-word;`}>
+                                    <Address address={recipient.address} masking={false} wrap={true} />
+                                </Box>
                                 <Box display="flex" justifyContent="flex-end" cursor="pointer">
                                     <Tooltip title={tooltipText}>
                                         <Box display="flex" justifyContent="flex-end" cursor="pointer">

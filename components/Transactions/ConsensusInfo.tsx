@@ -106,7 +106,7 @@ const ConsensusInfo = (props: IProps) => {
                     </Box>
                 </Box>
 
-                <Box display="flex" flexDirection="row" gap="spacing-xxxxxl">
+                { displayedPayload && <Box display="flex" flexDirection="row" gap="spacing-xxxxxl">
                     <Box width="134px">
                         <Text variant="bs-semibold" color="text-secondary">
                             Payload Data
@@ -157,8 +157,8 @@ const ConsensusInfo = (props: IProps) => {
                             </Tooltip>
                         </Box>
                     </Box>
-                </Box>
-            </Box>
+                </Box> }
+            </Box> 
 
             <Box
                 display={{ initial:"none", ml:"flex" }}
@@ -188,18 +188,19 @@ const ConsensusInfo = (props: IProps) => {
                                 key={node.node}
                                 display="flex"
                                 flexDirection="row"
-                                gap="spacing-lg"
+                                justifyContent="space-between"
+                                alignItems="center"
+                                gap="spacing-xs"
                             >    
-                                <Box
-                                    width="60vw"
-                                >
+                                <PushMonotone size={36}/>
+
+                                <Box css={css`word-break: break-all; overflow-wrap: break-word;`}>
                                     <Text wrap key={index} variant="bs-regular" color='text-primary'>
                                         {node.node}
                                     </Text>
                                 </Box>
                                                                
                                 <Box
-                                    border="border-sm solid stroke-tertiary"
                                     borderRadius="radius-xs"
                                     padding="spacing-xxs spacing-sm"
                                 >
