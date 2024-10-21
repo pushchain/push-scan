@@ -1,4 +1,7 @@
+// React, NextJS imports
 import React from 'react';
+
+// Internal Components imports
 import { Box, Text } from '../../blocks';
 import SearchBar from '../../components/Home/SearchBar'
 import OverView from '../../components/Home/OverView'

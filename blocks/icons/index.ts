@@ -56,6 +56,8 @@ export { default as Dash } from './components/Dash';
 
 export { default as Dashboard } from './components/Dashboard';
 
+export { default as Discord } from './components/Discord';
+
 export { default as EditProfile } from './components/EditProfile';
 
 export { default as EtheriumMonotone } from './components/EtheriumMonotone';
@@ -79,6 +81,8 @@ export { default as GovernanceFilled } from './components/GovernanceFilled';
 
 export { default as Group } from './components/Group';
 export { default as GroupFilled } from './components/GroupFilled';
+
+export { default as Github } from './components/Github';
 
 export { default as InboxBell } from './components/InboxBell';
 export { default as EmptyInbox } from './components/EmptyInbox';
@@ -159,6 +163,9 @@ export { default as Swap } from './components/Swap';
 export { default as Tick } from './components/Tick';
 export { default as TickCircleFilled } from './components/TickCircleFilled';
 export { default as TickDecoratedCircleFilled } from './components/TickDecoratedCircleFilled';
+
+export { default as Twitter } from './components/Twitter';
+export { default as Telegram } from './components/Telegram';
 
 export { default as UserFilled } from './components/UserFilled';
 

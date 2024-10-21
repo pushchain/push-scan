@@ -1,8 +1,11 @@
+// React, NextJS imports
 import React from 'react';
+
+// Internal Components imports
 import { Box } from '../blocks';
+import { ContentLayout } from '../common'
 import FooterSection from '../sections/Footer';
 import HeaderSection from '../sections/Header';
-import { ContentLayout } from '../common'
 
 export default function Layout({ children }) {
   return (

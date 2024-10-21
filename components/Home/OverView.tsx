@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { css } from 'styled-components';
 import { Box, Text, Separator, Skeleton } from '../../blocks';
 import { useCounts } from '../../hooks/useCounts';
 
@@ -87,7 +88,7 @@ const OverView: FC<OverViewProps> = () => {
                         align-items="flex-start"
                         gap="spacing-xxxs"
                         padding="spacing-none spacing-lg spacing-none spacing-lg"
-                        css={`border-left: var(--border-sm) solid var(--stroke-tertiary);`} 
+                        css={css`border-left: var(--border-sm) solid var(--stroke-tertiary);`} 
                     >
                         <Text variant="h6-regular" color='text-tertiary'>Daily Transactions</Text>
                         <Text variant="h3-semibold" color='text-primary'>{data?.dailyTransactions}</Text>

@@ -1,11 +1,16 @@
+// React, NextJS imports
 import React from 'react';
-import { Box, Text, Front, Table } from '../../blocks';
-import { useRouter } from 'next/router'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
+
+// External Components imports
+import { css, useTheme } from 'styled-components';
+
+// Internal Components imports
+import { Box, Text, Front, Table } from '../../blocks';
 import { useLiveBlocks } from '../../hooks/useBlocks';
 import { getValidatorNode } from '../../utils/helpers'
 import { centerMaskString, fromNow } from '../../utils/helpers'
-import { useTheme } from 'styled-components';
 import BlockHashLink from '../Reusables/BlockHashLink'
 
 export default function LiveBlocks() {
@@ -60,7 +65,7 @@ export default function LiveBlocks() {
 
   return (
     <Box
-      css={'flex: 0 0 35%'}
+      css={css`flex: 0 0 35%`}
       display="flex"
       flexDirection="column"
       gap="spacing-sm"

@@ -41,7 +41,7 @@ export default function LiveTransactions() {
       dataIndex: 'from',
       render: (params) => { 
         const from = JSON.parse(params);
-        return <Address address={from.from} />
+        return <Address address={from.from}/>
       },
       cellAlignment: 'flex-start',
       headerAlignment: 'flex-start',
@@ -54,7 +54,6 @@ export default function LiveTransactions() {
         const reci = recipients.split(',')
         return (
           <Box
-            
             flexDirection="column"
           >
             <Box display="flex" flexDirection="column" alignItems="flex-start">

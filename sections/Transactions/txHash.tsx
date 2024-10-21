@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
+
+import { useRouter } from 'next/router';
+
 import { Box, Text, Spinner } from '../../blocks';
 import Advanced from '../../components/Reusables/Advanced';
 import ConsensusInfo from '../../components/Transactions/ConsensusInfo';
 import TXDetails from '../../components/Transactions/TxDetails'
 import TxTravels from '../../components/Transactions/TxTravels'
 import { useLiveTxByHash } from '../../hooks/useLiveTxByHash';
-import { useRouter } from 'next/router';
 
 const Details = () => {
   const router = useRouter();

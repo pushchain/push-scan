@@ -4,7 +4,7 @@ import { rightMaskString } from '../../utils/helpers';
 import Link from 'next/link';
 import styled from 'styled-components';
 
-const BlockHashLinkComponent = ({ blockHash, masking = false }) => {
+const BlockHashLinkComponent = ({ blockHash, masking = false, allowCopy = false }) => {
     const [tooltipText, setToolTipText] = useState('Copy');
 
     const maskedBlockHash = masking ? rightMaskString(blockHash) : blockHash;
@@ -25,7 +25,7 @@ const BlockHashLinkComponent = ({ blockHash, masking = false }) => {
                 {maskedBlockHash}
                 </BlockHashText>
             </BlockHashLink>
-            <CopyIconButton onClick={copyData}>
+            {allowCopy && <CopyIconButton onClick={copyData}>
                 <Tooltip title={tooltipText}>
                 <Copy
                     autoSize
@@ -33,7 +33,7 @@ const BlockHashLinkComponent = ({ blockHash, masking = false }) => {
                     color="icon-tertiary"
                 />
                 </Tooltip>
-            </CopyIconButton>
+            </CopyIconButton>}
         </BlockHashContainer>
     );
 };

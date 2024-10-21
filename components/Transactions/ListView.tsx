@@ -40,7 +40,7 @@ const ListView = (props: IProps) => {
     {
       title: 'TX HASH',
       dataIndex: 'txHash',
-      render: (txHash: string) => <TxHashLink txHash={txHash} />,
+      render: (txHash: string) => <TxHashLink txHash={txHash}/>,
       cellAlignment: 'flex-start',
       headerAlignment: 'flex-start',
       width: '165px'
@@ -48,7 +48,7 @@ const ListView = (props: IProps) => {
     {
       title: 'BLOCK HASH',
       dataIndex: 'blockHash',
-      render: (blockHash: string) => <BlockHashLink blockHash={blockHash} masking={true} />,
+      render: (blockHash: string) => <BlockHashLink blockHash={blockHash} masking={true}/>,
       cellAlignment: 'flex-start',
       headerAlignment: 'flex-start',
       width: '165px'
@@ -58,7 +58,7 @@ const ListView = (props: IProps) => {
       dataIndex: 'from',
       render: (params) => { 
         const from = JSON.parse(params);
-        return <Address address={from.from} />
+        return <Address address={from.from} allowCopy/>
       },
       cellAlignment: 'flex-start',
       headerAlignment: 'flex-start',
@@ -74,7 +74,7 @@ const ListView = (props: IProps) => {
           display="flex"
           flexDirection="column"
         >
-          <Address address={reci[0]} />
+          <Address address={reci[0]} allowCopy/>
           { reci.length > 1 && <Text variant='bs-regular' color="text-tertiary">{`+ ${reci.length - 1} more`}</Text>}
         </Box>
       )},
