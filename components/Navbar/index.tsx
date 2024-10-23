@@ -13,7 +13,7 @@ import { useTheme as Theme } from '../../contexts/ThemeContext';
 import { useData } from '../../contexts/DataContext';
 import { ROUTES, CREDENTIALKEYS } from '../../utils/constants';
 import { ThemeType } from '../../types/theme';
-import { Box, Text, Lozenge,PushLogo } from '../../blocks';
+import { Box, Text, Lozenge, PushLogo } from '../../blocks';
 import SearchBar from '../Home/SearchBar';
 
 export default function Navbar() {
@@ -36,6 +36,7 @@ export default function Navbar() {
   return (
     <Box
       display="flex"
+      flexDirection="column"
       justifyContent="space-between"
       alignItems="center"
       alignSelf="stretch"
@@ -46,67 +47,89 @@ export default function Navbar() {
         flex: initial;
         margin: 0 auto;
       `}
+      gap="spacing-xs"
     >
       <Box
+        alignItems="center"
         display="flex"
         flexDirection="row"
-        alignItems="center"
-        gap="spacing-xs"
+        justifyContent="space-between"
+        width="100%"
       >
         <Box
           display="flex"
           flexDirection="row"
           alignItems="center"
-          gap="spacing-xxxs"
-          cursor="pointer"
-          onClick={() => router.push('/home')}
+          gap="spacing-xs"
         >
-          <PushLogo height={43} width={43} />
-          <Text variant="h4-regular" color="text-primary">
-            PushScan
-          </Text>
-
-          <Lozenge
-            size="small"
-            variant="primary"
-            css={css`
-              padding: 10px;
-              margin-left: 10px;
-            `}
+          <Box
+            display="flex"
+            flexDirection="row"
+            alignItems="center"
+            gap="spacing-xxxs"
+            cursor="pointer"
+            onClick={() => router.push('/home')}
           >
-            ALPHA
-          </Lozenge>
+            <PushLogo height={43} width={43} />
+            <Text variant="h4-regular" color="text-primary">
+              PushScan
+            </Text>
+
+            <Lozenge
+              size="small"
+              variant="primary"
+              css={css`
+                padding: 10px;
+                margin-left: 10px;
+              `}
+            >
+              ALPHA
+            </Lozenge>
+          </Box>
+        </Box>
+
+        <Box
+          display="flex"
+          flexDirection="row"
+          alignItems="center"
+          gap="spacing-sm"
+        >
+          {asPath !== '/dashboard' && (
+            <Link href="/dashboard">
+              <Text variant="h6-semibold" color="text-primary">
+                Analytics
+              </Text>
+            </Link>
+          )}
+
+          <DarkModeSwitch
+            style={{ margin: '0 1rem' }}
+            checked={isDarkMode}
+            onChange={darkModeToggle}
+            size={28}
+            sunColor="#494D5F"
+            moonColor="#787E99"
+          />
+
+          {asPath !== '/home' && (
+            <Box display={{ initial: 'flex', ml: 'none' }} minWidth="330px">
+              <SearchBar />
+            </Box>
+          )}
         </Box>
       </Box>
-
       <Box
-        display="flex"
-        flexDirection="row"
-        alignItems="center"
-        gap="spacing-sm"
+        display={{ initial: 'none', ml: 'flex' }}
+        flexDirection="column"
+        gap="spacing-xs"
+        width="-webkit-fill-available"
       >
-        {asPath !== '/dashboard' && (
-          <Link href="/dashboard">
-            <Text variant="h6-semibold" color="text-primary">
-              Analytics
-            </Text>
-          </Link>
+        {asPath === '/home' && (
+          <Text variant="h3-semibold" color="text-primary">
+            Push Blockchain Explorer
+          </Text>
         )}
-
-        <DarkModeSwitch
-          style={{ margin: '0 1rem' }}
-          checked={isDarkMode}
-          onChange={darkModeToggle}
-          size={28}
-          sunColor="#494D5F"
-          moonColor="#787E99"
-        />
-
-        {asPath !== '/home' && (
-          <Box display={{ initial: 'flex', ml: 'none' }} minWidth="330px">
-            <SearchBar />
-          </Box>
-        )}
+        <SearchBar />
       </Box>
     </Box>
   );

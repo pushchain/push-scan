@@ -1,16 +1,22 @@
+// React, NextJS imports
 import React, { useState } from 'react';
-import { Box, Text, Tooltip } from '../../blocks';
-import {
-  PushMonotone,
-  TickCircleFilled,
-  Copy,
-} from '../../blocks/icons';
-import { convertCaipToObject, centerMaskString } from '../../utils/helpers';
 import Link from 'next/link';
-import styled from 'styled-components';
-import { CHAIN_LOGO } from '../../common';
 
-const Address = ({ address, wrap = false, masking = true, allowCopy=false }) => {
+// External Components imports
+import styled, { css } from 'styled-components';
+
+// Internal Components imports
+import { Box, Text, Tooltip } from '../../blocks';
+import { PushMonotone, TickCircleFilled, CopyFilled } from '../../blocks/icons';
+import { CHAIN_LOGO } from '../../common';
+import { convertCaipToObject, centerMaskString } from '../../utils/helpers';
+
+const Address = ({
+  address,
+  wrap = false,
+  masking = true,
+  allowCopy = false,
+}) => {
   function getChainIcon(chainId) {
     try {
       if (!chainId) {
@@ -30,16 +36,17 @@ const Address = ({ address, wrap = false, masking = true, allowCopy=false }) => 
     ? centerMaskString(result.address)
     : result.address;
 
-    const [tooltipText, setToolTipText] = useState('Copy');
+  const [tooltipText, setToolTipText] = useState('Copy');
 
-    const copyData = () => {
-      navigator.clipboard.writeText(address);
-      setToolTipText('Copied');
-  
-      setTimeout(() => {
-        setToolTipText('Copy');
-      }, 1000);
-    };
+  const copyData = () => {
+    const addressToCopy = result.address ?? address;
+    navigator.clipboard.writeText(addressToCopy);
+    setToolTipText('Copied');
+
+    setTimeout(() => {
+      setToolTipText('Copy');
+    }, 1000);
+  };
 
   return (
     <AddressContainer>
@@ -50,8 +57,13 @@ const Address = ({ address, wrap = false, masking = true, allowCopy=false }) => 
         </AddressText>
       </AddressLink>
       {allowCopy && (
-        <CopyIconButton onClick={copyData}>
-          <Tooltip title={tooltipText}>
+        <Tooltip
+          title={tooltipText}
+          css={css`
+            z-index: 1;
+          `}
+        >
+          <CopyIconButton onClick={copyData}>
             {tooltipText === 'Copied' ? (
               <TickCircleFilled
                 autoSize
@@ -59,10 +71,10 @@ const Address = ({ address, wrap = false, masking = true, allowCopy=false }) => 
                 color="icon-state-success-bold"
               />
             ) : (
-              <Copy autoSize size={16} color="icon-tertiary" />
+              <CopyFilled autoSize size={16} color="icon-tertiary" />
             )}
-          </Tooltip>
-        </CopyIconButton>
+          </CopyIconButton>
+        </Tooltip>
       )}
     </AddressContainer>
   );
@@ -108,10 +120,6 @@ const AddressContainer = styled(Box)`
     opacity: 1;
     pointer-events: auto;
   }
-
- 
 `;
-
-
 
 export default Address;

@@ -1,11 +1,21 @@
 import React, { useState } from 'react';
-import { Box, Text, Copy, Tooltip, Spinner, Pagination } from '../../blocks';
+import {
+  Box,
+  Text,
+  Copy,
+  Tooltip,
+  Spinner,
+  Pagination,
+  TickCircleFilled,
+  CopyFilled,
+} from '../../blocks';
 import ListView from '../../components/Transactions/ListView';
 import { centerMaskString, convertCaipToObject } from '../../utils/helpers';
-import { useGetTransactionsByUser } from '../../hooks/useGetTransactionsByUser'
+import { useGetTransactionsByUser } from '../../hooks/useGetTransactionsByUser';
 import { useRouter } from 'next/router';
-import { PerPageItems } from '../../utils/constants'
+import { PerPageItems } from '../../utils/constants';
 import BlockiesSvg from 'blockies-react-svg';
+import Address from '../../components/Reusables/AddressComponent';
 
 const Search = () => {
   const router = useRouter();
@@ -13,8 +23,8 @@ const Search = () => {
 
   const [tooltipText, setToolTipText] = useState('Copy Address');
   const [page, setPage] = useState(1);
-  
-  address = Array.isArray(address) ? address[0] : address
+
+  address = Array.isArray(address) ? address[0] : address;
 
   const copyAddress = () => {
     if (address) {
@@ -26,32 +36,30 @@ const Search = () => {
     }, 1000);
   };
 
-  const { data, isLoading } = useGetTransactionsByUser({ address, page: page })
-  
-  const showLoading = !address || isLoading
-  
-  
+  const { data, isLoading } = useGetTransactionsByUser({ address, page: page });
+
+  const showLoading = !address || isLoading;
+
   if (showLoading) {
     return (
       <Box display="flex" justifyContent="center">
-        <Spinner size='extraLarge'/>
+        <Spinner size="extraLarge" />
       </Box>
-    )
+    );
   }
 
   // address = address && convertCaipToObject(address).result.address
-  
+
   if (!address) {
-    return null
+    return null;
   }
 
+  const { result } = convertCaipToObject(address);
+  const maskedAddress = result.address;
+
+  const showPagination = data?.totalPages > 1;
   return (
-    <Box
-      width="100%"
-      display="flex"
-      flexDirection="column"
-      gap="spacing-md"
-    >
+    <Box width="100%" display="flex" flexDirection="column" gap="spacing-md">
       <Box
         width="100%"
         display="flex"
@@ -60,12 +68,14 @@ const Search = () => {
         gap="spacing-md"
       >
         <Box
-          display="flex"
+          display={{ initial: 'flex', ml: 'none' }}
           flexDirection="row"
-          gap="spacing-md"
+          gap="spacing-sm"
           alignItems="center"
         >
-          <Text variant="h3-semibold" color='text-primary'>Address</Text>
+          <Text variant="h4-semibold" color="text-primary">
+            Address
+          </Text>
 
           <Box
             display="flex"
@@ -74,48 +84,95 @@ const Search = () => {
             alignItems="center"
           >
             <Box
-              width="32px"
-              height="32px"
+              width="24px"
+              height="24px"
               borderRadius="radius-xl"
               overflow="hidden"
             >
-              <BlockiesSvg
-                address={address}
-                size={8}
-                scale={4}
-              />
+              <BlockiesSvg address={address} size={8} scale={4} />
             </Box>
-            <Text variant="h3-semibold" color='text-primary'>{address}</Text>
+            <Text variant="h5-semibold" color="text-primary">
+              {maskedAddress}
+            </Text>
             <Tooltip title={tooltipText}>
-              <Box cursor="pointer">
-                  <Copy
-                    onClick={copyAddress}
+              <Box cursor="pointer" onClick={copyAddress}>
+                {tooltipText === 'Copied' ? (
+                  <TickCircleFilled
                     autoSize
-                    size={24}
-                    color="icon-tertiary"
+                    size={16}
+                    color="icon-state-success-bold"
                   />
+                ) : (
+                  <CopyFilled autoSize size={16} color="icon-tertiary" />
+                )}
               </Box>
             </Tooltip>
           </Box>
         </Box>
-        <Text variant="h3-semibold" color='text-primary'>Transactions for {centerMaskString(address)}</Text>
+        <Box
+          display={{ initial: 'none', ml: 'flex' }}
+          flexDirection="column"
+          gap="spacing-xxs"
+        >
+          <Box display="flex" gap="spacing-xxs" alignItems="center">
+            <Box
+              width="24px"
+              height="24px"
+              borderRadius="radius-xl"
+              overflow="hidden"
+            >
+              <BlockiesSvg address={address} size={8} scale={4} />
+            </Box>
+            <Text variant="h4-semibold" color="text-primary">
+              Address
+            </Text>
+          </Box>
+
+          <Box
+            display="flex"
+            flexDirection="row"
+            gap="spacing-xxs"
+            alignItems="center"
+          >
+            <Text variant="bes-semibold" color="text-primary">
+              {maskedAddress}
+            </Text>
+            <Tooltip title={tooltipText}>
+              <Box cursor="pointer" onClick={copyAddress}>
+                {tooltipText === 'Copied' ? (
+                  <TickCircleFilled
+                    autoSize
+                    size={16}
+                    color="icon-state-success-bold"
+                  />
+                ) : (
+                  <CopyFilled autoSize size={16} color="icon-tertiary" />
+                )}
+              </Box>
+            </Tooltip>
+          </Box>
+        </Box>
+        <Text variant="h5-semibold" color="text-primary">
+          Transactions for {centerMaskString(maskedAddress)}
+        </Text>
       </Box>
       <ListView data={data} />
-      <Box
-        display="flex"
-        flexDirection="column"
-        justifyContent="flex-end"
-        alignItems="flex-end"
-      >
-        <Pagination
-          pageSize={PerPageItems}
-          current={page}
-          total={data?.totalPages * PerPageItems}
-          onChange={(page) => setPage(page)}
-        />
-      </Box>
+      {showPagination && (
+        <Box
+          display="flex"
+          flexDirection="column"
+          justifyContent="flex-end"
+          alignItems="flex-end"
+        >
+          <Pagination
+            pageSize={PerPageItems}
+            current={page}
+            total={data?.totalPages * PerPageItems}
+            onChange={(page) => setPage(page)}
+          />
+        </Box>
+      )}
     </Box>
-    
   );
 };
 

@@ -2,18 +2,19 @@ import { FC } from 'react';
 import {
   ArbitrumMonotone,
   BnbMonotone,
-  EtheriumMonotone,
+  EthereumMonotone,
   IconProps,
   OptimismMonotone,
   PolygonMonotone,
   PushMonotone,
+  SolanaMonotone,
 } from '../blocks/icons';
 
 export const CHAIN_LOGO: {
   [x: number | string]: FC<IconProps>;
 } = {
-  1: EtheriumMonotone,
-  11155111: EtheriumMonotone,
+  1: EthereumMonotone,
+  11155111: EthereumMonotone,
   137: PolygonMonotone,
   80002: PolygonMonotone,
   97: BnbMonotone,
@@ -24,6 +25,6 @@ export const CHAIN_LOGO: {
   10: OptimismMonotone,
   2442: PolygonMonotone,
   1101: PolygonMonotone,
-  '5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp': OptimismMonotone,
+  '5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp': SolanaMonotone,
   devnet: PushMonotone,
 };

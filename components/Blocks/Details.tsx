@@ -6,7 +6,7 @@ import { css } from 'styled-components';
 import moment from 'moment';
 
 // Internal Components imports
-import { Box, Text, Tooltip, Copy } from '../../blocks';
+import { Box, Text, Tooltip, TickCircleFilled, CopyFilled } from '../../blocks';
 import { BlockDetails } from '../../types/block';
 import { getValidatorNode } from '../../utils/helpers';
 
@@ -58,12 +58,20 @@ const Details = (props: IProps) => {
             <Box display="flex" justifyContent="flex-end" cursor="pointer">
               <Tooltip title="Copy">
                 <Box display="flex" justifyContent="flex-end" cursor="pointer">
-                  <Copy
-                    onClick={() => copyData(props.data?.blockHash)}
-                    autoSize
-                    size={24}
-                    color="icon-tertiary"
-                  />
+                  {tooltipText === 'Copied' ? (
+                    <TickCircleFilled
+                      autoSize
+                      size={16}
+                      color="icon-state-success-bold"
+                    />
+                  ) : (
+                    <CopyFilled
+                      onClick={() => copyData(props.data?.blockHash)}
+                      autoSize
+                      size={16}
+                      color="icon-tertiary"
+                    />
+                  )}
                 </Box>
               </Tooltip>
             </Box>

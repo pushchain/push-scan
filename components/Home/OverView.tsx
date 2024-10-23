@@ -6,110 +6,141 @@ import { useCounts } from '../../hooks/useCounts';
 export type OverViewProps = {};
 
 const OverView: FC<OverViewProps> = () => {
-    const { data, isLoading } = useCounts();    
-    return (
+  const { data, isLoading } = useCounts();
+
+  return (
+    <Box
+      display="flex"
+      flexDirection={{ ml: 'column', initial: 'row' }}
+      justifyContent="space-between"
+      alignItems="center"
+      gap="spacing-xxxs"
+      padding="spacing-sm"
+      border="border-xmd solid stroke-secondary"
+      backgroundColor="surface-primary"
+      borderRadius="radius-md"
+      width="100%"
+    >
+      <Skeleton isLoading={isLoading}>
         <Box
-            display="flex"
-            flexDirection={{ ml: "column", initial: "row"}}
-            justifyContent="space-between"
-            alignItems="center"
-            gap="spacing-xxxs"
-            padding="spacing-sm"
-            border="border-xmd solid stroke-secondary"
-            backgroundColor="surface-primary"
-            borderRadius='radius-md'
-            width="100%"
-        >   
-                <Skeleton isLoading={isLoading}>
-                    <Box
-                        width="100%"
-                        display={{ dp: "flex", ml: "none"}}
-                        flexDirection="column"
-                        justifyContent="flex-start"
-                        align-items="flex-start"
-                        gap="spacing-xxxs"
-                        padding="spacing-none spacing-lg spacing-none spacing-lg"
-                    >
-                        <Text variant="h6-regular" color='text-tertiary'>Transactions</Text>
-                        <Text variant="h3-semibold" color='text-primary'>{data?.totalTransactions}</Text>
-                    </Box>
-
-                    <Box
-                        width="100%"
-                        display={{ dp: "none", ml: "flex"}}
-                        flexDirection="column"
-                        justifyContent="flex-start"
-                        align-items="flex-start"
-                        gap="spacing-xxxs"
-                        padding="spacing-none spacing-xs spacing-xs spacing-xs"
-
-                    >
-                        <Text variant="h6-regular" color='text-tertiary'>Transactions</Text>
-                        <Text variant="h3-semibold" color='text-primary'>{data?.totalTransactions}</Text>
-                    </Box>
-                </Skeleton>
-                
-
-                <Skeleton isLoading={isLoading}>
-                    <Box
-                        width="100%"
-                        display={{ dp: "flex", ml: "none"}}
-                        flexDirection="column"
-                        justifyContent="flex-start"
-                        align-items="flex-start"
-                        gap="spacing-xxxs"
-                        padding="spacing-none spacing-lg spacing-none spacing-lg"
-                        css={css`border-left: var(--border-sm) solid var(--stroke-tertiary);`} 
-                    >
-                        <Text variant="h6-regular" color='text-tertiary'>Total Blocks</Text>
-                        <Text variant="h3-semibold" color='text-primary'>{data?.totalBlocks}</Text>
-                    </Box>
-                    <Box
-                        width="100%"
-                        display={{ dp: "none", ml: "flex"}}
-                        flexDirection="column"
-                        justifyContent="flex-start"
-                        align-items="flex-start"
-                        gap="spacing-xxxs"
-                        padding="spacing-xs"
-                        css={css`border-top: var(--border-sm) solid var(--stroke-tertiary);`} 
-                    >
-                        <Text variant="h6-regular" color='text-tertiary'>Total Blocks</Text>
-                        <Text variant="h3-semibold" color='text-primary'>{data?.totalBlocks}</Text>
-                    </Box>
-                </Skeleton>
-
-                <Skeleton isLoading={isLoading}>
-                    <Box
-                        width="100%"
-                        display={{ dp: "flex", ml: "none"}}
-                        flexDirection="column"
-                        justifyContent="flex-start"
-                        align-items="flex-start"
-                        gap="spacing-xxxs"
-                        padding="spacing-none spacing-lg spacing-none spacing-lg"
-                        css={css`border-left: var(--border-sm) solid var(--stroke-tertiary);`} 
-                    >
-                        <Text variant="h6-regular" color='text-tertiary'>Daily Transactions</Text>
-                        <Text variant="h3-semibold" color='text-primary'>{data?.dailyTransactions}</Text>
-                    </Box>
-
-                    <Box
-                        width="100%"
-                        display={{ dp: "none", ml: "flex"}}
-                        flexDirection="column"
-                        justifyContent="flex-start"
-                        align-items="flex-start"
-                        gap="spacing-xxxs"
-                        padding="spacing-xs spacing-xs spacing-none spacing-xs"
-                        css={css`border-top: var(--border-sm) solid var(--stroke-tertiary);`} 
-                    >
-                        <Text variant="h6-regular" color='text-tertiary'>Total Transactions</Text>
-                        <Text variant="h3-semibold" color='text-primary'>{data?.dailyTransactions}</Text>
-                    </Box>
-                </Skeleton>
+          width="100%"
+          display={{ dp: 'flex', ml: 'none' }}
+          flexDirection="column"
+          justifyContent="flex-start"
+          align-items="flex-start"
+          gap="spacing-xxxs"
+          padding="spacing-none spacing-lg spacing-none spacing-lg"
+        >
+          <Text variant="h6-regular" color="text-tertiary">
+            Transactions
+          </Text>
+          <Text variant="h3-semibold" color="text-primary">
+            {data?.totalTransactions.toLocaleString()}
+          </Text>
         </Box>
-    )
-}
+
+        <Box
+          width="100%"
+          display={{ dp: 'none', ml: 'flex' }}
+          flexDirection="column"
+          justifyContent="flex-start"
+          align-items="flex-start"
+          gap="spacing-xxxs"
+          padding="spacing-none spacing-xs spacing-xs spacing-xs"
+        >
+          <Text variant="h6-regular" color="text-tertiary">
+            Transactions
+          </Text>
+          <Text variant="h3-semibold" color="text-primary">
+            {data?.totalTransactions.toLocaleString()}
+          </Text>
+        </Box>
+      </Skeleton>
+
+      <Skeleton isLoading={isLoading}>
+        <Box
+          width="100%"
+          display={{ dp: 'flex', ml: 'none' }}
+          flexDirection="column"
+          justifyContent="flex-start"
+          align-items="flex-start"
+          gap="spacing-xxxs"
+          padding="spacing-none spacing-lg spacing-none spacing-lg"
+          css={css`
+            border-left: var(--border-sm) solid var(--stroke-tertiary);
+          `}
+        >
+          <Text variant="h6-regular" color="text-tertiary">
+            Total Blocks
+          </Text>
+          <Text variant="h3-semibold" color="text-primary">
+            {data?.totalBlocks.toLocaleString()}
+          </Text>
+        </Box>
+        <Box
+          width="100%"
+          display={{ dp: 'none', ml: 'flex' }}
+          flexDirection="column"
+          justifyContent="flex-start"
+          align-items="flex-start"
+          gap="spacing-xxxs"
+          padding="spacing-xs"
+          css={css`
+            border-top: var(--border-sm) solid var(--stroke-tertiary);
+          `}
+        >
+          <Text variant="h6-regular" color="text-tertiary">
+            Total Blocks
+          </Text>
+          <Text variant="h3-semibold" color="text-primary">
+            {data?.totalBlocks.toLocaleString()}
+          </Text>
+        </Box>
+      </Skeleton>
+
+      <Skeleton isLoading={isLoading}>
+        <Box
+          width="100%"
+          display={{ dp: 'flex', ml: 'none' }}
+          flexDirection="column"
+          justifyContent="flex-start"
+          align-items="flex-start"
+          gap="spacing-xxxs"
+          padding="spacing-none spacing-lg spacing-none spacing-lg"
+          css={css`
+            border-left: var(--border-sm) solid var(--stroke-tertiary);
+          `}
+        >
+          <Text variant="h6-regular" color="text-tertiary">
+            Daily Transactions
+          </Text>
+          <Text variant="h3-semibold" color="text-primary">
+            {data?.dailyTransactions.toLocaleString()}
+          </Text>
+        </Box>
+
+        <Box
+          width="100%"
+          display={{ dp: 'none', ml: 'flex' }}
+          flexDirection="column"
+          justifyContent="flex-start"
+          align-items="flex-start"
+          gap="spacing-xxxs"
+          padding="spacing-xs spacing-xs spacing-none spacing-xs"
+          css={css`
+            border-top: var(--border-sm) solid var(--stroke-tertiary);
+          `}
+        >
+          <Text variant="h6-regular" color="text-tertiary">
+            Total Transactions
+          </Text>
+          <Text variant="h3-semibold" color="text-primary">
+            {data?.dailyTransactions.toLocaleString()}
+          </Text>
+        </Box>
+      </Skeleton>
+    </Box>
+  );
+};
 
 export default OverView;

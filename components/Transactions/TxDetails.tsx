@@ -7,7 +7,7 @@ import moment from 'moment';
 
 // Internal Components imports
 import { Box, Text, Tag, Tooltip, Copy } from '../../blocks';
-import { Tick } from '../../blocks/icons';
+import { CopyFilled, Tick, TickCircleFilled } from '../../blocks/icons';
 import { TagVariant } from '../../blocks/tag';
 import { Transaction } from '../../types/transaction';
 import BlockHashLink from '../Reusables/BlockHashLink';
@@ -66,18 +66,26 @@ const TXDetails = (props: IProps) => {
             alignItems="center"
             gap="spacing-xxs"
           >
-            <Text variant="bs-regular" color="text-primary">
+            <Text variant="h6-semibold" color="text-primary">
               {props.data?.txnHash}
             </Text>
             <Box display="flex" justifyContent="flex-end" cursor="pointer">
               <Tooltip title={tooltipText}>
                 <Box display="flex" justifyContent="flex-end" cursor="pointer">
-                  <Copy
-                    onClick={() => copyData(props.data?.txnHash)}
-                    autoSize
-                    size={24}
-                    color="icon-tertiary"
-                  />
+                  {tooltipText === 'Copied' ? (
+                    <TickCircleFilled
+                      autoSize
+                      size={16}
+                      color="icon-state-success-bold"
+                    />
+                  ) : (
+                    <CopyFilled
+                      onClick={() => copyData(props.data?.txnHash)}
+                      autoSize
+                      size={16}
+                      color="icon-tertiary"
+                    />
+                  )}
                 </Box>
               </Tooltip>
             </Box>
@@ -140,14 +148,20 @@ const TXDetails = (props: IProps) => {
                 {props.data?.txnHash}
               </Text>
             </Box>
-            <Tooltip title={tooltipText}>
-              <Copy
+            {tooltipText === 'Copied' ? (
+              <TickCircleFilled
+                autoSize
+                size={16}
+                color="icon-state-success-bold"
+              />
+            ) : (
+              <CopyFilled
                 onClick={() => copyData(props.data?.txnHash)}
                 autoSize
-                size={24}
+                size={16}
                 color="icon-tertiary"
               />
-            </Tooltip>
+            )}
           </Box>
         </Box>
 
@@ -207,7 +221,7 @@ const DetailRow = ({ label, children }) => (
         flex: 1;
       `}
     >
-      <Text variant="bs-semibold" color="text-secondary">
+      <Text variant="h6-semibold" color="text-secondary">
         {label}
       </Text>
     </Box>

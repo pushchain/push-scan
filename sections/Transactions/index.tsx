@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Box, Text, Spinner, Pagination } from '../../blocks';
 import ListView from '../../components/Transactions/ListView';
 import { useLiveTransactions } from '../../hooks/useLiveTransactions';
-import { PerPageItems } from '../../utils/constants'
+import { PerPageItems } from '../../utils/constants';
 
 const Transactions = () => {
   const [page, setPage] = useState(1);
@@ -21,28 +21,25 @@ const Transactions = () => {
   const totalPages = data?.totalPages ?? cachedTotalPages;
 
   return (
-    <Box
-      width="100%"
-      display="flex"
-      flexDirection="column"
-      gap="spacing-md"
-    > 
-      <Text variant="h3-semibold" color='text-primary'>Transactions</Text>
+    <Box width="100%" display="flex" flexDirection="column" gap="spacing-md">
+      <Text variant="h3-semibold" color="text-primary">
+        Transactions
+      </Text>
       <ListView data={data} isLoading={isLoading} />
       <Box
         display="flex"
         flexDirection="column"
         justifyContent="flex-end"
-        alignItems="flex-end"
+        alignItems={{ initial: 'flex-end', ml: 'center' }}
       >
-        { 
-          totalPages > 1 && <Pagination
+        {totalPages > 1 && (
+          <Pagination
             pageSize={PerPageItems}
             current={page}
             total={totalPages * PerPageItems}
             onChange={(page) => setPage(page)}
           />
-        }
+        )}
       </Box>
     </Box>
   );

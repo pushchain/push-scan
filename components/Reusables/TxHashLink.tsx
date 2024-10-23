@@ -1,8 +1,13 @@
+// React, NextJS imports
 import React, { useState } from 'react';
+import Link from 'next/link';
+
+// External Components imports
+import styled from 'styled-components';
+
+// Internal Components imports
 import { Box, Text, Tooltip, Copy, TickCircleFilled } from '../../blocks';
 import { rightMaskString } from '../../utils/helpers';
-import Link from 'next/link';
-import styled from 'styled-components';
 
 const TxHashLinkComponent = ({ txHash, allowCopy = false }) => {
   const [tooltipText, setToolTipText] = useState('Copy');

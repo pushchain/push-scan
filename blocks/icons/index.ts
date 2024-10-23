@@ -44,6 +44,7 @@ export { default as CircleFilled } from './components/CircleFilled';
 export { default as CloudUpload } from './components/CloudUpload';
 
 export { default as Copy } from './components/Copy';
+export { default as CopyFilled } from './components/CopyFilled';
 
 export { default as Cross } from './components/Cross';
 export { default as CrossFilled } from './components/CrossFilled';
@@ -60,7 +61,7 @@ export { default as Discord } from './components/Discord';
 
 export { default as EditProfile } from './components/EditProfile';
 
-export { default as EtheriumMonotone } from './components/EtheriumMonotone';
+export { default as EthereumMonotone } from './components/EthereumMonotone';
 
 export { default as Ellipse } from './components/Ellipse';
 
@@ -153,6 +154,7 @@ export { default as SendNotification } from './components/SendNotification';
 export { default as SendNotificationFilled } from './components/SendNotificationFilled';
 
 export { default as Smiley } from './components/Smiley';
+export { default as SolanaMonotone } from './components/SolanaMonotone';
 
 export { default as Star } from './components/Star';
 
