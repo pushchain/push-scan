@@ -101,11 +101,21 @@ const ListView = (props: IProps) => {
     {
       title: 'CATEGORY',
       dataIndex: 'category',
-      render: (category: string) => (
-        <Text variant="bs-regular" color="text-primary">
-          {category}
-        </Text>
-      ),
+      render: (category: string) => {
+        const customPrefix = 'CUSTOM:';
+        if (category.startsWith(customPrefix)) {
+          return (
+            <Text variant="bs-regular" color="text-primary">
+              {category.replace(customPrefix, '')}
+            </Text>
+          );
+        }
+        return (
+          <Text variant="bs-regular" color="text-primary">
+            {category}
+          </Text>
+        );
+      },
       cellAlignment: 'flex-start',
       headerAlignment: 'flex-start',
       width: '125px',
@@ -137,7 +147,7 @@ const ListView = (props: IProps) => {
     })) || [];
 
   return (
-    <Box>
+    <Box height={'875px'}>
       <Table
         loading={props.isLoading}
         columns={columns}

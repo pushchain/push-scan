@@ -116,12 +116,20 @@ const TxTravels = (props: IProps) => {
                       justifyContent="flex-end"
                       cursor="pointer"
                     >
-                      <Copy
-                        onClick={() => copyData(recipient.address)}
-                        autoSize
-                        size={16}
-                        color="icon-tertiary"
-                      />
+                      {tooltipText === 'Copied' ? (
+                        <TickCircleFilled
+                          autoSize
+                          size={16}
+                          color="icon-state-success-bold"
+                        />
+                      ) : (
+                        <CopyFilled
+                          onClick={() => copyData(recipient.address)}
+                          autoSize
+                          size={16}
+                          color="icon-tertiary"
+                        />
+                      )}
                     </Box>
                   </Tooltip>
                 </Box>
@@ -183,12 +191,20 @@ const TxTravels = (props: IProps) => {
             <Box display="flex" justifyContent="flex-end" cursor="pointer">
               <Tooltip title={tooltipText}>
                 <Box display="flex" justifyContent="flex-end" cursor="pointer">
-                  <Copy
-                    onClick={() => copyData(props.data?.from)}
-                    autoSize
-                    size={16}
-                    color="icon-tertiary"
-                  />
+                  {tooltipText === 'Copied' ? (
+                    <TickCircleFilled
+                      autoSize
+                      size={16}
+                      color="icon-state-success-bold"
+                    />
+                  ) : (
+                    <CopyFilled
+                      onClick={() => copyData(props.data?.from)}
+                      autoSize
+                      size={16}
+                      color="icon-tertiary"
+                    />
+                  )}
                 </Box>
               </Tooltip>
             </Box>
@@ -232,12 +248,20 @@ const TxTravels = (props: IProps) => {
                       justifyContent="flex-end"
                       cursor="pointer"
                     >
-                      <Copy
-                        onClick={() => copyData(recipient.address)}
-                        autoSize
-                        size={16}
-                        color="icon-tertiary"
-                      />
+                      {tooltipText === 'Copied' ? (
+                        <TickCircleFilled
+                          autoSize
+                          size={16}
+                          color="icon-state-success-bold"
+                        />
+                      ) : (
+                        <CopyFilled
+                          onClick={() => copyData(recipient.address)}
+                          autoSize
+                          size={16}
+                          color="icon-tertiary"
+                        />
+                      )}
                     </Box>
                   </Tooltip>
                 </Box>
