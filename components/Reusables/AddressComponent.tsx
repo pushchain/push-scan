@@ -18,14 +18,14 @@ const Address = ({
   allowCopy = false,
 }) => {
   function getChainIcon(chainId) {
-    try {
-      if (!chainId) {
-        return <PushMonotone />;
-      }
-
-      const IconComponent = CHAIN_LOGO[chainId];
+    if (!chainId) {
+      return <PushMonotone />;
+    }
+    const IconComponent = CHAIN_LOGO[chainId];
+    if (IconComponent) {
       return <IconComponent height={14} width={14} color="icon-tertiary" />;
-    } catch (err) {
+    } else {
+      // TO Bypass some test cases addresses
       return <PushMonotone />;
     }
   }

@@ -10,6 +10,7 @@ import {
 } from '../../utils/helpers';
 import { useTheme } from 'styled-components';
 import BlockHashLink from '../Reusables/BlockHashLink';
+import Address from '../Reusables/AddressComponent';
 
 const Blocks = () => {
   const router = useRouter();
@@ -33,11 +34,7 @@ const Blocks = () => {
     {
       title: 'VALIDATOR',
       dataIndex: 'validator',
-      render: (text) => (
-        <Text variant="bs-regular" color="text-primary">
-          {centerMaskString(text)}
-        </Text>
-      ),
+      render: (text) => <Address address={text} allowCopy />,
       cellAlignment: 'flex-start',
       headerAlignment: 'flex-start',
       width: '310px',
