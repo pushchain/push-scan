@@ -1,81 +1,125 @@
+// React, NextJS imports
 import React, { useState } from 'react';
-import { Box, Text  } from '../../blocks';
-import { EtheriumMonotone, BnbMonotone, PolygonMonotone, PushMonotone, ArbitrumMonotone, OptimismMonotone } from '../../blocks/icons'
-import { convertCaipToObject, centerMaskString } from '../../utils/helpers'
-import Link from 'next/link'
-import styled from 'styled-components';
+import Link from 'next/link';
 
-const Address = ({ address, wrap = false, masking = true }) => {
-    function getChainIcon(chainId) {
-        try {
-            if (!chainId) {
-                return <PushMonotone />
-            }
+// External Components imports
+import styled, { css } from 'styled-components';
 
-            switch(Number(chainId)) {
-                case 1:
-                case 11155111:
-                    return <EtheriumMonotone height={14} width={14} color="icon-tertiary" />
-                case 137:
-                case 80002:
-                case 1101:
-                case 2442:
-                    return <PolygonMonotone height={14} width={14} color="icon-tertiary"/>
-                case 56:
-                case 97:
-                    return <BnbMonotone height={14} width={14} color="icon-tertiary"/>
-                case 42161:
-                case 421614:
-                    return <ArbitrumMonotone height={14} width={14} color="icon-tertiary" />
-                case 10:
-                case 11155420:
-                    return <OptimismMonotone height={14} width={14} color="icon-tertiary" />
-                default: 
-                    return <PushMonotone height={14} width={14} />
-            }
-        } catch (err) {
-            return <PushMonotone />
-        }
+// Internal Components imports
+import { Box, Text, Tooltip } from '../../blocks';
+import { PushMonotone, TickCircleFilled, CopyFilled } from '../../blocks/icons';
+import { CHAIN_LOGO } from '../../common';
+import { convertCaipToObject, centerMaskString } from '../../utils/helpers';
+
+const Address = ({
+  address,
+  wrap = false,
+  masking = true,
+  allowCopy = false,
+}) => {
+  function getChainIcon(chainId) {
+    try {
+      if (!chainId) {
+        return <PushMonotone />;
+      }
+
+      const IconComponent = CHAIN_LOGO[chainId];
+      return <IconComponent height={14} width={14} color="icon-tertiary" />;
+    } catch (err) {
+      return <PushMonotone />;
     }
+  }
 
-    const { result } = convertCaipToObject(address)
+  const { result } = convertCaipToObject(address);
 
-    const maskedAddress = masking ? centerMaskString(result.address) : result.address;
+  const maskedAddress = masking
+    ? centerMaskString(result.address)
+    : result.address;
 
-    return (
-        <AddressContainer>
-            {result.chainId && getChainIcon(result.chainId)}
-            <AddressLink href={`/users/${address}`}>
-            <AddressText wrap={wrap} variant="bs-regular">
-                {maskedAddress}
-            </AddressText>
-            </AddressLink>
-        </AddressContainer>
-    );
+  const [tooltipText, setToolTipText] = useState('Copy');
+
+  const copyData = () => {
+    const addressToCopy = result.address ?? address;
+    navigator.clipboard.writeText(addressToCopy);
+    setToolTipText('Copied');
+
+    setTimeout(() => {
+      setToolTipText('Copy');
+    }, 1000);
+  };
+
+  return (
+    <AddressContainer>
+      {result.chainId && getChainIcon(result.chainId)}
+      <AddressLink href={`/users/${address}`}>
+        <AddressText wrap={wrap} variant="bs-regular">
+          {maskedAddress}
+        </AddressText>
+      </AddressLink>
+      {allowCopy && (
+        <Tooltip
+          title={tooltipText}
+          css={css`
+            z-index: 1;
+          `}
+        >
+          <CopyIconButton onClick={copyData}>
+            {tooltipText === 'Copied' ? (
+              <TickCircleFilled
+                autoSize
+                size={16}
+                color="icon-state-success-bold"
+              />
+            ) : (
+              <CopyFilled autoSize size={16} color="icon-tertiary" />
+            )}
+          </CopyIconButton>
+        </Tooltip>
+      )}
+    </AddressContainer>
+  );
 };
 
 const AddressLink = styled(Link)`
-    pointer-events: none;
-    text-decoration: none;
+  pointer-events: none;
+  text-decoration: none;
 `;
 
 const AddressText = styled(Text)`
-    color: var(--text-primary);
+  color: var(--text-primary);
+`;
+
+const CopyIconButton = styled.button`
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease-in-out;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
 `;
 
 const AddressContainer = styled(Box)`
-    display: flex;
-    flex-direction: row;
-    gap: 8px;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: var(--spacing-xxs, 8px);
+  align-items: center;
 
-    &:hover ${/* sc-selector */ AddressLink} {
-        pointer-events: auto;
-    }
+  &:hover ${AddressLink} {
+    pointer-events: auto;
+  }
 
-    &:hover ${/* sc-selector */ AddressText} {
-        color: var(--text-brand-medium);
-    }
+  &:hover ${AddressText} {
+    color: var(--text-brand-medium);
+  }
+
+  &:hover ${CopyIconButton} {
+    opacity: 1;
+    pointer-events: auto;
+  }
 `;
 
 export default Address;

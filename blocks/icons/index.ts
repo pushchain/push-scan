@@ -44,6 +44,7 @@ export { default as CircleFilled } from './components/CircleFilled';
 export { default as CloudUpload } from './components/CloudUpload';
 
 export { default as Copy } from './components/Copy';
+export { default as CopyFilled } from './components/CopyFilled';
 
 export { default as Cross } from './components/Cross';
 export { default as CrossFilled } from './components/CrossFilled';
@@ -56,9 +57,11 @@ export { default as Dash } from './components/Dash';
 
 export { default as Dashboard } from './components/Dashboard';
 
+export { default as Discord } from './components/Discord';
+
 export { default as EditProfile } from './components/EditProfile';
 
-export { default as EtheriumMonotone } from './components/EtheriumMonotone';
+export { default as EthereumMonotone } from './components/EthereumMonotone';
 
 export { default as Ellipse } from './components/Ellipse';
 
@@ -79,6 +82,8 @@ export { default as GovernanceFilled } from './components/GovernanceFilled';
 
 export { default as Group } from './components/Group';
 export { default as GroupFilled } from './components/GroupFilled';
+
+export { default as Github } from './components/Github';
 
 export { default as InboxBell } from './components/InboxBell';
 export { default as EmptyInbox } from './components/EmptyInbox';
@@ -149,6 +154,7 @@ export { default as SendNotification } from './components/SendNotification';
 export { default as SendNotificationFilled } from './components/SendNotificationFilled';
 
 export { default as Smiley } from './components/Smiley';
+export { default as SolanaMonotone } from './components/SolanaMonotone';
 
 export { default as Star } from './components/Star';
 
@@ -159,6 +165,9 @@ export { default as Swap } from './components/Swap';
 export { default as Tick } from './components/Tick';
 export { default as TickCircleFilled } from './components/TickCircleFilled';
 export { default as TickDecoratedCircleFilled } from './components/TickDecoratedCircleFilled';
+
+export { default as Twitter } from './components/Twitter';
+export { default as Telegram } from './components/Telegram';
 
 export { default as UserFilled } from './components/UserFilled';
 

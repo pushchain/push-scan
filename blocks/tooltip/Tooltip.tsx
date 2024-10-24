@@ -1,11 +1,11 @@
-import React, { type FC, useRef, useState } from 'react';
+import React,{ type FC, useRef, useState } from 'react';
 import styled from 'styled-components';
 import * as RadixTooltip from '@radix-ui/react-tooltip';
 import type { TooltipProps } from './Tooltip.types';
 import { getTooltipPositionalCSS } from './Tooltip.utils';
 import { tooltipCSSPropsKeys } from './Tooltip.constants';
-import { useIsVisible } from '../../common';
 import { textVariants } from '../text';
+import { useIsVisible } from '../../common';
 
 const RadixTooltipContent = styled(RadixTooltip.Content).withConfig({
   shouldForwardProp: (prop) => !tooltipCSSPropsKeys.includes(prop as keyof TooltipProps),
@@ -13,9 +13,9 @@ const RadixTooltipContent = styled(RadixTooltip.Content).withConfig({
   /* Tooltip default styles */
   display: flex;
   flex-direction: column;
-  gap: var(--s1);
-  padding: var(--s2);
-  border-radius: var(--r3);
+  gap: var(--spacing-xxxs);
+  padding: var(--spacing-xxs);
+  border-radius: var(--radius-xs);
   font-family: var(--font-family);
   word-wrap: break-word;
   color: var(--text-primary-inverse);

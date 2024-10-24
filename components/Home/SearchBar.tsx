@@ -1,9 +1,13 @@
+// React, NextJS imports
 import React, { useCallback, useState, useEffect } from 'react';
-import { TextInput, Search } from '../../blocks';
-import { ethers } from 'ethers';
-import { useDebounce } from 'react-use';
-import { useSearchByAddress } from '../../hooks/useSearchByAddress';
 import { useRouter } from 'next/router'
+import { useDebounce } from 'react-use';
+
+import { ethers } from 'ethers';
+
+// Internal Components imports
+import { TextInput, Search } from '../../blocks';
+import { useSearchByAddress } from '../../hooks/useSearchByAddress';
 
 export default function SearchBar() {
   const router = useRouter()

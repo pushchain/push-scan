@@ -38,7 +38,13 @@ const StyledTextInput = styled.div<{
   disabled?: boolean;
 }>`
   ${({ success, error, disabled }) => {
-    const defaultState = error ? 'danger' : success ? 'success' : disabled ? 'disabled' : 'default';
+    const defaultState = error
+      ? 'danger'
+      : success
+      ? 'success'
+      : disabled
+      ? 'disabled'
+      : 'default';
     const focusState = error ? 'danger' : success ? 'success' : 'focus';
     return css`
       align-self: stretch;
@@ -58,7 +64,7 @@ const StyledTextInput = styled.div<{
 
       gap: var(--spacing-xxs, 8px);
 
-      padding: var(--spacing-xs, 12px);
+      padding: var(--spacing-xxs, 8px);
       [role='img'] {
         width: 24px;
         height: 24px;
@@ -156,7 +162,11 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
         {label && (
           <LabelContainer>
             <InputText
-              color={disabled ? 'components-inputs-text-disabled' : 'components-inputs-text-default'}
+              color={
+                disabled
+                  ? 'components-inputs-text-disabled'
+                  : 'components-inputs-text-default'
+              }
               variant="h6-bold"
             >
               <LabelTextContainer>
@@ -166,7 +176,11 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
             </InputText>
             {totalCount && (
               <InputText
-                color={disabled ? 'components-inputs-text-disabled' : 'components-inputs-text-secondary'}
+                color={
+                  disabled
+                    ? 'components-inputs-text-disabled'
+                    : 'components-inputs-text-secondary'
+                }
                 variant="c-regular"
               >
                 {`${value?.length || 0} / ${totalCount}`}
@@ -210,10 +224,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
           </InputText>
         )}
         {errorMessage && (
-          <InputText
-            color="components-inputs-text-danger"
-            variant="c-regular"
-          >
+          <InputText color="components-inputs-text-danger" variant="c-regular">
             {errorMessage}
           </InputText>
         )}

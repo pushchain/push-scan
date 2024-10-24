@@ -2,21 +2,32 @@ import React from 'react';
 import { Box, Text, CaretDown, CaretUp } from '../../blocks';
 
 interface IProps {
-  showConsensusInfo: boolean
-  toggleConsensusInfo: (value: boolean) => void
+  showConsensusInfo: boolean;
+  toggleConsensusInfo: (value: boolean) => void;
 }
 
 const Advanced = ({ showConsensusInfo, toggleConsensusInfo }: IProps) => {
   return (
+    <Box
+      display="flex"
+      flexDirection="row"
+      alignItems="center"
+      gap="spacing-xxs"
+    >
+      <Text variant="h6-semibold" color="text-primary">
+        Advanced
+      </Text>
       <Box
-        display="flex"
-        flexDirection="row"
-        gap="spacing-xxs"
+        cursor="pointer"
         onClick={() => toggleConsensusInfo(!showConsensusInfo)}
       >
-        <Text variant='bes-semibold' color='text-primary'>Advanced</Text>
-        { showConsensusInfo ? <CaretDown /> : <CaretUp /> }
+        {!showConsensusInfo ? (
+          <CaretDown color="icon-primary" size={14} />
+        ) : (
+          <CaretUp color="icon-primary" size={14} />
+        )}
       </Box>
+    </Box>
   );
 };
 
