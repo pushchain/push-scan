@@ -52,7 +52,13 @@ const Details = (props: IProps) => {
       >
         <DetailRow label="Block Hash">
           <>
-            <Text variant="bs-regular" color="text-primary">
+            <Text
+              variant="bs-regular"
+              color="text-primary"
+              css={css`
+                word-break: break-all;
+              `}
+            >
               {props.data?.blockHash}
             </Text>
             <Box display="flex" justifyContent="flex-end" cursor="pointer">

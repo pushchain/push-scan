@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 
 // External imports
 import moment from 'moment';
-import { useTheme } from 'styled-components';
+import { css, useTheme } from 'styled-components';
 
 // Internal imports
 import { Box, Text, Front, Tag, Table } from '../../blocks';
@@ -105,10 +105,11 @@ export default function LiveTransactions() {
 
   return (
     <Box
-      css={'flex: 0 0 60%'}
+      overflow="auto"
       display="flex"
       flexDirection="column"
       gap="spacing-sm"
+      maxWidth={{ initial: 'auto', tb: '350px', ml: 'auto' }}
     >
       <Text variant="h5-semibold" color="text-primary">
         Live Transactions

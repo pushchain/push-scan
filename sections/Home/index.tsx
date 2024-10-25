@@ -3,10 +3,10 @@ import React from 'react';
 
 // Internal Components imports
 import { Box, Text } from '../../blocks';
-import SearchBar from '../../components/Home/SearchBar'
-import OverView from '../../components/Home/OverView'
-import LiveBlocks from '../../components/Home/LiveBlocks'
-import LiveTransactions from '../../components/Home/LiveTransactions'
+import SearchBar from '../../components/Home/SearchBar';
+import OverView from '../../components/Home/OverView';
+import LiveBlocks from '../../components/Home/LiveBlocks';
+import LiveTransactions from '../../components/Home/LiveTransactions';
 
 const Home = () => {
   return (
@@ -17,11 +17,13 @@ const Home = () => {
       gap="spacing-xxxl"
     >
       <Box
-        display={{ dp: "flex", ml: "none"}}
+        display={{ dp: 'flex', ml: 'none' }}
         flexDirection="column"
         gap="spacing-xs"
       >
-        <Text variant="h3-semibold" color='text-primary'>Push Blockchain Explorer</Text>
+        <Text variant="h3-semibold" color="text-primary">
+          Push Blockchain Explorer
+        </Text>
         <SearchBar />
       </Box>
 
@@ -30,15 +32,15 @@ const Home = () => {
         flexDirection="column"
         justifyContent="flex-start"
         alignItems="flex-start"
-        gap={{ ml: "spacing-lg", initial: "spacing-xxl" }}
+        gap={{ ml: 'spacing-lg', initial: 'spacing-xxl' }}
       >
         <OverView />
       </Box>
 
       <Box
         display="flex"
-        flexDirection={{ initial: "row", ml: "column" }}
-        gap={{ initial: "spacing-xl", ml: "spacing-xxl" }}
+        flexDirection={{ initial: 'row', ml: 'column' }}
+        gap={{ initial: 'spacing-xl', tb: 'spacing-md', ml: 'spacing-xxl' }}
         justifyContent="space-between"
       >
         <LiveBlocks />

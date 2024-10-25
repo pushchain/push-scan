@@ -80,7 +80,13 @@ export default function LiveBlocks() {
     })) || [];
 
   return (
-    <Box display="flex" flexDirection="column" gap="spacing-sm">
+    <Box
+      overflow="auto"
+      display="flex"
+      flexDirection="column"
+      gap="spacing-sm"
+      maxWidth={{ initial: 'auto', tb: '350px', ml: 'auto' }}
+    >
       <Text variant="h5-semibold" color="text-primary">
         Live Blocks
       </Text>

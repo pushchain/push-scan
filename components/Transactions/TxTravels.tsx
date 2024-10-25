@@ -1,16 +1,20 @@
+// React, NextJS imports
 import React, { useState } from 'react';
+
+// External Components imports
+import { css } from 'styled-components';
+
+// Internal Components imports
 import {
   Add,
   Box,
   Text,
   Tooltip,
-  Copy,
   TickCircleFilled,
   CopyFilled,
 } from '../../blocks';
 import { Transaction } from '../../types/transaction';
 import Address from '../Reusables/AddressComponent';
-import { css } from 'styled-components';
 import { convertCaipToObject } from '../../utils/helpers';
 
 const MAX_DISPLAY = 5;

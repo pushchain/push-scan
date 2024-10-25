@@ -1,6 +1,11 @@
+// React, NextJS imports
 import React, { FC } from 'react';
+
+// External Components imports
 import { css } from 'styled-components';
-import { Box, Text, Separator, Skeleton } from '../../blocks';
+
+// Internal Components imports
+import { Box, Text, Skeleton } from '../../blocks';
 import { useCounts } from '../../hooks/useCounts';
 
 export type OverViewProps = {};

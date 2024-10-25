@@ -215,7 +215,7 @@ export const fromNow = (timestamp: number): string => {
     return `${diffInWeeks}w ago`;
   }
 
-  const diffInMonths = Math.floor(diffInDays / 30);
+  const diffInMonths = Math.floor(diffInWeeks / 4);
   if (diffInMonths < 12) {
     return `${diffInMonths}m ago`;
   }

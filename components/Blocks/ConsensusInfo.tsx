@@ -1,9 +1,14 @@
+// React, NextJS imports
 import React, { useState } from 'react';
+
+// External Components imports
+import { css } from 'styled-components';
+
+// Internal Components imports
 import { Box, Text, Tooltip, Copy } from '../../blocks';
 import { BlockDetails } from '../../types/block';
 import { buildNodeVotes } from '../../utils/helpers';
 import { PushMonotone } from '../../blocks/icons';
-import { css } from 'styled-components';
 
 interface IProps {
   data: BlockDetails | null | undefined;
@@ -59,26 +64,40 @@ const ConsensusInfo = (props: IProps) => {
         padding="spacing-md"
         gap="spacing-md"
       >
-        <Box display="flex" flexDirection="row" gap="spacing-xxxxxl">
-          <Box width="134px">
+        <Box display="flex" flexDirection="row" width="100%">
+          <Box
+            display="flex"
+            css={css`
+              flex: 1;
+            `}
+          >
             <Text variant="bs-semibold" color="text-secondary">
               Consensus Info
             </Text>
           </Box>
 
-          <Box display="flex" flexDirection="column" gap="spacing-xs">
+          <Box
+            display="flex"
+            flexDirection="column"
+            gap="spacing-xs"
+            css={css`
+              flex: 3;
+            `}
+          >
             {displayedNodes.map((node, index) => (
-              <Box
-                key={node.node}
-                display="flex"
-                flexDirection="row"
-                alignItems="center"
-                gap="spacing-xs"
-              >
-                <PushMonotone />
-                <Text key={index} variant="bs-regular" color="text-primary">
-                  {node.node}
-                </Text>
+              <Box key={node.node} display="flex">
+                <Box
+                  display="flex"
+                  flexDirection="row"
+                  justifyContent="space-between"
+                  alignItems="center"
+                  gap="spacing-xxs"
+                >
+                  <PushMonotone />
+                  <Text key={index} variant="bs-regular" color="text-primary">
+                    {node.node}
+                  </Text>
+                </Box>
               </Box>
             ))}
 
@@ -99,8 +118,13 @@ const ConsensusInfo = (props: IProps) => {
           </Box>
         </Box>
 
-        <Box display="flex" flexDirection="row" gap="spacing-xxxxxl">
-          <Box width="134px">
+        <Box display="flex" flexDirection="row" width="100%">
+          <Box
+            display="flex"
+            css={css`
+              flex: 1;
+            `}
+          >
             <Text variant="bs-semibold" color="text-secondary">
               Payload Data
             </Text>
@@ -113,10 +137,12 @@ const ConsensusInfo = (props: IProps) => {
             borderRadius="radius-xs"
             padding="spacing-sm"
             width="100%"
-            maxWidth="750px" /* Adjust as per your layout */
             maxHeight="196px"
             overflow="auto"
             customScrollbar
+            css={css`
+              flex: 3;
+            `}
           >
             <Text
               variant="bs-semibold"
