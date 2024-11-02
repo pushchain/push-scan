@@ -12,6 +12,7 @@ import { useLiveBlocks } from '../../hooks/useBlocks';
 import { getValidatorNode } from '../../utils/helpers';
 import { centerMaskString, fromNow } from '../../utils/helpers';
 import BlockHashLink from '../Reusables/BlockHashLink';
+import Address from '../Reusables/AddressComponent';
 
 export default function LiveBlocks() {
   const router = useRouter();
@@ -35,11 +36,7 @@ export default function LiveBlocks() {
     {
       title: 'VALIDATOR',
       dataIndex: 'validator',
-      render: (text) => (
-        <Text variant="bs-regular" color="text-primary">
-          {centerMaskString(text)}
-        </Text>
-      ),
+      render: (text) => <Address address={centerMaskString(text)} />,
       cellAlignment: 'flex-start',
       headerAlignment: 'flex-start',
       width: '135px',
@@ -47,11 +44,14 @@ export default function LiveBlocks() {
     {
       title: 'TX',
       dataIndex: 'totalNumberOfTxns',
-      render: (text) => (
-        <Text variant="bs-regular" color="text-primary">
-          {text}
-        </Text>
-      ),
+      render: (text) => {
+        console.log('Text', text);
+        return (
+          <Text variant="bs-regular" color="text-primary">
+            {text === '' ? '-' : text}
+          </Text>
+        );
+      },
       cellAlignment: 'center',
       headerAlignment: 'center',
       width: '65px',

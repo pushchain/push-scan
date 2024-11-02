@@ -17,6 +17,7 @@ import {
 import { Transaction } from '../../types/transaction';
 import { BlockDetails } from '../../types/block';
 import { buildNodeVotes } from '../../utils/helpers';
+import { CopyTooltip } from '../Reusables/CopyTooltip';
 
 interface IProps {
   blockDetails: BlockDetails | null | undefined;
@@ -182,20 +183,7 @@ const ConsensusInfo = (props: IProps) => {
                 </Box>
               )}
               <Box display="flex" justifyContent="flex-end" cursor="pointer">
-                <Tooltip title={tooltipText}>
-                  <Box
-                    display="flex"
-                    justifyContent="flex-end"
-                    cursor="pointer"
-                  >
-                    <Copy
-                      onClick={copyPayload}
-                      autoSize
-                      size={24}
-                      color="icon-tertiary"
-                    />
-                  </Box>
-                </Tooltip>
+                <CopyTooltip tooltipText={tooltipText} copyFunc={copyPayload} />
               </Box>
             </Box>
           </Box>
@@ -317,20 +305,10 @@ const ConsensusInfo = (props: IProps) => {
               )}
               {displayedPayload && (
                 <Box display="flex" justifyContent="flex-end" cursor="pointer">
-                  <Tooltip title={tooltipText}>
-                    <Box
-                      display="flex"
-                      justifyContent="flex-end"
-                      cursor="pointer"
-                    >
-                      <Copy
-                        onClick={copyPayload}
-                        autoSize
-                        size={24}
-                        color="icon-tertiary"
-                      />
-                    </Box>
-                  </Tooltip>
+                  <CopyTooltip
+                    tooltipText={tooltipText}
+                    copyFunc={copyPayload}
+                  />
                 </Box>
               )}
             </Box>

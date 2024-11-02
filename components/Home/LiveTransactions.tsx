@@ -62,6 +62,17 @@ export default function LiveTransactions() {
       dataIndex: 'recipients',
       render: (recipients: string) => {
         const reci = recipients.split(',');
+        if (!recipients)
+          return (
+            <Box
+              display="flex"
+              flexDirection="column"
+              alignItems="center"
+              justifyContent="center"
+            >
+              <Text>-</Text>
+            </Box>
+          );
         return (
           <Box flexDirection="column">
             <Box display="flex" flexDirection="column" alignItems="flex-start">

@@ -1,10 +1,13 @@
+// React, NextJS imports
 import React from 'react';
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
-import { Spinner } from '../../blocks'
+
+// Internal Components imports
+import { Spinner } from '../../blocks';
 
 const TransactionView = dynamic(() => import('../../sections/Transactions'), {
-  loading: () => <Spinner size='extraLarge'/>,
+  loading: () => <Spinner size="extraLarge" />,
 });
 
 const Layout = dynamic(() => import('../../layout'));

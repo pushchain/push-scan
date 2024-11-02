@@ -9,24 +9,25 @@ const CopyFilled: FC<IconProps> = (allProps) => {
       componentName="CopyFilled"
       icon={
         <svg
-          xmlns="http://www.w3.org/2000/svg"
           width="inherit"
           height="inherit"
-          viewBox="0 0 22 22"
+          viewBox="0 0 17 16"
           fill="none"
+          xmlns="http://www.w3.org/2000/svg"
           {...props}
         >
           <rect
-            y="7.33325"
-            width="14.6667"
-            height="14.6667"
-            rx="1.4"
+            x="3"
+            y="6.16663"
+            width="7.33333"
+            height="7.33337"
+            rx="0.7"
             fill="currentColor"
           />
           <path
             fill-rule="evenodd"
             clip-rule="evenodd"
-            d="M8.73337 0C7.96018 0 7.33337 0.6268 7.33337 1.4V4.81306H15.1481C16.2527 4.81306 17.1481 5.70849 17.1481 6.81306V14.6667H20.6C21.3732 14.6667 22 14.0399 22 13.2667V1.4C22 0.626801 21.3732 0 20.6 0H8.73337Z"
+            d="M7.3665 2.5C6.9799 2.5 6.6665 2.8134 6.6665 3.2V4.90652H10.5741C11.1263 4.90652 11.5741 5.35424 11.5741 5.90652V9.83337H13.2998C13.6864 9.83337 13.9998 9.51997 13.9998 9.13337V3.2C13.9998 2.8134 13.6864 2.5 13.2998 2.5H7.3665Z"
             fill="currentColor"
           />
         </svg>

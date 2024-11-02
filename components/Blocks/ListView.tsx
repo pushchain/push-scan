@@ -45,7 +45,7 @@ const Blocks = () => {
       dataIndex: 'totalNumberOfTxns',
       render: (text) => (
         <Text variant="bs-regular" color="text-primary">
-          {text}
+          {text === '' ? '-' : text}
         </Text>
       ),
       cellAlignment: 'center',
