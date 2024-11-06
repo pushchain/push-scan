@@ -51,7 +51,6 @@ The dashboard is designed with a user-friendly interface, making it easy to navi
 <h3>June 2023</h3>
 
 ![image](https://github.com/firascodes/push-analytics-dashboard/assets/72166289/f1e7ae48-f400-41e4-b256-50a9c29a02ef)
-![image](https://github.com/firascodes/push-analytics-dashboard/assets/72166289/7de305ea-c7b1-4540-a2fb-f6b9a8c821c7)
 ![image](https://github.com/firascodes/push-analytics-dashboard/assets/72166289/e1e02a38-6c6a-43f9-ab9f-f7ac589cfe6e)
 
 

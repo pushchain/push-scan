@@ -228,7 +228,12 @@ export default function LineChartSet() {
           Notifications Statistics
         </Text>
       </Box> */}
-      <Grid container spacing={isMobile ? 0 : 3} justifyContent="center" mt={0}>
+      <Grid
+        container
+        spacing={isMobile ? 0 : 3}
+        justifyContent="flex-start"
+        mt={0}
+      >
         <Notifications
           isLoading={isStatisticDataLoading}
           data={notificationData}
