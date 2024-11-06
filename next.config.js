@@ -4,7 +4,7 @@ const nextConfig = {
   swcMinify: true,
   devIndicators: {
     buildActivity: false,
-  },
+  }
 };
 
 module.exports = nextConfig;
