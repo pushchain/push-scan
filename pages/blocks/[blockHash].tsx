@@ -1,13 +1,19 @@
+// React, NextJS imports
 import React from 'react';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
-import { Spinner } from '../../blocks'
+
+// Internal Components imports
+import { Spinner } from '../../blocks';
 
 const Layout = dynamic(() => import('../../layout'));
 
-const BlocksDetailsView = dynamic(() => import('../../sections/Blocks/blockHash'), {
-  loading: () => <Spinner size='extraLarge'/>,
-});
+const BlocksDetailsView = dynamic(
+  () => import('../../sections/Blocks/blockHash'),
+  {
+    loading: () => <Spinner size="extraLarge" />,
+  }
+);
 
 const BlocksDetailsPage = () => {
   return (

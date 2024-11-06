@@ -1,9 +1,15 @@
+// React, NextJS imports
 import React, { useState } from 'react';
+
+// External Components imports
+import { css } from 'styled-components';
+
+// Internal Components imports
 import { Box, Text, Tooltip, Copy } from '../../blocks';
 import { BlockDetails } from '../../types/block';
 import { buildNodeVotes } from '../../utils/helpers';
 import { PushMonotone } from '../../blocks/icons';
-import { css } from 'styled-components';
+import { CopyTooltip } from '../Reusables/CopyTooltip';
 
 interface IProps {
   data: BlockDetails | null | undefined;
@@ -59,26 +65,33 @@ const ConsensusInfo = (props: IProps) => {
         padding="spacing-md"
         gap="spacing-md"
       >
-        <Box display="flex" flexDirection="row" gap="spacing-xxxxxl">
-          <Box width="134px">
+        <Box display="flex" flexDirection="row" width="100%">
+          <Box display="flex" width="25%">
             <Text variant="bs-semibold" color="text-secondary">
               Consensus Info
             </Text>
           </Box>
 
-          <Box display="flex" flexDirection="column" gap="spacing-xs">
+          <Box
+            display="flex"
+            flexDirection="column"
+            gap="spacing-xs"
+            width="75%"
+          >
             {displayedNodes.map((node, index) => (
-              <Box
-                key={node.node}
-                display="flex"
-                flexDirection="row"
-                alignItems="center"
-                gap="spacing-xs"
-              >
-                <PushMonotone />
-                <Text key={index} variant="bs-regular" color="text-primary">
-                  {node.node}
-                </Text>
+              <Box key={node.node} display="flex">
+                <Box
+                  display="flex"
+                  flexDirection="row"
+                  justifyContent="space-between"
+                  alignItems="center"
+                  gap="spacing-xxs"
+                >
+                  <PushMonotone size={20} />
+                  <Text key={index} variant="bs-regular" color="text-primary">
+                    {node.node}
+                  </Text>
+                </Box>
               </Box>
             ))}
 
@@ -99,8 +112,8 @@ const ConsensusInfo = (props: IProps) => {
           </Box>
         </Box>
 
-        <Box display="flex" flexDirection="row" gap="spacing-xxxxxl">
-          <Box width="134px">
+        <Box display="flex" flexDirection="row" width="100%">
+          <Box display="flex" width="25%">
             <Text variant="bs-semibold" color="text-secondary">
               Payload Data
             </Text>
@@ -108,38 +121,29 @@ const ConsensusInfo = (props: IProps) => {
           <Box
             display="flex"
             flexDirection="column"
-            gap="spacing-xs"
+            gap="spacing-xxs"
             border="border-sm solid stroke-tertiary"
             borderRadius="radius-xs"
             padding="spacing-sm"
-            width="100%"
-            maxWidth="750px" /* Adjust as per your layout */
             maxHeight="196px"
-            overflow="auto"
             customScrollbar
+            width="75%"
           >
-            <Text
-              variant="bs-semibold"
-              color="text-tertiary"
-              css={css`
-                word-break: break-all;
-                overflow-wrap: break-word;
-              `}
-            >
-              {payload}
-            </Text>
+            <Box overflow="auto" customScrollbar>
+              <Text
+                variant="bs-semibold"
+                color="text-tertiary"
+                css={css`
+                  word-break: break-all;
+                  overflow-wrap: break-word;
+                `}
+              >
+                {payload}
+              </Text>
+            </Box>
 
             <Box display="flex" justifyContent="flex-end" cursor="pointer">
-              <Tooltip title={tooltipText}>
-                <Box display="flex" justifyContent="flex-end" cursor="pointer">
-                  <Copy
-                    onClick={copyPayload}
-                    autoSize
-                    size={24}
-                    color="icon-tertiary"
-                  />
-                </Box>
-              </Tooltip>
+              <CopyTooltip tooltipText={tooltipText} copyFunc={copyPayload} />
             </Box>
           </Box>
         </Box>
@@ -208,37 +212,31 @@ const ConsensusInfo = (props: IProps) => {
           </Text>
 
           <Box
+            display="flex"
+            flexDirection="column"
             border="border-sm solid stroke-tertiary"
             borderRadius="radius-xs"
             padding="spacing-sm"
             width="100%"
-            maxWidth="750px" /* Adjust as per your layout */
-            maxHeight="110px"
-            overflow="auto"
-            customScrollbar
+            maxWidth="750px"
+            maxHeight="196px"
+            gap="spacing-xxs"
           >
-            <Text
-              variant="bs-semibold"
-              color="text-tertiary"
-              css={css`
-                word-break: break-all;
-                overflow-wrap: break-word;
-              `}
-            >
-              {payload}
-            </Text>
+            <Box overflow="auto" customScrollbar>
+              <Text
+                variant="bs-semibold"
+                color="text-tertiary"
+                css={css`
+                  word-break: break-all;
+                  overflow-wrap: break-word;
+                `}
+              >
+                {payload}
+              </Text>
+            </Box>
 
             <Box display="flex" justifyContent="flex-end" cursor="pointer">
-              <Tooltip title={tooltipText}>
-                <Box display="flex" justifyContent="flex-end" cursor="pointer">
-                  <Copy
-                    onClick={copyPayload}
-                    autoSize
-                    size={24}
-                    color="icon-tertiary"
-                  />
-                </Box>
-              </Tooltip>
+              <CopyTooltip tooltipText={tooltipText} copyFunc={copyPayload} />
             </Box>
           </Box>
         </Box>

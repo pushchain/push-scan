@@ -1,7 +1,8 @@
+// React, NextJS imports
 import React, { useState } from 'react';
-
 import { useRouter } from 'next/router';
 
+// Internal Components imports
 import { Box, Text, Spinner } from '../../blocks';
 import Advanced from '../../components/Reusables/Advanced';
 import ConsensusInfo from '../../components/Transactions/ConsensusInfo';

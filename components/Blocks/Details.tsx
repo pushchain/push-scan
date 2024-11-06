@@ -9,6 +9,7 @@ import moment from 'moment';
 import { Box, Text, Tooltip, TickCircleFilled, CopyFilled } from '../../blocks';
 import { BlockDetails } from '../../types/block';
 import { getValidatorNode } from '../../utils/helpers';
+import { CopyTooltip } from '../Reusables/CopyTooltip';
 
 interface IProps {
   data: BlockDetails | null | undefined;
@@ -50,43 +51,35 @@ const Details = (props: IProps) => {
         gap="spacing-sm"
         padding="spacing-md"
       >
-        <DetailRow label="Block Hash">
+        <DetailOutline label="Block Hash">
           <>
-            <Text variant="bs-regular" color="text-primary">
+            <Text
+              variant="bs-regular"
+              color="text-primary"
+              css={css`
+                word-break: break-all;
+              `}
+            >
               {props.data?.blockHash}
             </Text>
             <Box display="flex" justifyContent="flex-end" cursor="pointer">
-              <Tooltip title="Copy">
-                <Box display="flex" justifyContent="flex-end" cursor="pointer">
-                  {tooltipText === 'Copied' ? (
-                    <TickCircleFilled
-                      autoSize
-                      size={16}
-                      color="icon-state-success-bold"
-                    />
-                  ) : (
-                    <CopyFilled
-                      onClick={() => copyData(props.data?.blockHash)}
-                      autoSize
-                      size={16}
-                      color="icon-tertiary"
-                    />
-                  )}
-                </Box>
-              </Tooltip>
+              <CopyTooltip
+                tooltipText={tooltipText}
+                copyFunc={() => copyData(props.data?.blockHash)}
+              />
             </Box>
           </>
-        </DetailRow>
-        <DetailRow label="Validator">
+        </DetailOutline>
+        <DetailOutline label="Validator">
           <Text variant="bs-regular" color="text-primary">
             {getValidatorNode(props.data?.blockDataAsJson)}
           </Text>
-        </DetailRow>
-        <DetailRow label="Timestamp">
+        </DetailOutline>
+        <DetailOutline label="Timestamp">
           <Text variant="bs-regular" color="text-tertiary">
             {dateTime}
           </Text>
-        </DetailRow>
+        </DetailOutline>
       </Box>
 
       {/* Mobile View */}
@@ -110,10 +103,17 @@ const Details = (props: IProps) => {
               word-break: break-all;
               overflow-wrap: break-word;
             `}
+            display="flex"
+            gap="spacing-xxs"
+            alignItems="center"
           >
             <Text variant="bs-regular" color="text-primary" wrap>
               {props.data?.blockHash}
             </Text>
+            <CopyTooltip
+              tooltipText={tooltipText}
+              copyFunc={() => copyData(props.data?.blockHash)}
+            />
           </Box>
         </Box>
 
@@ -148,21 +148,15 @@ const Details = (props: IProps) => {
 
 export default Details;
 
-const DetailRow = ({ label, children }) => (
+const DetailOutline = ({ label, children }) => (
   <Box display="flex" width="-webkit-fill-available">
-    <Box
-      css={css`
-        flex: 1;
-      `}
-    >
+    <Box width="25%">
       <Text variant="bs-semibold" color="text-secondary">
         {label}
       </Text>
     </Box>
     <Box
-      css={css`
-        flex: 3;
-      `}
+      width="75%"
       display="flex"
       flexDirection="row"
       justifyContent="flex-start"

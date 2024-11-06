@@ -1,4 +1,7 @@
+// React, NextJS imports
 import React, { useState, useEffect } from 'react';
+
+// Internal Components imports
 import { Box, Text, Spinner, Pagination } from '../../blocks';
 import ListView from '../../components/Transactions/ListView';
 import { useLiveTransactions } from '../../hooks/useLiveTransactions';

@@ -1,14 +1,15 @@
+// React, NextJS imports
 import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
+
+// External Components imports
+import { useTheme } from 'styled-components';
+
+// Internal Components imports
 import { Box, Text, Table, Pagination } from '../../blocks';
 import { useLiveBlocks } from '../../hooks/useBlocks';
 import { PerPageItems } from '../../utils/constants';
-import { useRouter } from 'next/router';
-import {
-  getValidatorNode,
-  fromNow,
-  centerMaskString,
-} from '../../utils/helpers';
-import { useTheme } from 'styled-components';
+import { getValidatorNode, fromNow } from '../../utils/helpers';
 import BlockHashLink from '../Reusables/BlockHashLink';
 import Address from '../Reusables/AddressComponent';
 
@@ -44,7 +45,7 @@ const Blocks = () => {
       dataIndex: 'totalNumberOfTxns',
       render: (text) => (
         <Text variant="bs-regular" color="text-primary">
-          {text}
+          {text === '' ? '-' : text}
         </Text>
       ),
       cellAlignment: 'center',

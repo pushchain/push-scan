@@ -10,6 +10,7 @@ import { Box, Text, Tooltip } from '../../blocks';
 import { PushMonotone, TickCircleFilled, CopyFilled } from '../../blocks/icons';
 import { CHAIN_LOGO } from '../../common';
 import { convertCaipToObject, centerMaskString } from '../../utils/helpers';
+import { CopyTooltip } from './CopyTooltip';
 
 const Address = ({
   address,
@@ -19,14 +20,14 @@ const Address = ({
 }) => {
   function getChainIcon(chainId) {
     if (!chainId) {
-      return <PushMonotone />;
+      return <PushMonotone size={20} />;
     }
     const IconComponent = CHAIN_LOGO[chainId];
     if (IconComponent) {
-      return <IconComponent height={14} width={14} color="icon-tertiary" />;
+      return <IconComponent size={20} color="icon-tertiary" />;
     } else {
       // TO Bypass some test cases addresses
-      return <PushMonotone />;
+      return <PushMonotone size={20} />;
     }
   }
 

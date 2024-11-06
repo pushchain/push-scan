@@ -66,7 +66,13 @@ const TXDetails = (props: IProps) => {
             alignItems="center"
             gap="spacing-xxs"
           >
-            <Text variant="h6-semibold" color="text-primary">
+            <Text
+              variant="h6-semibold"
+              color="text-primary"
+              css={css`
+                word-break: break-all;
+              `}
+            >
               {props.data?.txnHash}
             </Text>
             <Box display="flex" justifyContent="flex-end" cursor="pointer">

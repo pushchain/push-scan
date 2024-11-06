@@ -1,8 +1,14 @@
+// React, NextJS imports
 import React, { useState } from 'react';
+import { useRouter } from 'next/router';
+
+// External Components imports
+import BlockiesSvg from 'blockies-react-svg';
+
+// Internal Components imports
 import {
   Box,
   Text,
-  Copy,
   Tooltip,
   Spinner,
   Pagination,
@@ -12,10 +18,7 @@ import {
 import ListView from '../../components/Transactions/ListView';
 import { centerMaskString, convertCaipToObject } from '../../utils/helpers';
 import { useGetTransactionsByUser } from '../../hooks/useGetTransactionsByUser';
-import { useRouter } from 'next/router';
 import { PerPageItems } from '../../utils/constants';
-import BlockiesSvg from 'blockies-react-svg';
-import Address from '../../components/Reusables/AddressComponent';
 
 const Search = () => {
   const router = useRouter();

@@ -8,7 +8,7 @@ import { useTheme } from 'styled-components';
 // Internal Components imports
 import { Box, Text, Tag, Table } from '../../blocks';
 import { Tick } from '../../blocks/icons';
-import { fromNow, capitalizeStr } from '../../utils/helpers';
+import { fromNow, capitalizeStr, rightMaskString } from '../../utils/helpers';
 import { TagVariant } from '../../blocks/tag';
 import { Transaction } from '../../types/transaction';
 import Address from '../Reusables/AddressComponent';
@@ -82,7 +82,17 @@ const ListView = (props: IProps) => {
       dataIndex: 'recipients',
       render: (recipients: string) => {
         const reci = recipients.split(',');
-        if (!recipients) return;
+        if (!recipients)
+          return (
+            <Box
+              display="flex"
+              flexDirection="column"
+              alignItems="center"
+              justifyContent="center"
+            >
+              <Text>-</Text>
+            </Box>
+          );
         return (
           <Box display="flex" flexDirection="column">
             <Address address={reci[0]} allowCopy />
@@ -106,13 +116,13 @@ const ListView = (props: IProps) => {
         if (category.startsWith(customPrefix)) {
           return (
             <Text variant="bs-regular" color="text-primary">
-              {category.replace(customPrefix, '')}
+              {rightMaskString(category.replace(customPrefix, ''), 10)}
             </Text>
           );
         }
         return (
           <Text variant="bs-regular" color="text-primary">
-            {category}
+            {rightMaskString(category, 10)}
           </Text>
         );
       },
