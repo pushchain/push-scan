@@ -39,14 +39,10 @@ export default function Navbar() {
       flexDirection="column"
       justifyContent="space-between"
       alignItems="center"
-      alignSelf="stretch"
+      alignSelf="center"
       padding="spacing-sm spacing-none"
       maxWidth="1100px"
       width="calc(100% - (var(--spacing-sm) * 2))"
-      css={css`
-        flex: initial;
-        margin: 0 auto;
-      `}
       gap="spacing-xs"
     >
       <Box

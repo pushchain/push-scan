@@ -67,8 +67,6 @@ export default function SearchBar() {
     }
   }, [debouncedQuery, data, isLoading]);
 
-  console.log('debouncedQuery', debouncedQuery, query);
-
   return (
     <TextInput
       placeholder="Search by Address, Tx Hash, Block Hash"
