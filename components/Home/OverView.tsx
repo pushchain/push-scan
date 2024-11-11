@@ -24,7 +24,7 @@ const OverView: FC<OverViewProps> = () => {
       border="border-xmd solid stroke-secondary"
       backgroundColor="surface-primary"
       borderRadius="radius-md"
-      width="100%"
+      width="-webkit-fill-available"
     >
       <Skeleton isLoading={isLoading}>
         <Box

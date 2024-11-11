@@ -28,7 +28,6 @@ export const GlobalStyles = createGlobalStyle`
     url('${basePath}/static/fonts/FKGroteskNeue-Bold.woff') format('woff');
   font-weight: 700 800;
   font-style: normal;
-  font-display: swap;
 }
 
   body {
@@ -37,6 +36,11 @@ export const GlobalStyles = createGlobalStyle`
     font-family: var(--font-family);
     transition: all 0.2s linear;
   }
+
+  a {
+    text-decoration: none! important;
+  }
+ 
   :root {
     /* Font Family */
     --font-family: 'FK Grotesk Neu';
