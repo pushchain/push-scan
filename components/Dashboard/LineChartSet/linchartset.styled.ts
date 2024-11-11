@@ -60,7 +60,7 @@ export const Option = styled.div`
   width: 100%;
   background-color: transparent;
   color: ${({ theme }) => theme.text.secondary};
-  font-family: 'Strawford', Helvetica, sans-serif;
+  font-family: 'var(--font-family)';
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -95,7 +95,7 @@ export const TimeFilter = styled.button<TimeFilterType>`
   background-color: ${(props) => props.background || '#cf1c84'};
   color: ${(props) => props.color || '#657795'};
   font-weight: ${(props) => props.fontWeight || '500'};
-  font-family: 'Strawford', Helvetica, sans-serif;
+  font-family: 'FK Grotesk Neu';
   font-size: 15px;
   border-radius: 12px;
   min-width: 41px;

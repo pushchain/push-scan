@@ -5,33 +5,18 @@ import Link from 'next/link';
 
 // External Library imports
 import { DarkModeSwitch } from 'react-toggle-dark-mode';
-import { useMediaQuery } from '@mui/material';
-import { css, useTheme } from 'styled-components';
+import { css } from 'styled-components';
 
 // Internal Components imports
 import { useTheme as Theme } from '../../contexts/ThemeContext';
-import { useData } from '../../contexts/DataContext';
-import { ROUTES, CREDENTIALKEYS } from '../../utils/constants';
-import { ThemeType } from '../../types/theme';
 import { Box, Text, Lozenge, PushLogo } from '../../blocks';
 import SearchBar from '../Home/SearchBar';
 
 export default function Navbar() {
   const { isDarkMode, darkModeToggle } = Theme();
-  const { isLoggedIn, setIsLoggedIn, token } = useData();
-  const router = useRouter();
-  const theme = useTheme() as ThemeType;
-  const isMobile = useMediaQuery('(max-width:480px)');
-  const isSmall = useMediaQuery('(max-width:1024px)');
-  const { asPath } = useRouter();
-  const [showSidebar, setShowSidebar] = React.useState<boolean>(false);
 
-  const logout = () => {
-    setIsLoggedIn?.(false);
-    sessionStorage.setItem(CREDENTIALKEYS.LOGINCHECK, '' + false);
-    sessionStorage.setItem(CREDENTIALKEYS.TOKEN, '');
-    router.push(ROUTES.LOGIN);
-  };
+  const router = useRouter();
+  const { asPath } = useRouter();
 
   return (
     <Box
@@ -75,7 +60,6 @@ export default function Navbar() {
               size="small"
               variant="primary"
               css={css`
-                padding: 10px;
                 margin-left: 10px;
               `}
             >
