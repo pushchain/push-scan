@@ -43,7 +43,7 @@ export default function Footer() {
       width="calc(100% - (var(--spacing-sm) * 2))"
       css={css`
         flex: initial;
-       margin: 0 auto;
+        margin: 0 auto;
       `}
     >
       <Box display="flex" flexDirection="row" gap="spacing-sm">
@@ -55,7 +55,7 @@ export default function Footer() {
           <Twitter color="icon-primary" size={18} />
         </Link>
         <Link
-          href="https://github.com/ethereum-push-notification-service/"
+          href="https://github.com/push-protocol/"
           target={'_blank'}
           rel={'noreferrer'}
         >

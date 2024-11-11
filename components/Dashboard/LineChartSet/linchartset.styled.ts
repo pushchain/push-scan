@@ -82,11 +82,14 @@ export const TimeFilterContainer = styled.div`
   padding: 5px;
   align-items: center;
   justify-content: space-between;
+  margin-top: 24px;
   @media (max-width: 480px) {
     width: 100%;
+    margin-top: 0px;
   }
   @media (max-width: 768px) {
     width: 100%;
+    margin-top: 0px;
   }
 `;
 
