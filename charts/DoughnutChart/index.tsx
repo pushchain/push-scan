@@ -124,8 +124,6 @@ const DoughnutChart = ({ data, title, label, value, colorSet }: any) => {
     >
       <Card
         sx={{
-          minHeight: '100%',
-          minWidth: '100%',
           backgroundColor: isMobile ? 'transparent' : theme.background.card,
           border: `1px solid ${theme.background.border}`,
           borderRadius: '28px',

@@ -2,19 +2,21 @@
 import { createGlobalStyle } from 'styled-components';
 import { getBlocksCSSVariables } from '../blocks';
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+
 export const GlobalStyles = createGlobalStyle`
   @font-face {
   font-family: 'FK Grotesk Neu';
-  src: url('../static/fonts/FKGroteskNeue-Regular.woff2') format('woff2'),
-    url('../static/fonts/FKGroteskNeue-Regular.woff') format('woff');
+  src: url('${basePath}/static/fonts/FKGroteskNeue-Regular.woff2') format('woff2'),
+    url('${basePath}/static/fonts/FKGroteskNeue-Regular.woff') format('woff');
   font-weight: 100 400;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'FK Grotesk Neu';
-  src: url('../static/fonts/FKGroteskNeue-Medium.woff2') format('woff2'),
-    url('../static/fonts/FKGroteskNeu-Medium.woff') format('woff');
+  src: url('${basePath}/static/fonts/FKGroteskNeue-Medium.woff2') format('woff2'),
+    url('${basePath}/static/fonts/FKGroteskNeu-Medium.woff') format('woff');
 
   font-weight: 500 600;
   font-style: normal;
@@ -22,8 +24,8 @@ export const GlobalStyles = createGlobalStyle`
 
 @font-face {
   font-family: 'FK Grotesk Neu';
-  src: url('../static/fonts/FKGroteskNeue-Bold.woff2') format('woff2'),
-    url('../static/fonts/FKGroteskNeue-Bold.woff') format('woff');
+  src: url('${basePath}/static/fonts/FKGroteskNeue-Bold.woff2') format('woff2'),
+    url('${basePath}/static/fonts/FKGroteskNeue-Bold.woff') format('woff');
   font-weight: 700 800;
   font-style: normal;
   font-display: swap;
