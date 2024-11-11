@@ -1,6 +1,6 @@
 // External Library imports
 import { createGlobalStyle } from 'styled-components';
-import { blocksColors, getBlocksCSSVariables } from '../blocks';
+import { getBlocksCSSVariables } from '../blocks';
 
 export const GlobalStyles = createGlobalStyle`
   @font-face {
@@ -32,7 +32,7 @@ export const GlobalStyles = createGlobalStyle`
   body {
     background: ${({ theme }) => theme.background.default};
     color: ${({ theme }) => theme.text.color};
-    font-family:  'Strawford', Helvetica, sans-serif;
+    font-family: var(--font-family);
     transition: all 0.2s linear;
   }
   :root {
