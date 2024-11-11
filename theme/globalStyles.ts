@@ -28,7 +28,6 @@ export const GlobalStyles = createGlobalStyle`
     url('${basePath}/static/fonts/FKGroteskNeue-Bold.woff') format('woff');
   font-weight: 700 800;
   font-style: normal;
-  font-display: swap;
 }
 
   body {
