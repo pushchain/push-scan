@@ -36,6 +36,11 @@ export const GlobalStyles = createGlobalStyle`
     font-family: var(--font-family);
     transition: all 0.2s linear;
   }
+
+  a {
+    text-decoration: none! important;
+  }
+ 
   :root {
     /* Font Family */
     --font-family: 'FK Grotesk Neu';
