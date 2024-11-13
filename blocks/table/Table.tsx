@@ -30,7 +30,9 @@ export type TableProps = {
   retrying?: boolean;
 };
 
-const StyledHeaderCell = styled(HeaderCell)<{ headerAlignment?: Column['headerAlignment'] }>`
+const StyledHeaderCell = styled(HeaderCell)<{
+  headerAlignment?: Column['headerAlignment'];
+}>`
   ${({ headerAlignment }) =>
     headerAlignment
       ? `
@@ -113,7 +115,9 @@ const Table: FC<TableProps> = ({
   retrying = false,
 }) => {
   const columnData = useMemo(() => {
-    const columnWidths = columns.map((col) => col.width || `${100 / columns.length}%`);
+    const columnWidths = columns.map(
+      (col) => col.width || `${100 / columns.length}%`
+    );
 
     const leftRightPositionCSS = columns
       .map((col, index) => {
@@ -127,7 +131,9 @@ const Table: FC<TableProps> = ({
         if (col?.fixed == 'right') {
           return `
             &:nth-of-type(${index + 1}) {
-              right: ${index + 1 === columns.length ? '0px' : columnWidths[index]};
+              right: ${
+                index + 1 === columns.length ? '0px' : columnWidths[index]
+              };
             };
           `;
         }
@@ -191,19 +197,22 @@ const Table: FC<TableProps> = ({
     <TableContainer>
       {loading && !error && (
         <OverlayContainer blur>
-          <Spinner
-            size="medium"
-            variant="primary"
-          />
+          <Spinner size="medium" variant="primary" />
           <LoadingText>Loading</LoadingText>
         </OverlayContainer>
       )}
       {!loading && !dataSource.length && (
         <OverlayContainer>
           <NullStateContainer>
-            {error ? <ErrorFilled size={24} /> : <Search size={24} />}
+            {error ? (
+              <ErrorFilled size={24} color="icon-primary" />
+            ) : (
+              <Search size={24} color="icon-primary" />
+            )}
             <NullStateTextContainer>
-              <NullStateHeading>{error ? 'Trouble Fetching Data' : 'No Results Found'}</NullStateHeading>
+              <NullStateHeading>
+                {error ? 'Trouble Fetching Data' : 'No Results Found'}
+              </NullStateHeading>
               <NullStateDescription>
                 {error
                   ? 'Please try again in a few minutes or reload the page.'
@@ -263,7 +272,9 @@ const Table: FC<TableProps> = ({
                         pinLeft={column?.fixed === 'left'}
                         pinRight={column?.fixed === 'right'}
                       >
-                        {column.render ? column.render(cellValue, record) : cellValue}
+                        {column.render
+                          ? column.render(cellValue, record)
+                          : cellValue}
                       </StyledRowCell>
                     );
                   })}

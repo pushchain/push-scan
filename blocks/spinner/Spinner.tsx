@@ -1,5 +1,8 @@
 import React from 'react';
-import styled, { FlattenSimpleInterpolation, keyframes } from 'styled-components';
+import styled, {
+  FlattenSimpleInterpolation,
+  keyframes,
+} from 'styled-components';
 import { SpinnerSize, SpinnerVariant } from './Spinner.types';
 import { getSpinnerSize, getSpinnerColor } from './Spinner.utils';
 import { Ellipse } from '../icons';
@@ -19,7 +22,11 @@ const spin = keyframes`
         transform:rotate(360deg);
     }
 `;
-const Container = styled.div<{ css?: FlattenSimpleInterpolation; size: SpinnerSize; variant?: SpinnerVariant }>`
+const Container = styled.div<{
+  css?: FlattenSimpleInterpolation;
+  size: SpinnerSize;
+  variant?: SpinnerVariant;
+}>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -45,14 +52,13 @@ const Container = styled.div<{ css?: FlattenSimpleInterpolation; size: SpinnerSi
   /* Custom CSS applied via styled component css prop */
   ${(props) => props.css || ''};
 `;
-const Spinner: React.FC<SpinnerProps> = ({ size = 'small', css, variant }) => {
+const Spinner: React.FC<SpinnerProps> = ({
+  size = 'small',
+  css,
+  variant = 'primary',
+}) => {
   return (
-    <Container
-      size={size}
-      css={css}
-      variant={variant}
-      role="spinner"
-    >
+    <Container size={size} css={css} variant={variant} role="spinner">
       <Ellipse size={getSpinnerSize(size)} />
     </Container>
   );
