@@ -11,6 +11,7 @@ export const GlobalStyles = createGlobalStyle`
     url('${basePath}/static/fonts/FKGroteskNeue-Regular.woff') format('woff');
   font-weight: 100 400;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -20,6 +21,7 @@ export const GlobalStyles = createGlobalStyle`
 
   font-weight: 500 600;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -28,6 +30,7 @@ export const GlobalStyles = createGlobalStyle`
     url('${basePath}/static/fonts/FKGroteskNeue-Bold.woff') format('woff');
   font-weight: 700 800;
   font-style: normal;
+  font-display: swap;
 }
 
   body {
@@ -43,7 +46,7 @@ export const GlobalStyles = createGlobalStyle`
  
   :root {
     /* Font Family */
-    --font-family: 'FK Grotesk Neu';
+    --font-family: 'FK Grotesk Neu', Arial, sans-serif;
     
     ${(props) => getBlocksCSSVariables(props.theme.blocksTheme)}
   }
