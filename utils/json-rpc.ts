@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE = 'https://anode2.push.org/rpc';
+const API_BASE = 'https://aa1.dev.push.org/rpc';
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -9,7 +9,7 @@ export const makeJsonRpcRequest = async (id, method, params = {}) => {
     jsonrpc: '2.0',
     method: `RpcService.${method}`,
     params: params,
-    id
+    id,
   };
 
   try {
