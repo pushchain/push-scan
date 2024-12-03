@@ -1,10 +1,6 @@
 <script>
-  var l = window.location;
-  window.location.href =
-    l.protocol +
-    '//' +
-    l.hostname +
-    (l.port ? ':' + l.port : '') +
-    '/?' +
-    l.pathname.slice(1);
+  // Redirect to the root index.html with the full path appended
+  const currentPath =
+    window.location.pathname + window.location.search + window.location.hash;
+  window.location.replace('/?redirect=' + encodeURIComponent(currentPath));
 </script>

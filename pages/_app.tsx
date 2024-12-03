@@ -1,5 +1,5 @@
 // React, NextJS imports
-import React from 'react';
+import React, { useEffect } from 'react';
 
 // import localFont from '@next/font/local';
 import type { AppProps } from 'next/app';
@@ -14,9 +14,22 @@ import { ThemeProvider as GlobalThemeProvider } from '../contexts/ThemeContext';
 import { DataProvider } from '../contexts/DataContext';
 
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { useRouter } from 'next/dist/client/router';
 const queryClient = new QueryClient();
 
 export default function App({ Component, pageProps }: AppProps) {
+  const router = useRouter();
+
+  useEffect(() => {
+    // Check for the redirect parameter
+    const redirect = new URLSearchParams(window.location.search).get(
+      'redirect'
+    );
+    if (redirect) {
+      router.replace(redirect); // Navigate to the original path
+    }
+  }, [router]);
+
   return (
     <QueryClientProvider client={queryClient}>
       <GlobalThemeProvider>
