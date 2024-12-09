@@ -6,10 +6,10 @@ import Head from 'next/head';
 // Internal Components imports
 import { Spinner } from '../../blocks';
 
-const Layout = dynamic(() => import('../../../layout'));
+const Layout = dynamic(() => import('../../layout'));
 
 const TransactionDetailsView = dynamic(
-  () => import('../../../sections/Transactions/txHash'),
+  () => import('../../sections/Transactions/txHash'),
   {
     loading: () => <Spinner size="extraLarge" />,
   }
