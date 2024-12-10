@@ -7,6 +7,7 @@ import SearchBar from '../../components/Home/SearchBar';
 import OverView from '../../components/Home/OverView';
 import LiveBlocks from '../../components/Home/LiveBlocks';
 import LiveTransactions from '../../components/Home/LiveTransactions';
+import ChainAlertBar from '../../common/components/ChainAlertBar';
 
 const Home = () => {
   return (
@@ -14,37 +15,49 @@ const Home = () => {
       width="-webkit-fill-available"
       display="flex"
       flexDirection="column"
-      gap="spacing-xxxl"
+      gap="spacing-lg"
     >
+      <ChainAlertBar
+        text="Governance Proposal is Live! Vote today to bring Push Chain to reality."
+        url="https://gov.push.org"
+        textPrefix="Push Chain"
+      />
       <Box
-        display={{ dp: 'flex', ml: 'none' }}
-        flexDirection="column"
-        gap="spacing-xs"
-      >
-        <Text variant="h3-semibold" color="text-primary">
-          Push Blockchain Explorer
-        </Text>
-        <SearchBar />
-      </Box>
-
-      <Box
+        width="-webkit-fill-available"
         display="flex"
         flexDirection="column"
-        justifyContent="flex-start"
-        alignItems="flex-start"
-        gap={{ ml: 'spacing-lg', initial: 'spacing-xxl' }}
+        gap="spacing-xxxl"
       >
-        <OverView />
-      </Box>
+        <Box
+          display={{ dp: 'flex', ml: 'none' }}
+          flexDirection="column"
+          gap="spacing-xs"
+        >
+          <Text variant="h3-semibold" color="text-primary">
+            Push Blockchain Explorer
+          </Text>
+          <SearchBar />
+        </Box>
 
-      <Box
-        display="flex"
-        flexDirection={{ initial: 'row', ml: 'column' }}
-        gap={{ initial: 'spacing-xl', tb: 'spacing-md', ml: 'spacing-xxl' }}
-        justifyContent="space-between"
-      >
-        <LiveBlocks />
-        <LiveTransactions />
+        <Box
+          display="flex"
+          flexDirection="column"
+          justifyContent="flex-start"
+          alignItems="flex-start"
+          gap={{ ml: 'spacing-lg', initial: 'spacing-xxl' }}
+        >
+          <OverView />
+        </Box>
+
+        <Box
+          display="flex"
+          flexDirection={{ initial: 'row', ml: 'column' }}
+          gap={{ initial: 'spacing-xl', tb: 'spacing-md', ml: 'spacing-xxl' }}
+          justifyContent="space-between"
+        >
+          <LiveBlocks />
+          <LiveTransactions />
+        </Box>
       </Box>
     </Box>
   );

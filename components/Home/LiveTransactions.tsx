@@ -125,7 +125,7 @@ export default function LiveTransactions() {
       <Text variant="h5-semibold" color="text-primary">
         Live Transactions
       </Text>
-      <Box maxHeight={'375px'}>
+      <Box height={'375px'}>
         <Table
           loading={isLoading}
           columns={columns}
