@@ -18,9 +18,10 @@ const Home = () => {
       gap="spacing-lg"
     >
       <ChainAlertBar
-        text="Governance Proposal is Live! Vote today to bring Push Chain to reality."
-        url="https://gov.push.org"
-        textPrefix="Push Chain"
+        bannerText="Governance Proposal is Live! Vote today to bring Push Chain to reality."
+        bannerURL="https://gov.push.org"
+        bannerTextPrefix="Push Chain"
+        prefixURL="https://push.org/chain"
       />
       <Box
         width="-webkit-fill-available"

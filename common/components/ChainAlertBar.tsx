@@ -3,21 +3,35 @@ import styled from 'styled-components';
 import { Front, Sale } from '../../blocks';
 
 type AlertBarProps = {
-  text: string;
-  url?: string;
-  textPrefix?: string;
+  bannerText: string;
+  bannerURL: string;
+  bannerTextPrefix?: string;
+  prefixURL;
 };
 
-const ChainAlertBar = ({ text, url, textPrefix }: AlertBarProps) => {
+const ChainAlertBar = ({
+  bannerText,
+  bannerURL,
+  bannerTextPrefix,
+  prefixURL,
+}: AlertBarProps) => {
   return (
     <HeroButton
       onClick={() => {
-        if (url) window.open(url, '_blank');
+        if (bannerURL) window.open(bannerURL, '_blank');
       }}
     >
       <Sale size={16} color="icon-brand-subtle" />
       <AlertText>
-        <AlertTextPrefix>{textPrefix}</AlertTextPrefix> {text}
+        <AlertTextPrefix
+          onClick={(e) => {
+            e.stopPropagation();
+            window.open(prefixURL, '_blank');
+          }}
+        >
+          {bannerTextPrefix}
+        </AlertTextPrefix>{' '}
+        {bannerText}
       </AlertText>
       <Front size={16} color="icon-brand-subtle" />
     </HeroButton>
