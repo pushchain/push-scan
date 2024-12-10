@@ -77,13 +77,13 @@ export default function Navbar() {
           gap={{ initial: 'spacing-sm', ml: 'spacing-none' }}
           margin={{ ml: 'spacing-xxs' }}
         >
-          {asPath !== '/dashboard' && (
+          {/* {asPath !== '/dashboard' && (
             <Link href="https://push.org/chain/ecosystem" target="_blank">
               <Text variant="h6-semibold" color="text-primary">
                 App Ecosystem
               </Text>
             </Link>
-          )}
+          )} */}
 
           <DarkModeSwitch
             style={{ margin: '0 1rem' }}
