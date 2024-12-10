@@ -162,6 +162,8 @@ export { default as Settings } from './components/Settings';
 
 export { default as Swap } from './components/Swap';
 
+export { default as Sale } from './components/Sale';
+
 export { default as Tick } from './components/Tick';
 export { default as TickCircleFilled } from './components/TickCircleFilled';
 export { default as TickDecoratedCircleFilled } from './components/TickDecoratedCircleFilled';

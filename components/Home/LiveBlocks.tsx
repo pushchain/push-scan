@@ -36,7 +36,7 @@ export default function LiveBlocks() {
     {
       title: 'VALIDATOR',
       dataIndex: 'validator',
-      render: (text) => <Address address={centerMaskString(text)} />,
+      render: (text) => <Address address={text} />,
       cellAlignment: 'flex-start',
       headerAlignment: 'flex-start',
       width: '135px',

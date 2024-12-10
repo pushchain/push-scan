@@ -31,7 +31,7 @@ export default function Navbar() {
       gap="spacing-xs"
     >
       <Box
-        alignItems="center"
+        alignItems={{ initial: 'center', ml: 'flex-start' }}
         display="flex"
         flexDirection="row"
         justifyContent="space-between"
@@ -45,16 +45,18 @@ export default function Navbar() {
         >
           <Box
             display="flex"
-            flexDirection="row"
+            flexDirection={{ initial: 'row', ml: 'column' }}
             alignItems="center"
-            gap="spacing-xxxs"
+            gap={{ initial: 'spacing-xxxs', ml: 'spacing-none' }}
             cursor="pointer"
             onClick={() => router.push('/home')}
           >
-            <PushLogo height={43} width={43} />
-            <Text variant="h4-regular" color="text-primary">
-              PushScan
-            </Text>
+            <Box display="flex" gap="spacing-xxxs" alignItems="center">
+              <PushLogo height={43} width={43} />
+              <Text variant="h4-regular" color="text-primary">
+                PushScan
+              </Text>
+            </Box>
 
             <Lozenge
               size="small"
@@ -72,12 +74,13 @@ export default function Navbar() {
           display="flex"
           flexDirection="row"
           alignItems="center"
-          gap="spacing-sm"
+          gap={{ initial: 'spacing-sm', ml: 'spacing-none' }}
+          margin={{ ml: 'spacing-xxs' }}
         >
           {asPath !== '/dashboard' && (
-            <Link href="/dashboard">
+            <Link href="https://push.org/chain/ecosystem" target="_blank">
               <Text variant="h6-semibold" color="text-primary">
-                Analytics
+                App Ecosystem
               </Text>
             </Link>
           )}
