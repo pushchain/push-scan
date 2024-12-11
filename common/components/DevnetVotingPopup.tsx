@@ -181,7 +181,6 @@ const NotificationContainer = styled.div`
 const LogoContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: var(--spacing-xxxs);
 `;
 
 const StyledToaster = styled(Toaster)`
