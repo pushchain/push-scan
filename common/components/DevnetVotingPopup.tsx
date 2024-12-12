@@ -3,7 +3,7 @@
 import React, { useEffect, useState, FC, ReactNode } from 'react';
 import styled from 'styled-components';
 import { toast, Toaster } from 'sonner';
-import { Button, Cross, PushLogo } from '../../blocks';
+import { Cross, PushLogo } from '../../blocks';
 
 type NotificationProps = {
   image?: ReactNode;
@@ -128,7 +128,7 @@ const NotificationItem: FC<NotificationProps> = ({
           handleNotificationClose();
         }}
       >
-        <Cross size={24} color="icon-primary" />
+        <Cross size={24} color="white-100" />
       </CloseButton>
       <TextContainer>
         <LogoContainer>
@@ -136,7 +136,7 @@ const NotificationItem: FC<NotificationProps> = ({
           <ChainSvg />
         </LogoContainer>
         <NotificationTitle>{firstTitle}</NotificationTitle>
-        <Button
+        <VoteButton
           onClick={() => {
             localStorage.setItem('chainNotificationShown', 'true');
             window.open('https://gov.push.org', '_blank');
@@ -144,7 +144,7 @@ const NotificationItem: FC<NotificationProps> = ({
           }}
         >
           Learn More
-        </Button>
+        </VoteButton>
         <NotificationDescription>{description}</NotificationDescription>
       </TextContainer>
     </NotificationContainer>
@@ -155,13 +155,12 @@ const NotificationItem: FC<NotificationProps> = ({
 const NotificationContainer = styled.div`
   position: relative;
   border-radius: var(--radius-md, 24px);
-  border: 1px solid var(--stroke-secondary, #313338);
-  background: var(--surface-primary, #202124);
+  background: #000;
   display: flex;
   flex-direction: column;
   align-items: stretch;
   height: 310px;
-  width: 272px;
+  width: 320px;
   cursor: pointer;
   box-sizing: border-box;
   font-family: var(--font-family);
@@ -204,8 +203,7 @@ const TextContainer = styled.div`
 `;
 
 const NotificationTitle = styled.span`
-  font-family: 'FK Grotesk Neue', sans-serif;
-  color: var(--text-primary);
+  color: #fff;
   text-align: center;
   font-family: var(--font-family);
   font-size: 26px;
@@ -215,8 +213,7 @@ const NotificationTitle = styled.span`
 `;
 
 const NotificationDescription = styled.span`
-  font-family: 'FK Grotesk Neue', sans-serif;
-  color: var(--text-primary);
+  color: #fff;
   text-align: center;
   font-family: var(--font-family);
   font-size: 16px;
@@ -227,13 +224,27 @@ const NotificationDescription = styled.span`
   overflow: hidden;
 `;
 
+const VoteButton = styled.button`
+  font-family: var(--font-family);
+  background-color: transparent;
+  cursor: pointer;
+  color: #fff;
+  margin: 0 auto;
+  border: 1.5px solid #fff;
+  padding: 16px 32px;
+  border-radius: 16px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 16px;
+`;
+
 const CloseButton = styled.button`
   background-color: transparent;
   cursor: pointer;
   color: #fff;
   padding: 0px;
   position: absolute;
-  right: 8px;
-  top: 8px;
+  right: 14px;
+  top: 10px;
   border: none;
 `;
