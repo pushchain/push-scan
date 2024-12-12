@@ -1,22 +1,31 @@
 <h1 align="center">
     <a href="https://push.org/#gh-light-mode-only">
-    <img width='20%' height='10%' 
-src="https://res.cloudinary.com/drdjegqln/image/upload/v1686227557/Push-Logo-Standard-Dark_xap7z5.png">
+    <img width='20%' height='10%' src="https://res.cloudinary.com/drdjegqln/image/upload/v1686227557/Push-Logo-Standard-Dark_xap7z5.png">
     </a>
     <a href="https://push.org/#gh-dark-mode-only">
-    <img width='20%' height='10%' 
-src="https://res.cloudinary.com/drdjegqln/image/upload/v1686227558/Push-Logo-Standard-White_dlvapc.png">
+    <img width='20%' height='10%' src="https://res.cloudinary.com/drdjegqln/image/upload/v1686227558/Push-Logo-Standard-White_dlvapc.png">
     </a>
 </h1>
 
 <p align="center">
-  <i align="center">Push Protocol is a web3 communication network, enabling cross-chain notifications, messaging, video, and NFT chat for dapps, wallets, and services.🚀</i>
+  <i align="center">Push protocol is evolving to Push Chain, a shared-state L1 designed to deliver universal app experiences (Any Chain. Any User. Any App).🚀</i>
 </p>
 
-<div>
-<h2>
-<br>
-Push Analytics and Push Scan </h1>
+<h4 align="center">
+
+  <a href="https://discord.com/invite/pushprotocol">
+    <img src="https://img.shields.io/badge/discord-7289da.svg?style=flat-square" alt="discord">
+  </a>
+  <a href="https://twitter.com/pushprotocol">
+    <img src="https://img.shields.io/badge/twitter-18a1d6.svg?style=flat-square" alt="twitter">
+  </a>
+  <a href="https://www.youtube.com/@pushprotocol">
+    <img src="https://img.shields.io/badge/youtube-d95652.svg?style=flat-square&" alt="youtube">
+  </a>
+</h4>
+
+
+<h1> Push Analytics and Push Scan </h1>
 <p>Push Analytics Dashboard is a comprehensive tool designed to provide in-depth insights into the performance and usage of the Push Protocol. This repository hosts the code that powers the analytics component of the Push Protocol, offering a detailed view of various metrics such as the number of subscribers, notifications, channels, and more. The dashboard is an essential tool for understanding the reach and impact of the Push Protocol, providing valuable data that can help guide future development and improvements.
 
 The dashboard is designed with a user-friendly interface, making it easy to navigate and understand the data presented. It provides real-time updates, ensuring you have the most accurate and up-to-date information at your fingertips. Whether you're a developer looking to monitor the performance of your channels, or a user interested in understanding more about your subscriptions, the Push Analytics Dashboard is a powerful resource for all things related to the Push Protocol.</p>
