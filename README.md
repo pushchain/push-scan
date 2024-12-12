@@ -24,13 +24,12 @@
   </a>
 </h4>
 
-
 <h1> Push Analytics and Push Scan </h1>
 <p>Push Analytics Dashboard is a comprehensive tool designed to provide in-depth insights into the performance and usage of the Push Protocol. This repository hosts the code that powers the analytics component of the Push Protocol, offering a detailed view of various metrics such as the number of subscribers, notifications, channels, and more. The dashboard is an essential tool for understanding the reach and impact of the Push Protocol, providing valuable data that can help guide future development and improvements.
 
 The dashboard is designed with a user-friendly interface, making it easy to navigate and understand the data presented. It provides real-time updates, ensuring you have the most accurate and up-to-date information at your fingertips. Whether you're a developer looking to monitor the performance of your channels, or a user interested in understanding more about your subscriptions, the Push Analytics Dashboard is a powerful resource for all things related to the Push Protocol.</p>
 
-<h3> <a href="https://push.network/">Visit: Push.network 🕸️</a> </h3>
+<h3> <a href="https://push.network/">Visit: scan.push.org 🕸️</a> </h3>
 <br />
 <p align="center">
 <img src="https://img.shields.io/badge/Next.js-%23111111.svg?style=flat&logo=next.js&logoColor=white" />
