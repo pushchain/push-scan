@@ -14,12 +14,12 @@ import { ThemeProvider as GlobalThemeProvider } from '../contexts/ThemeContext';
 import { DataProvider } from '../contexts/DataContext';
 
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { Notification, useChainNotification } from '../common';
+import { Notification } from '../common';
 
 const queryClient = new QueryClient();
 
 export default function App({ Component, pageProps }: AppProps) {
-  useChainNotification();
+  // useChainNotification();
   return (
     <QueryClientProvider client={queryClient}>
       <GlobalThemeProvider>
