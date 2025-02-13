@@ -16,7 +16,7 @@
   <a href="https://discord.com/invite/pushprotocol">
     <img src="https://img.shields.io/badge/discord-7289da.svg?style=flat-square" alt="discord">
   </a>
-  <a href="https://twitter.com/pushprotocol">
+  <a href="https://x.com/PushChain">
     <img src="https://img.shields.io/badge/twitter-18a1d6.svg?style=flat-square" alt="twitter">
   </a>
   <a href="https://www.youtube.com/@pushprotocol">
