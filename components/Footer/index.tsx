@@ -48,7 +48,7 @@ export default function Footer() {
     >
       <Box display="flex" flexDirection="row" gap="spacing-sm">
         <Link
-          href="https://twitter.com/PushProtocol"
+          href="https://x.com/PushChain"
           target={'_blank'}
           rel={'noreferrer'}
         >
