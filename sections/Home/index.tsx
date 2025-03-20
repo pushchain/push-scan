@@ -18,8 +18,8 @@ const Home = () => {
       gap="spacing-lg"
     >
       <ChainAlertBar
-        bannerText="Devnet Drop S2 coming 20 Mar, 2025."
-        bannerURL="https://x.com/PushChain"
+        bannerText="Devnet Drop S2 is Live!"
+        bannerURL="https://portal.push.org/rewards"
         bannerTextPrefix="Push Chain"
         prefixURL="https://push.org/chain"
       />
