@@ -5,7 +5,7 @@ import axios from 'axios';
 import { CREDENTIALKEYS } from './constants';
 
 const API_BASE = 'https://backend.epns.io/apis/v1';
-const API_ANODE_BASE = 'https://aa1.dev.push.org/';
+const API_ANODE_BASE = 'https://aa2.dev.push.org/';
 
 export const login = async ({ user, pass }) => {
   try {
