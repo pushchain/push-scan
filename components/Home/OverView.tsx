@@ -137,7 +137,7 @@ const OverView: FC<OverViewProps> = () => {
           `}
         >
           <Text variant="h6-regular" color="text-tertiary">
-            Total Transactions
+            Daily Transactions
           </Text>
           <Text variant="h3-semibold" color="text-primary">
             {data?.dailyTransactions.toLocaleString()}
