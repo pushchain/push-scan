@@ -70,7 +70,7 @@ export default function Footer() {
         </Link>
 
         <Link
-          href="https://discord.com/invite/pushprotocol"
+          href="https://discord.com/invite/pushchain"
           target={'_blank'}
           rel={'noreferrer'}
         >
